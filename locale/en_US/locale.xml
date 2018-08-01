@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="en_US" full_name="U.S. English">
+	
+	<!-- Theme description -->
+	<message key="plugins.themes.immersion.name">Immersion Theme</message>
+	<message key="plugins.themes.immersion.description">The Theme For OJS 3</message>
+	
+	<!-- Section settings Form -->
+	<message key="plugins.themes.immersion.colorPick">Color Picker</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">Pick a color for a section to display on the journal's front-end. Must be valid HTML hex code (e.g., #ffff00 for yellow).</message>
+	
+</locale>

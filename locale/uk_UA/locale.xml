@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="uk_UA" full_name="Ukrainian">
+	
+	<!-- Опис журналу -->
+	<message key="plugins.themes.immersion.name">Імерційна тема</message>
+	<message key="plugins.themes.immersion.description">Тема для OJS 3</message>
+	
+	<!-- Форма секцій журналу -->
+	<message key="plugins.themes.immersion.colorPick">Обрати колір</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">Оберіть колір для секції (рубрики), який буде відображатися на сайті журналу. Має бути валідним HTML кодом (наприклад, #ffff00 для жовтого).</message>
+
+</locale>
