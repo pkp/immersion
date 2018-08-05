@@ -8,8 +8,8 @@ class ImmersionSection extends Section {
 	 * Get the localized section cover image file name
 	 * @return string
 	 */
-	function getLocalizedCoverImage() {
-		return $this->getLocalizedData('coverImage');
+	function getImmersionLocalizedCoverImage() {
+		return $this->getLocalizedData('ImmersionCoverImage');
 	}
 	
 	/**
@@ -17,8 +17,8 @@ class ImmersionSection extends Section {
 	 * @param $locale string
 	 * @return string
 	 */
-	function getCoverImage($locale) {
-		return $this->getData('coverImage', $locale);
+	function getImmersionCoverImage($locale) {
+		return $this->getData('immersionCoverImage', $locale);
 	}
 	
 	/**
@@ -26,16 +26,16 @@ class ImmersionSection extends Section {
 	 * @param $coverImage string
 	 * @param $locale string
 	 */
-	function setCoverImage($coverImage, $locale) {
-		return $this->setData('coverImage', $coverImage, $locale);
+	function setImmersionCoverImage($coverImage, $locale) {
+		return $this->setData('immersionCoverImage', $coverImage, $locale);
 	}
 	
 	/**
 	 * Get the localized section cover image alternate text
 	 * @return string
 	 */
-	function getLocalizedCoverImageAltText() {
-		return $this->getLocalizedData('coverImageAltText');
+	function getImmersionLocalizedCoverImageAltText() {
+		return $this->getLocalizedData('immersionCoverImageAltText');
 	}
 	
 	/**
@@ -43,8 +43,8 @@ class ImmersionSection extends Section {
 	 * @param $locale string
 	 * @return string
 	 */
-	function getCoverImageAltText($locale) {
-		return $this->getData('coverImageAltText', $locale);
+	function getImmersionCoverImageAltText($locale) {
+		return $this->getData('immersionCoverImageAltText', $locale);
 	}
 	
 	/**
@@ -52,8 +52,8 @@ class ImmersionSection extends Section {
 	 *
 	 * @return string
 	 */
-	function getLocalizedCoverImageUrl() {
-		$coverImage = $this->getLocalizedCoverImage();
+	function getImmersionLocalizedCoverImageUrl() {
+		$coverImage = $this->getImmersionLocalizedCoverImage();
 		if (!$coverImage) {
 			return '';
 		}
@@ -71,8 +71,8 @@ class ImmersionSection extends Section {
 	 *
 	 * @return array
 	 */
-	function getCoverImageUrls() {
-		$coverImages = $this->getCoverImage(null);
+	function getImmersionCoverImageUrls() {
+		$coverImages = $this->getImmersionCoverImage(null);
 		if (empty($coverImages)) {
 			return array();
 		}
@@ -95,16 +95,16 @@ class ImmersionSection extends Section {
 	 * @param $coverImageAltText string
 	 * @param $locale string
 	 */
-	function setCoverImageAltText($coverImageAltText, $locale) {
-		return $this->setData('coverImageAltText', $coverImageAltText, $locale);
+	function setImmersionCoverImageAltText($coverImageAltText, $locale) {
+		return $this->setData('immersionCoverImageAltText', $coverImageAltText, $locale);
 	}
 	
-	function getColor() {
-		return $this->getData('colorPick');
+	function getImmersionColor() {
+		return $this->getData('immersionColorPick');
 	}
 	
-	function setColor($colorPick) {
-		return $this->setData('colorPick', $colorPick);
+	function setImmersionColor($colorPick) {
+		return $this->setData('immersionColorPick', $colorPick);
 	}
 	
 	

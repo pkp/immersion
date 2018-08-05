@@ -31,6 +31,8 @@ class ImmersionSectionForm extends SectionForm {
 			$section = $sectionDao->getById($sectionId, $journal->getId());
 		}
 		
+		/* @var $section ImmersionSection */
+		
 		if (isset($section) ) {
 			$locale = AppLocale::getLocale();
 			$this->setData(array(
@@ -47,9 +49,9 @@ class ImmersionSectionForm extends SectionForm {
 				'policy' => $section->getPolicy(null), // Localized
 				'wordCount' => $section->getAbstractWordCount(),
 				'subEditors' => $this->_getAssignedSubEditorIds($sectionId, $journal->getId()),
-				'coverImage' => $section->getCoverImage($locale),
-				'coverImageAltText' => $section->getCoverImageAltText($locale),
-				'colorPick' => $section->getColor()
+				'immersionCoverImage' => $section->getImmersionCoverImage($locale),
+				'immersionCoverImageAltText' => $section->getImmersionCoverImageAltText($locale),
+				'immersionColorPick' => $section->getImmersionColor()
 			));
 		}
 		
@@ -71,7 +73,7 @@ class ImmersionSectionForm extends SectionForm {
 		$sectionId = $this->getSectionId();
 		$section = $sectionDao->getById($sectionId, $journal->getId());
 		// Cover image delete link action
-		if ($coverImage = $section->getCoverImage(AppLocale::getLocale())) $templateMgr->assign(
+		if ($coverImage = $section->getImmersionCoverImage(AppLocale::getLocale())) $templateMgr->assign(
 			'deleteCoverImageLinkAction',
 			new LinkAction(
 				'deleteCoverImage',
@@ -80,7 +82,7 @@ class ImmersionSectionForm extends SectionForm {
 					__('common.confirmDelete'), null,
 					$request->getRouter()->url(
 						$request, null, null, 'deleteCoverImage', null, array(
-							'coverImage' => $coverImage,
+							'immersionCoverImage' => $coverImage,
 							'sectionId' => $sectionId,
 						)
 					),
@@ -97,7 +99,7 @@ class ImmersionSectionForm extends SectionForm {
 	
 	function readInputData() {
 		parent::readInputData();
-		$this->readUserVars(array('coverImageAltText', 'colorPick', 'temporaryFileId'));
+		$this->readUserVars(array('immersionCoverImageAltText', 'immersionColorPick', 'temporaryFileId'));
 	}
 	
 	/**
@@ -122,7 +124,7 @@ class ImmersionSectionForm extends SectionForm {
 			import('classes.file.PublicFileManager');
 			$publicFileManager = new PublicFileManager();
 			if (!$publicFileManager->getImageExtension($temporaryFile->getFileType())) {
-				$this->addError('coverImage', __('editor.issues.invalidCoverImageFormat'));
+				$this->addError('immersionCoverImage', __('editor.issues.invalidCoverImageFormat'));
 			}
 		}
 		
@@ -136,6 +138,10 @@ class ImmersionSectionForm extends SectionForm {
 	 * @return mixed
 	 */
 	function execute($args, $request) {
+		
+		/* @var $sectionDAO ImmersionSectionDAO
+		 * @var $section ImmersionSection
+		 */
 		$sectionDao = DAORegistry::getDAO('ImmersionSectionDAO');
 		$journal = $request->getJournal();
 		
@@ -143,7 +149,7 @@ class ImmersionSectionForm extends SectionForm {
 		if ($this->getSectionId()) {
 			$section = $sectionDao->getById($this->getSectionId(), $journal->getId());
 		} else {
-			import('classes.journal.Section');
+			import('plugins.themes.immersion.classes.ImmersionSection');
 			$section = $sectionDao->newDataObject();
 			$section->setJournalId($journal->getId());
 		}
@@ -160,15 +166,17 @@ class ImmersionSectionForm extends SectionForm {
 			$newFileName = 'cover_section_' . $this->getSectionId() . '_' . $locale . $publicFileManager->getImageExtension($temporaryFile->getFileType());
 			$journal = $request->getJournal();
 			$publicFileManager->copyJournalFile($journal->getId(), $temporaryFile->getFilePath(), $newFileName);
-			$section->setCoverImage($newFileName, $locale);
+			$section->setImmersionCoverImage($newFileName, $locale);
 		}
 		
 		// TODO input validation (HTML hex colors)
-		$section->setAbstractWordCount($this->getData('wordCount'));
+		$colorPick = $this->getData('immersionColorPick') ? $this->getData('immersionColorPick') : '';
+		if (empty($colorPick)) {
+			$colorPick = '#ffffff';
+		}
+		$section->setImmersionColor($colorPick);
 		
-		$section->setColor($this->getData('colorPick'), null);
-		
-		$section->setCoverImageAltText($this->getData('coverImageAltText'), $locale);
+		$section->setImmersionCoverImageAltText($this->getData('immersionCoverImageAltText'), $locale);
 		
 		// Update section editors
 		$this->_saveSubEditors($journal->getId());

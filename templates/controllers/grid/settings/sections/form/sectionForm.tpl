@@ -59,23 +59,23 @@
 			{fbvElement type="select" id="reviewFormId" defaultLabel="manager.reviewForms.noneChosen"|translate defaultValue="" from=$reviewFormOptions selected=$reviewFormId translate=false size=$fbvStyles.size.MEDIUM inline=true}
 		{/fbvFormSection}
 
-		{fbvFormSection title="plugins.themes.immersion.colorPick" for="colorPick" inline=false size=$fbvStyles.size.MEDIUM}
-			{fbvElement type="colour" id="colorPick" value=$colorPick maxlength="7" label="plugins.themes.immersion.colorPickInstructions"}
+		{fbvFormSection title="plugins.themes.immersion.colorPick" for="immersionColorPick" inline=false size=$fbvStyles.size.MEDIUM}
+			{fbvElement type="colour" id="immersionColorPick" value=$immersionColorPick maxlength="7" label="plugins.themes.immersion.colorPickInstructions"}
 		{/fbvFormSection}
 
 		{call_hook name="Templates::Manager::Sections::SectionForm::AdditionalMetadata" sectionId=$sectionId}
 	{/fbvFormArea}
 
-	{fbvFormArea id="coverImage" title="editor.section.coverPage"}
+	{fbvFormArea id="immersionCoverImage" title="editor.section.coverPage"}
 		{fbvFormSection}
 			{include file="controllers/fileUploadContainer.tpl" id="coverImageUploader"}
 			<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />
 		{/fbvFormSection}
 		{fbvFormSection id="coverImagePreview"}
-		{if $coverImage != ''}
+		{if $immersionCoverImage != ''}
 			<div class="pkp_form_file_view pkp_form_image_view">
 				<div class="img">
-					<img src="{$publicFilesDir}/{$coverImage|escape:"url"}{'?'|uniqid}" {if $coverImageAlt !== ''} alt="{$coverImageAlt|escape}"{/if}>
+					<img src="{$publicFilesDir}/{$immersionCoverImage|escape:"url"}{'?'|uniqid}" {if $immersionCoverImageAlt !== ''} alt="{$immersionCoverImageAlt|escape}"{/if}>
 				</div>
 
 				<div class="data">
@@ -83,7 +83,7 @@
 								{translate key="common.altText"}
 							</span>
 					<span class="value">
-								{fbvElement type="text" id="coverImageAltText" label="common.altTextInstructions" value=$coverImageAltText}
+								{fbvElement type="text" id="immersionCoverImageAltText" label="common.altTextInstructions" value=$immersionCoverImageAltText}
 							</span>
 
 					<div id="{$deleteCoverImageLinkAction->getId()}" class="actions">

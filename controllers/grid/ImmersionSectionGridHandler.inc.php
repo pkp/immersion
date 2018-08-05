@@ -59,22 +59,22 @@ class ImmersionSectionGridHandler extends SectionGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function deleteCoverImage($args, $request) {
-		assert(!empty($args['coverImage']) && !empty($args['sectionId']));
+		assert(!empty($args['immersionCoverImage']) && !empty($args['sectionId']));
 		
 		// Check if the passed filename matches the filename for this issue's
 		// cover page.
-		$sectionDao = DAORegistry::getDAO('SectionDAO');
+		$sectionDao = DAORegistry::getDAO('ImmersionSectionDAO');
 		$section = $sectionDao->getById((int) $args['sectionId']);
 		$locale = AppLocale::getLocale();
-		if ($args['coverImage'] != $section->getCoverImage($locale)) {
+		if ($args['immersionCoverImage'] != $section->getImmersionCoverImage($locale)) {
 			return new JSONMessage(false, __('editor.issues.removeCoverImageFileNameMismatch'));
 		}
 		
-		$file = $args['coverImage'];
+		$file = $args['immersionCoverImage'];
 		
 		// Remove cover image and alt text from issue settings
-		$section->setCoverImage('', $locale);
-		$section->setCoverImageAltText('', $locale);
+		$section->setImmersionCoverImage('', $locale);
+		$section->setImmersionCoverImageAltText('', $locale);
 		$sectionDao->updateObject($section);
 		
 		// Remove the file

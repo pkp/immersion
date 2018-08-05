@@ -25,7 +25,19 @@ class ImmersionSectionDAO extends SectionDAO {
 	function getLocaleFieldNames() {
 		return array_merge(
 			parent::getLocaleFieldNames(),
-			array('coverImageAltText', 'coverImage')
+			array('immersionCoverImageAltText', 'immersionCoverImage')
+		);
+	}
+	
+	/**
+	 * Get the list of additional fields.
+	 * @return array
+	 */
+	
+	function getAdditionalFieldNames() {
+		return array_merge(
+			parent::getAdditionalFieldNames(),
+			array('immersionColorPick')
 		);
 	}
 	
