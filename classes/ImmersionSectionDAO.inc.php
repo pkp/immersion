@@ -14,7 +14,25 @@
  */
 
 import ('classes.journal.SectionDAO');
+import('plugins.themes.immersion.classes.ImmersionSection');
 
 class ImmersionSectionDAO extends SectionDAO {
-
+	
+	/**
+	 * Get the list of fields for which data can be localized.
+	 * @return array
+	 */
+	function getLocaleFieldNames() {
+		return array_merge(
+			parent::getLocaleFieldNames(),
+			array('coverImageAltText', 'coverImage')
+		);
+	}
+	
+	/**
+	 * Return a new data object.
+	 */
+	function newDataObject() {
+		return new ImmersionSection();
+	}
 }
