@@ -34,13 +34,26 @@ class ImmersionSectionForm extends SectionForm {
 		if (isset($section) ) {
 			$locale = AppLocale::getLocale();
 			$this->setData(array(
+				'title' => $section->getTitle(null), // Localized
+				'abbrev' => $section->getAbbrev(null), // Localized
+				'reviewFormId' => $section->getReviewFormId(),
+				'metaIndexed' => !$section->getMetaIndexed(), // #2066: Inverted
+				'metaReviewed' => !$section->getMetaReviewed(), // #2066: Inverted
+				'abstractsNotRequired' => $section->getAbstractsNotRequired(),
+				'identifyType' => $section->getIdentifyType(null), // Localized
+				'editorRestriction' => $section->getEditorRestricted(),
+				'hideTitle' => $section->getHideTitle(),
+				'hideAuthor' => $section->getHideAuthor(),
+				'policy' => $section->getPolicy(null), // Localized
+				'wordCount' => $section->getAbstractWordCount(),
+				'subEditors' => $this->_getAssignedSubEditorIds($sectionId, $journal->getId()),
 				'coverImage' => $section->getCoverImage($locale),
 				'coverImageAltText' => $section->getCoverImageAltText($locale),
 				'colorPick' => $section->getColor()
 			));
 		}
 		
-		parent::initData();
+		PKPSectionForm::initData();
 	}
 	
 	/**
