@@ -27,12 +27,12 @@ class ImmersionThemePlugin extends ThemePlugin {
 		DAORegistry::registerDAO('ImmersionSectionDAO', $immersionSectionDao);
 		
 		// New settings for the sections (Dashboard -> Settings -> Journal -> Sections -> Edit): TODO should be deleted
-		/*
-		HookRegistry::register('sectiondao::getAdditionalFieldNames', array($this, 'addSectionDAOFieldNames'));
-		HookRegistry::register('sectionform::initdata', array($this, 'initDataSectionFormFields'));
-		HookRegistry::register('sectionform::readuservars', array($this, 'readSectionFormFields'));
-		HookRegistry::register('sectionform::execute', array($this, 'executeSectionFormFields'));
-		*/
+		
+		//HookRegistry::register('sectiondao::getAdditionalFieldNames', array($this, 'addSectionDAOFieldNames'));
+		//HookRegistry::register('sectionform::initdata', array($this, 'initDataSectionFormFields'));
+		//HookRegistry::register('sectionform::readuservars', array($this, 'readSectionFormFields'));
+		//HookRegistry::register('sectionform::execute', array($this, 'executeSectionFormFields'));
+		
 		
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addTemplateData'));
@@ -85,8 +85,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$sectionDao = DAORegistry::getDAO('ImmersionSectionDAO');
 		
 		$section = $sectionDao->getById($sectionForm->getSectionId(), $contextId);
-		
-		$sectionForm->setData('colorPick', $section->getData('colorPick'));
 		
 	}
 	

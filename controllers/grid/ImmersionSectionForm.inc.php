@@ -21,7 +21,6 @@ class ImmersionSectionForm extends SectionForm {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		parent::initData();
 		
 		$request = Application::getRequest();
 		$journal = $request->getJournal();
@@ -34,13 +33,14 @@ class ImmersionSectionForm extends SectionForm {
 		
 		if (isset($section) ) {
 			$locale = AppLocale::getLocale();
-			array_merge(
-				$this->_data, array(
-					'coverImage' => $section->getCoverImage($locale),
-					'coverImageAltText' => $section->getCoverImageAltText($locale),
-					'colorPick' => $section->getColor()
+			$this->setData(array(
+				'coverImage' => $section->getCoverImage($locale),
+				'coverImageAltText' => $section->getCoverImageAltText($locale),
+				'colorPick' => $section->getColor()
 			));
 		}
+		
+		parent::initData();
 	}
 	
 	/**
