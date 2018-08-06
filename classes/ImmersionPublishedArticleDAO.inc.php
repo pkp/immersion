@@ -73,7 +73,7 @@ class ImmersionPublishedArticleDAO extends PublishedArticleDAO {
 					'abstractsNotRequired' => $row['abstracts_not_required'],
 					'hideAuthor' => $row['section_hide_author'],
 					'editorRestricted' => $row['section_editor_restricted'],
-					'settingName' => array()
+					'settingData' => array()
 				);
 				
 				if (!$row['section_hide_title']) {
