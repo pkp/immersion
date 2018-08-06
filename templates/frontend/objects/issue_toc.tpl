@@ -19,8 +19,39 @@
  *}
 <div class="issue-toc">
 	{foreach from=$immersionSections item=section}
-		{if $section->getLocalizedCoverImage()}
-			<img src="{$section->getLocalizedCoverImageUrl()}">
+		{if $section->getImmersionLocalizedCoverImage()}
+			<div><b>Section Image</b></div>
+			<img src="{$section->getImmersionLocalizedCoverImageUrl()}">
 		{/if}
+	{/foreach}
+</div>
+
+
+<div>
+	{foreach from=$publishedArticlesBySections item=publishedArticlesBySection}
+		<div class="section">
+			{if $publishedArticlesBySection.articles}
+				{if $publishedArticlesBySection.title}
+					<h3 class="section_title">
+						<div>
+							{$publishedArticlesBySection.title|escape} <br/>
+
+							{foreach from=$publishedArticlesBySection.settingData item=sectionValue key=sectionName}
+								{if $sectionName === "policy"}
+									{$sectionName|escape}: {$sectionValue|strip_unsafe_html} <br/>
+								{else}
+									{$sectionName|escape}: {$sectionValue|escape} <br/>
+								{/if}
+							{/foreach}
+						</div>
+					</h3>
+				{/if}
+				<div class="section_content">
+					{foreach from=$publishedArticlesBySection.articles item=article}
+						{*{include file="frontend/objects/article_summary.tpl"}*}
+					{/foreach}
+				</div>
+			{/if}
+		</div>
 	{/foreach}
 </div>

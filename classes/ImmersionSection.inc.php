@@ -9,7 +9,7 @@ class ImmersionSection extends Section {
 	 * @return string
 	 */
 	function getImmersionLocalizedCoverImage() {
-		return $this->getLocalizedData('ImmersionCoverImage');
+		return $this->getLocalizedData('immersionCoverImage');
 	}
 	
 	/**
@@ -27,7 +27,7 @@ class ImmersionSection extends Section {
 	 * @param $locale string
 	 */
 	function setImmersionCoverImage($coverImage, $locale) {
-		return $this->setData('immersionCoverImage', $coverImage, $locale);
+		$this->setData('immersionCoverImage', $coverImage, $locale);
 	}
 	
 	/**
@@ -96,16 +96,27 @@ class ImmersionSection extends Section {
 	 * @param $locale string
 	 */
 	function setImmersionCoverImageAltText($coverImageAltText, $locale) {
-		return $this->setData('immersionCoverImageAltText', $coverImageAltText, $locale);
+		$this->setData('immersionCoverImageAltText', $coverImageAltText, $locale);
 	}
+	
+	/**
+	 * Set section color
+	 * @param $colorPick string (hex color code)
+	 */
+	function setImmersionColor($colorPick) {
+		$this->setData('immersionColorPick', $colorPick);
+	}
+	
+	/**
+	 * Get section color
+	 * @return string (hex color code)
+	 */
 	
 	function getImmersionColor() {
 		return $this->getData('immersionColorPick');
 	}
 	
-	function setImmersionColor($colorPick) {
-		return $this->setData('immersionColorPick', $colorPick);
-	}
+	
 	
 	
 }

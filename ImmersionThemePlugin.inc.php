@@ -26,17 +26,14 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$immersionSectionDao = new ImmersionSectionDAO();
 		DAORegistry::registerDAO('ImmersionSectionDAO', $immersionSectionDao);
 		
-		// New settings for the sections (Dashboard -> Settings -> Journal -> Sections -> Edit): TODO should be deleted
-		
-		//HookRegistry::register('sectiondao::getAdditionalFieldNames', array($this, 'addSectionDAOFieldNames'));
-		//HookRegistry::register('sectionform::initdata', array($this, 'initDataSectionFormFields'));
-		//HookRegistry::register('sectionform::readuservars', array($this, 'readSectionFormFields'));
-		//HookRegistry::register('sectionform::execute', array($this, 'executeSectionFormFields'));
-		
+		$this->import('classes.ImmersionPublishedArticleDAO');
+		$immersionPublishedArticleDAO = new ImmersionPublishedArticleDAO();
+		DAORegistry::registerDAO('ImmersionPublishedArticleDAO', $immersionPublishedArticleDAO);
 		
 		// Additional data to the templates
-		HookRegistry::register ('TemplateManager::display', array($this, 'addTemplateData'));
+		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
 		
+		// Initiate new Grid Handler for SectionForm
 		HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 	}
 	
@@ -56,114 +53,41 @@ class ImmersionThemePlugin extends ThemePlugin {
 		return __('plugins.themes.immersion.description');
 	}
 	
-	
-	// Add section settings to SectionDAO
-	
-	public function addSectionDAOFieldNames($hookName, $args) {
-		
-		/* @var $fields array */
-		
-		$fields =& $args[1];
-		$fields[] = 'colorPick';
-	}
-	
-	// Initialize data when form is first loaded
-
-	public function initDataSectionFormFields($hookName, $args) {
-		
-		/* @var $sectionForm SectionForm
-		 * @var $sectionDao SectionDAO
-		 * @var $section Section
-		 */
-		
-		$sectionForm = $args[0];
-		$request = $this->getRequest();
-		
-		$context = $request->getContext();
-		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
-		
-		$sectionDao = DAORegistry::getDAO('ImmersionSectionDAO');
-		
-		$section = $sectionDao->getById($sectionForm->getSectionId(), $contextId);
-		
-	}
-	
-	// Read user input from additional fields in the section editing form
-	
-	public function readSectionFormFields($hookName, $args) {
-		
-		/* @var $sectionForm SectionForm */
-		
-		$sectionForm =& $args[0];
-		$request = Application::getRequest();
-		$sectionForm->setData('colorPick', $request->getUserVar('colorPick'));
-	}
-	
-	// Save additional fields in the section editing form
-
-	public function executeSectionFormFields($hookName, $args) {
-		
-		/* @var $sectionForm SectionForm
-		 * @var $sectionDao SectionDAO
-		 * @var $section Section
-		 */
-		
-		$sectionForm = $args[0];
-		$section = $args[1];
-		$colorPick = $sectionForm->getData('colorPick') ? $sectionForm->getData('colorPick') : '';
-		if (empty($colorPick)) {
-			$colorPick = '#ffffff';
-		}
-		$section->setData('colorPick', $colorPick);
-		
-		$sectionDao = DAORegistry::getDAO('SectionDAO');
-		$sectionDao->updateObject($section);
-	}
-	
 	// Add data to the templates
 	
-	public function addTemplateData($hookname, $args) {
+	public function addIssueTemplateData($hookname, $args) {
 		
 		/* @var $request Request
 		 * @var $context Context
 		 * @var $templateMgr TemplateManager
-		 * @var $sectionDao SectionDAO
-		 * @var $section Section
-		 * @var $result DAOResultFactory (contains a list of Section objects)
+		 * @var $publishedArticleDao ImmersionPublishedArticleDAO
 		 */
 		
-		$request = $this->getRequest();
-		$context = $request->getContext();
-		$contextId = $context ? $context->getId() : CONTEXT_ID_NONE;
 		
 		$templateMgr = $args[0];
 		$template = $args[1];
 		
-		$sectionDao = DAORegistry::getDAO('ImmersionSectionDAO');
-		$resultFactory = $sectionDao->getByContextId($contextId);
-		$immersionSections = array();
-		while ($section = $resultFactory->next()) {
-			$immersionSections[] = $section;
-		}
-		$templateMgr->assign('immersionSections', $immersionSections);
+		if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') return false;
+		$request = $this->getRequest();
+		$journal = $request->getJournal();
+		$issueDao = DAORegistry::getDAO('IssueDAO');
+		$issue = $issueDao->getCurrent($journal->getId(), true);
+		$publishedArticleDao = DAORegistry::getDAO('ImmersionPublishedArticleDAO');
 		
-		$templateMgr->register_function('plugin_url', array($this, 'smartyPluginUrl'));
+		$templateMgr->assign('publishedArticlesBySections', $publishedArticleDao->getImmersionPublishedArticlesInSections($issue->getId(), true));
+		
 		
 	}
 	
 	// Allow requests for ImmersionSectionHandler
 	
-	function setupGridHandler($hookName, $params) {
-		$component =& $params[0];
+	function setupGridHandler($hookName, $args) {
+		$component =& $args[0];
 		if ($component == 'plugins.themes.immersion.controllers.grid.ImmersionSectionGridHandler') {
 			define('IMMERSION_PLUGIN_NAME', $this->getName());
 			return true;
 		}
 		return false;
-	}
-	
-	function addHandlerData($hookName, $params) {
-		var_dump($params);
 	}
 	
 }
