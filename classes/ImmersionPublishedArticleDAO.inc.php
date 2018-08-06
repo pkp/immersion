@@ -38,7 +38,7 @@ class ImmersionPublishedArticleDAO extends PublishedArticleDAO {
 				se.hide_author AS section_hide_author,
 				se.editor_restricted AS section_editor_restricted,
 				ss.setting_name AS section_setting_name,
-				ss.setting_value as section_setting_value,
+				ss.setting_value AS section_setting_value,
 				COALESCE(o.seq, se.seq) AS section_seq,
 				ps.seq,
 				' . $this->getFetchColumns() . '
