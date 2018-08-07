@@ -66,7 +66,7 @@
 		{call_hook name="Templates::Manager::Sections::SectionForm::AdditionalMetadata" sectionId=$sectionId}
 	{/fbvFormArea}
 
-	{fbvFormArea id="immersionCoverImage" title="editor.section.coverPage"}
+	{fbvFormArea id="immersionCoverImage" title="plugins.themes.immersion.section.coverPage"}
 		{fbvFormSection}
 			{include file="controllers/fileUploadContainer.tpl" id="coverImageUploader"}
 			<input type="hidden" name="temporaryFileId" id="temporaryFileId" value="" />

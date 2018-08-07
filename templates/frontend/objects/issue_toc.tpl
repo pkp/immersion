@@ -39,6 +39,8 @@
 							{foreach from=$publishedArticlesBySection.settingData item=sectionValue key=sectionName}
 								{if $sectionName === "policy"}
 									{$sectionName|escape}: {$sectionValue|strip_unsafe_html} <br/>
+								{elseif $sectionName === "immersionCoverImage"}
+									{$sectionName|escape}: {$sectionCoverBasePath}{$sectionValue|escape} <br/>
 								{else}
 									{$sectionName|escape}: {$sectionValue|escape} <br/>
 								{/if}

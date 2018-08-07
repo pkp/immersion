@@ -63,20 +63,30 @@ class ImmersionThemePlugin extends ThemePlugin {
 		 * @var $publishedArticleDao ImmersionPublishedArticleDAO
 		 */
 		
-		
 		$templateMgr = $args[0];
 		$template = $args[1];
 		
 		if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') return false;
+		
 		$request = $this->getRequest();
 		$journal = $request->getJournal();
+		
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		$issue = $issueDao->getCurrent($journal->getId(), true);
+		
 		$publishedArticleDao = DAORegistry::getDAO('ImmersionPublishedArticleDAO');
+		$publishedArticlesBySections = $publishedArticleDao->getImmersionPublishedArticlesInSections($issue->getId(), true);
 		
-		$templateMgr->assign('publishedArticlesBySections', $publishedArticleDao->getImmersionPublishedArticlesInSections($issue->getId(), true));
+		import('classes.file.PublicFileManager');
+		$publicFileManager = new PublicFileManager();
+		$sectionCoverBasePath = $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($journal->getId()) . '/';
 		
+		$templateMgr->assign(array(
+			'publishedArticlesBySections' => $publishedArticlesBySections,
+			'sectionCoverBasePath' => $sectionCoverBasePath
+		));
 		
+		return false;
 	}
 	
 	// Allow requests for ImmersionSectionHandler
@@ -84,10 +94,35 @@ class ImmersionThemePlugin extends ThemePlugin {
 	function setupGridHandler($hookName, $args) {
 		$component =& $args[0];
 		if ($component == 'plugins.themes.immersion.controllers.grid.ImmersionSectionGridHandler') {
+			import($component);
 			define('IMMERSION_PLUGIN_NAME', $this->getName());
 			return true;
 		}
 		return false;
 	}
+	
+	/**
+	 * Load the handler to deal with browse by section page requests
+	 *
+	 * @param $hookName string `LoadHandler`
+	 * @param $args array [
+	 * 		@option string page
+	 * 		@option string op
+	 * 		@option string sourceFile
+	 * ]
+	 * @return bool
+	 */
+	/*
+	public function setupGridHandler($hookName, $args) {
+		
+		if ($this->getEnabled()) {
+			$this->import('controllers/grid/ImmersionSectionGridHandler');
+			define('HANDLER_CLASS', 'ImmersionSectionHandler');
+			return true;
+		}
+		
+		return false;
+	}
+	*/
 	
 }

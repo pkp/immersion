@@ -21,6 +21,7 @@ class ImmersionSectionGridHandler extends SectionGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function editSection($args, $request) {
+		parent::editSection($args, $request);
 		$sectionId = isset($args['sectionId']) ? $args['sectionId'] : null;
 		$this->setupTemplate($request);
 		
@@ -37,6 +38,7 @@ class ImmersionSectionGridHandler extends SectionGridHandler {
 	 * @return JSONMessage JSON object
 	 */
 	function updateSection($args, $request) {
+		parent::updateSection($args, $request);
 		$sectionId = $request->getUserVar('sectionId');
 		
 		import('plugins.themes.immersion.controllers.grid.ImmersionSectionForm');

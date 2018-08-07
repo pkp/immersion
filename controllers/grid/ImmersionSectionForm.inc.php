@@ -21,7 +21,6 @@ class ImmersionSectionForm extends SectionForm {
 	 * Initialize form data from current settings.
 	 */
 	function initData() {
-		
 		$request = Application::getRequest();
 		$journal = $request->getJournal();
 		

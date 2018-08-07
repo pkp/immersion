@@ -10,5 +10,6 @@
 	<!-- Форма секцій журналу -->
 	<message key="plugins.themes.immersion.colorPick">Обрати колір</message>
 	<message key="plugins.themes.immersion.colorPickInstructions">Оберіть колір для секції (рубрики), який буде відображатися на сайті журналу. Має бути валідним HTML кодом (наприклад, #ffff00 для жовтого).</message>
-
+	<message key="plugins.themes.immersion.section.coverPage">Малюнок для секції журналу</message>
+	
 </locale>
