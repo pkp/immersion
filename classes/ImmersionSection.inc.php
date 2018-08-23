@@ -116,7 +116,4 @@ class ImmersionSection extends Section {
 		return $this->getData('immersionColorPick');
 	}
 	
-	
-	
-	
 }

@@ -15,99 +15,31 @@
  * @uses $numAnnouncementsHomepage int Number of announcements to display on the
  *       homepage
  * @uses $issue Issue Current issue
+ * @uses $issueIdentificationString string issue identification that relies on user's settings
  *}
+
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
-{if $homepageImage}
-	<div class="homepage-image{if $issue} homepage-image-behind-issue{/if}">
-		<img src="{$publicFilesDir}/{$homepageImage.uploadName|escape:"url"}" alt="{$homepageImageAltText|escape}">
-	</div>
-{/if}
+<main>
+	<section class="issue">
 
-<div class="container container-homepage-issue">
+		{call_hook name="Templates::Index::journal"}
 
-	{if $issue}
-		<h2 class="h5 homepage-issue-current">
-			{translate key="journal.currentIssue"}
-		</h2>
-		<div class="h1 homepage-issue-identifier">
-			{$issue->getIssueSeries()}
-		</div>
-		<div class="h6 homepage-issue-published">
-			{translate key="plugins.themes.healthSciences.currentIssuePublished" date=$issue->getDatePublished()|date_format:$dateFormatLong}
-		</div>
-
-		{* make the entire block conditional if there aren't any additional issue data *}
-		{if  $issue->getLocalizedCoverImageUrl() || $issue->hasDescription() || $issueGalleys}
-			<div class="row justify-content-center homepage-issue-header">
-				{if $issue->getLocalizedCoverImageUrl()}
-					<div class="col-lg-3">
-						<a href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
-							<img class="img-fluid homepage-issue-cover" src="{$issue->getLocalizedCoverImageUrl()|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
-						</a>
-					</div>
-				{/if}
-				{if $issue->hasDescription() || $journalDescription || $issueGalleys}
-					<div class="col-lg-9">
-						<div class="homepage-issue-description-wrapper">
-							{if $issue->hasDescription()}
-								<div class="homepage-issue-description">
-									<div class="h2">
-										{if $issue->getLocalizedTitle()}
-											{$issue->getLocalizedTitle()|escape}
-										{else}
-											{translate key="plugins.themes.healthSciences.issueDescription"}
-										{/if}
-									</div>
-									{$issue->getLocalizedDescription()|strip_unsafe_html}
-									<div class="homepage-issue-description-more">
-										<a href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="common.more"}</a>
-									</div>
-								</div>
-							{elseif $journalDescription}
-								<div class="homepage-journal-description long-text" id="homepageDescription">
-									{$journalDescription|strip_unsafe_html}
-								</div>
-								<div class="homepage-description-buttons hidden" id="homepageDescriptionButtons">
-									<a class="homepage-journal-description-more hidden" id="homepageDescriptionMore">{translate key="common.more"}</a>
-									<a class="homepage-journal-description-less hidden" id="homepageDescriptionLess">{translate key="common.less"}</a>
-								</div>
-							{/if}
-							{if $issueGalleys}
-								<div class="homepage-issue-galleys">
-									<div class="h3">
-										{translate key="issue.fullIssue"}
-									</div>
-									{foreach from=$issueGalleys item=galley}
-										{include file="frontend/objects/galley_link.tpl" parent=$issue purchaseFee=$currentJournal->getSetting('purchaseIssueFee') purchaseCurrency=$currentJournal->getSetting('currency')}
-									{/foreach}
-								</div>
-							{/if}
-						</div>
-					</div>
-				{/if}
-			</div>
+		{* Latest issue *}
+		{if $issue}
+			{include file="frontend/objects/issue_toc.tpl"}
 		{/if}
 
-		<div class="row justify-content-center{if $homepageImage && $issue->hasDescription()} issue-full-data{elseif $homepageImage && $issue->getLocalizedCoverImageUrl()} issue-image-cover{elseif $homepageImage} issue-only-image{/if}">
-			<div class="col-12 col-lg-9">
-				{include file="frontend/objects/issue_toc.tpl" sectionHeading="h3"}
-			</div>
-		</div>
+	</section>
+</main><!-- .page -->
 
-		<div class="text-center">
-			<a class="btn" href="{url router=$smarty.const.ROUTE_PAGE page="issue" op="archive"}">
-				{translate key="journal.viewAllIssues"}
-			</a>
+{* Additional Homepage Content *}
+{if $additionalHomeContent}
+	<aside {if $lastSectionColor}style="background-color: {$lastSectionColor};"{/if}>
+		<div class="container additional-home-content">
+			{$additionalHomeContent}
 		</div>
-	{/if}
-
-	{* Additional Homepage Content *}
-	{if $additionalHomeContent}
-		<div class="row justify-content-center homepage-additional-content">
-			<div class="col-lg-9">{$additionalHomeContent}</div>
-		</div>
-	{/if}
-</div><!-- .container -->
+	</aside>
+{/if}
 
 {include file="frontend/components/footer.tpl"}

@@ -1,0 +1,187 @@
+/**
+* @file resources/less/components/header.less
+*
+* Copyright (c) 2014-2018 Simon Fraser University
+* Copyright (c) 2003-2018 John Willinsky
+* Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+*
+* @brief Stylesheet for journal-wide header
+*
+*/
+
+// Header and general rules for navigation menus
+
+.main-header {
+	background-color: @primary-color;
+	position: relative;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	height: 100%;
+	
+	& ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	
+	& li {
+		display: inline-block;
+	}
+	
+	& a {
+		border: 0;
+		box-shadow: none;
+	}
+}
+
+.page_index .main-header {
+	padding-top: 2.5vh;
+}
+
+// Header title
+
+.main-header__title {
+	text-align: center;
+	margin: 1vh auto 2vh auto;
+	max-width: 75vw;
+	font-size: 1.5rem;
+	
+	& span {
+		padding: 0.25em 0;
+		border-left: 0.25em solid #fff;
+		border-right: 0.25em solid #fff;
+		background: #fff;
+		line-height: 1.5;
+	}
+}
+
+.page_index .main-header__title {
+	text-align: center;
+	margin: 7.5vh auto 15vh auto;
+	max-width: 75vw;
+	font-size: 2.5rem;
+}
+
+// Admin Navigation
+
+.main-header__admin {
+	font-size: smaller;
+	
+	& ul {
+		text-align: right;
+	}
+}
+
+.main-header__admin-link {
+	padding: 0.25em 0.5em;
+	margin-left: 0.5em;
+	background-color: @primary-color;
+	color: @secondary-color;
+	
+	&:hover, &:focus, &:active {
+		color: @primary-color;
+		background-color: @secondary-color;
+	}
+}
+
+#navigationUser {
+	
+	& .dropdown-menu {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	
+	& .dropdown-item {
+		padding-right: 12px;
+		margin-bottom: 0;
+		
+		&:focus, &:hover {
+			background-color: inherit;
+		}
+		
+		& a {
+			border: 1px solid @secondary-color;
+			
+			&:hover {
+				border: 1px solid @primary-color;
+			}
+		}
+	}
+}
+
+// Primary Navigation
+
+.main-header__nav-link {
+	padding: 0.25em 0.5em;
+	background-color: #fff;
+	margin: 0 2vw;
+	
+	&:hover, &:focus, &:active {
+		color: @secondary-color;
+		background-color: @primary-color;
+	}
+}
+
+.navbar-nav {
+	flex-wrap: wrap;
+}
+
+.nav-link {
+	padding: 0.25em 0.5em;
+	margin-left: 0.5em;
+	background-color: @secondary-color;
+	color: @primary-color;
+	
+}
+
+@media (min-width: 992px) {
+	// Dropdown menu for Primary Navigation
+	#navigationPrimary {
+		& .dropdown-menu.show {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			align-content: center;
+			position: absolute;
+			top: 100%;
+			left: 0;
+			padding: 1rem;
+			background-color: @secondary-color;
+			border-radius: 0;
+			width: 100%;
+			padding-top: 16px;
+			padding-bottom: 14px;
+		}
+		
+		& .nav-item {
+			position: static;
+		}
+		
+		& .nav-link {
+			
+			&:focus, &:hover {
+
+			}
+		}
+		
+		& .dropdown-item {
+			width: initial;
+			padding: 0;
+			margin-bottom: 0;
+			
+			& a {
+				margin-left: 0;
+				padding: 10px 8px 8px 8px;
+				border: 1px solid @secondary-color;
+				
+				&:focus, &:hover {
+					background-color: @secondary-color;
+					border: 1px solid @primary-color;
+				}
+			}
+		}
+	}
+}

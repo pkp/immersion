@@ -1,0 +1,111 @@
+/* BEM components: issue */
+.issue {
+	padding-top: 7.5vh;
+	background: #000;
+	color: #fff;
+}
+
+.issue__header {
+	margin-bottom: 7.5vh;
+}
+
+.issue__meta {
+	margin: 0.75em 0;
+}
+
+.issue__title {
+	margin: 0.15em 0;
+	font-size: 2.75em;
+}
+
+.issue__title {
+	span {
+		display: block;
+		font-weight: 400;
+	}
+	
+	.issue__volume, .issue__number {
+		display: inline;
+	}
+}
+
+.issue__number ~ .issue__volume:after {
+	content: ", ";
+}
+
+
+.issue__title span:last-of-type {
+	display: block;
+	font-weight: 700;
+}
+
+.issue__title span:last-of-type:before {
+	content: '— ';
+}
+
+/* BEM components: issue description */
+
+.issue-desc {
+	padding-bottom: 7.5vh;
+}
+
+.issue-desc a {
+	color: #fff;
+	padding-left: 5px;
+}
+
+.issue-desc a:hover,
+.issue-desc a:focus,
+.issue-desc a:active {
+	color: rgba(255, 255, 255, 0.75);
+}
+
+.issue-desc a:after {
+	border-color: #fff;
+}
+
+.issue-desc__title {
+
+}
+
+.issue-desc__content {
+
+}
+
+/* BEM components: issue section */
+.issue-section {
+	padding: 7.5vh 0 7.5vh 0;
+	color: #000;
+}
+
+.issue-section__header {
+	margin-bottom: 2.5vh;
+}
+
+.issue-section__title {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 700;
+}
+
+.issue-section__desc {
+
+}
+
+.issue-section__toc {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.issue-section__toc-item:last-child .article {
+	margin-bottom: 0;
+}
+
+.issue-section__toc-item {
+
+}
+
+// Section default color
+.issue-section {
+	background-color: @section-color;
+}
