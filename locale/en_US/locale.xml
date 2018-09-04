@@ -18,6 +18,7 @@
 	<!-- General front-end -->
 	<message key="plugins.themes.immersion.issue.published">Published</message>
 	<message key="plugins.themes.immersion.issue.description">Issue description</message>
+	<message key="plugins.themes.immersion.registration.consent">Consent</message>
 	
 	<!-- Issue -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">See the full issue</message>

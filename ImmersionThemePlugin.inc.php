@@ -59,6 +59,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$this->addScript('popper', 'node_modules/popper.js/dist/umd/popper.min.js');
 		$this->addScript('bootstrap', 'node_modules/bootstrap/dist/js/bootstrap.min.js');
 		$this->addScript('jquery-ui', 'node_modules/jquery-ui-dist/jquery-ui.min.js');
+		$this->addScript('tag-it', 'resources/js/tag-it.min.js');
 		$this->addScript('main', 'resources/js/main.js');
 	}
 	
