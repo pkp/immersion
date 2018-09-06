@@ -22,5 +22,6 @@
 	
 	<!-- Випуск -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">Переглянути повний випуск</message>
+	<message key="plugins.themes.immersion.search.parameters">Параметри</message>
 	
 </locale>

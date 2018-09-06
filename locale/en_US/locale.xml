@@ -22,5 +22,6 @@
 	
 	<!-- Issue -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">See the full issue</message>
+	<message key="plugins.themes.immersion.search.parameters">Parameters</message>
 	
 </locale>

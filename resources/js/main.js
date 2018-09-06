@@ -17,3 +17,14 @@ $(document).ready(function() {
 		}
 	}
 })();
+
+
+// Search form, wrapper for select tags
+
+(function () {
+	var searchSelects = $('.search__form .search__select');
+	
+	if (!searchSelects.length) return false;
+	
+	searchSelects.wrap("<div class='select__wrapper col'></div>");
+})();
