@@ -1,0 +1,100 @@
+/**
+* @file resources/less/modals.less
+*
+* Copyright (c) 2014-2018 Simon Fraser University
+* Copyright (c) 2003-2018 John Willinsky
+* Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+*
+* @brief Stylesheet for modals (login, author's bio, etc.)
+*
+*/
+
+
+.modal-dialog {
+    max-width: 540px;
+    text-align: center;
+}
+
+.modal-content {
+    border-radius: 0;
+    background: #000;
+    color: #fff;
+}
+
+@media (min-width: 992px) {
+    .modal-content {
+        padding: 4rem;
+    }
+
+    .close {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.8rem;
+    }
+}
+
+.modal-content .close {
+    color: #fff;
+    text-shadow: none;
+    opacity: 1;
+}
+
+.modal-content a {
+    color: #fff;
+    border-color: #fff;
+}
+
+.modal-content .btn-primary {
+    display: block;
+    margin: 2em auto;
+    border-color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.modal-content .btn-link {
+    color: #fff;
+}
+
+.modal-content .btn-link:hover,
+.modal-content .btn-link:focus {
+    color: #fff;
+    border-color: #fff;
+}
+
+.modal-content fieldset {
+    margin: 0;
+}
+
+.modal-content label {
+    display: block;
+    text-align: left;
+}
+
+.modal-content .form-group {
+    margin-bottom: 2.5em;
+}
+
+.modal-content .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.modal-content .form-control {
+    background: transparent;
+    border-color: #fff;
+    color: #fff;
+}
+
+@media (min-width: 992px) {
+
+    #loginModal .close {
+        top: -2.5rem;
+        right: -2rem;
+    }
+}
+
+// Overriding Bootstrap
+
+.close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
+	color: @secondary-color;
+}

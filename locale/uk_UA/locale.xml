@@ -24,4 +24,8 @@
 	<message key="plugins.themes.immersion.issue.fullIssueLink">Переглянути повний випуск</message>
 	<message key="plugins.themes.immersion.search.parameters">Параметри</message>
 	
+	<!-- Article -->
+	<message key="plugins.themes.immersion.article.biography">Біографія</message>
+	<message key="plugins.themes.immersion.article.figure">Обкладинка статті</message>
+	
 </locale>

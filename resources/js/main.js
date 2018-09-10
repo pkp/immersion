@@ -28,3 +28,47 @@ $(document).ready(function() {
 	
 	searchSelects.wrap("<div class='select__wrapper col'></div>");
 })();
+
+(function($) {
+	
+	// Open login modal when nav menu links clicked
+	$('.nmi_type_user_login').click(function() {
+		$('#loginModal').modal();
+		return false;
+	})
+})(jQuery);
+
+
+// Article detail page: authors
+
+(function ($) {
+	
+	// Show author affiliation under authors list (for large screen only)
+	var authorString = $('.author-string__href');
+	$(authorString).click(function(event) {
+		event.preventDefault();
+		var elementId = $(this).attr('href').replace('#', '');
+		$('.article-details__author').each(function () {
+			
+			// Show only targeted author's affiliation on click
+			if ($(this).attr('id') === elementId && $(this).hasClass('hidden')) {
+				$(this).removeClass('hidden');
+			} else {
+				$(this).addClass('hidden');
+			}
+			
+			// Add specifiers to the clicked author's link
+			$(authorString).each(function () {
+				if ($(this).attr('href') === ('#' + elementId) && !$(this).hasClass('active')){
+					$(this).addClass('active');
+					$(this).children('.author-plus').addClass('hidden');
+					$(this).children('.author-minus').removeClass('hidden');
+				} else if ($(this).attr('href') !== ('#' + elementId) || $(this).hasClass('active')) {
+					$(this).removeClass('active');
+					$(this).children('.author-plus').removeClass('hidden');
+					$(this).children('.author-minus').addClass('hidden');
+				}
+			});
+		})
+	})
+})(jQuery);

@@ -111,7 +111,12 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$journal = $request->getJournal();
 		
 		$issueDao = DAORegistry::getDAO('IssueDAO');
-		$issue = $issueDao->getCurrent($journal->getId(), true);
+		
+		if ($template === 'frontend/pages/indexJournal.tpl') {
+			$issue = $issueDao->getCurrent($journal->getId(), true);
+		} else {
+			$issue = $templateMgr->get_template_vars('issue');
+		}
 		
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
 		$publishedArticlesBySections = $publishedArticleDao->getPublishedArticlesInSections($issue->getId(), true);
@@ -155,7 +160,19 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$request = $this->getRequest();
 		$journal = $request->getJournal();
 		
-		$templateMgr->assign('immersionHomepageImage', $journal->getLocalizedSetting('homepageImage'));
+		// Load login form
+		$loginUrl = $request->url(null, 'login', 'signIn');
+		if (Config::getVar('security', 'force_login_ssl')) {
+			$loginUrl = PKPString::regexp_replace('/^http:/', 'https:', $loginUrl);
+		}
+		
+		$orcidImageUrl = $this->getPluginPath() . '/templates/images/orcid.png';
+		
+		$templateMgr->assign(array(
+			'immersionHomepageImage' => $journal->getLocalizedSetting('homepageImage'),
+			'loginUrl' => $loginUrl,
+			'orcidImageUrl' => $orcidImageUrl
+		));
 	}
 	
 	// Allow requests for ImmersionSectionHandler
