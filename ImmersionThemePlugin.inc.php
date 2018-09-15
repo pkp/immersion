@@ -40,6 +40,9 @@ class ImmersionThemePlugin extends ThemePlugin {
 		HookRegistry::register ('TemplateManager::display', array($this, 'addSiteWideData'));
 		HookRegistry::register ('issueform::display', array($this, 'addToIssueForm'));
 		
+		// Check if CSS embedded to the HTML galley
+		HookRegistry::register('TemplateManager::display', array($this, 'hasEmbeddedCSS'));
+		
 		// Initiate new Grid Handler for SectionForm
 		HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 		HookRegistry::register('issuedao::getAdditionalFieldNames', array($this, 'addIssueDAOFieldNames'));
@@ -277,5 +280,52 @@ class ImmersionThemePlugin extends ThemePlugin {
 			'sections' => $sections
 		));
 	}
+	
+	/**
+	 * @param $hookName string `TemplateManager::display`
+	 * @param $args array [
+	 *      @option TemplateManager
+	 *      @option string relative path to the template
+	 *  ]
+	 * @return bool
+	 */
+	public function hasEmbeddedCSS($hookName, $args) {
+		$templateMgr = $args[0];
+		$template = $args[1];
+		$request = $this->getRequest();
+		
+		// Retun false if not a galley page
+		if ($template !== 'plugins/plugins/generic/htmlArticleGalley/generic/htmlArticleGalley:display.tpl') return false;
+		
+		$articleArrays = $templateMgr->get_template_vars('article');
+		
+		// Deafult styling for HTML galley
+		$boolEmbeddedCss = false;
+		foreach ($articleArrays->getGalleys() as $galley) {
+			if ($galley->getFileType() === 'text/html') {
+				$submissionFile = $galley->getFile();
+				
+				$submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
+				import('lib.pkp.classes.submission.SubmissionFile'); // Constants
+				$embeddableFiles = array_merge(
+					$submissionFileDao->getLatestRevisions($submissionFile->getSubmissionId(), SUBMISSION_FILE_PROOF),
+					$submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $submissionFile->getSubmissionId(), SUBMISSION_FILE_DEPENDENT)
+				);
+				
+				foreach ($embeddableFiles as $embeddableFile) {
+					if ($embeddableFile->getFileType() == 'text/css') {
+						$boolEmbeddedCss = true;
+					}
+				}
+			}
+			
+		}
+		
+		$templateMgr->assign(array(
+			'boolEmbeddedCss' => $boolEmbeddedCss,
+			'themePath' => $request->getBaseUrl() . "/" . $this->getPluginPath(),
+		));
+	}
+	
 	
 }

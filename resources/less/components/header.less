@@ -185,3 +185,52 @@
 		}
 	}
 }
+
+/* Custom hamburger menu */
+.hamburger {
+	font: inherit;
+	display: inline-block;
+	overflow: visible;
+	margin: 1em 0;
+	padding: 10px;
+	cursor: pointer;
+	color: inherit;
+	border: 0;
+	background-color: #fff;
+	border-radius: 0;
+	height: 45px;
+}
+
+.hamburger__wrapper {
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 24px;
+}
+
+.hamburger__icon {
+	background-color: #000;
+	top: 2px;
+	position: absolute;
+	width: 40px;
+	height: 4px;
+	display: block;
+	margin-top: -2px;
+	
+	&:before {
+		top: 10px;
+	}
+	
+	&:after {
+		top: 20px;
+	}
+	
+	&:before, &:after {
+		background-color: #000;
+		display: block;
+		content: "";
+		position: absolute;
+		width: 40px;
+		height: 4px;
+	}
+}
