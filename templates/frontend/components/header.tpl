@@ -22,7 +22,7 @@
 <html lang="{$currentLocale|replace:"_":"-"}" xml:lang="{$currentLocale|replace:"_":"-"}">
 {if !$pageTitleTranslated}{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}{/if}
 {include file="frontend/components/headerHead.tpl"}
-<body class="page_{$requestedPage|escape|default:"index"} op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}"
+<body class="page_{$requestedPage|escape|default:"index"} op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}{if $immersionIndexType} {$immersionIndexType|escape}{/if}"
       dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
 <div class="cmp_skip_to_content">
@@ -83,28 +83,27 @@
 			</div>
 		{/if}
 
-		<nav class="navbar navbar-expand-sm main-header__nav">
+
 
 			{* Primary navigation *}
 			{capture assign="primaryMenu"}
 				{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary" liClass="profile"}
 			{/capture}
 
-			<button class="navbar-toggler mx-auto hamburger" data-target="#main-menu" data-toggle="collapse"
-			        type="button"
-			        aria-label="Menu" aria-controls="navigation">
-				<span class="hamburger__wrapper">
-	                <span class="hamburger__icon"></span>
-	            </span>
-			</button>
-			<h2 class="sr-only">Main menu</h2>
-
-			{if !empty(trim($primaryMenu))}
+			{if !empty(trim($primaryMenu)) || $currentContext}
+			<nav class="navbar navbar-expand-sm main-header__nav">
+				<button class="navbar-toggler mx-auto hamburger" data-target="#main-menu" data-toggle="collapse"
+				        type="button"
+				        aria-label="Menu" aria-controls="navigation">
+					<span class="hamburger__wrapper">
+		                <span class="hamburger__icon"></span>
+		            </span>
+				</button>
+				<h2 class="sr-only">{translate key="plugins.themes.immersion.mainMenu"}</h2>
 				<div class="collapse navbar-collapse" id="main-menu">
 					{$primaryMenu}
 				</div>
+			</nav>
 			{/if}
-
-		</nav>
 	</div> {* container closing tag *}
 </header>

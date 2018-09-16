@@ -19,12 +19,13 @@
 	<message key="plugins.themes.immersion.issue.published">Опубліковано</message>
 	<message key="plugins.themes.immersion.issue.description">Опис випуску</message>
 	<message key="plugins.themes.immersion.registration.consent">Згода</message>
+	<message key="plugins.themes.immersion.mainMenu">Головне меню</message>
 	
 	<!-- Випуск -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">Переглянути повний випуск</message>
 	<message key="plugins.themes.immersion.search.parameters">Параметри</message>
 	
-	<!-- Article -->
+	<!-- Стаття -->
 	<message key="plugins.themes.immersion.article.biography">Біографія</message>
 	<message key="plugins.themes.immersion.article.figure">Обкладинка статті</message>
 	

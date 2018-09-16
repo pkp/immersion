@@ -72,3 +72,17 @@ $(document).ready(function() {
 		})
 	})
 })(jQuery);
+
+// Not display the menu if all items are inaccessible
+
+(function ($) {
+	
+	var navPrimary = $('#navigationPrimary');
+	
+	if (!navPrimary.length) return false;
+	
+	if (!navPrimary.children().length > 0) {
+		$('.main-header__nav').addClass('hidden');
+	}
+	
+})(jQuery);

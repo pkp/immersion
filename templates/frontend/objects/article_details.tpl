@@ -94,7 +94,7 @@
 									<sup class="author-symbol author-minus hidden">&minus;</sup>
 								</a>
 								{if $authorString->getOrcid()}
-									<a class="orcidImage" href="{$authorString->getOrcid()|escape}">
+									<a class="orcidImage img-wrapper" href="{$authorString->getOrcid()|escape}">
 										<img src="{$baseUrl}/{$orcidImageUrl}">
 									</a>
 								{/if}

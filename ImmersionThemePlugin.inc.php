@@ -171,8 +171,11 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		$orcidImageUrl = $this->getPluginPath() . '/templates/images/orcid.png';
 		
+		if ($request->getContext()) {
+			$templateMgr->assign('immersionHomepageImage', $journal->getLocalizedSetting('homepageImage'));
+		}
+		
 		$templateMgr->assign(array(
-			'immersionHomepageImage' => $journal->getLocalizedSetting('homepageImage'),
 			'loginUrl' => $loginUrl,
 			'orcidImageUrl' => $orcidImageUrl
 		));
