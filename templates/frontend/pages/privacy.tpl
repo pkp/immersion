@@ -15,9 +15,9 @@
 	<div class="row">
 		<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
 			<header class="main__header">
-				<h2 class="main__title">
+				<h1 class="main__title">
 					<span>{translate key="manager.setup.privacyStatement"}</span>
-				</h2>
+				</h1>
 			</header>
 			<div class="content-body">
 				{$currentContext->getLocalizedSetting('privacyStatement')}

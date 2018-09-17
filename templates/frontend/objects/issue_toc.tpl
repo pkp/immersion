@@ -22,7 +22,7 @@
 	<header class="issue__header">
 		<p class="issue__meta">{translate key="journal.currentIssue"}</p>
 		{strip}
-			<h2 class="issue__title">
+			<h{if $requestedOp === "issue"}1{else}2{/if} class="issue__title">
 				{if $issue->getShowVolume() || $issue->getShowNumber()}
 					{if $issue->getShowVolume()|escape}
 						<span class="issue__volume">{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}, {/if}</span>
@@ -34,7 +34,7 @@
 				{if $issue->getShowTitle()}
 					<span class="issue__localized_name">{$issue->getLocalizedTitle()|escape}</span>
 				{/if}
-			</h2>
+			</h1>
 			{if $issue->getDatePublished()}
 				<p class="issue__meta">{translate key="plugins.themes.immersion.issue.published"} {$issue->getDatePublished()|date_format:$dateFormatLong}</p>
 			{/if}

@@ -21,9 +21,9 @@
 <main class="container main__content">
 	<section>
 		<header class="">
-			<h2 class="">
+			<h1 class="">
 				<span>{translate key="common.search"}</span>
-			</h2>
+			</h1>
 		</header>
 
 		<div class="row">

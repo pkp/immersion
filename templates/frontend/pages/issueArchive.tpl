@@ -25,9 +25,9 @@
 
 <main class="container main__content">
 	<header class="main__header">
-		<h2 class="main__title">
+		<h1 class="main__title">
 			<span>{$pageTitle}</span>
-		</h2>
+		</h1>
 	</header>
 
 	<div class="row">

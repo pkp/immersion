@@ -21,9 +21,9 @@
 	<div class="row">
 		<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
 			<header class="main__header">
-				<h2 class="main__title">
+				<h1 class="main__title">
 					<span>{translate key="user.subscriptions.mySubscriptions"}</span>
-				</h2>
+				</h1>
 			</header>
 
 			{include file="frontend/components/subscriptionContact.tpl"}

@@ -18,13 +18,6 @@
 
 <main class="container">
 	<div class="row">
-		{*
-		{if $section}
-			{include file="frontend/components/breadcrumbs_article.tpl" currentTitle=$section->getLocalizedTitle()}
-		{else}
-			{include file="frontend/components/breadcrumbs_article.tpl" currentTitleKey="article.article"}
-		{/if}
-		*}
 
 		{* Show article overview *}
 		{include file="frontend/objects/article_details.tpl"}
