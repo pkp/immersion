@@ -45,16 +45,23 @@
 
 .main-header__title {
 	text-align: center;
-	margin: 1vh auto 2vh auto;
-	max-width: 75vw;
+	width: 75vw;
 	font-size: 1.5rem;
+	line-height: 1.4;
+	padding: 0.5rem 0;
+	margin: 0.5rem auto;
 	
 	& span {
-		padding: 0.25em 0;
-		border-left: 0.25em solid #fff;
-		border-right: 0.25em solid #fff;
+		display: inline;
+		padding: 0.5rem;
 		background: #fff;
 		line-height: 1.5;
+		font-family: @font-family-secondary;
+		font-weight: 700;
+		
+		/* Needs prefixing */
+		box-decoration-break: clone;
+		-webkit-box-decoration-break: clone;
 	}
 }
 

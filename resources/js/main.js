@@ -86,3 +86,18 @@ $(document).ready(function() {
 	}
 	
 })(jQuery);
+
+// Toggle display of consent checkboxes in site-wide registration
+
+var $contextOptinGroup = $('#contextOptinGroup');
+if ($contextOptinGroup.length) {
+	var $roles = $contextOptinGroup.find('.registration-context__roles :checkbox');
+	$roles.change(function() {
+		var $thisRoles = $(this).closest('.registration-context__roles');
+		if ($thisRoles.find(':checked').length) {
+			$thisRoles.siblings('.context_privacy').addClass('context_privacy_visible');
+		} else {
+			$thisRoles.siblings('.context_privacy').removeClass('context_privacy_visible');
+		}
+	});
+}
