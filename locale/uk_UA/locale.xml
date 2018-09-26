@@ -29,4 +29,8 @@
 	<message key="plugins.themes.immersion.article.biography">Біографія</message>
 	<message key="plugins.themes.immersion.article.figure">Обкладинка статті</message>
 	
+	<!-- Пошук за авторами -->
+	<message key="plugins.themes.immersion.authors.browse">Знайти за автором</message>
+	<message key="plugins.themes.immersion.author.details">Детальніше про автора</message>
+	
 </locale>

@@ -29,4 +29,8 @@
 	<message key="plugins.themes.immersion.article.biography">Bio</message>
 	<message key="plugins.themes.immersion.article.figure">Cover image</message>
 	
+	<!-- Authors' search -->
+	<message key="plugins.themes.immersion.authors.browse">Browse by Author</message>
+	<message key="plugins.themes.immersion.author.details">Author Details</message>
+	
 </locale>

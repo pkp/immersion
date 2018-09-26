@@ -61,7 +61,6 @@
 	{/if}
 </div>
 
-<!-- Example of a section with a background colour, without a title, and with an article including an image -->
 {foreach from=$publishedArticlesBySections item=publishedArticlesBySection}
 	{if $publishedArticlesBySection.articles}
 		{assign var='policy' value=$publishedArticlesBySection.section->getLocalizedPolicy()|strip_unsafe_html}
