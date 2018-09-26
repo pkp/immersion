@@ -83,8 +83,6 @@
 			</div>
 		{/if}
 
-
-
 			{* Primary navigation *}
 			{capture assign="primaryMenu"}
 				{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary" liClass="profile"}
