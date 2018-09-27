@@ -23,7 +23,7 @@
 
 <article class="article">
 	<div class="row">
-		{if $article->getLocalizedCoverImage()}
+		{if $article->getLocalizedCoverImage() && $articleNumber !== 0}
 			<div class="col-md-4">
 				<figure class="article__img">
 					<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
@@ -32,9 +32,9 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-8{if !$article->getLocalizedCoverImage()} offset-md-4{/if}">
+		<div class="col-md-8{if !$article->getLocalizedCoverImage() || ($article->getLocalizedCoverImage() && $articleNumber === 0)} offset-md-4{/if}">
 			{if $showAuthor}
-				<p class="article__meta">{$article->getAuthorString()}</p>
+				<p class="article__meta">{$article->getAuthorString()|escape}</p>
 			{/if}
 
 			<h4 class="article__title">
@@ -42,8 +42,8 @@
 					{$article->getLocalizedTitle()|strip_unsafe_html}
 					{if $article->getLocalizedSubtitle()}
 						<span class="subtitle">
-					{$article->getLocalizedSubtitle()|escape}
-				</span>
+							{$article->getLocalizedSubtitle()|escape}
+						</span>
 					{/if}
 				</a>
 			</h4>

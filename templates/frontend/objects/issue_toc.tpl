@@ -22,23 +22,23 @@
 	<header class="issue__header">
 		<p class="issue__meta">{translate key="journal.currentIssue"}</p>
 		{strip}
-			<h{if $requestedOp === "issue"}1{else}2{/if} class="issue__title">
-				{if $issue->getShowVolume() || $issue->getShowNumber()}
-					{if $issue->getShowVolume()|escape}
-						<span class="issue__volume">{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}, {/if}</span>
-					{/if}
-					{if $issue->getShowNumber()}
-						<span class="issue__number">{translate key="issue.no"}. {$issue->getNumber()|escape}</span>
-					{/if}
+		<h{if $requestedOp === "issue"}1{else}2{/if} class="issue__title">
+			{if $issue->getShowVolume() || $issue->getShowNumber()}
+				{if $issue->getShowVolume()|escape}
+					<span class="issue__volume">{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}, {/if}</span>
 				{/if}
-				{if $issue->getShowTitle()}
-					<span class="issue__localized_name">{$issue->getLocalizedTitle()|escape}</span>
+				{if $issue->getShowNumber()}
+					<span class="issue__number">{translate key="issue.no"}. {$issue->getNumber()|escape}</span>
 				{/if}
+			{/if}
+			{if $issue->getShowTitle()}
+				<span class="issue__localized_name">{$issue->getLocalizedTitle()|escape}</span>
+			{/if}
 			</h1>
 			{if $issue->getDatePublished()}
 				<p class="issue__meta">{translate key="plugins.themes.immersion.issue.published"} {$issue->getDatePublished()|date_format:$dateFormatLong}</p>
 			{/if}
-		{/strip}
+			{/strip}
 	</header>
 
 	{if $issue->getLocalizedDescription()}
@@ -52,7 +52,10 @@
 						{if $issueDescription|strlen <= $stringLenght || $requestedPage == 'issue'}
 							{$issueDescription}
 						{else}
-							{$issueDescription|substr:0:$stringLenght|mb_convert_encoding:'UTF-8'|replace:'?':''|trim}<span class="ellipsis">...</span><a class="full-issue__link" href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
+							{$issueDescription|substr:0:$stringLenght|mb_convert_encoding:'UTF-8'|replace:'?':''|trim}
+							<span class="ellipsis">...</span>
+							<a class="full-issue__link"
+							   href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
 						{/if}
 					</div>
 				</div>
@@ -65,7 +68,6 @@
 	{if $publishedArticlesBySection.articles}
 		{assign var='policy' value=$publishedArticlesBySection.section->getLocalizedPolicy()|strip_unsafe_html}
 		{assign var='immersionColorPick' value=$publishedArticlesBySection.sectionColor|escape}
-
 		<section class="issue-section"{if $immersionColorPick} style="background-color: {$immersionColorPick};"{/if}>
 			<div class="container">
 				{if $publishedArticlesBySection.title || $policy}
@@ -81,20 +83,21 @@
 					</header>
 				{/if}
 				<div class="row">
-					{*
-					{if $immersionCoverImage}
-						<div class="col-12">
-							<figure class="section__img">
-								<img src="{$sectionCoverBasePath}{$immersionCoverImage}" class="img-fluid"{if $immersionCoverImageAltText} alt="{$immersionCoverImageAltText}"{/if}/>
-							</figure>
-						</div>
-					{/if}
-					*}
+					{foreach from=$publishedArticlesBySection.articles item=articleForCover key=articleNumber}
+						{if $articleNumber === 0 && $articleForCover->getLocalizedCoverImageUrl()}
+							<div class="col-12">
+								<figure class="section__img">
+									<img class="img-fluid"
+									     src="{$articleForCover->getLocalizedCoverImageUrl()|escape}"{if $articleForCover->getLocalizedCoverImageAltText() != ''} alt="{$articleForCover->getLocalizedCoverImageAltText()|escape}"{else} alt="{translate key="article.coverPage.altText"}"{/if}>
+								</figure>
+							</div>
+						{/if}
+					{/foreach}
 					<div class="col-12">
 						<ol class="issue-section__toc">
-							{foreach from=$publishedArticlesBySection.articles item=article}
+							{foreach from=$publishedArticlesBySection.articles item=article key=articleNumber}
 								<li class="issue-section__toc-item">
-									{include file="frontend/objects/article_summary.tpl"}
+									{include file="frontend/objects/article_summary.tpl" articleNumber=$articleNumber}
 								</li>
 							{/foreach}
 						</ol>

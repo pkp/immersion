@@ -107,8 +107,9 @@
 		{fbvFormSection title="plugins.themes.immersion.colorPick" for="immersionSectionColor" inline=false size=$fbvStyles.size.MEDIUM}
 			{foreach from=$sections item=section}
 				{assign var=sectionId value=$section->getId()}
-				{* Color picker for issue's sections*}<div>{$section->getLocalizedTitle()}</div>
-				{fbvElement type="colour" name="immersionSectionColor[$sectionId]" value=$immersionSectionColor[$sectionId]}
+				{* Color picker for issue's sections*}
+				<div>{$section->getLocalizedTitle()|escape}</div>
+				{fbvElement type="select" class="immersionSectionColor" name="immersionSectionColor[$sectionId]" id="immersionSectionColor-$sectionId" translate=false selected=$immersionSectionColor[$sectionId] from=$validColors}
 			{/foreach}
 		{/fbvFormSection}
 	{/fbvFormArea}
