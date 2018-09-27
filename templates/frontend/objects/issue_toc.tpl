@@ -64,9 +64,7 @@
 {foreach from=$publishedArticlesBySections item=publishedArticlesBySection}
 	{if $publishedArticlesBySection.articles}
 		{assign var='policy' value=$publishedArticlesBySection.section->getLocalizedPolicy()|strip_unsafe_html}
-		{assign var='immersionCoverImage' value=$publishedArticlesBySection.section->getImmersionLocalizedCoverImage()|escape}
 		{assign var='immersionColorPick' value=$publishedArticlesBySection.sectionColor|escape}
-		{assign var='immersionCoverImageAltText' value=$publishedArticlesBySection.section->getImmersionLocalizedCoverImageAltText()|escape}
 
 		<section class="issue-section"{if $immersionColorPick} style="background-color: {$immersionColorPick};"{/if}>
 			<div class="container">
@@ -83,6 +81,7 @@
 					</header>
 				{/if}
 				<div class="row">
+					{*
 					{if $immersionCoverImage}
 						<div class="col-12">
 							<figure class="section__img">
@@ -90,6 +89,7 @@
 							</figure>
 						</div>
 					{/if}
+					*}
 					<div class="col-12">
 						<ol class="issue-section__toc">
 							{foreach from=$publishedArticlesBySection.articles item=article}

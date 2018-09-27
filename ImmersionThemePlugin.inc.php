@@ -26,15 +26,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));
 		
-		// Register new DAO class for Sections and Issues
-		$this->import('classes.ImmersionIssueDAO');
-		$immersionIssueDao = new ImmersionIssueDAO();
-		DAORegistry::registerDAO('ImmersionIssueDAO', $immersionIssueDao);
-		
-		$this->import('classes.ImmersionSectionDAO');
-		$immersionSectionDao = new ImmersionSectionDAO();
-		DAORegistry::registerDAO('ImmersionSectionDAO', $immersionSectionDao);
-		
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
 		HookRegistry::register ('TemplateManager::display', array($this, 'addSiteWideData'));
@@ -42,9 +33,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		// Check if CSS embedded to the HTML galley
 		HookRegistry::register('TemplateManager::display', array($this, 'hasEmbeddedCSS'));
-		
-		// Initiate new Grid Handler for SectionForm
-		HookRegistry::register('LoadComponentHandler', array($this, 'setupGridHandler'));
 		HookRegistry::register('issuedao::getAdditionalFieldNames', array($this, 'addIssueDAOFieldNames'));
 		HookRegistry::register('issueform::initdata', array($this, 'initDataIssueFormFields'));
 		HookRegistry::register('issueform::readuservars', array($this, 'readIssueFormFields'));
@@ -98,10 +86,10 @@ class ImmersionThemePlugin extends ThemePlugin {
 		 * @var $templateMgr TemplateManager
 		 * @var $issueDao IssueDAO
 		 * @var $issue Issue
-		 * @var $publishedArticleDao ImmersionPublishedArticleDAO
-		 * @var $sectionDao ImmersionSectionDAO
+		 * @var $publishedArticleDao PublishedArticleDAO
+		 * @var $sectionDao SectionDAO
 		 * @var $sections array
-		 * @var $section ImmersionSection
+		 * @var $section Section
 		 */
 		
 		$templateMgr = $args[0];
@@ -126,12 +114,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
 		
-		$sectionDao = DAORegistry::getDAO('ImmersionSectionDAO');
+		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$sections = $sectionDao->getByIssueId($issue->getId());
-		
-		import('classes.file.PublicFileManager');
-		$publicFileManager = new PublicFileManager();
-		$sectionCoverBasePath = $request->getBaseUrl() . '/' . $publicFileManager->getJournalFilesPath($journal->getId()) . '/';
 		
 		$lastSectionColor = null;
 		foreach ($publishedArticlesBySections as $sectionId => $publishedArticlesBySection) {
@@ -150,7 +134,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		$templateMgr->assign(array(
 			'publishedArticlesBySections' => $publishedArticlesBySections,
-			'sectionCoverBasePath' => $sectionCoverBasePath,
 			'lastSectionColor' => $lastSectionColor,
 		));
 		
@@ -179,17 +162,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 			'loginUrl' => $loginUrl,
 			'orcidImageUrl' => $orcidImageUrl
 		));
-	}
-	
-	// Allow requests for ImmersionSectionHandler
-	
-	function setupGridHandler($hookName, $args) {
-		$component =& $args[0];
-		if ($component == 'plugins.themes.immersion.controllers.grid.ImmersionSectionGridHandler') {
-			define('IMMERSION_PLUGIN_NAME', $this->getName());
-			return true;
-		}
-		return false;
 	}
 	
 	/**
@@ -259,29 +231,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		$issueDao = DAORegistry::getDAO('IssueDAO');
 		$issueDao->updateObject($issue);
-	}
-	
-	/**
-	 * Add variables to the issue editing form
-	 *
-	 * @param $hookName string `issueform::execute`
-	 * @param $args array [
-	 *		@option IssueForm
-	 * ]
-	 */
-	
-	public function addToIssueForm($hookName, $args) {
-		$issueForm = $args[0];
-		$request = $this->getRequest();
-		
-		$sectionDao = DAORegistry::getDAO('SectionDAO');
-		$sections = $sectionDao->getByIssueId($issueForm->issue->getId());
-		
-		$templateMgr = TemplateManager::getManager($request);
-		
-		$templateMgr->assign(array(
-			'sections' => $sections
-		));
 	}
 	
 	/**
