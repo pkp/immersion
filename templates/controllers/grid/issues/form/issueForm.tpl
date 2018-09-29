@@ -109,7 +109,7 @@
 				{assign var=sectionId value=$section->getId()}
 				{* Color picker for issue's sections*}
 				<div>{$section->getLocalizedTitle()|escape}</div>
-				{fbvElement type="select" class="immersionSectionColor" name="immersionSectionColor[$sectionId]" id="immersionSectionColor-$sectionId" translate=false selected=$immersionSectionColor[$sectionId] from=$validColors}
+				{fbvElement type="colour" class="immersionSectionColor" name="immersionSectionColor[$sectionId]" id="immersionSectionColor-$sectionId" value=$immersionSectionColor[$sectionId]}
 			{/foreach}
 		{/fbvFormSection}
 	{/fbvFormArea}

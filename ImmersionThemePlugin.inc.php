@@ -250,25 +250,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$sections = $sectionDao->getByIssueId($issueForm->issue->getId());
 		
 		$templateMgr = TemplateManager::getManager($request);
-		// assign predefined colors to the form
-		$validColors = array(
-			'#74A6B4' => 'cyan',
-			'#8B9890' => 'grayish green',
-			'#619144' => 'glade green',
-			'#DFC6A4' => 'light grayish gamboge',
-			'#CB6579' => 'pink',
-			'#A0DFE0' => 'light cyan',
-			'#F0D74C' => 'yellow',
-			'#FF2C00' => 'scarlet',
-			'#527543' => 'fern green',
-			'#83A383' => 'envy green',
-			'#AABBAA' => 'greenish gray'
-		);
 		
-		$templateMgr->assign(array(
-			'sections' => $sections,
-			'validColors' => $validColors,
-		));
+		$templateMgr->assign('sections', $sections);
 	}
 	
 	/**
