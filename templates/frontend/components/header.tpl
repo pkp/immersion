@@ -6,7 +6,7 @@
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Site-wide header; includes journal logo, user menu, and primary menu
- *
+ * @uses $languageToggleLocales array All supported locales (from the Immersion theme)
  *}
 
 {strip}
@@ -14,6 +14,10 @@
 	{assign var="showingLogo" value=true}
 	{if $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 		{assign var="showingLogo" value=false}
+	{/if}
+	{assign var="localeShow" value=false}
+	{if $languageToggleLocales && $languageToggleLocales|@count > 1}
+		{assign var="localeShow" value=true}
 	{/if}
 {/strip}
 
@@ -34,17 +38,23 @@
 <header class="main-header"
         id="immersion_content_header"{if $immersionHomepageImage} style="background-image: url('{$publicFilesDir}/{$immersionHomepageImage.uploadName|escape:"url"}')"{/if}>
 	<div class="container-fluid">
-		<nav class="main-header__admin">
+		<nav class="main-header__admin{if $localeShow} locale-enabled{else} locale-disabled{/if}">
 
 			{* User navigation *}
 			{capture assign="userMenu"}
 				{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
 			{/capture}
 
+			{* language toggle block *}
+			{if $localeShow}
+				{include file="frontend/components/languageSwitcher.tpl" id="languageNav"}
+			{/if}
+
 			{if !empty(trim($userMenu))}
 				<h2 class="sr-only">Admin menu</h2>
 				{$userMenu}
 			{/if}
+
 		</nav>
 
 		{if $requestedOp == 'index'}

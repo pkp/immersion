@@ -146,22 +146,32 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$request = $this->getRequest();
 		$journal = $request->getJournal();
 		
-		// Load login form
-		$loginUrl = $request->url(null, 'login', 'signIn');
-		if (Config::getVar('security', 'force_login_ssl')) {
-			$loginUrl = PKPString::regexp_replace('/^http:/', 'https:', $loginUrl);
+		if (!defined('SESSION_DISABLE_INIT')) {
+			
+			if ($journal) {
+				$locales = $journal->getSupportedLocaleNames();
+			} else {
+				$locales = $request->getSite()->getSupportedLocaleNames();
+			}
+			
+			// Load login form
+			$loginUrl = $request->url(null, 'login', 'signIn');
+			if (Config::getVar('security', 'force_login_ssl')) {
+				$loginUrl = PKPString::regexp_replace('/^http:/', 'https:', $loginUrl);
+			}
+			
+			$orcidImageUrl = $this->getPluginPath() . '/templates/images/orcid.png';
+			
+			if ($request->getContext()) {
+				$templateMgr->assign('immersionHomepageImage', $journal->getLocalizedSetting('homepageImage'));
+			}
+			
+			$templateMgr->assign(array(
+				'languageToggleLocales' => $locales,
+				'loginUrl' => $loginUrl,
+				'orcidImageUrl' => $orcidImageUrl
+			));
 		}
-		
-		$orcidImageUrl = $this->getPluginPath() . '/templates/images/orcid.png';
-		
-		if ($request->getContext()) {
-			$templateMgr->assign('immersionHomepageImage', $journal->getLocalizedSetting('homepageImage'));
-		}
-		
-		$templateMgr->assign(array(
-			'loginUrl' => $loginUrl,
-			'orcidImageUrl' => $orcidImageUrl
-		));
 	}
 	
 	/**

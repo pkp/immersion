@@ -20,6 +20,7 @@
 	<message key="plugins.themes.immersion.issue.description">Issue description</message>
 	<message key="plugins.themes.immersion.registration.consent">Consent</message>
 	<message key="plugins.themes.immersion.mainMenu">Main menu</message>
+	<message key="plugins.themes.immersion.language.toggle">Change the language. The current language is:</message>
 	
 	<!-- Issue -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">See the full issue</message>
