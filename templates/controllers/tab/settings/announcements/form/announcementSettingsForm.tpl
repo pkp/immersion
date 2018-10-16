@@ -36,7 +36,7 @@
 			<span>{translate key="manager.setup.enableAnnouncementsHomepage2"}</span>
 		{/fbvFormSection}
 		{fbvFormSection description="plugins.themes.immersion.annoucements.colorPick"}
-			{fbvElement type="colour" id="immersionAnnouncementsColor" value=$immersionAnnouncementsColor default="#ffc0cb"}
+			{fbvElement type="colour" id="immersionAnnouncementsColor" value=$immersionAnnouncementsColor default="#ffffff"}
 		{/fbvFormSection}
 		{fbvFormSection description="manager.setup.announcementsIntroductionDescription"}
 			{fbvElement type="textarea" multilingual="true" id="announcementsIntroduction" value=$announcementsIntroduction rich=true}
