@@ -20,7 +20,9 @@
 
 <div class="container">
 	<header class="issue__header">
-		<p class="issue__meta">{translate key="journal.currentIssue"}</p>
+		{if $requestedOp === "index"}
+			<p class="issue__meta">{translate key="journal.currentIssue"}</p>
+		{/if}
 		{strip}
 		<h{if $requestedOp === "issue"}1{else}2{/if} class="issue__title">
 			{if $issue->getShowVolume() || $issue->getShowNumber()}
