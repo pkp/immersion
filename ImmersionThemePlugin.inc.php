@@ -33,10 +33,15 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		// Check if CSS embedded to the HTML galley
 		HookRegistry::register('TemplateManager::display', array($this, 'hasEmbeddedCSS'));
+		
+		// Additional variable for the issue form
 		HookRegistry::register('issuedao::getAdditionalFieldNames', array($this, 'addIssueDAOFieldNames'));
 		HookRegistry::register('issueform::initdata', array($this, 'initDataIssueFormFields'));
 		HookRegistry::register('issueform::readuservars', array($this, 'readIssueFormFields'));
 		HookRegistry::register('issueform::execute', array($this, 'executeIssueFormFields'));
+		
+		// Additional variable for the announcements form
+		HookRegistry::register('announcementsettingsform::Constructor', array($this, 'setAnnouncementsSettings'));
 		
 		// TODO styles and scripts should be compiled, concatenated and minified before the release
 		// Adding styles
@@ -132,9 +137,15 @@ class ImmersionThemePlugin extends ThemePlugin {
 			}
 		}
 		
+		// Announcements on index journal page
+		$announcementsIntro = $journal->getLocalizedSetting('announcementsIntroduction');
+		$immersionAnnouncementsColor = $journal->getSetting('immersionAnnouncementsColor');
+		
 		$templateMgr->assign(array(
 			'publishedArticlesBySections' => $publishedArticlesBySections,
 			'lastSectionColor' => $lastSectionColor,
+			'announcementsIntroduction'=> $announcementsIntro,
+			'immersionAnnouncementsColor' => $immersionAnnouncementsColor
 		));
 		
 		return false;
@@ -148,6 +159,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		if (!defined('SESSION_DISABLE_INIT')) {
 			
+			// Check locales
 			if ($journal) {
 				$locales = $journal->getSupportedLocaleNames();
 			} else {
@@ -179,7 +191,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 	 *
 	 * @param $hookName string
 	 * @param $args array [
-	 *		@option SectionDAO
+	 *		@option IssueDAO
 	 *		@option array List of additional fields
 	 * ]
 	 */
@@ -310,5 +322,23 @@ class ImmersionThemePlugin extends ThemePlugin {
 		));
 	}
 	
+	/**
+	 * Add announcement settings (colorPick) to the SettingsDAO through controller
+	 *
+	 * @param $hookName string
+	 * @param $args array [
+	 *		@option AnnouncementSettingsForm
+	 *		@option string "controllers/tab/settings/announcements/form/announcementSettingsForm.tpl"
+	 * ]
+	 */
+	public function setAnnouncementsSettings($hookName, $args) {
+		
+		/* @var $announcementSettingsForm AnnouncementSettingsForm */
+		
+		$announcementSettingsForm = $args[0];
+		$settings = $announcementSettingsForm->getSettings();
+		$settings += ['immersionAnnouncementsColor' => 'string'];
+		$announcementSettingsForm->setSettings($settings);
+	}
 	
 }

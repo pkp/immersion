@@ -77,7 +77,7 @@
 						{/if}
 						{if $policy}
 							<div class="col-md-6 col-lg-9 issue-section__desc">
-								{$policy}
+								{$policy|strip_unsafe_html}
 							</div>
 						{/if}
 					</header>

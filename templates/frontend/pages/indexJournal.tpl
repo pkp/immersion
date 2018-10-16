@@ -16,11 +16,55 @@
  *       homepage
  * @uses $issue Issue Current issue
  * @uses $issueIdentificationString string issue identification that relies on user's settings
+ * @uses $lastSectionColor string background color of the last section presented on the index page
+ * @uses $immersionAnnouncementsColor string background color of the announcements section
  *}
 
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
 <main>
+	{if $announcements}
+		<section class="annoucements"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
+			{* Announcements *}
+			{if $announcements}
+				<div class="container">
+					<header class="row issue-section__header">
+						<h3 class="col-md-6 col-lg-3 announcement-section__title">
+							{translate key="announcement.announcements"}
+						</h3>
+						{if $announcementsIntroduction}
+							<div class="col-md-6 col-lg-9 issue-section__desc">
+								{$announcementsIntroduction|strip_unsafe_html}
+							</div>
+						{/if}
+					</header>
+
+					<div class="row">
+						<div class="col-12">
+							<ul class="announcement-section__toc">
+								{foreach from=$announcements item=announcement}
+									<li>
+										<div class="row">
+											<div class="col-md-8 offset-md-4">
+												<p class="announcement__date">{$announcement->getDatePosted()|date_format:$dateFormatShort|escape}</p>
+												<h4 class="announcement__title">
+													<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()|escape}">
+														{$announcement->getLocalizedTitle()|escape}
+													</a>
+												</h4>
+											</div>
+										</div>
+									</li>
+								{/foreach}
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			{/if}
+		</section>
+	{/if}
+
 	<section class="issue">
 
 		{call_hook name="Templates::Index::journal"}
