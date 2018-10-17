@@ -44,19 +44,12 @@ class ImmersionThemePlugin extends ThemePlugin {
 		HookRegistry::register('announcementsettingsform::Constructor', array($this, 'setAnnouncementsSettings'));
 		
 		// TODO styles and scripts should be compiled, concatenated and minified before the release
-		// Adding styles
-		$this->addStyle('jquery-ui', 'node_modules/jquery-ui-dist/jquery-ui.min.css');
-		$this->addStyle('bootstrap', 'node_modules/bootstrap/dist/css/bootstrap.min.css');
-		$this->addStyle('tag-it', 'node_modules/tag-it/css/jquery.tagit.css');
+		// Adding styles (JQuery UI, Bootstrap, Tag-it)
+		$this->addStyle('app-css', 'resources/dist/app.min.css');
 		$this->addStyle('less', 'resources/less/import.less');
 		
-		// Adding scripts
-		$this->addScript('jquery', 'node_modules/jquery/dist/jquery.min.js');
-		$this->addScript('popper', 'node_modules/popper.js/dist/umd/popper.min.js');
-		$this->addScript('bootstrap', 'node_modules/bootstrap/dist/js/bootstrap.min.js');
-		$this->addScript('jquery-ui', 'node_modules/jquery-ui-dist/jquery-ui.min.js');
-		$this->addScript('tag-it', 'resources/js/tag-it.min.js');
-		$this->addScript('main', 'resources/js/main.js');
+		// Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
+		$this->addScript('app-js', 'resources/dist/app.min.js');
 	}
 	
 	/**
