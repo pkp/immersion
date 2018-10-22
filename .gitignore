@@ -1,2 +1,4 @@
 .idea/
 node_modules/
+resources/dist/app-debug.js
+resources/dist/app.js
