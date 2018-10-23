@@ -9,7 +9,7 @@ $(document).ready(function() {
 	if (checkbox != null) {
 		checkbox.onclick = function () {
 			var tagitInput = document.getElementById("reviewerInterests");
-			if (checkbox.checked == true) {
+			if (checkbox.checked === true) {
 				tagitInput.classList.remove("hidden");
 			} else {
 				tagitInput.classList.add("hidden");
@@ -56,20 +56,20 @@ $(document).ready(function() {
 			} else {
 				$(this).addClass('hidden');
 			}
-			
-			// Add specifiers to the clicked author's link
-			$(authorString).each(function () {
-				if ($(this).attr('href') === ('#' + elementId) && !$(this).hasClass('active')){
-					$(this).addClass('active');
-					$(this).children('.author-plus').addClass('hidden');
-					$(this).children('.author-minus').removeClass('hidden');
-				} else if ($(this).attr('href') !== ('#' + elementId) || $(this).hasClass('active')) {
-					$(this).removeClass('active');
-					$(this).children('.author-plus').removeClass('hidden');
-					$(this).children('.author-minus').addClass('hidden');
-				}
-			});
-		})
+		});
+		
+		// Add specifiers to the clicked author's link
+		$(authorString).each(function () {
+			if ($(this).attr('href') === ('#' + elementId) && !$(this).hasClass('active')){
+				$(this).addClass('active');
+				$(this).children('.author-plus').addClass('hidden');
+				$(this).children('.author-minus').removeClass('hidden');
+			} else if ($(this).attr('href') !== ('#' + elementId) || $(this).hasClass('active')) {
+				$(this).removeClass('active');
+				$(this).children('.author-plus').removeClass('hidden');
+				$(this).children('.author-minus').addClass('hidden');
+			}
+		});
 	})
 })(jQuery);
 

@@ -88,11 +88,24 @@
 					{foreach from=$article->getAuthors() item=authorString key=authorStringKey}
 						{strip}
 							<li class="authors-string__item">
-								<a class="author-string__href" href="#author-{$authorStringKey+1}">
-									<span>{$authorString->getFullName()|escape}</span>
-									<sup class="author-symbol author-plus">&plus;</sup>
-									<sup class="author-symbol author-minus hidden">&minus;</sup>
-								</a>
+								{capture}
+									{if $authorString->getLocalizedAffiliation() || $authorString->getLocalizedBiography()}
+										{assign var=authorInfo value=true}
+									{else}
+										{assign var=authorInfo value=false}
+									{/if}
+								{/capture}
+								{if $authorInfo}
+									<a class="author-string__href" href="#author-{$authorStringKey+1}">
+										<span>{$authorString->getFullName()|escape}</span>
+										<sup class="author-symbol author-plus">&plus;</sup>
+										<sup class="author-symbol author-minus hidden">&minus;</sup>
+									</a>
+									{else}
+									<span class="author-string_href-none">
+										<span>{$authorString->getFullName()|escape}</span>
+									</span>
+								{/if}
 								{if $authorString->getOrcid()}
 									<a class="orcidImage img-wrapper" href="{$authorString->getOrcid()|escape}">
 										<img src="{$baseUrl}/{$orcidImageUrl}">
@@ -110,9 +123,6 @@
 				<div class="article-details__authors">
 					{foreach from=$article->getAuthors() item=author key=authorKey}
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
-							<div class="article-details__author-name">
-								{$author->getFullName()|escape}
-							</div>
 							{if $author->getLocalizedAffiliation()}
 								<div class="article-details__author-affiliation">{$author->getLocalizedAffiliation()|escape}</div>
 							{/if}
@@ -126,11 +136,13 @@
 							{/if}
 							{if $author->getLocalizedBiography()}
 								<br/>
-								<a class="modal-trigger" href="#modalAuthorBio-{$authorKey+1}" data-toggle="modal" data-target="#modalAuthorBio-{$authorKey+1}">
+								<a class="modal-trigger" href="#modalAuthorBio-{$authorKey+1}" data-toggle="modal"
+								   data-target="#modalAuthorBio-{$authorKey+1}">
 									{translate key="plugins.themes.immersion.article.biography"}
 								</a>
 								{* author's biography *}
-								<div class="modal fade bio-modal" id="modalAuthorBio-{$authorKey+1}" tabindex="-1" role="dialog">
+								<div class="modal fade bio-modal" id="modalAuthorBio-{$authorKey+1}" tabindex="-1"
+								     role="dialog">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -178,26 +190,26 @@
 	<div class="article-page__meta">
 
 		<dl>
-		{* Pub IDs, including DOI *}
-		{foreach from=$pubIdPlugins item=pubIdPlugin}
-			{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
-			{if $pubId}
-				{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-				<dt>
-					{$pubIdPlugin->getPubIdDisplayType()|escape}
-				</dt>
-				<dd>
-					{if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-						<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}"
-						   href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">
-							{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-						</a>
-					{else}
-						{$pubId|escape}
-					{/if}
-				</dd>
-			{/if}
-		{/foreach}
+			{* Pub IDs, including DOI *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+					<dt>
+						{$pubIdPlugin->getPubIdDisplayType()|escape}
+					</dt>
+					<dd>
+						{if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}"
+							   href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">
+								{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							</a>
+						{else}
+							{$pubId|escape}
+						{/if}
+					</dd>
+				{/if}
+			{/foreach}
 			{if $article->getDateSubmitted()}
 				<dt>
 					{translate key="submissions.submitted"}
@@ -229,11 +241,11 @@
 			{translate key="submission.citations"}
 		</h3>
 		{if $parsedCitations->getCount()}
-		<ol class="references">
-			{iterate from=parsedCitations item=parsedCitation}
-				<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
-			{/iterate}
-		</ol>
+			<ol class="references">
+				{iterate from=parsedCitations item=parsedCitation}
+					<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
+				{/iterate}
+			</ol>
 		{elseif $article->getCitations()}
 			<div class="references">
 				{$article->getCitations()|nl2br}
@@ -267,7 +279,7 @@
 
 	{* Keywords *}
 	{if !empty($keywords[$currentLocale])}
-	<h2 class="article-side__title">{translate key="article.subject"}</h2>
+		<h2 class="article-side__title">{translate key="article.subject"}</h2>
 		<ul>
 			{foreach from=$keywords item=keyword}
 				{foreach name=keywords from=$keyword item=keywordItem}
@@ -344,11 +356,13 @@
 				<a class="copyright-notice__modal" data-toggle="modal" data-target="#copyrightModal">
 					{translate key="about.copyrightNotice"}
 				</a>
-				<div class="modal fade" id="copyrightModal" tabindex="-1" role="dialog" aria-labelledby="copyrightModalTitle" aria-hidden="true">
+				<div class="modal fade" id="copyrightModal" tabindex="-1" role="dialog"
+				     aria-labelledby="copyrightModalTitle" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h5 class="modal-title" id="copyrightModalTitle">{translate key="about.copyrightNotice"}</h5>
+								<h5 class="modal-title"
+								    id="copyrightModalTitle">{translate key="about.copyrightNotice"}</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -357,7 +371,8 @@
 								{$copyright|strip_unsafe_html}
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-primary" data-dismiss="modal">{translate key="plugins.themes.classic.close"}</button>
+								<button type="button" class="btn btn-primary"
+								        data-dismiss="modal">{translate key="plugins.themes.classic.close"}</button>
 							</div>
 						</div>
 					</div>

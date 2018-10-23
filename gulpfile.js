@@ -32,6 +32,8 @@ gulp.task('compress', function () {
 		.pipe(gulp.dest('resources/dist'))
 });
 
+gulp.task('compileAll', gulp.series('sass', 'scripts', 'compress'));
+
 gulp.task('watch', function () {
-	return gulp.watch('resources/js/**/*.js', gulp.parallel('scripts', 'compress'))
+	return gulp.watch('resources/js/**/*.js', gulp.series('scripts', 'compress'))
 });
