@@ -140,12 +140,17 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Announcements on index journal page
 		$announcementsIntro = $journal->getLocalizedSetting('announcementsIntroduction');
 		$immersionAnnouncementsColor = $journal->getSetting('immersionAnnouncementsColor');
+		$isAnnouncementDark = false;
+		if ($this->isColourDark($immersionAnnouncementsColor)) {
+			$isAnnouncementDark = true;
+		}
 		
 		$templateMgr->assign(array(
 			'publishedArticlesBySections' => $publishedArticlesBySections,
 			'lastSectionColor' => $lastSectionColor,
 			'announcementsIntroduction'=> $announcementsIntro,
-			'immersionAnnouncementsColor' => $immersionAnnouncementsColor
+			'immersionAnnouncementsColor' => $immersionAnnouncementsColor,
+			'isAnnouncementDark' => $isAnnouncementDark
 		));
 		
 		return false;

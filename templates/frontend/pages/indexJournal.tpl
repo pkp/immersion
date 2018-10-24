@@ -24,7 +24,7 @@
 
 <main>
 	{if $announcements}
-		<section class="annoucements"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
+		<section class="annoucements{if $isAnnouncementDark} section_dark{/if}"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
 			{* Announcements *}
 			{if $announcements}
 				<div class="container">
