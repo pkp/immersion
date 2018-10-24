@@ -96,7 +96,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') return false;
 		
-		
 		$journal = $request->getJournal();
 		
 		$issueDao = DAORegistry::getDAO('IssueDAO');
@@ -119,8 +118,16 @@ class ImmersionThemePlugin extends ThemePlugin {
 		foreach ($publishedArticlesBySections as $sectionId => $publishedArticlesBySection) {
 			foreach ($sections as $section) {
 				if ($section->getId() == $sectionId) {
+					// Set section and its background color
 					$publishedArticlesBySections[$sectionId]['section'] = $section;
 					$publishedArticlesBySections[$sectionId]['sectionColor'] = $immersionSectionColors[$sectionId];
+					
+					// Check if section backround color is dark
+					$isSectionDark = false;
+					if ($this->isColourDark($immersionSectionColors[$sectionId])) {
+						$isSectionDark = true;
+					}
+					$publishedArticlesBySections[$sectionId]['isSectionDark'] = $isSectionDark;
 					
 					// Need only the color of the last section that contains articles
 					if ($publishedArticlesBySections[$sectionId]['articles'] && $immersionSectionColors[$sectionId]) {

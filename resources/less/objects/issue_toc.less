@@ -105,7 +105,22 @@
 
 }
 
-// Section default color
+// Section colors
 .issue-section {
 	background-color: @section-color;
+}
+
+.section_dark {
+	& h3, h4, a, p, span {
+		color: @secondary-color;
+	}
+	
+	& a.article__btn {
+		border-color: @secondary-color;
+		
+		&:hover, &:focus, &:active {
+			background-color: @secondary-color;
+			color: @primary-color;
+		}
+	}
 }

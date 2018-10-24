@@ -70,7 +70,8 @@
 	{if $publishedArticlesBySection.articles}
 		{assign var='policy' value=$publishedArticlesBySection.section->getLocalizedPolicy()|strip_unsafe_html}
 		{assign var='immersionColorPick' value=$publishedArticlesBySection.sectionColor|escape}
-		<section class="issue-section"{if $immersionColorPick} style="background-color: {$immersionColorPick};"{/if}>
+		{assign var='isSectionDark' value=$publishedArticlesBySection.isSectionDark}
+		<section class="issue-section{if $isSectionDark} section_dark{/if}"{if $immersionColorPick} style="background-color: {$immersionColorPick};"{/if}>
 			<div class="container">
 				{if $publishedArticlesBySection.title || $policy}
 					<header class="row issue-section__header">
