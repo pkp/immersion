@@ -20,6 +20,7 @@
 	<message key="plugins.themes.immersion.registration.consent">Згода</message>
 	<message key="plugins.themes.immersion.mainMenu">Головне меню</message>
 	<message key="plugins.themes.immersion.language.toggle">Змінити мову. Зараз встановлена мова:</message>
+	<message key="plugins.themes.immersion.adminMenu">Адмін меню</message>
 	
 	<!-- Випуск -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">Переглянути повний випуск</message>

@@ -51,7 +51,7 @@
 			{/if}
 
 			{if !empty(trim($userMenu))}
-				<h2 class="sr-only">Admin menu</h2>
+				<h2 class="sr-only">{translate key="plugins.themes.immersion.adminMenu"}</h2>
 				{$userMenu}
 			{/if}
 
