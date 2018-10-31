@@ -124,7 +124,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 					
 					// Check if section backround color is dark
 					$isSectionDark = false;
-					if ($this->isColourDark($immersionSectionColors[$sectionId])) {
+					if ($immersionSectionColors[$sectionId] && $this->isColourDark($immersionSectionColors[$sectionId])) {
 						$isSectionDark = true;
 					}
 					$publishedArticlesBySections[$sectionId]['isSectionDark'] = $isSectionDark;
