@@ -13,7 +13,7 @@
 	{include file="frontend/components/header.tpl"}
 {/strip}
 
-<main>
+<main id="immersion_content_main">
 	<section class="author-details__meta">
 		<div class="container">
 			<h1 class="author-details__title">

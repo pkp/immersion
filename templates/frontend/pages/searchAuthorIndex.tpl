@@ -13,7 +13,7 @@
 {include file="frontend/components/header.tpl"}
 {/strip}
 
-<main class="container main__content">
+<main class="container main__content" id="immersion_content_main">
 	<div class="row">
 		<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
 

@@ -22,7 +22,7 @@
 
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
-<main>
+<main id="immersion_content_main">
 	{if $announcements}
 		<section class="annoucements{if $isAnnouncementDark} section_dark{/if}"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
 			{* Announcements *}

@@ -12,7 +12,7 @@
  *       sidebars have been configured for thesite.
  *}
 
-<footer class="main-footer">
+<footer class="main-footer" id="immersion_content_footer">
 	<div class="container">
 		{if $hasSidebar}
 			<div class="sidebar_wrapper row">

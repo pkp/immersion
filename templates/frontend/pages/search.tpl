@@ -18,7 +18,7 @@
  *}
 {include file="frontend/components/header.tpl" pageTitle="common.search"}
 
-<main class="container main__content">
+<main class="container main__content" id="immersion_content_main">
 	<section>
 		<header class="">
 			<h1 class="">

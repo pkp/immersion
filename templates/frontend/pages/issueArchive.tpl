@@ -23,7 +23,7 @@
 {/capture}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$pageTitle}
 
-<main class="container main__content">
+<main class="container main__content" id="immersion_content_main">
 	<header class="main__header">
 		<h1 class="main__title">
 			<span>{$pageTitle}</span>

@@ -16,7 +16,7 @@
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$issueIdentification}
 
-<main>
+<main id="immersion_content_main">
 	<section class="issue">
 
 	{* Display a message if no current issue exists *}

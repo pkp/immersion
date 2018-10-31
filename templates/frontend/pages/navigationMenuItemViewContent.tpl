@@ -5,11 +5,11 @@
  * Copyright (c) 2003-2018 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
- * Display NavigationMenuItem content 
+ * Display NavigationMenuItem content
  *}
 {include file="frontend/components/header.tpl" pageTitleTranslated=$title}
 
-<main class="container main__content">
+<main class="container main__content" id="immersion_content_main">
 	<div class="row">
 		<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
 			<header class="main__header">
