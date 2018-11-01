@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="es_ES" full_name="Español (España)">
+	
+	<!-- Theme description -->
+	<message key="plugins.themes.immersion.name">Tema Immersion</message>
+	<message key="plugins.themes.immersion.description">Tema para OJS 3</message>
+	
+	<!-- Section settings Form -->
+	<message key="plugins.themes.immersion.colorPick">Selector de Color</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">Seleccione un color para una sección determinada que se visualizará en el frontal de la revista. Debe ser un código hexadecimal válido (ejemplo:, #ffff00 para el amarillo).</message>
+	<message key="plugins.themes.immersion.section.coverPage">Sección imagen de portada</message>
+	
+	<!-- Issue settings Form -->
+	<message key="editor.issues.sectionArea">Opciones para las secciones de la edición</message>
+	
+	<!-- General front-end -->
+	<message key="plugins.themes.immersion.issue.published">Publicado</message>
+	<message key="plugins.themes.immersion.issue.description">Descripción de la edición</message>
+	<message key="plugins.themes.immersion.registration.consent">Consentimiento</message>
+	<message key="plugins.themes.immersion.mainMenu">Menú principal</message>
+	
+	<!-- Issue -->
+	<message key="plugins.themes.immersion.issue.fullIssueLink">Vea la edición completa</message>
+	<message key="plugins.themes.immersion.search.parameters">Parámetros</message>
+	
+	<!-- Article -->
+	<message key="plugins.themes.immersion.article.biography">Biografía</message>
+	<message key="plugins.themes.immersion.article.figure">Imagen de portada</message>
+	
+	<!-- Authors' search -->
+	<message key="plugins.themes.immersion.authors.browse">Consultar por autor</message>
+	<message key="plugins.themes.immersion.author.details">Información del autor</message>
+	
+</locale>
+
