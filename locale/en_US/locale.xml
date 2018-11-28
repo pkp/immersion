@@ -5,7 +5,7 @@
 	
 	<!-- Theme description -->
 	<message key="plugins.themes.immersion.name">Immersion Theme</message>
-	<message key="plugins.themes.immersion.description">The Theme For OJS 3</message>
+	<message key="plugins.themes.immersion.description">A theme for OJS 3.1.1+ that emphasizes an immersive reading experience and offers bold design options such as full-section color choices.</message>
 	
 	<!-- Forms -->
 	<message key="plugins.themes.immersion.colorPick">Color Picker</message>

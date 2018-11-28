@@ -5,7 +5,7 @@
 	
 	<!-- Опис журналу -->
 	<message key="plugins.themes.immersion.name">Імерційна тема</message>
-	<message key="plugins.themes.immersion.description">Тема для OJS 3</message>
+	<message key="plugins.themes.immersion.description">Тема для OJS 3.1.1+, яка надає можливість повного занурення користувача у читання та пропонує додаткові опції, наприклад, зміну кольорів для секцій журналу на його головній сторінці.</message>
 	
 	<!-- Форми -->
 	<message key="plugins.themes.immersion.colorPick">Обрати колір</message>
