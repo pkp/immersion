@@ -46,10 +46,6 @@ For technical question regarding the theme (bugs, enhancements, etc.), please op
 
 **Galleys |** If there isn’t any CSS file attached to the HTML galley, the default theme’s style will be used.
 
-**Article Cover |** The cover image of the first article in each section will be displayed noticeably in full width and height on journal's landing page and issue page. The recommended image format is:
-- JPG for photographs or PNG for illustrations without photographs.
-- Of a much larger width than height with corresponded dimensions ratio of 4 : 1.
-
 ## License
 This theme is released under the GPL license. 
 

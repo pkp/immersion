@@ -36,7 +36,7 @@
 			{if $issue->getShowTitle()}
 				<span class="issue__localized_name">{$issue->getLocalizedTitle()|escape}</span>
 			{/if}
-			</h1>
+		</h1>
 			{if $issue->getDatePublished()}
 				<p class="issue__meta">{translate key="plugins.themes.immersion.issue.published"} {$issue->getDatePublished()|date_format:$dateFormatLong}</p>
 			{/if}
@@ -86,16 +86,6 @@
 					</header>
 				{/if}
 				<div class="row">
-					{foreach from=$publishedArticlesBySection.articles item=articleForCover key=articleNumber}
-						{if $articleNumber === 0 && $articleForCover->getLocalizedCoverImageUrl()}
-							<div class="col-12">
-								<figure class="section__img">
-									<img class="img-fluid"
-									     src="{$articleForCover->getLocalizedCoverImageUrl()|escape}"{if $articleForCover->getLocalizedCoverImageAltText() != ''} alt="{$articleForCover->getLocalizedCoverImageAltText()|escape}"{else} alt="{translate key="article.coverPage.altText"}"{/if}>
-								</figure>
-							</div>
-						{/if}
-					{/foreach}
 					<div class="col-12">
 						<ol class="issue-section__toc">
 							{foreach from=$publishedArticlesBySection.articles item=article key=articleNumber}
