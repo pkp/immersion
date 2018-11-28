@@ -4,6 +4,12 @@ An official theme for [OJS 3.1.1+](https://pkp.sfu.ca/ojs/)
 Current version 1.0.0
 
 This theme was developed and is maintained by the [Public Knowledge Project](https://pkp.sfu.ca/).
+## Description
+The Immersive theme emphasizes the reading experience and offers bold design options such as a full-width header image and per-section color choices.
+
+The serif typeface, Spectral, conveys a strong artistic personality and is paired with the crisp functionality of Roboto, a sans-serif typeface.
+
+This theme allows you to display a full-width image in the header. When used appropriately, the image and color options can provide a striking aesthetic that will stand out from other journals. This effect may work best for arts and culture journals which want to present a more ambitious visual profile.
 ## Installation
 The theme can be installed through **Plugin Gallery** in Open Journal Systems website.
 
