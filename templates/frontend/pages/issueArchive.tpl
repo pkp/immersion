@@ -34,7 +34,7 @@
 
 		{* No issues have been published *}
 		{if empty($issues)}
-			<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
+			<div class="col-sm">
 				<p>{translate key="current.noCurrentIssueDesc"}</p>
 			</div>
 

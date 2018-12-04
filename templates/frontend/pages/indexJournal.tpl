@@ -23,6 +23,9 @@
 {include file="frontend/components/header.tpl" pageTitleTranslated=$currentJournal->getLocalizedName()}
 
 <main id="immersion_content_main">
+
+	{call_hook name="Templates::Index::journal"}
+
 	{* Announcements *}
 	{if $announcements}
 		<section class="annoucements{if $isAnnouncementDark} section_dark{/if}"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
@@ -62,16 +65,14 @@
 		</section>
 	{/if}
 
-	<section class="issue">
+	{if $issue}
+		<section class="issue">
 
-		{call_hook name="Templates::Index::journal"}
-
-		{* Latest issue *}
-		{if $issue}
+			{* Latest issue *}
 			{include file="frontend/objects/issue_toc.tpl"}
-		{/if}
 
-	</section>
+		</section>
+	{/if}
 </main><!-- .page -->
 
 {* Additional Homepage Content *}
