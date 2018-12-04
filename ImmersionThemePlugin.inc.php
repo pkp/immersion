@@ -29,6 +29,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
 		HookRegistry::register ('TemplateManager::display', array($this, 'addSiteWideData'));
+		HookRegistry::register ('TemplateManager::display', array($this, 'homepageAnnouncements'));
 		HookRegistry::register ('issueform::display', array($this, 'addToIssueForm'));
 		
 		// Check if CSS embedded to the HTML galley
@@ -75,7 +76,14 @@ class ImmersionThemePlugin extends ThemePlugin {
 		return __('plugins.themes.immersion.description');
 	}
 	
-	// Add data to the templates
+	/**
+	 * @param $hookname string
+	 * @param $args array [
+	 *      @option TemplateManager
+	 *      @option string relative path to the template
+	 * ]
+	 * @brief Add data to the templates
+	 */
 	
 	public function addIssueTemplateData($hookname, $args) {
 		
@@ -105,6 +113,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 		} else {
 			$issue = $templateMgr->get_template_vars('issue');
 		}
+		
+		if (!$issue) return false;
 		
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
 		$publishedArticlesBySections = $publishedArticleDao->getPublishedArticlesInSections($issue->getId(), true);
@@ -137,23 +147,36 @@ class ImmersionThemePlugin extends ThemePlugin {
 			}
 		}
 		
+		$templateMgr->assign(array(
+			'publishedArticlesBySections' => $publishedArticlesBySections,
+			'lastSectionColor' => $lastSectionColor,
+		));
+	}
+	
+	public function homepageAnnouncements($hookname, $args) {
+		
+		$templateMgr = $args[0];
+		$template = $args[1];
+		
+		if ($template !== 'frontend/pages/indexJournal.tpl') return false;
+		
+		$request = $this->getRequest();
+		$journal = $request->getJournal();
+		
 		// Announcements on index journal page
 		$announcementsIntro = $journal->getLocalizedSetting('announcementsIntroduction');
 		$immersionAnnouncementsColor = $journal->getSetting('immersionAnnouncementsColor');
+		
 		$isAnnouncementDark = false;
 		if ($this->isColourDark($immersionAnnouncementsColor)) {
 			$isAnnouncementDark = true;
 		}
 		
 		$templateMgr->assign(array(
-			'publishedArticlesBySections' => $publishedArticlesBySections,
-			'lastSectionColor' => $lastSectionColor,
 			'announcementsIntroduction'=> $announcementsIntro,
-			'immersionAnnouncementsColor' => $immersionAnnouncementsColor,
-			'isAnnouncementDark' => $isAnnouncementDark
+			'isAnnouncementDark' => $isAnnouncementDark,
+			'immersionAnnouncementsColor' => $immersionAnnouncementsColor
 		));
-		
-		return false;
 	}
 	
 	public function addSiteWideData($hookname, $args) {
@@ -287,14 +310,13 @@ class ImmersionThemePlugin extends ThemePlugin {
 	 *      @option TemplateManager
 	 *      @option string relative path to the template
 	 *  ]
-	 * @return bool
 	 */
 	public function hasEmbeddedCSS($hookName, $args) {
 		$templateMgr = $args[0];
 		$template = $args[1];
 		$request = $this->getRequest();
 		
-		// Retun false if not a galley page
+		// Return false if not a galley page
 		if ($template !== 'plugins/plugins/generic/htmlArticleGalley/generic/htmlArticleGalley:display.tpl') return false;
 		
 		$articleArrays = $templateMgr->get_template_vars('article');
