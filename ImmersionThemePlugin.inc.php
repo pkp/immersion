@@ -23,6 +23,13 @@ class ImmersionThemePlugin extends ThemePlugin {
 			'https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,700i|Spectral:400,400i,700,700i',
 			array('baseUrl' => ''));
 		
+		// Adding styles (JQuery UI, Bootstrap, Tag-it)
+		$this->addStyle('app-css', 'resources/dist/app.min.css');
+		$this->addStyle('less', 'resources/less/import.less');
+		
+		// Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
+		$this->addScript('app-js', 'resources/dist/app.min.js');
+		
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));
 		
@@ -43,14 +50,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		// Additional variable for the announcements form
 		HookRegistry::register('announcementsettingsform::Constructor', array($this, 'setAnnouncementsSettings'));
-		
-		// TODO styles and scripts should be compiled, concatenated and minified before the release
-		// Adding styles (JQuery UI, Bootstrap, Tag-it)
-		$this->addStyle('app-css', 'resources/dist/app.min.css');
-		$this->addStyle('less', 'resources/less/import.less');
-		
-		// Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
-		$this->addScript('app-js', 'resources/dist/app.min.js');
 	}
 	
 	/**
