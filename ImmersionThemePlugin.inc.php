@@ -168,7 +168,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$immersionAnnouncementsColor = $journal->getSetting('immersionAnnouncementsColor');
 		
 		$isAnnouncementDark = false;
-		if ($this->isColourDark($immersionAnnouncementsColor)) {
+		if ($immersionAnnouncementsColor && $this->isColourDark($immersionAnnouncementsColor)) {
 			$isAnnouncementDark = true;
 		}
 		
