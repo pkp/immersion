@@ -17,7 +17,7 @@ Manual installation:
 1. Download the [latest release](https://github.com/pkp/immersion/releases).
 2. Upload through the admin dashboard (**Upload a New Plugin** button on the **Plugins** page) or unpack the archives content inside `plugins/themes` directory starting from OJS web root.  
 3. Login into the OJS admin dashboard and activate the plugin on the **Plugins** page.
-4. Enable the theme in **Website Settings -> Appearence** menu.
+4. Enable the theme in **Website Settings -> Appearance** menu.
 
 Installation from the master branch (should be used only for development):
 1. `git clone https://github.com/pkp/immersion.git`.
