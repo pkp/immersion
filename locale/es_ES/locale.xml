@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="es_ES" full_name="Español (España)">
+	
+	<!-- Theme description -->
+	<message key="plugins.themes.immersion.name">Tema Immersion</message>
+	<message key="plugins.themes.immersion.description">Un tema para OJS 3.1.1+ que enfatiza una experiencia de lectura inmersiva y ofrece opciones de diseño audaces, como opciones de color de sección completa.</message>
+	
+	<!-- Forms -->
+	<message key="plugins.themes.immersion.colorPick">Selector de color</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">Elija un color para la sección a mostrar en la parte frontal de la revista. Debe ser un código hexadecimal HTML válido (ej.:, #ffff00 para amarillo).</message>
+	<message key="plugins.themes.immersion.section.coverPage">Imagen de portada de la sección</message>
+	<message key="plugins.themes.immersion.annoucements.colorPick">Color de la sección de anuncios en la página principal de la revista.</message>
+	<message key="editor.issues.sectionArea">Opciones para las secciones de las publicaciones</message>
+	
+	<!-- General front-end -->
+	<message key="plugins.themes.immersion.issue.published">Publicado</message>
+	<message key="plugins.themes.immersion.issue.description">Descripción de la publicación</message>
+	<message key="plugins.themes.immersion.registration.consent">Consentimiento</message>
+	<message key="plugins.themes.immersion.mainMenu">Menú principal</message>
+	<message key="plugins.themes.immersion.language.toggle">Cambiar el idioma. El actual es:</message>
+	<message key="plugins.themes.immersion.adminMenu">Menú del Administrador</message>
+	
+	<!-- Issue -->
+	<message key="plugins.themes.immersion.issue.fullIssueLink">Ver el número completo</message>
+	<message key="plugins.themes.immersion.search.parameters">Parámetros</message>
+	
+	<!-- Article -->
+	<message key="plugins.themes.immersion.article.biography">Biografía</message>
+	<message key="plugins.themes.immersion.article.figure">Imagen de portada</message>
+	
+	<!-- Authors' search -->
+	<message key="plugins.themes.immersion.authors.browse">Navegar por autor</message>
+	<message key="plugins.themes.immersion.author.details">Información del autor</message>
