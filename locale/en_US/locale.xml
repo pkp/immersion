@@ -34,4 +34,10 @@
 	<message key="plugins.themes.immersion.authors.browse">Browse by Author</message>
 	<message key="plugins.themes.immersion.author.details">Author Details</message>
 	
+	<!-- Theme options -->
+	<message key="plugins.themes.immersion.options.sectionDescription.label">Show section description</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.description">If activated, the section description will be shown under the appropriate section on the journal homepage</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.disable">Disable</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.enable">Enable; requires Browse By Section plugin to be activated</message>
+	
 </locale>

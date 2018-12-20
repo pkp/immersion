@@ -34,4 +34,9 @@
 	<message key="plugins.themes.immersion.authors.browse">Знайти за автором</message>
 	<message key="plugins.themes.immersion.author.details">Детальніше про автора</message>
 	
+	<!-- Theme options -->
+	<message key="plugins.themes.immersion.options.sectionDescription.label">Показувати опис рубрик журналу</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.description">Після активації на головній сторінці журналу та на сторінці випуску буде показаний опис рубрик (секцій) журналу</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.disable">Вимкнути</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.enable">Увімкнути; потребує активації та налаштування модуля Browse By Section</message>
 </locale>

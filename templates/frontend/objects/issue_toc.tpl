@@ -68,19 +68,18 @@
 
 {foreach from=$publishedArticlesBySections item=publishedArticlesBySection}
 	{if $publishedArticlesBySection.articles}
-		{assign var='policy' value=$publishedArticlesBySection.section->getLocalizedPolicy()|strip_unsafe_html}
 		{assign var='immersionColorPick' value=$publishedArticlesBySection.sectionColor|escape}
 		{assign var='isSectionDark' value=$publishedArticlesBySection.isSectionDark}
 		<section class="issue-section{if $isSectionDark} section_dark{/if}"{if $immersionColorPick} style="background-color: {$immersionColorPick};"{/if}>
 			<div class="container">
-				{if $publishedArticlesBySection.title || $policy}
+				{if $publishedArticlesBySection.title || $publishedArticlesBySection.sectionDescription}
 					<header class="row issue-section__header">
 						{if $publishedArticlesBySection.title}
 							<h3 class="col-md-6 col-lg-3 issue-section__title">{$publishedArticlesBySection.title|escape}</h3>
 						{/if}
-						{if $policy}
+						{if $publishedArticlesBySection.sectionDescription}
 							<div class="col-md-6 col-lg-9 issue-section__desc">
-								{$policy|strip_unsafe_html}
+								{$publishedArticlesBySection.sectionDescription|strip_unsafe_html}
 							</div>
 						{/if}
 					</header>

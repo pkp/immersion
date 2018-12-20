@@ -33,6 +33,17 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Add navigation menu areas for this theme
 		$this->addMenuArea(array('primary', 'user'));
 		
+		// Option to show section description on the journal's homepage; turned off by default
+		$this->addOption('sectionDescriptionSetting', 'radio', array(
+			'label' => 'plugins.themes.immersion.options.sectionDescription.label',
+			'description' => 'plugins.themes.immersion.options.sectionDescription.description',
+			'options' => array(
+				'disable' => 'plugins.themes.immersion.options.sectionDescription.disable',
+				'enable' => 'plugins.themes.immersion.options.sectionDescription.enable'
+			)
+		));
+		
+		
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
 		HookRegistry::register ('TemplateManager::display', array($this, 'addSiteWideData'));
@@ -81,7 +92,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 	 *      @option TemplateManager
 	 *      @option string relative path to the template
 	 * ]
-	 * @brief Add data to the templates
+	 * @brief Add section-specific data to the indexJournal and issue templates
 	 */
 	
 	public function addIssueTemplateData($hookname, $args) {
@@ -118,12 +129,21 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
 		$publishedArticlesBySections = $publishedArticleDao->getPublishedArticlesInSections($issue->getId(), true);
 		
+		// Section color
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
-		
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$sections = $sectionDao->getByIssueId($issue->getId());
-		
 		$lastSectionColor = null;
+		
+		// Section description; check if this option and BrowseBySection plugin is enabled
+		$sectionDescriptionSetting = $this->getOption('sectionDescriptionSetting');
+		$pluginSettingsDAO = DAORegistry::getDAO('PluginSettingsDAO');
+		$request = PKPApplication::getRequest();
+		$context = $request->getContext();
+		$contextId = $context ? $context->getId() : 0;
+		$browseBySectionSettings = $pluginSettingsDAO->getPluginSettings($contextId, 'browsebysectionplugin');
+		$locale = AppLocale::getLocale();
+		
 		foreach ($publishedArticlesBySections as $sectionId => $publishedArticlesBySection) {
 			foreach ($sections as $section) {
 				if ($section->getId() == $sectionId) {
@@ -131,12 +151,17 @@ class ImmersionThemePlugin extends ThemePlugin {
 					$publishedArticlesBySections[$sectionId]['section'] = $section;
 					$publishedArticlesBySections[$sectionId]['sectionColor'] = $immersionSectionColors[$sectionId];
 					
-					// Check if section backround color is dark
+					// Check if section background color is dark
 					$isSectionDark = false;
 					if ($immersionSectionColors[$sectionId] && $this->isColourDark($immersionSectionColors[$sectionId])) {
 						$isSectionDark = true;
 					}
 					$publishedArticlesBySections[$sectionId]['isSectionDark'] = $isSectionDark;
+					
+					// Section description
+					if ($sectionDescriptionSetting == 'enable' && $browseBySectionSettings['enabled'] && $section->getData('browseByDescription', $locale)) {
+						$publishedArticlesBySections[$sectionId]['sectionDescription'] = $section->getData('browseByDescription', $locale);
+					}
 					
 					// Need only the color of the last section that contains articles
 					if ($publishedArticlesBySections[$sectionId]['articles'] && $immersionSectionColors[$sectionId]) {
@@ -148,7 +173,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		
 		$templateMgr->assign(array(
 			'publishedArticlesBySections' => $publishedArticlesBySections,
-			'lastSectionColor' => $lastSectionColor,
+			'lastSectionColor' => $lastSectionColor
 		));
 	}
 	
