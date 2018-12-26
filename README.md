@@ -1,7 +1,7 @@
 # Immersion Theme
 An official theme for [OJS 3.1.1+](https://pkp.sfu.ca/ojs/)
 
-Current version 1.0.0
+Current version 1.0.1
 
 This theme was developed and is maintained by the [Public Knowledge Project](https://pkp.sfu.ca/).
 ## Description
@@ -32,7 +32,7 @@ Installation from the master branch (should be used only for development):
 
 Note that the master branch can contain a code that will not be shipped to the stable release.
 ## Version Compatibility
-Immersion theme version 1.0.0 was tested and compatible with OJS 3.1.1-4.
+Immersion theme version 1.0.0 and 1.0.1 were tested and compatible with OJS 3.1.1-4.
 ## Contributors
 Immersion theme was designed and developed by Sophy Ouch ([@sssoz](https://github.com/sssoz)), Vitalii Bezsheiko ([@Vitaliy-1](https://github.com/Vitaliy-1)), John Willinsky, and Kevin Stranack.
 ## Troubleshooting
@@ -41,6 +41,8 @@ For technical question regarding the theme (bugs, enhancements, etc.), please op
 **Homepage Image |** This theme allows the personalisation of the header background image. By default no image is present but we strongly recommend to use one for the best visual experience. It can be downloaded through `Settings -> Website -> Homepage Image`.
 
 **Sections' Background Color |** Immersion theme adds an option for changing background color of issue sections. It is available under issue menu (for each issue). Picked colors will be displayed prominently on the journal landing page and issue page. The default background color for all sections is white and can be set differently for each section.  
+
+**Section description |** If Browse By Section plugin is activated and configured, the theme allows to display a description for each section on the index journal and issue page which is added through the section form. 
 
 **Announcement Section Background Color |** Announcements can be displayed prominently on journal's home page. It can be set in `Settings -> Website -> Announcements`. Immersion theme adds an option to change the background color for announcements section enabled through this menu.
 
