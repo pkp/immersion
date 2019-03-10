@@ -1,16 +1,15 @@
 {**
  * templates/frontend/components/registrationForm.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief Display the basic registration form fields
  *
  * @uses $locale string Locale key to use in the affiliate field
- * @uses $firstName string First name input entry if available
- * @uses $middleName string Middle name input entry if available
- * @uses $lastName string Last name input entry if available
+ * @uses $givenName string First name input entry if available
+ * @uses $familyName string Last name input entry if available
  * @uses $countries array List of country options
  * @uses $country string The selected country if available
  * @uses $email string Email input entry if available
@@ -21,31 +20,21 @@
 		{translate key="user.profile"}
 	</legend>
 	<div class="row">
-		<div class="col-sm-4 form-group">
-			<label for="firstName">
-				{translate key="user.firstName"}
+		<div class="col-sm-6 form-group">
+			<label for="givenName">
+				{translate key="user.givenName"}
 				<span class="required">*</span>
 				<span class="sr-only">
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="text" class="form-control" name="firstName" id="firstName" value="{$firstName|escape}" maxlength="40" required>
+			<input type="text" class="form-control" name="givenName" id="givenName" value="{$givenName|escape}" maxlength="255" required>
 		</div>
-		<div class="col-sm-4 form-group">
-			<label for="middleName">
-				{translate key="user.middleName"}
+		<div class="col-sm-6 form-group">
+			<label for="familyName">
+				{translate key="user.familyName"}
 			</label>
-			<input type="text" class=form-control name="middleName" id="middleName" value="{$middleName|escape}" maxlength="40">
-		</div>
-		<div class="col-sm-4 form-group">
-			<label for="lastName">
-				{translate key="user.lastName"}
-				<span class="required">*</span>
-				<span class="sr-only">
-					{translate key="common.required"}
-				</span>
-			</label>
-			<input type="text" class="form-control" name="lastName" id="lastName" value="{$lastName|escape}" maxlength="40" required>
+			<input type="text" class=form-control name="familyName" id="familyName" value="{$familyName|escape}" maxlength="255">
 		</div>
 	</div>
 	<div class="row">
@@ -57,7 +46,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="text" class="form-control" name="affiliation[{$primaryLocale|escape}]" id="affiliation" value="{$affiliation.$primaryLocale|escape}" required>
+			<input type="text" class="form-control" name="affiliation" id="affiliation" value="{$affiliation|escape}" required>
 		</div>
 
 		<div class="col-sm-6 form-group">

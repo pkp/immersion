@@ -140,14 +140,13 @@
 								</ul>
 							</div>
 						</div>
-					</fieldset>
 
 					{* Require the user to agree to the terms of the privacy policy *}
 					{if $siteWidePrivacyStatement}
 						<div class="fields">
-							<div class="optin optin-privacy">
-								<label>
-									<input type="checkbox" name="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]" id="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]" value="1"{if $privacyConsent[$smarty.const.CONTEXT_ID_NONE]} checked="checked"{/if}>
+							<div class="custom-control custom-checkbox optin optin-privacy">
+								<input type="checkbox" name="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]" id="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]" value="1"{if $privacyConsent[$smarty.const.CONTEXT_ID_NONE]} checked="checked"{/if}>
+								<label class="custom-control-label" for="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]">
 									{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
 									{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}
 								</label>
@@ -157,13 +156,14 @@
 
 					{* Ask the user to opt into public email notifications *}
 					<div class="fields">
-						<div class="optin optin-email">
-							<label>
-								<input type="checkbox" name="emailConsent" value="1"{if $emailConsent} checked="checked"{/if}>
+						<div class="custom-control custom-checkbox optin optin-email">
+							<input type="checkbox" class="custom-control-input" name="emailConsent" id="emailConsent" value="1"{if $emailConsent} checked="checked"{/if}>
+							<label class="custom-control-label" for="emailConsent">
 								{translate key="user.register.form.emailConsent"}
 							</label>
 						</div>
 					</div>
+					</fieldset>
 				{/if}
 
 				{* recaptcha spam blocker *}
