@@ -64,9 +64,9 @@
 		{/if}
 
 		{if $currentContext && $multipleContexts}
-			{url|assign:"homeUrl" page="index" router=$smarty.const.ROUTE_PAGE}
+			{capture assign="homeUrl"}{url page="index" router=$smarty.const.ROUTE_PAGE}{/capture}
 		{else}
-			{url|assign:"homeUrl" context="index" router=$smarty.const.ROUTE_PAGE}
+			{capture assign="homeUrl"}{url context="index" router=$smarty.const.ROUTE_PAGE}{/capture}
 		{/if}
 
 		{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}

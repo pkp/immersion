@@ -1,8 +1,8 @@
 {**
  * controllers/tab/settings/announcements/form/announcementSettingsForm.tpl
  *
- * Copyright (c) 2014-2018 Simon Fraser University
- * Copyright (c) 2003-2018 John Willinsky
+ * Copyright (c) 2014-2019 Simon Fraser University
+ * Copyright (c) 2003-2019 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * Announcement settings form.
@@ -13,18 +13,17 @@
 {help file="settings.md" section="website" class="pkp_help_tab"}
 
 <script type="text/javascript">
-	$(function () {ldelim}
+	$(function() {ldelim}
 		// Attach the form handler.
 		$('#announcementSettingsForm').pkpHandler('$.pkp.controllers.tab.settings.announcements.form.AnnouncementSettingsFormHandler',
 			{ldelim}
 				publishChangeEvents: ['updateHeader']
-				{rdelim}
+			{rdelim}
 		);
-		{rdelim});
+	{rdelim});
 </script>
 
-<form id="announcementSettingsForm" class="pkp_form" method="post"
-      action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="announcements"}">
+<form id="announcementSettingsForm" class="pkp_form" method="post" action="{url router=$smarty.const.ROUTE_COMPONENT component="tab.settings.WebsiteSettingsTabHandler" op="saveFormData" tab="announcements"}">
 	{csrf}
 	{include file="controllers/notification/inPlaceNotification.tpl" notificationId="announcementSettingsFormNotification"}
 
@@ -43,10 +42,10 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{url|assign:announcementTypeGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.AnnouncementTypeGridHandler" op="fetchGrid" escape=false}
+	{capture assign=announcementTypeGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.AnnouncementTypeGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="announcementTypeGridContainer" url=$announcementTypeGridUrl}
 
-	{url|assign:announcementGridUrl router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.ManageAnnouncementGridHandler" op="fetchGrid" escape=false}
+	{capture assign=announcementGridUrl}{url router=$smarty.const.ROUTE_COMPONENT component="grid.announcements.ManageAnnouncementGridHandler" op="fetchGrid" escape=false}{/capture}
 	{load_url_in_div id="announcementGridContainer" url=$announcementGridUrl}
 
 	{fbvFormButtons id="announcementSettingsFormSubmit" submitText="common.save" hideCancel=true}
