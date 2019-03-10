@@ -154,15 +154,15 @@
 						</div>
 					{/if}
 
-					{* Ask the user to opt into public email notifications *}
-					<div class="fields">
-						<div class="custom-control custom-checkbox optin optin-email">
-							<input type="checkbox" class="custom-control-input" name="emailConsent" id="emailConsent" value="1"{if $emailConsent} checked="checked"{/if}>
-							<label class="custom-control-label" for="emailConsent">
-								{translate key="user.register.form.emailConsent"}
-							</label>
+						{* Ask the user to opt into public email notifications *}
+						<div class="fields">
+							<div class="custom-control custom-checkbox optin optin-email">
+								<input type="checkbox" class="custom-control-input" name="emailConsent" id="emailConsent" value="1"{if $emailConsent} checked="checked"{/if}>
+								<label class="custom-control-label" for="emailConsent">
+									{translate key="user.register.form.emailConsent"}
+								</label>
+							</div>
 						</div>
-					</div>
 					</fieldset>
 				{/if}
 

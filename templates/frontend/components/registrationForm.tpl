@@ -96,14 +96,14 @@
 			<label for="password">
 				{translate key="user.password"}
 				<span class="required">*</span>
-				<span class="pkp_screen_reader">
+				<span class="sr-only">
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input class=form-control type="password" name="password" id="password" password="true" maxlength="32" required>
+			<input class="form-control" type="password" name="password" id="password" password="true" maxlength="32" required>
 		</div>
 		<div class="col-sm-6 form-group">
-			<label for="password">
+			<label for="password2">
 				{translate key="user.repeatPassword"}
 				<span class="required">*</span>
 				<span class="sr-only">
