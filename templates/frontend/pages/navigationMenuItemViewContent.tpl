@@ -7,7 +7,7 @@
  *
  * Display NavigationMenuItem content
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$title}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$title|escape}
 
 <main class="container main__content" id="immersion_content_main">
 	<div class="row">

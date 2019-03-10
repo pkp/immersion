@@ -338,13 +338,13 @@
 			{if $licenseUrl}
 				{if $ccLicenseBadge}
 					{if $copyrightHolder}
-						<p>{translate key="submission.copyrightStatement" copyrightHolder=$copyrightHolder copyrightYear=$copyrightYear}</p>
+						<p>{translate key="submission.copyrightStatement" copyrightHolder=$copyrightHolder|escape copyrightYear=$copyrightYear|escape}</p>
 					{/if}
 					{$ccLicenseBadge}
 				{else}
 					<a href="{$licenseUrl|escape}" class="copyright">
 						{if $copyrightHolder}
-							{translate key="submission.copyrightStatement" copyrightHolder=$copyrightHolder copyrightYear=$copyrightYear}
+							{translate key="submission.copyrightStatement" copyrightHolder=$copyrightHolder|escape copyrightYear=$copyrightYear|escape}
 						{else}
 							{translate key="submission.license"}
 						{/if}

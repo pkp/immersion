@@ -9,7 +9,7 @@
  *
  * @uses $announcement Announcement The announcement to display
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$announcement->getLocalizedTitle()}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$announcement->getLocalizedTitle()|escape}
 
 <main class="container main__content" id="immersion_content_main">
 	<div class="row">

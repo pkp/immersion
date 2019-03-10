@@ -26,7 +26,7 @@
 		{strip}
 		<h{if $requestedOp === "issue"}1{else}2{/if} class="issue__title">
 			{if $issue->getShowVolume() || $issue->getShowNumber()}
-				{if $issue->getShowVolume()|escape}
+				{if $issue->getShowVolume()}
 					<span class="issue__volume">{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}, {/if}</span>
 				{/if}
 				{if $issue->getShowNumber()}
