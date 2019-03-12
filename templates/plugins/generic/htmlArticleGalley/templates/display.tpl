@@ -32,26 +32,5 @@
 </div>
 {call_hook name="Templates::Common::Footer::PageFooter"}
 
-{* Default style if CSS isn't attached to the HTML Galley *}
-{if $boolEmbeddedCss === false}
-	<script type="text/javascript">{literal}
-        window.onload = function() {
-            var iframe = document.getElementById('htmlGalleyFrame');
-            var insideFrame = iframe.contentDocument || iframe.contentWindow.document;
-            var headNode = insideFrame.getElementsByTagName('head')[0];
-
-            // Loading CSS stylesheet
-
-            var linkElement = document.createElement('link');
-            linkElement.type = 'text/css';
-            linkElement.rel = 'stylesheet';
-            linkElement.href = "{/literal}{$themePath|escape:"javascript"}{literal}/templates/plugins/generic/htmlArticleGalley/css/default.css";
-            headNode.appendChild(linkElement);
-
-        };
-
-		{/literal}</script>
-
-{/if}
 </body>
 </html>
