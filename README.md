@@ -1,7 +1,7 @@
 # Immersion Theme
 An official theme for [OJS 3.1.1+](https://pkp.sfu.ca/ojs/)
 
-Current version 1.0.1
+Current version 1.0.2
 
 This theme was developed and is maintained by the [Public Knowledge Project](https://pkp.sfu.ca/).
 ## Description
@@ -33,6 +33,7 @@ Installation from the master branch (should be used only for development):
 Note that the master branch can contain a code that will not be shipped to the stable release.
 ## Version Compatibility
 Immersion theme version 1.0.0 and 1.0.1 were tested and compatible with OJS 3.1.1-4.
+Immersion theme version 1.0.2 is compatible with OJS 3.1.2.
 ## Contributors
 Immersion theme was designed and developed by Sophy Ouch ([@sssoz](https://github.com/sssoz)), Vitalii Bezsheiko ([@Vitaliy-1](https://github.com/Vitaliy-1)), John Willinsky, and Kevin Stranack.
 ## Troubleshooting
