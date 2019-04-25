@@ -15,19 +15,19 @@
 {/if}
 
 <article class="obj_announcement_summary">
-	<{$heading} class="annoucements__block">
+	<{$heading} class="announcements__block">
 		<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
 			{$announcement->getLocalizedTitle()|escape}
 		</a>
 	</{$heading}>
-	<div class="annoucements__block date text-muted small">
+	<div class="announcements__block date text-muted small">
 		{$announcement->getDatePosted()|date_format:$dateFormatShort}
 	</div>
-	<div class="annoucements__block summary">
+	<div class="announcements__block summary">
 		{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
 
 	</div>
-	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="annoucements__block btn btn-secondary">
+	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="announcements__block btn btn-secondary">
 		<span>
 			{translate key="common.readMore"}
 		</span>

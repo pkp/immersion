@@ -11,7 +11,7 @@
 	<message key="plugins.themes.immersion.colorPick">Color Picker</message>
 	<message key="plugins.themes.immersion.colorPickInstructions">Pick a color for a section to display on the journal's front-end. Must be valid HTML hex code (e.g., #ffff00 for yellow).</message>
 	<message key="plugins.themes.immersion.section.coverPage">Section Cover Image</message>
-	<message key="plugins.themes.immersion.annoucements.colorPick">Announcements section colour on the journal's home page</message>
+	<message key="plugins.themes.immersion.announcements.colorPick">Announcements section colour on the journal's home page</message>
 	<message key="editor.issues.sectionArea">Options for issue's sections</message>
 
 	<!-- General front-end -->
