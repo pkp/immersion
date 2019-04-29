@@ -306,7 +306,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 	/**
 	 * Add variables to the issue editing form
 	 *
-	 * @param $hookName string `issueform::execute`
+	 * @param $hookName string `issueform::display`; see fetch()
 	 * @param $args array [
 	 *		@option IssueForm
 	 * ]
@@ -314,14 +314,18 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 	public function addToIssueForm($hookName, $args) {
 		$issueForm = $args[0];
-		$request = $this->getRequest();
 
-		$sectionDao = DAORegistry::getDAO('SectionDAO');
-		$sections = $sectionDao->getByIssueId($issueForm->issue->getId());
+		// Display only if available as per IssueForm::fetch()
+		if ($issueForm->issue) {
+			$request = $this->getRequest();
 
-		$templateMgr = TemplateManager::getManager($request);
+			$sectionDao = DAORegistry::getDAO('SectionDAO');
+			$sections = $sectionDao->getByIssueId($issueForm->issue->getId());
 
-		$templateMgr->assign('sections', $sections);
+			$templateMgr = TemplateManager::getManager($request);
+
+			$templateMgr->assign('sections', $sections);
+		}
 	}
 
 	/**
