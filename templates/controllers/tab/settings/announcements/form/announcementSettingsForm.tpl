@@ -34,7 +34,7 @@
 			{fbvElement type="select" id="numAnnouncementsHomepage" from=$numAnnouncementsHomepageOptions selected=$numAnnouncementsHomepage defaultValue="1" translate=false disabled=$disableAnnouncementsHomepage inline=true}
 			<span>{translate key="manager.setup.enableAnnouncementsHomepage2"}</span>
 		{/fbvFormSection}
-		{fbvFormSection description="plugins.themes.immersion.annoucements.colorPick"}
+		{fbvFormSection description="plugins.themes.immersion.announcements.colorPick"}
 			{fbvElement type="colour" id="immersionAnnouncementsColor" value=$immersionAnnouncementsColor default="#ffffff"}
 		{/fbvFormSection}
 		{fbvFormSection description="manager.setup.announcementsIntroductionDescription"}

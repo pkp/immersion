@@ -11,7 +11,7 @@
 	<message key="plugins.themes.immersion.colorPick">Farbwähler</message>
 	<message key="plugins.themes.immersion.colorPickInstructions">Wählen Sie eine Farbe für eine Rubrik, die im Frontend der Zeitschrift angezeigt wird. Sie müssen einen gültigen HTML-Hexcode angeben (z.B. #ffff00 für gelb).</message>
 	<message key="plugins.themes.immersion.section.coverPage">Titelbild einer Rubrik </message>
-	<message key="plugins.themes.immersion.annoucements.colorPick">Rubrikenfarbe für Ankündigungen auf der Homepage der Zeitschrift</message>
+	<message key="plugins.themes.immersion.announcements.colorPick">Rubrikenfarbe für Ankündigungen auf der Homepage der Zeitschrift</message>
 	<message key="editor.issues.sectionArea">Optionen für Rubriken der Ausgabe</message>
 	
 	<!-- General front-end -->
