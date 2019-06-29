@@ -103,16 +103,18 @@
 		{/fbvFormSection}
 	{/fbvFormArea}
 
-	{fbvFormArea id="sectionArea" title="editor.issues.sectionArea"}
-		{fbvFormSection title="plugins.themes.immersion.colorPick" for="immersionSectionColor" inline=false size=$fbvStyles.size.MEDIUM}
-			{foreach from=$sections item=section}
-				{assign var=sectionId value=$section->getId()}
-				{* Color picker for issue's sections*}
-				<div>{$section->getLocalizedTitle()|escape}</div>
-				{fbvElement type="colour" class="immersionSectionColor" name="immersionSectionColor[$sectionId]" id="immersionSectionColor-$sectionId" value=$immersionSectionColor[$sectionId]}
-			{/foreach}
-		{/fbvFormSection}
-	{/fbvFormArea}
+	{if !empty($sections)}
+		{fbvFormArea id="sectionArea" title="editor.issues.sectionArea"}
+			{fbvFormSection title="plugins.themes.immersion.colorPick" for="immersionSectionColor" inline=false size=$fbvStyles.size.MEDIUM}
+				{foreach from=$sections item=section}
+					{assign var=sectionId value=$section->getId()}
+					{* Color picker for issue's sections*}
+					<div>{$section->getLocalizedTitle()|escape}</div>
+					{fbvElement type="colour" class="immersionSectionColor" name="immersionSectionColor[$sectionId]" id="immersionSectionColor-$sectionId" value=$immersionSectionColor[$sectionId]}
+				{/foreach}
+			{/fbvFormSection}
+		{/fbvFormArea}
+	{/if}
 
 	{foreach from=$pubIdPlugins item=pubIdPlugin}
 		{assign var=pubIdMetadataFile value=$pubIdPlugin->getPubIdMetadataFile()}
