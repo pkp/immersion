@@ -21,6 +21,7 @@
 	<message key="plugins.themes.immersion.mainMenu">Main menu</message>
 	<message key="plugins.themes.immersion.language.toggle">Change the language. The current language is:</message>
 	<message key="plugins.themes.immersion.adminMenu">Admin menu</message>
+	<message key="plugins.themes.immersion.about.journal">About the journal</message>
 
 	<!-- Issue -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">See the full issue</message>
@@ -40,4 +41,11 @@
 	<message key="plugins.themes.immersion.options.sectionDescription.disable">Disable</message>
 	<message key="plugins.themes.immersion.options.sectionDescription.enable">Enable; requires Browse By Section plugin to be activated</message>
 
+	<message key="plugins.themes.immersion.options.journalDescription.label">Show journal description</message>
+	<message key="plugins.themes.immersion.options.journalDescription.description">If enabled, the journal description will be shown on the journal's landing page</message>
+	<message key="plugins.themes.immersion.options.journalDescription.disable">Disable (default)</message>
+	<message key="plugins.themes.immersion.options.journalDescription.enable">Enable</message>
+
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.label">Journal description background</message>
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.description">Background colour for the journal description section on the journal home page</message>
 </locale>

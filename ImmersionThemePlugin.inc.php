@@ -46,11 +46,25 @@ class ImmersionThemePlugin extends ThemePlugin {
 			)
 		));
 
+		$this->addOption('journalDescription', 'radio', array(
+			'label' => 'plugins.themes.immersion.options.journalDescription.label',
+			'description' => 'plugins.themes.immersion.options.journalDescription.description',
+			'options' => array(
+				0 => 'plugins.themes.immersion.options.journalDescription.disable',
+				1 => 'plugins.themes.immersion.options.journalDescription.enable'
+			)
+		));
+
+		$this->addOption('journalDescriptionColour', 'colour', array(
+			'label' => 'plugins.themes.immersion.options.journalDescriptionColour.label',
+			'description' => 'plugins.themes.immersion.options.journalDescriptionColour.description',
+		));
 
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
 		HookRegistry::register ('TemplateManager::display', array($this, 'addSiteWideData'));
 		HookRegistry::register ('TemplateManager::display', array($this, 'homepageAnnouncements'));
+		HookRegistry::register ('TemplateManager::display', array($this, 'homepageJournalDescription'));
 		HookRegistry::register ('issueform::display', array($this, 'addToIssueForm'));
 
 		// Check if CSS embedded to the HTML galley
@@ -173,6 +187,15 @@ class ImmersionThemePlugin extends ThemePlugin {
 		));
 	}
 
+	/**
+	 * @param $hookname string
+	 * @param $args array [
+	 *      @option TemplateManager
+	 *      @option string relative path to the template
+	 * ]
+	 * @return boolean|void
+	 * @brief background color for announcements section on the journal index page
+	 */
 	public function homepageAnnouncements($hookname, $args) {
 
 		$templateMgr = $args[0];
@@ -199,6 +222,15 @@ class ImmersionThemePlugin extends ThemePlugin {
 		));
 	}
 
+	/**
+	 * @param $hookname string
+	 * @param $args array [
+	 *      @option TemplateManager
+	 *      @option string relative path to the template
+	 * ]
+	 * @return void
+	 * @brief Assign additional data to Smarty templates
+	 */
 	public function addSiteWideData($hookname, $args) {
 		$templateMgr = $args[0];
 
@@ -232,6 +264,34 @@ class ImmersionThemePlugin extends ThemePlugin {
 				'orcidImageUrl' => $orcidImageUrl
 			));
 		}
+	}
+
+	/**
+	 * @param $hookname string
+	 * @param $args array [
+	 *      @option TemplateManager
+	 *      @option string relative path to the template
+	 * ]
+	 * @return boolean|void
+	 * @brief Show Journal Description on the journal landing page depending on theme settings
+	 */
+	public function homepageJournalDescription($hookName, $args) {
+		$templateMgr = $args[0];
+		$template = $args[1];
+
+		if ($template != "frontend/pages/indexJournal.tpl") return false;
+
+		$journalDescriptionColour = $this->getOption('journalDescriptionColour');
+		$isJournalDescriptionDark = false;
+		if ($journalDescriptionColour && $this->isColourDark($journalDescriptionColour)) {
+			$isJournalDescriptionDark = true;
+		}
+
+		$templateMgr->assign(array(
+			'showJournalDescription' => $this->getOption('journalDescription'),
+			'journalDescriptionColour' => $journalDescriptionColour,
+			'isJournalDescriptionDark' => $isJournalDescriptionDark
+		));
 	}
 
 	/**

@@ -26,12 +26,28 @@
 
 	{call_hook name="Templates::Index::journal"}
 
+	{if $showJournalDescription}
+		<section class="journal-description{if $isJournalDescriptionDark} section_dark{/if}"{if $journalDescriptionColour} style="background-color: {$journalDescriptionColour|escape};"{/if}>
+			<div class="container">
+				<div class="row justify-content-between">
+					<header class="col-md-6 col-lg-3">
+						<h3 class="text-capitalize">
+							{translate key="plugins.themes.immersion.about.journal"}
+						</h3>
+					</header>
+					<div class="col-md-6 col-lg-8">
+						{$currentJournal->getLocalizedDescription()}
+					</div>
+				</div>
+			</div>
+		</section>
+	{/if}
 	{* Announcements *}
 	{if $announcements}
 		<section class="announcements{if $isAnnouncementDark} section_dark{/if}"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
 			<div class="container">
 				<header class="row issue-section__header">
-					<h3 class="col-md-6 col-lg-3 announcement-section__title">
+					<h3 class="col-md-6 col-lg-3 announcement-section__title{if $showJournalDescription} mt-0{/if}">
 						{translate key="announcement.announcements"}
 					</h3>
 				</header>
