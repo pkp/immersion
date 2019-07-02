@@ -61,6 +61,23 @@
 						{/if}
 					</div>
 				</div>
+				{if $issueGalleys}
+				<div class="col-md-6">
+					{* Full-issue galleys *}
+					<div class="issue-desc__galleys">
+						<h3>
+							{translate key="issue.fullIssue"}
+						</h3>
+						<ul class="issue-desc__btn-group">
+							{foreach from=$issueGalleys item=galley}
+								<li>
+									{include file="frontend/objects/galley_link.tpl" parent=$issue purchaseFee=$currentJournal->getSetting('purchaseIssueFee') purchaseCurrency=$currentJournal->getSetting('currency')}
+								</li>
+							{/foreach}
+						</ul>
+					</div>
+				</div>
+				{/if}
 			</section>
 		</div>
 	{/if}

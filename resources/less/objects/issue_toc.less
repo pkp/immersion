@@ -3,7 +3,7 @@
 	padding-top: 7.5vh;
 	background: #000;
 	color: #fff;
-	
+
 	& .container {
 		min-height: 20vh;
 	}
@@ -82,6 +82,27 @@
 
 }
 
+.issue-desc__btn-group {
+	list-style: none;
+	padding: 0;
+	margin: 2.5vh 0 0 0;
+
+	.article__btn {
+		border: 1px solid @secondary-color;
+		text-align: right;
+		padding: .75em 1em;
+
+		&:hover {
+			background-color: @secondary-color;
+			color: @primary-color;
+		}
+
+		&:after {
+			display: none;
+		}
+	}
+}
+
 /* BEM components: issue section */
 .issue-section {
 	padding: 7.5vh 0 7.5vh 0;
@@ -124,10 +145,10 @@
 	& h3, h4, a, p, span {
 		color: @secondary-color;
 	}
-	
+
 	& a.article__btn {
 		border-color: @secondary-color;
-		
+
 		&:hover, &:focus, &:active {
 			background-color: @secondary-color;
 			color: @primary-color;
