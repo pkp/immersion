@@ -319,10 +319,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 	 */
 	public function initDataIssueFormFields($hookName, $args) {
 		$issueForm = $args[0];
-		$request = Application::getRequest();
-		$context = $request->getContext();
-		$issueDao = DAORegistry::getDAO('IssueDAO');
-
 		$issueForm->setData('immersionSectionColor', $issueForm->issue->getData('immersionSectionColor'));
 	}
 
@@ -337,7 +333,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 	 */
 	public function readIssueFormFields($hookName, $args) {
 		$issueForm =& $args[0];
-		$request = Application::getRequest();
+		$request = $this->getRequest();
 
 		$issueForm->setData('immersionSectionColor', $request->getUserVar('immersionSectionColor'));
 	}
@@ -355,7 +351,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 	public function executeIssueFormFields($hookName, $args) {
 		$issueForm = $args[0];
 		$issue = $args[1];
-		$request = $args[2];
 
 		$issue->setData('immersionSectionColor', $issueForm->getData('immersionSectionColor'));
 
