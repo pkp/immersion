@@ -1,5 +1,5 @@
 body {
-	font-family: 'Roboto', sans-serif;
+	font-family: @font-family-primary;
 	color: #000;
 	font-size: 18px;
 	font-weight: 400;
@@ -10,17 +10,17 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: 'Roboto', sans-serif;
+	font-family: @font-family-primary;
 	font-weight: bold;
 }
 
 p, li, blockquote, cite, dd, legend {
-	font-family: 'Roboto', sans-serif;
+	font-family: @font-family-primary;
 	line-height: 1.5;
 }
 
 dt, address, table, label {
-	font-family: 'Spectral', sans-serif;
+	font-family: @font-family-secondary;
 	font-size: smaller;
 }
 
@@ -30,7 +30,7 @@ ol {
 }
 
 ol li:before {
-	  font-family: 'Spectral', sans-serif;
+	  font-family: @font-family-secondary;
 	  font-size: smaller;
 	  counter-increment: item;
 	  content: counter(item) '. ';
