@@ -18,16 +18,17 @@
 			<div class="sidebar_wrapper row">
 				{call_hook name="Templates::Common::Sidebar"}
 			</div>
+			<hr>
 		{/if}
-		<div class="additional-footer-info row">
+		<div class="row">
 			{if $pageFooter}
-				<div class="user-page-footer col-md-6">
+				<div class="col-md-8">
 					{$pageFooter}
 				</div>
 			{/if}
-			<div class="pkpbrand-wrapper col-md-3{if !$pageFooter} offset-md-9{/if}">
+			<div class="col-2 col-sm-1 offset-10 offset-sm-11">
 				<a href="{url page="about" op="aboutThisPublishingSystem"}">
-					<img class="footer-brand-image" alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
+					<img class="img-fluid" alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
 				</a>
 			</div>
 		</div>
