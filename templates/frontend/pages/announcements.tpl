@@ -23,15 +23,13 @@
 
 			{$announcementsIntroduction|strip_unsafe_html}
 
-			<ul class="announcements__toc">
-				{foreach from=$announcements item=announcement}
-					<li>
-						{include file="frontend/objects/announcement_summary.tpl"}
-					</li>
-				{/foreach}
-			</ul>
+			{foreach from=$announcements item=announcement}
+				<article>
+					{include file="frontend/objects/announcement_summary.tpl"}
+				</article>
+			{/foreach}
 		</div>
-	</div><!-- .row -->
-</main><!-- .page -->
+	</div>
+</main>
 
 {include file="frontend/components/footer.tpl"}
