@@ -48,7 +48,7 @@
 	{/if}
 
 	{* Announcements *}
-	{if $announcements}
+	{if $numAnnouncementsHomepage && $announcements|@count}
 		<section class="announcements{if $isAnnouncementDark} section_dark{/if}"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
 			<div class="container">
 				<header class="row">
@@ -66,6 +66,7 @@
 									{$announcement->getLocalizedTitle()|escape}
 								</a>
 							</h4>
+							<p>{$announcement->getLocalizedDescriptionShort()}</p>
 						</li>
 					{/foreach}
 				</ul>
