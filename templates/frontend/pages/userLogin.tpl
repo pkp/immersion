@@ -52,7 +52,7 @@
 						<input class="form-control" type="text" name="username" id="username" value="{$username|escape}" maxlength="32" required>
 					</div>
 
-					<div class="form-group password">
+					<div class="form-group">
 						<label for="password">
 							{translate key="user.password"}
 							<span class="required">*</span>
@@ -60,31 +60,32 @@
 								{translate key="common.required"}
 							</span>
 						</label>
-
 						<input class="form-control" type="password" name="password" id="password" value="{$password|escape}" password="true" maxlength="32" required>
-						<a href="{url page="login" op="lostPassword"}">
-							{translate key="user.login.forgotPassword"}
-						</a>
+
+						<div class="custom-control custom-checkbox">
+							<input class="custom-control-input" type="checkbox" name="remember" id="remember" value="1" checked="$remember">
+							<label class="custom-control-label" for="remember">
+								{translate key="user.login.rememberUsernameAndPassword"}
+							</label>
+						</div>
 					</div>
 
-					<div class="custom-control custom-checkbox remember__checkbox">
-						<input class="custom-control-input" type="checkbox" name="remember" id="remember" value="1" checked="$remember">
-						<label class="custom-control-label" for="remember">
-							{translate key="user.login.rememberUsernameAndPassword"}
-						</label>
-					</div>
-
-					<div class="form-group form-group-buttons">
+					<div class="form-group">
 						<button class="btn btn-primary" type="submit">
 							{translate key="user.login"}
 						</button>
 
 						{if !$disableUserReg}
-							{capture assign=registerUrl}{url page="user" op="register" source=$source}{/capture}
-							<a href="{$registerUrl}" class="register btn btn-secondary">
+							{capture assign="registerUrl"}{url page="user" op="register" source=$source}{/capture}
+							<a href="{$registerUrl}" class="btn btn-secondary">
 								{translate key="user.login.registerNewAccount"}
 							</a>
 						{/if}
+
+						<br><br>
+						<a href="{url page="login" op="lostPassword"}">
+							{translate key="user.login.forgotPassword"}
+						</a>
 					</div>
 				</fieldset>
 			</form>
