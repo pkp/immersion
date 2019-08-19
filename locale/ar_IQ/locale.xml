@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="ar_IQ" full_name="العربية">
+
+	<!-- Theme description -->
+	<message key="plugins.themes.immersion.name">نمط Immersion</message>
+	<message key="plugins.themes.immersion.description">نمط مخصص لنظام المجلات المفتوحة 3.1.1+ معد لتقديم تجربة قراءة متفردة مع خيارات تصميمة هامة مثل إمكانية التحكم بألوان أقسام المجلة.</message>
+
+	<!-- Forms -->
+	<message key="plugins.themes.immersion.colorPick">منتقي الألوان</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">إختر لوناً للقسم ليتم عرضه به في واجهة المجلة. ينبغي أن يكون ترميزاً رقمياً صحيحاً بتنسيق HTML hex (مثلاً، #ffff00 للون الأصفر).</message>
+	<message key="plugins.themes.immersion.section.coverPage">صورة غلاف القسم</message>
+	<message key="plugins.themes.immersion.announcements.colorPick">لون قسم الإعلانات على صفحة المجلة الرئيسية</message>
+	<message key="editor.issues.sectionArea">خيارات أقسام الأعداد</message>
+
+	<!-- General front-end -->
+	<message key="plugins.themes.immersion.issue.published">منشور</message>
+	<message key="plugins.themes.immersion.issue.description">وصف العدد</message>
+	<message key="plugins.themes.immersion.registration.consent">موافق</message>
+	<message key="plugins.themes.immersion.mainMenu">القائمة الرئيسية</message>
+	<message key="plugins.themes.immersion.language.toggle">تغيير اللغة. اللغة الحالية هي:</message>
+	<message key="plugins.themes.immersion.adminMenu">قائمة المشرف</message>
+	<message key="plugins.themes.immersion.about.journal">عن المجلة</message>
+
+	<!-- Issue -->
+	<message key="plugins.themes.immersion.issue.fullIssueLink">معاينة العدد الكامل</message>
+	<message key="plugins.themes.immersion.search.parameters">العوامل</message>
+
+	<!-- Article -->
+	<message key="plugins.themes.immersion.article.biography">السيرة</message>
+	<message key="plugins.themes.immersion.article.figure">صورة الغلاف</message>
+
+	<!-- Authors' search -->
+	<message key="plugins.themes.immersion.authors.browse">التصفح حسب المؤلف</message>
+	<message key="plugins.themes.immersion.author.details">تفاصيل المؤلف</message>
+
+	<!-- Theme options -->
+	<message key="plugins.themes.immersion.options.sectionDescription.label">إظهار وصف القسم</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.description">عند تفعيله، فإن وصف القسم سيظهر مرافقاً للقسم المعني على الصفحة الرئيسية للمجلة</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.disable">تعطيل</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.enable">تمكين؛ يتطلب تمكين إضافة التصفح حسب الأقسام</message>
+
+	<message key="plugins.themes.immersion.options.journalDescription.label">إظهار وصف المجلة</message>
+	<message key="plugins.themes.immersion.options.journalDescription.description">عند تفعيله، فإن وصف المجلة سيظهر على صفحة تواجدها ضمن الموقع</message>
+	<message key="plugins.themes.immersion.options.journalDescription.disable">تعطيل (الإفتراضي)</message>
+	<message key="plugins.themes.immersion.options.journalDescription.enable">تمكين</message>
+
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.label">خلفية وصف المجلة</message>
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.description">لون خلفية وصف المجلة ضمن صفحتها الرئيسية</message>
+</locale>
