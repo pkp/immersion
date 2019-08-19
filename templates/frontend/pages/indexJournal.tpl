@@ -66,7 +66,7 @@
 									{$announcement->getLocalizedTitle()|escape}
 								</a>
 							</h4>
-							<p>{$announcement->getLocalizedDescriptionShort()}</p>
+							<p>{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}</p>
 						</li>
 					{/foreach}
 				</ul>
