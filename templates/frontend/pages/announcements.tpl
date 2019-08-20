@@ -24,9 +24,7 @@
 			{$announcementsIntroduction|strip_unsafe_html}
 
 			{foreach from=$announcements item=announcement}
-				<article>
-					{include file="frontend/objects/announcement_summary.tpl"}
-				</article>
+				{include file="frontend/objects/announcement_summary.tpl"}
 			{/foreach}
 		</div>
 	</div>

@@ -14,25 +14,27 @@
 	{assign var="heading" value="h2"}
 {/if}
 
-<{$heading}>
-	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-		{$announcement->getLocalizedTitle()|escape}
+<article>
+	<{$heading}>
+		<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
+			{$announcement->getLocalizedTitle()|escape}
+		</a>
+	</{$heading}>
+
+	<p class="text-muted">
+		{$announcement->getDatePosted()|date_format:$dateFormatShort}
+	</p>
+
+	<div>
+		{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
+	</div>
+
+	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="btn btn-secondary">
+		<span>
+			{translate key="common.readMore"}
+		</span>
+		<span class="sr-only">
+			{translate key="common.readMoreWithTitle" title=$announcement->getLocalizedTitle()|escape}
+		</span>
 	</a>
-</{$heading}>
-
-<p class="text-muted">
-	{$announcement->getDatePosted()|date_format:$dateFormatShort}
-</p>
-
-<div>
-	{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
-</div>
-
-<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="btn btn-secondary">
-	<span>
-		{translate key="common.readMore"}
-	</span>
-	<span class="sr-only">
-		{translate key="common.readMoreWithTitle" title=$announcement->getLocalizedTitle()|escape}
-	</span>
-</a>
+</article>
