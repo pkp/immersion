@@ -58,6 +58,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$this->addOption('journalDescriptionColour', 'colour', array(
 			'label' => 'plugins.themes.immersion.options.journalDescriptionColour.label',
 			'description' => 'plugins.themes.immersion.options.journalDescriptionColour.description',
+			'default' => '#000',
 		));
 
 		// Additional data to the templates
