@@ -49,21 +49,24 @@
 			</div>
 		</div>
 		<div class="form-group">
-			<button class="btn btn-primary" type="submit">
-				{translate key="user.login"}
-			</button>
+			<p>
+				<button class="btn btn-primary" type="submit">
+					{translate key="user.login"}
+				</button>
 
-			{if !$disableUserReg}
-				{capture assign="registerUrl"}{url page="user" op="register" source=$source}{/capture}
-				<a href="{$registerUrl}">
-					{translate key="user.login.registerNewAccount"}
+				{if !$disableUserReg}
+					{capture assign="registerUrl"}{url page="user" op="register" source=$source}{/capture}
+					<a href="{$registerUrl}" class="btn btn-secondary">
+						{translate key="user.login.registerNewAccount"}
+					</a>
+				{/if}
+			</p>
+
+			<p>
+				<a href="{url page="login" op="lostPassword"}">
+					{translate key="user.login.forgotPassword"}
 				</a>
-			{/if}
-
-			<br><br>
-			<a href="{url page="login" op="lostPassword"}">
-				{translate key="user.login.forgotPassword"}
-			</a>
+			</p>
 		</div>
 	</fieldset>
 </form>
