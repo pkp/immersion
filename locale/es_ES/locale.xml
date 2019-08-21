@@ -5,7 +5,7 @@
 	
 	<!-- Theme description -->
 	<message key="plugins.themes.immersion.name">Tema Immersion</message>
-	<message key="plugins.themes.immersion.description">Un tema para OJS 3.1.1+ que enfatiza una experiencia de lectura inmersiva y ofrece opciones de diseño audaces, como opciones de color de sección completa.</message>
+	<message key="plugins.themes.immersion.description">Un tema para OJS 3.1.1+ que proporciona una experiencia de lectura inmersiva y ofrece opciones de diseño audaces, como opciones de color de sección completa.</message>
 	
 	<!-- Forms -->
 	<message key="plugins.themes.immersion.colorPick">Selector de color</message>
