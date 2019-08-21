@@ -17,7 +17,7 @@
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	font-family: 'Roboto', sans-serif;
+	font-family: @font-family-primary;
 	font-weight: 300;
 	height: 100%;
 
@@ -119,41 +119,6 @@
 
 		&:hover, &:focus, &:active {
 			color: @primary-color;
-			background-color: @secondary-color;
-		}
-	}
-
-	& .dropdown-item {
-		padding-left: 12px;
-	}
-
-	& a {
-		color: @primary-color;
-		margin-left: 0;
-	}
-}
-
-#navigationUser, #languageNav {
-
-	& .dropdown-menu {
-		padding-top: 5px;
-		padding-bottom: 5px;
-	}
-
-	& .dropdown-item {
-		padding-right: 12px;
-		margin-bottom: 0;
-
-		&:focus, &:hover {
-			background-color: inherit;
-		}
-
-		& a {
-			border: 1px solid @secondary-color;
-
-			&:hover {
-				border: 1px solid @primary-color;
-			}
 		}
 	}
 }
@@ -175,16 +140,13 @@
 	flex-wrap: wrap;
 }
 
-.navbar-nav .dropdown-menu {
+.dropdown-menu {
 	border-radius: 0;
 }
 
 .nav-link {
 	padding: 0.25em 0.5em;
-	margin-left: 0.5em;
-	background-color: @secondary-color;
 	color: @primary-color;
-
 }
 
 @media (min-width: 992px) {

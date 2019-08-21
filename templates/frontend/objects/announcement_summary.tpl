@@ -14,20 +14,22 @@
 	{assign var="heading" value="h2"}
 {/if}
 
-<article class="obj_announcement_summary">
-	<{$heading} class="announcements">
+<article>
+	<{$heading}>
 		<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
 			{$announcement->getLocalizedTitle()|escape}
 		</a>
 	</{$heading}>
-	<div class="announcements date text-muted small">
-		{$announcement->getDatePosted()|date_format:$dateFormatShort}
-	</div>
-	<div class="announcements summary">
-		{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
 
+	<p class="text-muted">
+		{$announcement->getDatePosted()|date_format:$dateFormatShort}
+	</p>
+
+	<div>
+		{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
 	</div>
-	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="announcements btn btn-secondary">
+
+	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="btn btn-secondary">
 		<span>
 			{translate key="common.readMore"}
 		</span>
@@ -35,4 +37,4 @@
 			{translate key="common.readMoreWithTitle" title=$announcement->getLocalizedTitle()|escape}
 		</span>
 	</a>
-</article><!-- .obj_announcement_summary -->
+</article>

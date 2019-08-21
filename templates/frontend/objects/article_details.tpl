@@ -372,7 +372,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
-								        data-dismiss="modal">{translate key="plugins.themes.classic.close"}</button>
+								        data-dismiss="modal">{translate key="common.close"}</button>
 							</div>
 						</div>
 					</div>
@@ -383,5 +383,3 @@
 	{call_hook name="Templates::Article::Details"}
 
 </aside>
-
-

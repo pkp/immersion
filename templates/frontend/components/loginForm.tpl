@@ -28,10 +28,9 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="text" class="form-control" name="username" id="usernameModal" value="{$username|escape}"
-			       maxlength="32" required>
+			<input type="text" class="form-control" name="username" id="usernameModal" value="{$username|escape}" maxlength="32" required>
 		</div>
-		<div class="form-group form-group-password">
+		<div class="form-group">
 			<label for="passwordModal">
 				{translate key="user.password"}
 				<span class="required" aria-hidden="true">*</span>
@@ -41,40 +40,33 @@
 			</label>
 			<input type="password" class="form-control" name="password" id="passwordModal" value="{$password|escape}"
 			       maxlength="32" required>
-		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="form-group form-group-forgot">
-					<small class="form-text">
-						<a href="{url page="login" op="lostPassword"}">
-							{translate key="user.login.forgotPassword"}
-						</a>
-					</small>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="custom-control custom-checkbox">
-					<input type="checkbox" class="custom-control-input" name="remember" id="rememberModal" value="1"
-					       checked="$remember">
-					<label for="rememberModal" class="custom-control-label">
-							{translate key="user.login.rememberUsernameAndPassword"}
-					</label>
-				</div>
+
+			<div class="custom-control custom-checkbox">
+				<input type="checkbox" class="custom-control-input" name="remember" id="rememberModal" value="1" checked="$remember">
+				<label for="rememberModal" class="custom-control-label">
+						{translate key="user.login.rememberUsernameAndPassword"}
+				</label>
 			</div>
 		</div>
-		<div class="form-group form-group-buttons">
-			<button class="btn btn-primary" type="submit">
-				{translate key="user.login"}
-			</button>
-		</div>
-		{if !$disableUserReg}
-			<div class="form-group form-group-register">
-				{translate key="plugins.themes.healthSciences.register.noAccount"}
-				{capture assign=registerUrl}{url page="user" op="register" source=$source}{/capture}
-				<a href="{$registerUrl}">
-					{translate key="plugins.themes.healthSciences.register.registerHere"}
+		<div class="form-group">
+			<p>
+				<button class="btn btn-primary" type="submit">
+					{translate key="user.login"}
+				</button>
+
+				{if !$disableUserReg}
+					{capture assign="registerUrl"}{url page="user" op="register" source=$source}{/capture}
+					<a href="{$registerUrl}" class="btn btn-secondary">
+						{translate key="user.login.registerNewAccount"}
+					</a>
+				{/if}
+			</p>
+
+			<p>
+				<a href="{url page="login" op="lostPassword"}">
+					{translate key="user.login.forgotPassword"}
 				</a>
-			</div>
-		{/if}
+			</p>
+		</div>
 	</fieldset>
 </form>

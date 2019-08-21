@@ -42,7 +42,7 @@
 
 			{* User navigation *}
 			{capture assign="userMenu"}
-				{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user" liClass="profile"}
+				{load_menu name="user" id="navigationUser" ulClass="pkp_navigation_user"}
 			{/capture}
 
 			{* language toggle block *}
@@ -95,7 +95,7 @@
 
 			{* Primary navigation *}
 			{capture assign="primaryMenu"}
-				{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary" liClass="profile"}
+				{load_menu name="primary" id="navigationPrimary" ulClass="pkp_navigation_primary"}
 			{/capture}
 
 			{if !empty(trim($primaryMenu)) || $currentContext}

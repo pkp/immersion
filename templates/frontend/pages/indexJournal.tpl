@@ -26,28 +26,33 @@
 
 	{call_hook name="Templates::Index::journal"}
 
-	{if $showJournalDescription}
+	{if $showJournalDescription && $currentJournal->getLocalizedDescription()}
 		<section class="journal-description{if $isJournalDescriptionDark} section_dark{/if}"{if $journalDescriptionColour} style="background-color: {$journalDescriptionColour|escape};"{/if}>
 			<div class="container">
-				<div class="row justify-content-between">
-					<header class="col-md-6 col-lg-3">
-						<h3 class="text-capitalize">
-							{translate key="plugins.themes.immersion.about.journal"}
-						</h3>
-					</header>
+				<header class="row">
+					<h3 class="col-md-6">
+						{translate key="navigation.about"}
+					</h3>
+				</header>
+				<div class="row">
 					<div class="col-md-6 col-lg-8">
 						{$currentJournal->getLocalizedDescription()}
+						<p>
+							{capture assign="aboutPageUrl"}{url router=$smarty.const.ROUTE_PAGE page="about"}{/capture}
+							<a href="{$aboutPageUrl}" class="btn btn-primary">{translate key="common.readMore"}</a>
+						</p>
 					</div>
 				</div>
 			</div>
 		</section>
 	{/if}
+
 	{* Announcements *}
-	{if $announcements}
+	{if $numAnnouncementsHomepage && $announcements|@count}
 		<section class="announcements{if $isAnnouncementDark} section_dark{/if}"{if $immersionAnnouncementsColor} style="background-color: {$immersionAnnouncementsColor|escape};"{/if}>
 			<div class="container">
-				<header class="row issue-section__header">
-					<h3 class="col-md-6 col-lg-3 announcement-section__title{if $showJournalDescription} mt-0{/if}">
+				<header class="row">
+					<h3 class="col-md-6">
 						{translate key="announcement.announcements"}
 					</h3>
 				</header>
@@ -61,6 +66,7 @@
 									{$announcement->getLocalizedTitle()|escape}
 								</a>
 							</h4>
+							<p>{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}</p>
 						</li>
 					{/foreach}
 				</ul>
