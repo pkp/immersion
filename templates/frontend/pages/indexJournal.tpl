@@ -26,7 +26,7 @@
 
 	{call_hook name="Templates::Index::journal"}
 
-	{if $showJournalDescription}
+	{if $showJournalDescription && $currentJournal->getLocalizedDescription()}
 		<section class="journal-description{if $isJournalDescriptionDark} section_dark{/if}"{if $journalDescriptionColour} style="background-color: {$journalDescriptionColour|escape};"{/if}>
 			<div class="container">
 				<header class="row">
