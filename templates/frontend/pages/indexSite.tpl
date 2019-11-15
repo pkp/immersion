@@ -25,7 +25,7 @@
 			</header>
 
 			<div class="content-body">
-				{if !count($journals)}
+				{if $journals->wasEmpty()}
 					{translate key="site.noJournals"}
 				{else}
 					<ul class="index-site__journals">
@@ -63,13 +63,6 @@
 							</li>
 						{/iterate}
 					</ul>
-
-					{if $journals->getPageCount() > 0}
-						<div class="cmp_pagination">
-							{page_info iterator=$journals}
-							{page_links anchor="journals" name="journals" iterator=$journals}
-						</div>
-					{/if}
 				{/if}
 			</div>
 		</div>
