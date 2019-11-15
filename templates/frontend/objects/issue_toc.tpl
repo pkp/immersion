@@ -44,44 +44,48 @@
 	</header>
 
 	{if $issue->getLocalizedDescription() || $issueGalleys}
-		<div class="row">
-			<section class="issue-desc">
-				{if $issue->getLocalizedDescription()}
-					<div class="col-md-6 issue-desc">
-						<h3 class="issue-desc__title">{translate key="plugins.themes.immersion.issue.description"}</h3>
-						<div class="issue-desc__content">
-							{assign var=stringLenght value=280}
-							{assign var=issueDescription value=$issue->getLocalizedDescription()|strip_unsafe_html}
-							{if $issueDescription|strlen <= $stringLenght || $requestedPage == 'issue'}
-								{$issueDescription}
-							{else}
-								{$issueDescription|substr:0:$stringLenght|mb_convert_encoding:'UTF-8'|replace:'?':''|trim}
-								<span class="ellipsis">...</span>
-								<a class="full-issue__link"
-								   href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
-							{/if}
-						</div>
-					</div>
-				{/if}
-				{if $issueGalleys}
+		<section class="row issue-desc">
+			{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
+			{if $issueCover}
+				<a class="col-md-2" href="{url op="view" path=$issue->getBestIssueId()}">
+					<img src="{$issueCover|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if} class="img-fluid">
+				</a>
+			{/if}
+			{if $issue->getLocalizedDescription()}
 				<div class="col-md-6">
-					{* Full-issue galleys *}
-					<div class="issue-desc__galleys">
-						<h3>
-							{translate key="issue.fullIssue"}
-						</h3>
-						<ul class="issue-desc__btn-group">
-							{foreach from=$issueGalleys item=galley}
-								<li>
-									{include file="frontend/objects/galley_link.tpl" parent=$issue purchaseFee=$currentJournal->getSetting('purchaseIssueFee') purchaseCurrency=$currentJournal->getSetting('currency')}
-								</li>
-							{/foreach}
-						</ul>
+					<h3 class="issue-desc__title">{translate key="plugins.themes.immersion.issue.description"}</h3>
+					<div class="issue-desc__content">
+						{assign var=stringLenght value=280}
+						{assign var=issueDescription value=$issue->getLocalizedDescription()|strip_unsafe_html}
+						{if $issueDescription|strlen <= $stringLenght || $requestedPage == 'issue'}
+							{$issueDescription}
+						{else}
+							{$issueDescription|substr:0:$stringLenght|mb_convert_encoding:'UTF-8'|replace:'?':''|trim}
+							<span class="ellipsis">...</span>
+							<a class="full-issue__link"
+							   href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
+						{/if}
 					</div>
 				</div>
-				{/if}
-			</section>
-		</div>
+			{/if}
+			{if $issueGalleys}
+			<div class="col-md-6">
+				{* Full-issue galleys *}
+				<div class="issue-desc__galleys">
+					<h3>
+						{translate key="issue.fullIssue"}
+					</h3>
+					<ul class="issue-desc__btn-group">
+						{foreach from=$issueGalleys item=galley}
+							<li>
+								{include file="frontend/objects/galley_link.tpl" parent=$issue purchaseFee=$currentJournal->getSetting('purchaseIssueFee') purchaseCurrency=$currentJournal->getSetting('currency')}
+							</li>
+						{/foreach}
+					</ul>
+				</div>
+			</div>
+			{/if}
+		</section>
 	{/if}
 </div>
 
