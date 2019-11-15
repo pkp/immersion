@@ -25,7 +25,7 @@
 		{$announcement->getDatePosted()|date_format:$dateFormatShort}
 	</p>
 
-	<div>
+	<div class="announcements__short-description">
 		{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
 	</div>
 
