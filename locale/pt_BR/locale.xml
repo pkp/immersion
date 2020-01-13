@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="pt_BR" full_name="Português-Brasil">
+
+	<!-- Theme description -->
+	<message key="plugins.themes.immersion.name">Immersion Theme</message>
+	<message key="plugins.themes.immersion.description">Um tema para OJS 3.1.1+ que enfatiza uma experiência de leitura imersiva e oferece opções de design ousadas, como controle de cores em seções inteiras.</message>
+
+	<!-- Forms -->
+	<message key="plugins.themes.immersion.colorPick">Escolha uma cor</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">Selecione uma cor para a seção, a ser exibida na revista. Deve ser um código HEX HTML válido (ex.: #ffff00 para amarelo).</message>
+	<message key="plugins.themes.immersion.section.coverPage">Imagem de capa da seção</message>
+	<message key="plugins.themes.immersion.announcements.colorPick">Cor da seção de Notícias na home da revista</message>
+	<message key="editor.issues.sectionArea">Opções para as seções da edição</message>
+
+	<!-- General front-end -->
+	<message key="plugins.themes.immersion.issue.published">Publicado em</message>
+	<message key="plugins.themes.immersion.issue.description">Descrição da edição</message>
+	<message key="plugins.themes.immersion.registration.consent">Consentimento</message>
+	<message key="plugins.themes.immersion.mainMenu">Menu principal</message>
+	<message key="plugins.themes.immersion.language.toggle">Alterar a língua. A língua atual é:</message>
+	<message key="plugins.themes.immersion.adminMenu">Menu Admin</message>
+	<message key="plugins.themes.immersion.about.journal">Sobre a revista</message>
+
+	<!-- Issue -->
+	<message key="plugins.themes.immersion.issue.fullIssueLink">Veja a edição completa</message>
+	<message key="plugins.themes.immersion.search.parameters">Parâmetros</message>
+
+	<!-- Article -->
+	<message key="plugins.themes.immersion.article.biography">Biografia</message>
+	<message key="plugins.themes.immersion.article.figure">Imagem de capa</message>
+
+	<!-- Authors' search -->
+	<message key="plugins.themes.immersion.authors.browse">Busque por autor</message>
+	<message key="plugins.themes.immersion.author.details">Detalhes do autor</message>
+
+	<!-- Theme options -->
+	<message key="plugins.themes.immersion.options.sectionDescription.label">Exibir descrição da seção</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.description">Se ativado, a descrição da seção será exibida abaixo da referida seção na home da revista</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.disable">Desativar</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.enable">Ativar; requer plugin "Browse By Section" (navegar por seção) para ser ativado</message>
+
+	<message key="plugins.themes.immersion.options.journalDescription.label">Exibir descrição da revista</message>
+	<message key="plugins.themes.immersion.options.journalDescription.description">Se ativado, a descrição da revista será exibida na home da revista</message>
+	<message key="plugins.themes.immersion.options.journalDescription.disable">Desativar (padrão)</message>
+	<message key="plugins.themes.immersion.options.journalDescription.enable">Ativar</message>
+
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.label">Plano de fundo da descrição da revista</message>
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.description">Cor do plano de fundo da descrição da revista na home da revista</message>
+</locale>
