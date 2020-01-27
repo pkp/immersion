@@ -19,7 +19,7 @@
 			<h1 class="author-details__title">
 				{translate key="plugins.themes.immersion.author.details"}
 			</h1>
-			<h2 class="author-details__name">{$lastName|escape}, {$firstName|escape}{if $middleName} {$middleName|escape}{/if}
+			<h2 class="author-details__name">{$familyName|escape}, {$givenName|escape}
 			</h2>
 			{if $affiliation || $country}
 			<p class="author-details__affiliation">
