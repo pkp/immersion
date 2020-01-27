@@ -20,17 +20,20 @@
 
 <main class="container main__content" id="immersion_content_main">
 	<section>
-		<header class="">
-			<h1 class="">
+		<header>
+			<h1>
 				<span>{translate key="common.search"}</span>
 			</h1>
 		</header>
 
 		<div class="row">
 			<aside class="col-md-4 search">
-
-				<form class="search__form" method="post" action="{url op="search"}">
-					{csrf}
+				{capture name="searchFormUrl"}{url op="search" escape=false}{/capture}
+				{$smarty.capture.searchFormUrl|parse_url:$smarty.const.PHP_URL_QUERY|parse_str:$formUrlParameters}
+				<form class="search__form" method="get" action="{$smarty.capture.searchFormUrl|strtok:"?"|escape}">
+					{foreach from=$formUrlParameters key=paramKey item=paramValue}
+						<input type="hidden" name="{$paramKey|escape}" value="{$paramValue|escape}"/>
+					{/foreach}
 					<div class="form-group form-group-query">
 						<label for="query">
 							{translate key="common.searchQuery"}
