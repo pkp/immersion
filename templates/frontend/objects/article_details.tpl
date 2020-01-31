@@ -228,14 +228,22 @@
 					{$article->getDateSubmitted()|escape|date_format:$dateFormatLong}
 				</dd>
 			{/if}
-			{if $article->getDatePublished()}
+
+			{if $publication->getData('datePublished')}
 				<dt>
 					{translate key="submissions.published"}
 				</dt>
 				<dd>
-					{$article->getDatePublished()|escape|date_format:$dateFormatLong}
+					{* If this is the original version *}
+					{if $firstPublication->getID() === $publication->getId()}
+						{$firstPublication->getData('datePublished')|date_format:$dateFormatShort}
+					{* If this is an updated version *}
+					{else}
+						{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatShort dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatShort}
+					{/if}
 				</dd>
 			{/if}
+
 		</dl>
 	</div><!-- .article-page__meta-->
 
