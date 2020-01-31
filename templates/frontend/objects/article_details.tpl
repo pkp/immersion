@@ -66,6 +66,16 @@
  *}
 <section class="col-md-8 article-page">
 	<header class="article-page__header">
+    {* Notification that this is an old version *}
+		{if $currentPublication->getId() !== $publication->getId()}
+		<div class="article-page__alert" role="alert">
+			{capture assign="latestVersionUrl"}{url page="article" op="view" path=$article->getBestId()}{/capture}
+			{translate key="submission.outdatedVersion"
+				datePublished=$publication->getData('datePublished')|date_format:$dateFormatShort
+				urlRecentVersion=$latestVersionUrl|escape
+			}
+		</div>
+		{/if}
 
 		{if $section}
 			<p class="article-page__meta">{$section->getLocalizedTitle()|escape}</p>
