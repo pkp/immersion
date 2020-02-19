@@ -34,7 +34,7 @@
 			<div class="content-body">
 				<div id="authorDetails">
 					<ul class="author-details__list">
-						{foreach from=$publishedArticles item=article}
+						{foreach from=$publishedSubmissions item=article}
 							{assign var=issueId value=$article->getIssueId()}
 							{assign var=issue value=$issues[$issueId]}
 							{assign var=issueUnavailable value=$issuesUnavailable.$issueId}
@@ -49,7 +49,7 @@
 											<div class="col-md-8">
 
 												<h3 class="article__title">
-													<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()}">
+													<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestId()}">
 														{$article->getLocalizedFullTitle()|strip_unsafe_html}
 													</a>
 												</h3>
@@ -58,11 +58,11 @@
 													{$section->getLocalizedTitle()|escape}
 												</p>
 
-												{if (!$issueUnavailable || $article->getAccessStatus() == $smarty.const.ARTICLE_ACCESS_OPEN)}
+												{if (!$issueUnavailable || $article->getCurrentPublication()->getData('accessStatus') == $smarty.const.ARTICLE_ACCESS_OPEN)}
 													<ul class="article__btn-group">
 														{foreach from=$article->getGalleys() item=galley}
 															<li>
-																<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestArticleId()|to_array:$galley->getBestGalleyId()}"
+																<a href="{url journal=$journal->getPath() page="article" op="view" path=$article->getBestId()|to_array:$galley->getBestGalleyId()}"
 																   class="btn btn-secondary">{$galley->getGalleyLabel()|escape}</a>
 															</li>
 														{/foreach}

@@ -37,29 +37,49 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$this->addMenuArea(array('primary', 'user'));
 
 		// Option to show section description on the journal's homepage; turned off by default
-		$this->addOption('sectionDescriptionSetting', 'radio', array(
-			'label' => 'plugins.themes.immersion.options.sectionDescription.label',
-			'description' => 'plugins.themes.immersion.options.sectionDescription.description',
+		$this->addOption('sectionDescriptionSetting', 'FieldOptions', array(
+			'label' => __('plugins.themes.immersion.options.sectionDescription.label'),
+			'description' => __('plugins.themes.immersion.options.sectionDescription.description'),
+			'type' => 'radio',
 			'options' => array(
-				'disable' => 'plugins.themes.immersion.options.sectionDescription.disable',
-				'enable' => 'plugins.themes.immersion.options.sectionDescription.enable'
+				[
+					'value' => 'disable',
+					'label'  => __('plugins.themes.immersion.options.sectionDescription.disable'),
+				],
+				[
+					'value' => 'enable',
+					'label'  => __('plugins.themes.immersion.options.sectionDescription.enable'),
+				],
 			)
 		));
 
-		$this->addOption('journalDescription', 'radio', array(
-			'label' => 'plugins.themes.immersion.options.journalDescription.label',
-			'description' => 'plugins.themes.immersion.options.journalDescription.description',
+		$this->addOption('journalDescription', 'FieldOptions', array(
+			'label' => __('plugins.themes.immersion.options.journalDescription.label'),
+			'description' => __('plugins.themes.immersion.options.journalDescription.description'),
+			'type' => 'radio',
 			'options' => array(
-				0 => 'plugins.themes.immersion.options.journalDescription.disable',
-				1 => 'plugins.themes.immersion.options.journalDescription.enable'
+				[
+					'value' => 0,
+					'label' => __('plugins.themes.immersion.options.journalDescription.disable'),
+				],
+				[
+					'value' => 1,
+					'label' => __('plugins.themes.immersion.options.journalDescription.enable'),
+				],
 			)
 		));
 
-		$this->addOption('journalDescriptionColour', 'colour', array(
-			'label' => 'plugins.themes.immersion.options.journalDescriptionColour.label',
-			'description' => 'plugins.themes.immersion.options.journalDescriptionColour.description',
+		$this->addOption('journalDescriptionColour', 'FieldColor', array(
+			'label' => __('plugins.themes.immersion.options.journalDescriptionColour.label'),
+			'description' => __('plugins.themes.immersion.options.journalDescriptionColour.description'),
 			'default' => '#000',
 		));
+
+		$this->addOption('immersionAnnouncementsColor', 'FieldColor', array(
+			'label' => __('plugins.themes.immersion.announcements.colorPick'),
+			'default' => '#000',
+		));
+
 
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
@@ -77,8 +97,13 @@ class ImmersionThemePlugin extends ThemePlugin {
 		HookRegistry::register('issueform::readuservars', array($this, 'readIssueFormFields'));
 		HookRegistry::register('issueform::execute', array($this, 'executeIssueFormFields'));
 
-		// Additional variable for the announcements form
-		HookRegistry::register('announcementsettingsform::Constructor', array($this, 'setAnnouncementsSettings'));
+		// Load colorpicker on issue management page
+		$this->addStyle('spectrum', '/resources/dist/spectrum-1.8.0.css', [
+			'contexts' => 'backend-manageIssues',
+		]);
+		$this->addScript('spectrum', '/resources/dist/spectrum-1.8.0.js', [
+			'contexts' => 'backend-manageIssues',
+		]);
 	}
 
 	/**
@@ -137,8 +162,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		if (!$issue) return false;
 
-		$publishedArticleDao = DAORegistry::getDAO('PublishedArticleDAO');
-		$publishedArticlesBySections = $publishedArticleDao->getPublishedArticlesInSections($issue->getId(), true);
+		$publishedSubmissionsInSection = $templateMgr->get_template_vars('publishedSubmissions');
 
 		// Section color
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
@@ -155,27 +179,27 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$browseBySectionSettings = $pluginSettingsDAO->getPluginSettings($contextId, 'browsebysectionplugin');
 		$locale = AppLocale::getLocale();
 
-		foreach ($publishedArticlesBySections as $sectionId => $publishedArticlesBySection) {
+		foreach ($publishedSubmissionsInSection as $sectionId => $publishedArticlesBySection) {
 			foreach ($sections as $section) {
 				if ($section->getId() == $sectionId) {
 					// Set section and its background color
-					$publishedArticlesBySections[$sectionId]['section'] = $section;
-					$publishedArticlesBySections[$sectionId]['sectionColor'] = $immersionSectionColors[$sectionId];
+					$publishedSubmissionsInSection[$sectionId]['section'] = $section;
+					$publishedSubmissionsInSection[$sectionId]['sectionColor'] = $immersionSectionColors[$sectionId];
 
 					// Check if section background color is dark
 					$isSectionDark = false;
 					if ($immersionSectionColors[$sectionId] && $this->isColourDark($immersionSectionColors[$sectionId])) {
 						$isSectionDark = true;
 					}
-					$publishedArticlesBySections[$sectionId]['isSectionDark'] = $isSectionDark;
+					$publishedSubmissionsInSection[$sectionId]['isSectionDark'] = $isSectionDark;
 
 					// Section description
 					if ($sectionDescriptionSetting == 'enable' && $browseBySectionSettings['enabled'] && $section->getData('browseByDescription', $locale)) {
-						$publishedArticlesBySections[$sectionId]['sectionDescription'] = $section->getData('browseByDescription', $locale);
+						$publishedSubmissionsInSection[$sectionId]['sectionDescription'] = $section->getData('browseByDescription', $locale);
 					}
 
 					// Need only the color of the last section that contains articles
-					if ($publishedArticlesBySections[$sectionId]['articles'] && $immersionSectionColors[$sectionId]) {
+					if ($publishedSubmissionsInSection[$sectionId]['articles'] && $immersionSectionColors[$sectionId]) {
 						$lastSectionColor = $immersionSectionColors[$sectionId];
 					}
 				}
@@ -183,7 +207,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		}
 
 		$templateMgr->assign(array(
-			'publishedArticlesBySections' => $publishedArticlesBySections,
+			'publishedSubmissions' => $publishedSubmissionsInSection,
 			'lastSectionColor' => $lastSectionColor
 		));
 	}
@@ -208,8 +232,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$journal = $request->getJournal();
 
 		// Announcements on index journal page
-		$announcementsIntro = $journal->getLocalizedSetting('announcementsIntroduction');
-		$immersionAnnouncementsColor = $journal->getSetting('immersionAnnouncementsColor');
+		$announcementsIntro = $journal->getLocalizedData('announcementsIntroduction');
+		$immersionAnnouncementsColor = $this->getOption('immersionAnnouncementsColor');
 
 		$isAnnouncementDark = false;
 		if ($immersionAnnouncementsColor && $this->isColourDark($immersionAnnouncementsColor)) {
@@ -353,6 +377,13 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$issueForm = $args[0];
 		$issue = $args[1];
 
+		// The issueform::execute hook fires twice, once at the start of the
+		// method when no issue exists. Only update the object during the
+		// second request
+		if (!$issue) {
+			return;
+		}
+
 		$issue->setData('immersionSectionColor', $issueForm->getData('immersionSectionColor'));
 
 		$issueDao = DAORegistry::getDAO('IssueDAO');
@@ -428,24 +459,4 @@ class ImmersionThemePlugin extends ThemePlugin {
 			'themePath' => $request->getBaseUrl() . "/" . $this->getPluginPath(),
 		));
 	}
-
-	/**
-	 * Add announcement settings (colorPick) to the SettingsDAO through controller
-	 *
-	 * @param $hookName string
-	 * @param $args array [
-	 *		@option AnnouncementSettingsForm
-	 *		@option string "controllers/tab/settings/announcements/form/announcementSettingsForm.tpl"
-	 * ]
-	 */
-	public function setAnnouncementsSettings($hookName, $args) {
-
-		/* @var $announcementSettingsForm AnnouncementSettingsForm */
-
-		$announcementSettingsForm = $args[0];
-		$settings = $announcementSettingsForm->getSettings();
-		$settings += ['immersionAnnouncementsColor' => 'string'];
-		$announcementSettingsForm->setSettings($settings);
-	}
-
 }
