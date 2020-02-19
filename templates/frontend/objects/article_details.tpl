@@ -88,14 +88,14 @@
 		</p>
 
 		<h1 class="article-page__title">
-			<span>{$article->getLocalizedFullTitle()|escape}</span>
+			<span>{$publication->getLocalizedFullTitle()|escape}</span>
 		</h1>
 
 		{* authors list *}
-		{if $article->getAuthors()}
+		{if $publication->getData('authors')}
 			<div class="article-page__meta">
 				<ul class="authors-string">
-					{foreach from=$article->getAuthors() item=authorString key=authorStringKey}
+					{foreach from=$publication->getData('authors') item=authorString key=authorStringKey}
 						{strip}
 							<li class="authors-string__item">
 								{capture}
@@ -127,11 +127,11 @@
 				</ul>
 			</div>
 			{* Authors *}
-			{assign var="authorCount" value=$article->getAuthors()|@count}
+			{assign var="authorCount" value=$publication->getData('authors')|@count}
 			{assign var="authorBioIndex" value=0}
 			<div class="article-page__meta">
 				<div class="article-details__authors">
-					{foreach from=$article->getAuthors() item=author key=authorKey}
+					{foreach from=$publication->getData('authors') item=author key=authorKey}
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
 							{if $author->getLocalizedAffiliation()}
 								<div class="article-details__author-affiliation">{$author->getLocalizedAffiliation()|escape}</div>
@@ -242,31 +242,52 @@
 						{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatShort dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatShort}
 					{/if}
 				</dd>
+				{if count($article->getPublishedPublications()) > 1}
+					<dt>
+						{translate key="submission.versions"}
+					</dt>
+					<dd>
+						<ul class="article-page__versions">
+							{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
+								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+								<li>
+									{if $iPublication->getId() === $publication->getId()}
+										{$name}
+									{elseif $iPublication->getId() === $currentPublication->getId()}
+										<a href="{url page="article" op="view" path=$article->getBestId()}">{$name}</a>
+									{else}
+										<a href="{url page="article" op="view" path=$article->getBestId()|to_array:"version":$iPublication->getId()}">{$name}</a>
+									{/if}
+								</li>
+							{/foreach}
+						</ul>
+					</dd>
+				{/if}
 			{/if}
 
 		</dl>
 	</div><!-- .article-page__meta-->
 
 	{* Abstract *}
-	{if $article->getLocalizedAbstract()}
+	{if $publication->getLocalizedData('abstract')}
 		<h3 class="label">{translate key="article.abstract"}</h3>
-		{$article->getLocalizedAbstract()|strip_unsafe_html}
+		{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 	{/if}
 
 	{* References *}
-	{if $parsedCitations->getCount() || $article->getCitations()}
+	{if $parsedCitations || $publication->getData('citationsRaw')}
 		<h3 class="label">
 			{translate key="submission.citations"}
 		</h3>
-		{if $parsedCitations->getCount()}
+		{if $parsedCitations}
 			<ol class="references">
-				{iterate from=parsedCitations item=parsedCitation}
+				{foreach from=$parsedCitations item="parsedCitation"}
 					<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
-				{/iterate}
+				{/foreach}
 			</ol>
-		{elseif $article->getCitations()}
+		{else}
 			<div class="references">
-				{$article->getCitations()|nl2br}
+				{$publication->getData('citationsRaw')|nl2br}
 			</div>
 		{/if}
 	{/if}
@@ -280,16 +301,22 @@
 <aside class="col-md-4 offset-lg-1 col-lg-3 article-sidebar">
 
 	{* Article/Issue cover image *}
-	{if $article->getLocalizedCoverImage() || $issue->getLocalizedCoverImage()}
+	{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}
 		<h2 class="sr-only">{translate key="plugins.themes.immersion.article.figure"}</h2>
 		<figure>
-			{if $article->getLocalizedCoverImage()}
-				<img class="img-fluid"
-				     src="{$article->getLocalizedCoverImageUrl()|escape}"{if $article->getLocalizedCoverImageAltText()} alt="{$article->getLocalizedCoverImageAltText()|escape}"{/if}>
+			{if $publication->getLocalizedData('coverImage')}
+				<img
+					class="img-fluid"
+					src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
+					alt="{$coverImage.altText|escape|default:''}"
+				>
 			{else}
 				<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
-					<img class="img-fluid"
-					     src="{$issue->getLocalizedCoverImageUrl()|escape}"{if $issue->getLocalizedCoverImageAltText()} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if}>
+					<img
+						class="img-fluid"
+					  src="{$issue->getLocalizedCoverImageUrl()|escape}"
+						alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}"
+					>
 				</a>
 			{/if}
 		</figure>

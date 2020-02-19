@@ -12,7 +12,7 @@
  * @uses $issueSeries string Vol/No/Year string for the issue
  * @uses $issueGalleys array Galleys for the entire issue
  * @uses $hasAccess bool Can this user access galleys for this context?
- * @uses $publishedArticles array Lists of articles published in this issue
+ * @uses $publishedSubmissions array Lists of articles published in this issue
  *   sorted by section.
  * @uses $primaryGenreIds array List of file genre ids for primary file types
  * @uses $sectionHeading string Tag to use (h2, h3, etc) for section headings
@@ -89,20 +89,20 @@
 	{/if}
 </div>
 
-{foreach from=$publishedArticlesBySections item=publishedArticlesBySection}
-	{if $publishedArticlesBySection.articles}
-		{assign var='immersionColorPick' value=$publishedArticlesBySection.sectionColor|escape}
-		{assign var='isSectionDark' value=$publishedArticlesBySection.isSectionDark}
+{foreach from=$publishedSubmissions item=section}
+	{if $section.articles}
+		{assign var='immersionColorPick' value=$section.sectionColor|escape}
+		{assign var='isSectionDark' value=$section.isSectionDark}
 		<section class="issue-section{if $isSectionDark} section_dark{/if}"{if $immersionColorPick} style="background-color: {$immersionColorPick};"{/if}>
 			<div class="container">
-				{if $publishedArticlesBySection.title || $publishedArticlesBySection.sectionDescription}
+				{if $section.title || $section.sectionDescription}
 					<header class="row issue-section__header">
-						{if $publishedArticlesBySection.title}
-							<h3 class="col-md-6 col-lg-3 issue-section__title">{$publishedArticlesBySection.title|escape}</h3>
+						{if $section.title}
+							<h3 class="col-md-6 col-lg-3 issue-section__title">{$section.title|escape}</h3>
 						{/if}
-						{if $publishedArticlesBySection.sectionDescription}
+						{if $section.sectionDescription}
 							<div class="col-md-6 col-lg-9 issue-section__desc">
-								{$publishedArticlesBySection.sectionDescription|strip_unsafe_html}
+								{$section.sectionDescription|strip_unsafe_html}
 							</div>
 						{/if}
 					</header>
@@ -110,7 +110,7 @@
 				<div class="row">
 					<div class="col-12">
 						<ol class="issue-section__toc">
-							{foreach from=$publishedArticlesBySection.articles item=article key=articleNumber}
+							{foreach from=$section.articles item=article key=articleNumber}
 								<li class="issue-section__toc-item">
 									{include file="frontend/objects/article_summary.tpl" articleNumber=$articleNumber}
 								</li>
