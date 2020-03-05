@@ -19,7 +19,7 @@
 			<h1 class="author-details__title">
 				{translate key="plugins.themes.immersion.author.details"}
 			</h1>
-			<h2 class="author-details__name">{$familyName|escape}, {$givenName|escape}
+			<h2 class="author-details__name">{$authorName|escape}
 			</h2>
 			{if $affiliation || $country}
 			<p class="author-details__affiliation">
@@ -34,12 +34,12 @@
 			<div class="content-body">
 				<div id="authorDetails">
 					<ul class="author-details__list">
-						{foreach from=$publishedSubmissions item=article}
-							{assign var=issueId value=$article->getIssueId()}
+						{foreach from=$submissions item=article}
+							{assign var=issueId value=$article->getCurrentPublication()->getData('issueId')}
 							{assign var=issue value=$issues[$issueId]}
 							{assign var=issueUnavailable value=$issuesUnavailable.$issueId}
-							{assign var=sectionId value=$article->getSectionId()}
-							{assign var=journalId value=$article->getJournalId()}
+							{assign var=sectionId value=$article->getCurrentPublication()->getData('sectionId')}
+							{assign var=journalId value=$article->getData('contextId')}
 							{assign var=journal value=$journals[$journalId]}
 							{assign var=section value=$sections[$sectionId]}
 							{if $issue->getPublished() && $section && $journal}
