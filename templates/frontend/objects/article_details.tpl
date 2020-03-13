@@ -287,7 +287,7 @@
 			</ol>
 		{else}
 			<div class="references">
-				{$publication->getData('citationsRaw')|nl2br}
+				{$publication->getData('citationsRaw')|escape|nl2br}
 			</div>
 		{/if}
 	{/if}
