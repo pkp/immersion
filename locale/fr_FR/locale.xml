@@ -21,7 +21,7 @@
 	<message key="plugins.themes.immersion.mainMenu">Menu principal</message>
 	<message key="plugins.themes.immersion.language.toggle">Changer de langue. La langue actuelle est:</message>
 	<message key="plugins.themes.immersion.adminMenu">Administration</message>
-	<message key="plugins.themes.immersion.about.journal">À propos du journal journal</message>
+	<message key="plugins.themes.immersion.about.journal">À propos du journal</message>
 
 	<!-- Issue -->
 	<message key="plugins.themes.immersion.issue.fullIssueLink">Voir le numéro complet</message>
