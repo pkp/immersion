@@ -248,7 +248,7 @@
 			</ol>
 		{elseif $article->getCitations()}
 			<div class="references">
-				{$article->getCitations()|nl2br}
+				{$article->getCitations()|escape|nl2br}
 			</div>
 		{/if}
 	{/if}
