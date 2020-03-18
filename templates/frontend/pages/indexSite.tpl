@@ -20,7 +20,7 @@
 					</div>
 				{/if}
 				<h2 class="main__title">
-					{translate key="journal.journals"}
+					{translate key="context.contexts"}
 				</h2>
 			</header>
 
@@ -37,7 +37,7 @@
 								{if $thumb}
 									<div class="thumb">
 										<a class="img-wrapper" href="{$url|escape}">
-											<img class="img-thumbnail" src="{$journalFilesPath}{$journal->getId()}/{$thumb.uploadName|escape:"url"}"{if $thumb.altText} alt="{$thumb.altText|escape}"{/if}>
+											<img class="img-thumbnail" src="{$journalFilesPath}{$journal->getId()}/{$thumb.uploadName|escape:"url"}"{if $thumb.altText} alt="{$thumb.altText|escape|default:''}"{/if}>
 										</a>
 									</div>
 								{/if}
