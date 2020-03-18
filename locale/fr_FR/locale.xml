@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE locale SYSTEM "../../../../../lib/pkp/dtd/locale.dtd">
+
+<locale name="fr_FR" full_name="Français (France)">
+
+	<!-- Theme description -->
+	<message key="plugins.themes.immersion.name">Theme Immersion</message>
+	<message key="plugins.themes.immersion.description">Un thème pour OJS 3.1.1+ qui met l'accent sur une expérience de lecture immersive et offre des options de conception audacieuses telles que des choix de couleurs dans toute la section.</message>
+
+	<!-- Forms -->
+	<message key="plugins.themes.immersion.colorPick">Selecteur de couleur</message>
+	<message key="plugins.themes.immersion.colorPickInstructions">Choisissez une couleur pour une section à afficher sur le front-end. Doit être un code hexadécimal HTML valide (par exemple, # ffff00 pour le jaune).</message>
+	<message key="plugins.themes.immersion.section.coverPage">Image de couverture de la section</message>
+	<message key="plugins.themes.immersion.announcements.colorPick">Couleur de la section annonce de la page d'accueil</message>
+	<message key="editor.issues.sectionArea">Options pour les sections des numéros</message>
+
+	<!-- General front-end -->
+	<message key="plugins.themes.immersion.issue.published">Publié</message>
+	<message key="plugins.themes.immersion.issue.description">Description du numéro</message>
+	<message key="plugins.themes.immersion.registration.consent">Consentement</message>
+	<message key="plugins.themes.immersion.mainMenu">Menu principal</message>
+	<message key="plugins.themes.immersion.language.toggle">Changer de langue. La langue actuelle est:</message>
+	<message key="plugins.themes.immersion.adminMenu">Administration</message>
+	<message key="plugins.themes.immersion.about.journal">À propos du journal</message>
+
+	<!-- Issue -->
+	<message key="plugins.themes.immersion.issue.fullIssueLink">Voir le numéro complet</message>
+	<message key="plugins.themes.immersion.search.parameters">Paramètres</message>
+
+	<!-- Article -->
+	<message key="plugins.themes.immersion.article.biography">Biographie</message>
+	<message key="plugins.themes.immersion.article.figure">Image de couverture</message>
+
+	<!-- Authors' search -->
+	<message key="plugins.themes.immersion.authors.browse">Navigation par auteur</message>
+	<message key="plugins.themes.immersion.author.details">Détails sur l'auteur</message>
+
+	<!-- Theme options -->
+	<message key="plugins.themes.immersion.options.sectionDescription.label">Afficher la description de la section</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.description">Si cette option est activée, la description du journal sera affichée sur la page de destination du journal.</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.disable">Désactiver</message>
+	<message key="plugins.themes.immersion.options.sectionDescription.enable">Activer; nécessite "Browse By Section plugin" pour être activer.</message>
+
+	<message key="plugins.themes.immersion.options.journalDescription.label">Afficher la description du journal</message>
+	<message key="plugins.themes.immersion.options.journalDescription.description">Si cette option est activée, la description du journal sera affichée sur sa page d'accueil</message>
+	<message key="plugins.themes.immersion.options.journalDescription.disable">Désactiver (par défaut)</message>
+	<message key="plugins.themes.immersion.options.journalDescription.enable">Activer</message>
+
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.label">Fond de la description</message>
+	<message key="plugins.themes.immersion.options.journalDescriptionColour.description">Couleur d'arrière-plan de la section de description du journal sur la page d'accueil du journal</message>
+</locale>
