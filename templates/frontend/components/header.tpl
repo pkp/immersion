@@ -75,7 +75,7 @@
 			</a>
 		{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_string($displayPageHeaderTitle)}
 			<a href="{$homeUrl}" class="is_text">
-				<span>{$displayPageHeaderTitle}</span>
+				<span>{$displayPageHeaderTitle|escape}</span>
 			</a>
 		{elseif $displayPageHeaderTitle && !$displayPageHeaderLogo && is_array($displayPageHeaderTitle)}
 			<a href="{$homeUrl}" class="is_img">
