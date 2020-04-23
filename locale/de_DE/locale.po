@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-04-23T10:58:39+00:00\n"
+"PO-Revision-Date: 2020-04-23T10:58:39+00:00\n"
+"Language: \n"
+
+msgid "plugins.themes.immersion.name"
+msgstr "Immersion-Theme"
+
+msgid "plugins.themes.immersion.description"
+msgstr "Ein Theme für OJS 3.1.1+, das einen Schwerpunkt auf immersives Lesen legt und einige gewagte Designmöglichkeiten bietet wie z.B. Farbangaben für ganze Rubriken."
+
+msgid "plugins.themes.immersion.colorPick"
+msgstr "Farbwähler"
+
+msgid "plugins.themes.immersion.colorPickInstructions"
+msgstr "Wählen Sie eine Farbe für eine Rubrik, die im Frontend der Zeitschrift angezeigt wird. Sie müssen einen gültigen HTML-Hexcode angeben (z.B. #ffff00 für gelb)."
+
+msgid "plugins.themes.immersion.section.coverPage"
+msgstr "Titelbild einer Rubrik "
+
+msgid "plugins.themes.immersion.announcements.colorPick"
+msgstr "Rubrikenfarbe für Ankündigungen auf der Homepage der Zeitschrift"
+
+msgid "editor.issues.sectionArea"
+msgstr "Optionen für Rubriken der Ausgabe"
+
+msgid "plugins.themes.immersion.issue.published"
+msgstr "Veröffentlicht"
+
+msgid "plugins.themes.immersion.issue.description"
+msgstr "Beschreibung der Ausgabe"
+
+msgid "plugins.themes.immersion.registration.consent"
+msgstr "Zustimmung"
+
+msgid "plugins.themes.immersion.mainMenu"
+msgstr "Hauptmenü"
+
+msgid "plugins.themes.immersion.language.toggle"
+msgstr "Sprache ändern. Aktuell ausgewählte Sprache ist:"
+
+msgid "plugins.themes.immersion.adminMenu"
+msgstr "Administrationsmenü"
+
+msgid "plugins.themes.immersion.issue.fullIssueLink"
+msgstr "Komplette Ausgabe sehen"
+
+msgid "plugins.themes.immersion.search.parameters"
+msgstr "Parameter"
+
+msgid "plugins.themes.immersion.article.biography"
+msgstr "Biografie"
+
+msgid "plugins.themes.immersion.article.figure"
+msgstr "Titelbild"
+
+msgid "plugins.themes.immersion.authors.browse"
+msgstr "Nach Autor/in blättern"
+
+msgid "plugins.themes.immersion.author.details"
+msgstr "Autor/innendetails"
+
+msgid "plugins.themes.immersion.options.sectionDescription.label"
+msgstr "Beschreibung der Rubrik anzeigen"
+
+msgid "plugins.themes.immersion.options.sectionDescription.description"
+msgstr "Wenn diese Option aktiviert ist, wird die Beschreibung der Rubrik unter der jeweiligen Rubrik auf der Homepage der Zeitschrift angezeigt."
+
+msgid "plugins.themes.immersion.options.sectionDescription.disable"
+msgstr "Deaktivieren"
+
+msgid "plugins.themes.immersion.options.sectionDescription.enable"
+msgstr "Aktivieren; erfordert die Aktivierung des Browse-By-Section-Plugins"
