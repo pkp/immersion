@@ -15,7 +15,7 @@ msgid "plugins.themes.immersion.name"
 msgstr "Immersion Theme"
 
 msgid "plugins.themes.immersion.description"
-msgstr "An OJS theme focussed on full-page images, large typefaces, and bold colour blocks tailored for journals with a focus on visuals."
+msgstr "An OJS theme with full-page images, large typefaces, and bold colour blocks tailored for journals with a focus on visuals."
 
 msgid "plugins.themes.immersion.colorPick"
 msgstr "Color Picker"
