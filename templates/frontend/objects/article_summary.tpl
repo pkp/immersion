@@ -20,7 +20,6 @@
 	{assign var="showAuthor" value=true}
 {/if}
 
-
 <article class="article">
 	<div class="row">
 		{if $article->getLocalizedCoverImage() && $requestedOp !== "search"}
@@ -56,7 +55,7 @@
 						{/if}
 						<li>
 							{assign var="hasArticleAccess" value=$hasAccess}
-							{if $currentContext->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_OPEN || $publication->getData('accessStatus') == $smarty.const.ARTICLE_ACCESS_OPEN}
+							{if $currentContext->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_OPEN || $article->getCurrentPublication()->getData('accessStatus') == $smarty.const.ARTICLE_ACCESS_OPEN}
 								{assign var="hasArticleAccess" value=1}
 							{/if}
 							{include file="frontend/objects/galley_link.tpl" parent=$article hasAccess=$hasArticleAccess purchaseFee=$currentJournal->getSetting('purchaseArticleFee') purchaseCurrency=$currentJournal->getSetting('currency')}
