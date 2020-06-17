@@ -66,20 +66,18 @@
 
 						{if $contactPhone}
 							<div class="phone">
-					<span class="label">
-						{translate key="about.contact.phone"}
-					</span>
+								<span class="label">
+									{translate key="about.contact.phone"}
+								</span>
 								<span class="value">
-						{$contactPhone|escape}
-					</span>
+									{$contactPhone|escape}
+								</span>
 							</div>
 						{/if}
 
 						{if $contactEmail}
 							<div class="email">
-								<a href="mailto:{$contactEmail|escape}">
-									{$contactEmail|escape}
-								</a>
+								{mailto address=$contactEmail encode='javascript'}
 							</div>
 						{/if}
 					</div>
@@ -100,20 +98,18 @@
 
 						{if $supportPhone}
 							<div class="phone">
-					<span class="label">
-						{translate key="about.contact.phone"}
-					</span>
+								<span class="label">
+									{translate key="about.contact.phone"}
+								</span>
 								<span class="value">
-						{$supportPhone|escape}
-					</span>
+									{$supportPhone|escape}
+								</span>
 							</div>
 						{/if}
 
 						{if $supportEmail}
 							<div class="email">
-								<a href="mailto:{$supportEmail|escape}">
-									{$supportEmail|escape}
-								</a>
+								{mailto address=$supportEmail encode='javascript'}
 							</div>
 						{/if}
 					</div>
