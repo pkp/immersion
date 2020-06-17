@@ -63,11 +63,9 @@
 			<div class="main-header__title">
 		{/if}
 
-		{if $currentContext && $multipleContexts}
-			{capture assign="homeUrl"}{url page="index" router=$smarty.const.ROUTE_PAGE}{/capture}
-		{else}
-			{capture assign="homeUrl"}{url context="index" router=$smarty.const.ROUTE_PAGE}{/capture}
-		{/if}
+		{capture assign="homeUrl"}
+			{url page="index" router=$smarty.const.ROUTE_PAGE}
+		{/capture}
 
 		{if $displayPageHeaderLogo && is_array($displayPageHeaderLogo)}
 			<a href="{$homeUrl}" class="is_img">
