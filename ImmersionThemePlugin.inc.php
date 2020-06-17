@@ -177,6 +177,10 @@ class ImmersionThemePlugin extends ThemePlugin {
 		$context = $request->getContext();
 		$contextId = $context ? $context->getId() : 0;
 		$browseBySectionSettings = $pluginSettingsDAO->getPluginSettings($contextId, 'browsebysectionplugin');
+		$isBrowseBySectionEnabled = false;
+		if (!empty($browseBySectionSettings) && array_key_exists('enabled', $browseBySectionSettings) && $browseBySectionSettings['enabled']) {
+			$isBrowseBySectionEnabled = true;
+		}
 		$locale = AppLocale::getLocale();
 
 		foreach ($publishedSubmissionsInSection as $sectionId => $publishedArticlesBySection) {
@@ -194,7 +198,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 					$publishedSubmissionsInSection[$sectionId]['isSectionDark'] = $isSectionDark;
 
 					// Section description
-					if ($sectionDescriptionSetting == 'enable' && $browseBySectionSettings['enabled'] && $section->getData('browseByDescription', $locale)) {
+					if ($sectionDescriptionSetting == 'enable' && $isBrowseBySectionEnabled && $section->getData('browseByDescription', $locale)) {
 						$publishedSubmissionsInSection[$sectionId]['sectionDescription'] = $section->getData('browseByDescription', $locale);
 					}
 
