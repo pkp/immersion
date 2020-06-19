@@ -4,8 +4,8 @@
 <!--
   * plugins/themes/immersion/version.xml
   *
-  * Copyright (c) 2014-2019 Simon Fraser University
-  * Copyright (c) 2003-2019 John Willinsky
+  * Copyright (c) 2014-2020 Simon Fraser University
+  * Copyright (c) 2003-2020 John Willinsky
   * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
   *
   * Plugin version information.
@@ -23,10 +23,10 @@
 	    Valid: 1.0.2.3, 0.1.4.0
 		Invalid: 1.0, v1.0.4, 1.0.0.0b
 	-->
-	<release>1.0.4.1</release>
+	<release>1.0.5.0</release>
 
 	<!-- The date of the latest version -->
-	<date>2020-03-18</date>
+	<date>2020-06-19</date>
 
 	<!-- This should always be 1 -->
 	<lazy-load>1</lazy-load>
