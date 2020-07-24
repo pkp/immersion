@@ -1,2 +1,112 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-07-25 09:47+0000\n"
+"Last-Translator: Niels Erik Frederiksen <nef@kb.dk>\n"
+"Language-Team: Danish <http://translate.pkp.sfu.ca/projects/plugins/"
+"immersion/da_DK/>\n"
+"Language: da_DK\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
+msgstr ""
+"Baggrundsfarve til tidsskriftsbeskrivelses-sektionen på tidsskriftets "
+"hjemmeside"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.label"
+msgstr "Tidsskriftets beskrivelsesbaggrund"
+
+msgid "plugins.themes.immersion.options.journalDescription.enable"
+msgstr "Aktivér"
+
+msgid "plugins.themes.immersion.options.journalDescription.disable"
+msgstr "Deaktiveret (standard)"
+
+msgid "plugins.themes.immersion.options.journalDescription.description"
+msgstr ""
+"Hvis dette er aktiveret, vil tidsskriftsbeskrivelsen blive vist på "
+"tidsskriftets landing page"
+
+msgid "plugins.themes.immersion.options.journalDescription.label"
+msgstr "Vis tidsskriftsbeskrivelse"
+
+msgid "plugins.themes.immersion.options.sectionDescription.enable"
+msgstr "Aktivér; kræver, at 'Browse efter sektions-plugin' er aktiveret"
+
+msgid "plugins.themes.immersion.options.sectionDescription.disable"
+msgstr "Deaktivér"
+
+msgid "plugins.themes.immersion.options.sectionDescription.description"
+msgstr ""
+"Hvis dette er aktiveret, vil sektionsbeskrivelsen blive vist under det "
+"relevante afsnit på tidsskriftets hjemmeside"
+
+msgid "plugins.themes.immersion.options.sectionDescription.label"
+msgstr "Se sektionsbeskrivelse"
+
+msgid "plugins.themes.immersion.author.details"
+msgstr "Forfatterdetaljer"
+
+msgid "plugins.themes.immersion.authors.browse"
+msgstr "Browse efter forfatter"
+
+msgid "plugins.themes.immersion.article.figure"
+msgstr "Forsidebillede"
+
+msgid "plugins.themes.immersion.article.biography"
+msgstr "Biografi"
+
+msgid "plugins.themes.immersion.search.parameters"
+msgstr "Parametre"
+
+msgid "plugins.themes.immersion.issue.fullIssueLink"
+msgstr "Se hele nummeret"
+
+msgid "plugins.themes.immersion.about.journal"
+msgstr "Om tidsskriftet"
+
+msgid "plugins.themes.immersion.adminMenu"
+msgstr "Admin-menu"
+
+msgid "plugins.themes.immersion.language.toggle"
+msgstr "Skift sproget. Det aktuelle sprog er:"
+
+msgid "plugins.themes.immersion.mainMenu"
+msgstr "Hovedmenu"
+
+msgid "plugins.themes.immersion.registration.consent"
+msgstr "Accept"
+
+msgid "plugins.themes.immersion.issue.description"
+msgstr "Nummerbeskrivelse"
+
+msgid "plugins.themes.immersion.issue.published"
+msgstr "Publiceret"
+
+msgid "editor.issues.sectionArea"
+msgstr "Valgmuligheder i forbindelse med et nummers sektioner"
+
+msgid "plugins.themes.immersion.announcements.colorPick"
+msgstr "Farve på meddelelsessektionen på tidsskriftets hjemmeside"
+
+msgid "plugins.themes.immersion.section.coverPage"
+msgstr "Billede til sektionsforside"
+
+msgid "plugins.themes.immersion.colorPickInstructions"
+msgstr ""
+"Vælg en farve til en sektion, der skal vises på tidsskriftets frontend. Skal "
+"være en gyldig HTML-hex-kode (f.eks. # ffff00 for gul)."
+
+msgid "plugins.themes.immersion.colorPick"
+msgstr "Farvevælger"
+
+msgid "plugins.themes.immersion.description"
+msgstr ""
+"Et OJS-tema med helsides billeder, store skrifttyper og farveblokke i fed, "
+"skræddersyet til tidsskrifter med fokus på det visuelle."
+
+msgid "plugins.themes.immersion.name"
+msgstr "Immersions-tema"
