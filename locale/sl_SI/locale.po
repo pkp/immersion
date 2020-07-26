@@ -1,2 +1,109 @@
 msgid ""
-msgstr "X-Generator: Weblate\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit"
+msgstr ""
+"PO-Revision-Date: 2020-07-27 07:47+0000\n"
+"Last-Translator: Primož Svetek <primoz.svetek@gmail.com>\n"
+"Language-Team: Slovenian <http://translate.pkp.sfu.ca/projects/plugins/"
+"immersion/sl_SI/>\n"
+"Language: sl_SI\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || "
+"n%100==4 ? 2 : 3;\n"
+"X-Generator: Weblate 3.9.1\n"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
+msgstr "Barva podlage opisa revije na naslovni strani revije"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.label"
+msgstr "Podlaga opisa revije"
+
+msgid "plugins.themes.immersion.options.journalDescription.enable"
+msgstr "Vklopljeno"
+
+msgid "plugins.themes.immersion.options.journalDescription.disable"
+msgstr "Izklopljeno (privzeto)"
+
+msgid "plugins.themes.immersion.options.journalDescription.description"
+msgstr "Ob vklopu se bo opis revije prikazal na naslovni strani revije"
+
+msgid "plugins.themes.immersion.options.journalDescription.label"
+msgstr "Prikaži opis revije"
+
+msgid "plugins.themes.immersion.options.sectionDescription.enable"
+msgstr "Vključi, zahteva vključitev Vtičnika za brskanje po rubrikah"
+
+msgid "plugins.themes.immersion.options.sectionDescription.disable"
+msgstr "Izključi"
+
+msgid "plugins.themes.immersion.options.sectionDescription.description"
+msgstr ""
+"Ob vklopu se bo opis rubrike prikazal pod pripadajočo rubriko na naslovni "
+"strani revije"
+
+msgid "plugins.themes.immersion.options.sectionDescription.label"
+msgstr "Pokaži opis rubrike"
+
+msgid "plugins.themes.immersion.author.details"
+msgstr "Podrobnosti avtorja"
+
+msgid "plugins.themes.immersion.authors.browse"
+msgstr "Išči po avtorjih"
+
+msgid "plugins.themes.immersion.article.figure"
+msgstr "Slika naslovnice"
+
+msgid "plugins.themes.immersion.article.biography"
+msgstr "Bio"
+
+msgid "plugins.themes.immersion.search.parameters"
+msgstr "Parametri"
+
+msgid "plugins.themes.immersion.issue.fullIssueLink"
+msgstr "Poglej celotno številko"
+
+msgid "plugins.themes.immersion.about.journal"
+msgstr "O reviji"
+
+msgid "plugins.themes.immersion.adminMenu"
+msgstr "Administratorski meni"
+
+msgid "plugins.themes.immersion.language.toggle"
+msgstr "Spremenite jezik. Trenutno izbran jezik je:"
+
+msgid "plugins.themes.immersion.mainMenu"
+msgstr "Glavni meni"
+
+msgid "plugins.themes.immersion.registration.consent"
+msgstr "Soglasje"
+
+msgid "plugins.themes.immersion.issue.description"
+msgstr "Opis številke"
+
+msgid "plugins.themes.immersion.issue.published"
+msgstr "Izdano"
+
+msgid "editor.issues.sectionArea"
+msgstr "Možnosti za rubrike številke"
+
+msgid "plugins.themes.immersion.announcements.colorPick"
+msgstr "Barva podlage obvestil na naslovni strani revije"
+
+msgid "plugins.themes.immersion.section.coverPage"
+msgstr "Naslovna slika rubrike"
+
+msgid "plugins.themes.immersion.colorPickInstructions"
+msgstr ""
+"Izberite barvo za prikaz rubrike na naslovni strani revije. Biti mora "
+"veljavna HTML hex koda (npr. #ffff00 za rumeno)."
+
+msgid "plugins.themes.immersion.colorPick"
+msgstr "Izbiralec barv"
+
+msgid "plugins.themes.immersion.description"
+msgstr ""
+"OJS tema s celostranskimi slikami, velikimi pisavami in krepkimi barvnimi "
+"bloki, prilagojena za revije s poudarkom na vizualnih vsebinah."
+
+msgid "plugins.themes.immersion.name"
+msgstr "Immersion Tema"
