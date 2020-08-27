@@ -2,14 +2,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-04-23T11:01:12+00:00\n"
+"PO-Revision-Date: 2020-08-26 17:48+0000\n"
+"Last-Translator: Manuel Garcia <usuariodemanuel@gmail.com>\n"
+"Language-Team: Spanish <http://translate.pkp.sfu.ca/projects/plugins/"
+"immersion/es_ES/>\n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-23T11:01:12+00:00\n"
-"PO-Revision-Date: 2020-04-23T11:01:12+00:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.9.1\n"
 
 msgid "plugins.themes.immersion.name"
 msgstr "Tema Immersion"
@@ -67,3 +70,45 @@ msgstr "Navegar por autor"
 
 msgid "plugins.themes.immersion.author.details"
 msgstr "Información del autor"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.label"
+msgstr "Fondo de la descripción de la revista"
+
+msgid "plugins.themes.immersion.options.journalDescription.description"
+msgstr ""
+"Si está habilitado, la descripción de la revista se mostrará en la página de "
+"inicio de la revista"
+
+msgid "plugins.themes.immersion.options.sectionDescription.description"
+msgstr ""
+"Si está activado, la descripción de la sección se mostrará en la sección "
+"correspondiente en la página de inicio de la revista"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
+msgstr ""
+"Color de fondo para la sección de descripción de la revista en la página de "
+"inicio de la revista"
+
+msgid "plugins.themes.immersion.options.journalDescription.enable"
+msgstr "Habilitar"
+
+msgid "plugins.themes.immersion.options.journalDescription.disable"
+msgstr "Deshabilitar (predeterminado)"
+
+msgid "plugins.themes.immersion.options.journalDescription.label"
+msgstr "Mostrar descripción de la revista"
+
+msgid "plugins.themes.immersion.options.sectionDescription.enable"
+msgstr "Enable; requiere que el módulo Browse By Section esté activado"
+
+msgid "plugins.themes.immersion.options.sectionDescription.disable"
+msgstr "Desactivar"
+
+msgid "plugins.themes.immersion.options.sectionDescription.label"
+msgstr "Mostrar descripción de la sección"
+
+msgid "plugins.themes.immersion.about.journal"
+msgstr "Acerca de la revista"
+
+msgid "plugins.themes.immersion.announcements.colorPick"
+msgstr "Color de la sección de anuncios en la página de inicio de la revista"
