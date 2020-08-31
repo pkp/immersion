@@ -78,7 +78,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input class="form-control" type="text" name="email" id="email" value="{$email|escape}" maxlength="90" required>
+			<input class="form-control" type="email" name="email" id="email" value="{$email|escape}" maxlength="90" required>
 		</div>
 		<div class="col-sm-6 form-group">
 			<label for="username">
