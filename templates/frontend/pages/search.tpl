@@ -38,7 +38,7 @@
 						<label for="query">
 							{translate key="common.searchQuery"}
 						</label>
-						<input type="text" class="form-control search__control" id="query" name="query" value="{$query|escape}">
+						<input type="search" class="form-control search__control" id="query" name="query" value="{$query|escape}">
 					</div>
 					<div class="form-group form-group-authors">
 						<label for="authors">
