@@ -344,13 +344,11 @@
 	{/if}
 
 	{* Keywords *}
-	{if !empty($keywords[$currentLocale])}
+	{if !empty($publication->getLocalizedData('keywords'))}
 		<h2 class="article-side__title">{translate key="article.subject"}</h2>
 		<ul>
-			{foreach from=$keywords item=keyword}
-				{foreach name=keywords from=$keyword item=keywordItem}
-					<li>{$keywordItem|escape}</li>
-				{/foreach}
+			{foreach name=keywords from=$publication->getLocalizedData('keywords') item=keyword}
+				<li>{$keyword|escape}</li>
 			{/foreach}
 		</ul>
 	{/if}
