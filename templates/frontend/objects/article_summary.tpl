@@ -20,18 +20,23 @@
 	{assign var="showAuthor" value=true}
 {/if}
 
+{assign var="publication" value=$article->getCurrentPublication()}
+{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
+{assign var="coverImageUrl" value=$publication->getLocalizedCoverImageUrl($article->getData('contextId'))}
 <article class="article">
 	<div class="row">
-		{if $article->getLocalizedCoverImage() && $requestedOp !== "search"}
+		{if $coverImage && $requestedOp !== "search"}
 			<div class="col-md-4">
 				<figure class="article__img">
 					<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
-						<img class="img-fluid" src="{$article->getLocalizedCoverImageUrl()|escape}"{if $article->getLocalizedCoverImageAltText() != ''} alt="{$article->getLocalizedCoverImageAltText()|escape}"{else} alt="{translate key="article.coverPage.altText"}"{/if}>
+						<img class="img-fluid"
+					 		src="{$coverImageUrl|escape}"
+							{if $coverImage.altText != ''} alt="{$coverImage.altText|escape}"{else} alt="{translate key="article.coverPage.altText"}"{/if}>
 					</a>
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$article->getLocalizedCoverImage()} offset-md-4{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$article->getAuthorString()|escape}</p>
 			{/if}
@@ -58,7 +63,7 @@
 							{if $currentContext->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_OPEN || $article->getCurrentPublication()->getData('accessStatus') == $smarty.const.ARTICLE_ACCESS_OPEN}
 								{assign var="hasArticleAccess" value=1}
 							{/if}
-							{include file="frontend/objects/galley_link.tpl" parent=$article hasAccess=$hasArticleAccess purchaseFee=$currentJournal->getSetting('purchaseArticleFee') purchaseCurrency=$currentJournal->getSetting('currency')}
+							{include file="frontend/objects/galley_link.tpl" parent=$article hasAccess=$hasArticleAccess purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
 						</li>
 					{/foreach}
 				</ul>

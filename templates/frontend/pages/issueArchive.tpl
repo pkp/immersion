@@ -26,7 +26,7 @@
 <main class="container main__content" id="immersion_content_main">
 	<header class="main__header">
 		<h1 class="main__title">
-			<span>{$pageTitle}</span>
+			<span>{$pageTitle|escape}</span>
 		</h1>
 	</header>
 

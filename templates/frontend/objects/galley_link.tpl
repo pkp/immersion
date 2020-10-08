@@ -10,6 +10,7 @@
  *
  * @uses $galley Galley
  * @uses $parent Issue|Article Object which these galleys are attached to
+ * @uses $publication Publication Optionally the publication (version) to which this galley is attached
  * @uses $isSupplementary bool Is this a supplementary file?
  * @uses $hasAccess bool Can this user access galleys for this context?
  * @uses $restrictOnlyPdf bool Is access only restricted to PDF galleys?

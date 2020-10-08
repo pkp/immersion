@@ -180,7 +180,7 @@
 				<ul class="list-galleys primary-galleys">
 					{foreach from=$primaryGalleys item=galley}
 						<li>
-							{include file="frontend/objects/galley_link.tpl" parent=$article galley=$galley purchaseFee=$currentJournal->getSetting('purchaseArticleFee') purchaseCurrency=$currentJournal->getSetting('currency')}
+							{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
 						</li>
 					{/foreach}
 				</ul>
@@ -189,7 +189,7 @@
 				<ul class="list-galleys supplementary-galleys">
 					{foreach from=$supplementaryGalleys item=galley}
 						<li>
-							{include file="frontend/objects/galley_link.tpl" parent=$article galley=$galley isSupplementary="1"}
+							{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication galley=$galley isSupplementary="1"}
 						</li>
 					{/foreach}
 				</ul>
@@ -204,15 +204,15 @@
 			{foreach from=$pubIdPlugins item=pubIdPlugin}
 				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
 				{if $pubId}
-					{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+					{assign var="pubIdUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
 					<dt>
 						{$pubIdPlugin->getPubIdDisplayType()|escape}
 					</dt>
 					<dd>
-						{if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+						{if $pubIdUrl}
 							<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}"
-							   href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">
-								{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							   href="{$pubIdUrl}">
+								{$pubIdUrl}
 							</a>
 						{else}
 							{$pubId|escape}
