@@ -35,15 +35,17 @@
 				{if $currentContext}
 					<fieldset class="consent">
 						<legend>{translate key="plugins.themes.immersion.registration.consent"}</legend>
-						{* Require the user to agree to the terms of the privacy policy *}
-						<div class="custom-control custom-checkbox optin optin-privacy">
-							<input type="checkbox" class="custom-control-input" name="privacyConsent" id="privacyConsent" value="1"{if $privacyConsent} checked="checked"{/if}>
-							{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
+						{if $currentContext->getData('privacyStatement')}
+							{* Require the user to agree to the terms of the privacy policy *}
+							<div class="custom-control custom-checkbox optin optin-privacy">
+								<input type="checkbox" class="custom-control-input" name="privacyConsent" id="privacyConsent" value="1"{if $privacyConsent} checked="checked"{/if}>
+								{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
 
-							<label class="custom-control-label" for="privacyConsent">
-								{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}
-							</label>
-						</div>
+								<label class="custom-control-label" for="privacyConsent">
+									{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}
+								</label>
+							</div>
+						{/if}
 
 						{* Ask the user to opt into public email notifications *}
 						<div class="custom-control custom-checkbox optin optin-email">

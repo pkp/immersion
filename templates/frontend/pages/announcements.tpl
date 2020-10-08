@@ -18,7 +18,7 @@
 				<h1 class="main__title">
 					<span>{translate key="announcement.announcements"}</span>
 				</h1>
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="website" anchor="announcements" sectionTitleKey="announcement.announcements"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="announcements" sectionTitleKey="announcement.announcements"}
 			</header>
 
 			{$announcementsIntroduction|strip_unsafe_html}
