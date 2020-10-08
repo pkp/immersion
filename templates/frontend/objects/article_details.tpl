@@ -50,16 +50,16 @@
  * Templates::Article::Details
  *
  * @uses $article Article This article
+ * @uses $publication Publication The publication being displayed
+ * @uses $firstPublication Publication The first published version of this article
+ * @uses $currentPublication Publication The most recently published version of this article
  * @uses $issue Issue The issue this article is assigned to
  * @uses $section Section The journal section this article is assigned to
  * @uses $primaryGalleys array List of article galleys that are not supplementary or dependent
  * @uses $supplementaryGalleys array List of article galleys that are supplementary
  * @uses $keywords array List of keywords assigned to this article
  * @uses $pubIdPlugins Array of pubId plugins which this article may be assigned
- * @uses $copyright string Copyright notice. Only assigned if statement should
- *   be included with published articles.
- * @uses $copyrightHolder string Name of copyright holder
- * @uses $copyrightYear string Year of copyright
+ * @uses $licenseTerms string License terms.
  * @uses $licenseUrl string URL to license. Only assigned if license should be
  *   included with published articles.
  * @uses $ccLicenseBadge string An image and text with details about the license
@@ -397,7 +397,13 @@
 	{/if}
 
 	{* Licensing info *}
-	{if $copyright || $licenseUrl}
+	{assign 'licenseTerms' $currentContext->getLocalizedData('licenseTerms')}
+	{assign 'copyrightHolder' $publication->getLocalizedData('copyrightHolder')}
+	{* overwriting deprecated variables *}
+	{assign 'licenseUrl' $publication->getData('licenseUrl')}
+	{assign 'copyrightYear' $publication->getData('copyrightYear')}
+
+	{if $licenseTerms || $licenseUrl}
 		<div class="copyright-info">
 			{if $licenseUrl}
 				{if $ccLicenseBadge}
@@ -415,8 +421,9 @@
 					</a>
 				{/if}
 			{/if}
-			{* Copyright modal. Show only if license is absent *}
-			{if $copyright && !$licenseUrl}
+
+			{* License terms modal. Show only if license is absent *}
+			{if $licenseTerms && !$licenseUrl}
 				<a class="copyright-notice__modal" data-toggle="modal" data-target="#copyrightModal">
 					{translate key="about.copyrightNotice"}
 				</a>
@@ -432,7 +439,7 @@
 								</button>
 							</div>
 							<div class="modal-body">
-								{$copyright|strip_unsafe_html}
+								{$licenseTerms|strip_unsafe_html}
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
