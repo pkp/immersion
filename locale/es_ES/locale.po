@@ -15,7 +15,10 @@ msgid "plugins.themes.immersion.name"
 msgstr "Tema Immersion"
 
 msgid "plugins.themes.immersion.description"
-msgstr "Un tema para OJS 3.1.1+ que proporciona una experiencia de lectura inmersiva y ofrece opciones de diseño audaces, como opciones de color de sección completa."
+msgstr ""
+"Este es un tema de OJS con imágenes a página completa, tipografías grandes y "
+"bloques en negrita que se adapta a revistas que dan mucha importancia al "
+"factor visual."
 
 msgid "plugins.themes.immersion.colorPick"
 msgstr "Selector de color"
@@ -48,7 +51,7 @@ msgid "plugins.themes.immersion.language.toggle"
 msgstr "Cambiar el idioma. El actual es:"
 
 msgid "plugins.themes.immersion.adminMenu"
-msgstr "Menú del Administrador"
+msgstr "Menú de administración"
 
 msgid "plugins.themes.immersion.issue.fullIssueLink"
 msgstr "Ver el número completo"
@@ -63,7 +66,49 @@ msgid "plugins.themes.immersion.article.figure"
 msgstr "Imagen de portada"
 
 msgid "plugins.themes.immersion.authors.browse"
-msgstr "Navegar por autor"
+msgstr "Navegar por autor/a"
 
 msgid "plugins.themes.immersion.author.details"
 msgstr "Información del autor"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.label"
+msgstr "Fondo de la descripción de la revista"
+
+msgid "plugins.themes.immersion.options.journalDescription.description"
+msgstr ""
+"Si está habilitado, la descripción de la revista se mostrará en la página de "
+"destino de la revista"
+
+msgid "plugins.themes.immersion.options.sectionDescription.description"
+msgstr ""
+"Si está activado, la descripción de la sección se mostrará en la sección "
+"correspondiente en la página de inicio de la revista"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
+msgstr ""
+"Color de fondo para la sección de descripción de la revista en la página de "
+"inicio de la revista"
+
+msgid "plugins.themes.immersion.options.journalDescription.enable"
+msgstr "Habilitar"
+
+msgid "plugins.themes.immersion.options.journalDescription.disable"
+msgstr "Deshabilitar (predeterminado)"
+
+msgid "plugins.themes.immersion.options.journalDescription.label"
+msgstr "Mostrar descripción de la revista"
+
+msgid "plugins.themes.immersion.options.sectionDescription.enable"
+msgstr "Activar; requiere que el módulo de navegar por sección esté habilitado"
+
+msgid "plugins.themes.immersion.options.sectionDescription.disable"
+msgstr "Desactivar"
+
+msgid "plugins.themes.immersion.options.sectionDescription.label"
+msgstr "Mostrar descripción de la sección"
+
+msgid "plugins.themes.immersion.about.journal"
+msgstr "Acerca de la revista"
+
+msgid "plugins.themes.immersion.announcements.colorPick"
+msgstr "Color de la sección de anuncios en la página de inicio de la revista"
