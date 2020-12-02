@@ -58,7 +58,7 @@
 		<section class="row issue-desc">
 			{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
 			{if $issueCover}
-				<a class="col-md-2" href="{url op="view" path=$issue->getBestIssueId()}">
+				<a class="col-md-2" href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
 					<img src="{$issueCover|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if} class="img-fluid">
 				</a>
 			{/if}
