@@ -19,7 +19,7 @@
 				<h1 class="main__title">
 					<span>{translate key=$pageTitle}</span>
 				</h1>
-				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="website" anchor="information" sectionTitleKey="manager.website.information"}
+				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="website" anchor="setup/information" sectionTitleKey="manager.website.information"}
 			</header>
 			<div class="content-body">
 				{$content}
