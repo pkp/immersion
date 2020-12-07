@@ -166,6 +166,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		// Section color
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
+		if (empty($immersionSectionColors)) return false; // Section background colors aren't set
+
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
 		$sections = $sectionDao->getByIssueId($issue->getId());
 		$lastSectionColor = null;
@@ -173,7 +175,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Section description; check if this option and BrowseBySection plugin is enabled
 		$sectionDescriptionSetting = $this->getOption('sectionDescriptionSetting');
 		$pluginSettingsDAO = DAORegistry::getDAO('PluginSettingsDAO');
-		$request = PKPApplication::getRequest();
+		$request = $this->getRequest();
 		$context = $request->getContext();
 		$contextId = $context ? $context->getId() : 0;
 		$browseBySectionSettings = $pluginSettingsDAO->getPluginSettings($contextId, 'browsebysectionplugin');
