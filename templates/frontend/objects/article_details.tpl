@@ -118,7 +118,11 @@
 								{/if}
 								{if $authorString->getOrcid()}
 									<a class="orcidImage img-wrapper" href="{$authorString->getOrcid()|escape}">
-										<img src="{$baseUrl}/{$orcidImageUrl}">
+										{if $orcidIcon}
+											{$orcidIcon}
+										{else}
+											<img src="{$baseUrl}/{$orcidImageUrl}">
+										{/if}
 									</a>
 								{/if}
 							</li>
