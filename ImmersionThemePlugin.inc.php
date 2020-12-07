@@ -157,12 +157,12 @@ class ImmersionThemePlugin extends ThemePlugin {
 		if ($template === 'frontend/pages/indexJournal.tpl') {
 			$issue = $issueDao->getCurrent($journal->getId(), true);
 		} else {
-			$issue = $templateMgr->get_template_vars('issue');
+			$issue = $templateMgr->getTemplateVars('issue');
 		}
 
 		if (!$issue) return false;
 
-		$publishedSubmissionsInSection = $templateMgr->get_template_vars('publishedSubmissions');
+		$publishedSubmissionsInSection = $templateMgr->getTemplateVars('publishedSubmissions');
 
 		// Section color
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
@@ -427,14 +427,14 @@ class ImmersionThemePlugin extends ThemePlugin {
 	 *  ]
 	 */
 	public function hasEmbeddedCSS($hookName, $args) {
-		$templateMgr = $args[0];
+		$templateMgr = $args[0]; /* @var $templateMgr TemplateManager */
 		$template = $args[1];
 		$request = $this->getRequest();
 
 		// Return false if not a galley page
 		if ($template !== 'plugins/plugins/generic/htmlArticleGalley/generic/htmlArticleGalley:display.tpl') return false;
 
-		$articleArrays = $templateMgr->get_template_vars('article');
+		$articleArrays = $templateMgr->getTemplateVars('article');
 
 		// Deafult styling for HTML galley
 		$boolEmbeddedCss = false;
