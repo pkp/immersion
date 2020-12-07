@@ -25,11 +25,11 @@
 			</header>
 
 			<div class="content-body">
-				{if $journals->wasEmpty()}
+				{if !$journals|@count}
 					{translate key="site.noJournals"}
 				{else}
 					<ul class="index-site__journals">
-						{iterate from=journals item=journal}
+						{foreach from=$journals item=journal}
 							{capture assign="url"}{url journal=$journal->getPath()}{/capture}
 							{assign var="thumb" value=$journal->getLocalizedSetting('journalThumbnail')}
 							{assign var="description" value=$journal->getLocalizedDescription()}
@@ -61,7 +61,7 @@
 									</a>
 								</div>
 							</li>
-						{/iterate}
+						{/foreach}
 					</ul>
 				{/if}
 			</div>
