@@ -138,7 +138,12 @@
 					{foreach from=$publication->getData('authors') item=author key=authorKey}
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
 							{if $author->getLocalizedAffiliation()}
-								<div class="article-details__author-affiliation">{$author->getLocalizedAffiliation()|escape}</div>
+								<div class="article-details__author-affiliation">
+									{$author->getLocalizedAffiliation()|escape}
+									{if $author->getData('rorId')}
+										<a class="rorImage" href="{$author->getData('rorId')|escape}">{$rorIdIcon}</a>
+									{/if}
+								</div>
 							{/if}
 							{if $author->getOrcid()}
 								<div class="article-details__author-orcid">
