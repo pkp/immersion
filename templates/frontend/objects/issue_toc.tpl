@@ -47,7 +47,8 @@
             	{$smarty.capture.issueMetadata}
 			</h2>
 		{/if}
-            {foreach from=$pubIdPlugins item=pubIdPlugin}
+
+		{foreach from=$pubIdPlugins item=pubIdPlugin}
 					{assign var=pubId value=$issue->getStoredPubId($pubIdPlugin->getPubIdType())}
 					{if $pubId}
 						{assign var="doiUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
@@ -67,6 +68,7 @@
 						</div>
 					{/if}
 				{/foreach}
+
 		{if $issue->getDatePublished()}
 			<p class="issue__meta">{translate key="plugins.themes.immersion.issue.published"} {$issue->getDatePublished()|date_format:$dateFormatLong}</p>
 		{/if}
