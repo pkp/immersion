@@ -108,8 +108,9 @@
 								{if $authorInfo}
 									<a class="author-string__href" href="#author-{$authorStringKey+1}">
 										<span>{$authorString->getFullName()|escape}</span>
-										<sup class="author-symbol author-plus">&plus;</sup>
-										<sup class="author-symbol author-minus hidden">&minus;</sup>
+										<span class="author-symbol author-plus">&ThinSpace;&rtri; </span>
+										<span class="author-symbol author-minus hidden">&ThinSpace;&dtri;</span>
+
 									</a>
 									{else}
 									<span class="author-string_href-none">
