@@ -110,7 +110,6 @@
 										<span>{$authorString->getFullName()|escape}</span>
 										<sup class="author-symbol author-plus">&ThinSpace;&rtrif;</sup>
 										<sup class="author-symbol author-minus hidden">&ThinSpace;&dtrif;</sup>
-
 									</a>
 									{else}
 									<span class="author-string_href-none">
