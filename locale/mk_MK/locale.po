@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-06 10:52+0000\n"
+"PO-Revision-Date: 2021-01-13 10:52+0000\n"
 "Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/plugins/"
 "immersion/mk_MK/>\n"
@@ -21,3 +21,92 @@ msgstr ""
 
 msgid "plugins.themes.immersion.name"
 msgstr "Тема Immersion"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
+msgstr ""
+"Основна боја за делот на секцијата од списание во главната страница на "
+"списанието"
+
+msgid "plugins.themes.immersion.options.journalDescriptionColour.label"
+msgstr "Основа за опис на списанието"
+
+msgid "plugins.themes.immersion.options.journalDescription.enable"
+msgstr "Овозможено"
+
+msgid "plugins.themes.immersion.options.journalDescription.disable"
+msgstr "Оневозможено (предодредено)"
+
+msgid "plugins.themes.immersion.options.journalDescription.description"
+msgstr ""
+"Ако е овозможен, описот на списанието  ќе се прикаже на насловната страна на "
+"списанието"
+
+msgid "plugins.themes.immersion.options.journalDescription.label"
+msgstr "Прикажува опис на списание"
+
+msgid "plugins.themes.immersion.options.sectionDescription.enable"
+msgstr "Овозможено; потребен е плагин за Листање по секции за да се активира"
+
+msgid "plugins.themes.immersion.options.sectionDescription.disable"
+msgstr "Оневозможено"
+
+msgid "plugins.themes.immersion.options.sectionDescription.description"
+msgstr ""
+"Ако се активира, описот на секцијата ќе се прикаже во соодветниот дел од "
+"страницата на списанието"
+
+msgid "plugins.themes.immersion.options.sectionDescription.label"
+msgstr "Прикажи опис на секција"
+
+msgid "plugins.themes.immersion.author.details"
+msgstr "Детали за авторот"
+
+msgid "plugins.themes.immersion.authors.browse"
+msgstr "Листање автори"
+
+msgid "plugins.themes.immersion.article.figure"
+msgstr "Насловна страна"
+
+msgid "plugins.themes.immersion.article.biography"
+msgstr "Био"
+
+msgid "plugins.themes.immersion.search.parameters"
+msgstr "Параметри"
+
+msgid "plugins.themes.immersion.issue.fullIssueLink"
+msgstr "Види го целиот број"
+
+msgid "plugins.themes.immersion.about.journal"
+msgstr "За списанието"
+
+msgid "plugins.themes.immersion.adminMenu"
+msgstr "Администраторско мени"
+
+msgid "plugins.themes.immersion.language.toggle"
+msgstr "Промени јазик. Сегашниот јасик е:"
+
+msgid "plugins.themes.immersion.mainMenu"
+msgstr "Главно мени"
+
+msgid "plugins.themes.immersion.registration.consent"
+msgstr "Согласност"
+
+msgid "plugins.themes.immersion.issue.description"
+msgstr "Опис на бројот"
+
+msgid "plugins.themes.immersion.issue.published"
+msgstr "Објавено"
+
+msgid "editor.issues.sectionArea"
+msgstr "Опции за секции на бројот"
+
+msgid "plugins.themes.immersion.announcements.colorPick"
+msgstr "Боја за најава на секцијата во насловната страна на списанието"
+
+msgid "plugins.themes.immersion.section.coverPage"
+msgstr "Слика за секцијата"
+
+msgid "plugins.themes.immersion.colorPickInstructions"
+msgstr ""
+"Избери боја за секцијата за да се прикаже во списанието. Мора да биде HTML "
+"hex code (на пример, #ffff00 за жолто)."
