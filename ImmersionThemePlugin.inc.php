@@ -18,11 +18,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 	public function init() {
 
-		$this->addStyle(
-			'fonts',
-			'https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700,700i|Spectral:400,400i,700,700i',
-			array('baseUrl' => ''));
-
 		// Adding styles (JQuery UI, Bootstrap, Tag-it)
 		$this->addStyle('app-css', 'resources/dist/app.min.css');
 		$this->addStyle('less', 'resources/less/import.less');
