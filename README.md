@@ -49,5 +49,6 @@ For technical question regarding the theme (bugs, enhancements, etc.), please op
 ## License
 This theme is released under the GPL license.
 
+The Roboto font is distributed under the terms of the [Apache License, 2.0](http://www.apache.org/licenses/LICENSE-2.0). The Spectral font is distributed under the terms of the [Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
 
 
