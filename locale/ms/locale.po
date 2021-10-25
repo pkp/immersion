@@ -1,7 +1,7 @@
 # Studiorimau <studiorimau@gmail.com>, 2021.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-05 10:06+0000\n"
+"PO-Revision-Date: 2021-10-26 00:23+0000\n"
 "Last-Translator: Studiorimau <studiorimau@gmail.com>\n"
 "Language-Team: Malay <http://translate.pkp.sfu.ca/projects/plugins/immersion/"
 "ms/>\n"
@@ -22,7 +22,7 @@ msgid "plugins.themes.immersion.options.journalDescription.enable"
 msgstr "Dayakan"
 
 msgid "plugins.themes.immersion.options.journalDescription.disable"
-msgstr "Lumpuhkan (lalai)"
+msgstr "Nyahdayakan (lalai)"
 
 msgid "plugins.themes.immersion.options.journalDescription.description"
 msgstr ""
@@ -36,7 +36,7 @@ msgid "plugins.themes.immersion.options.sectionDescription.enable"
 msgstr "Dayakan; memerlukan plugin Browse By Section untuk diaktifkan"
 
 msgid "plugins.themes.immersion.options.sectionDescription.disable"
-msgstr "Lumpuhkan"
+msgstr "Nyahdayakan"
 
 msgid "plugins.themes.immersion.options.sectionDescription.label"
 msgstr "Tunjukkan bahagian butiran"
@@ -53,7 +53,7 @@ msgid "plugins.themes.immersion.authors.browse"
 msgstr "Layari mengikut Pengarang"
 
 msgid "plugins.themes.immersion.article.figure"
-msgstr "Gambar sampul"
+msgstr "Gambar muka hadapan"
 
 msgid "plugins.themes.immersion.article.biography"
 msgstr "Bio"
@@ -62,13 +62,13 @@ msgid "plugins.themes.immersion.search.parameters"
 msgstr "Parameter"
 
 msgid "plugins.themes.immersion.issue.fullIssueLink"
-msgstr "Lihat isu penuh"
+msgstr "Lihat terbitan penuh"
 
 msgid "plugins.themes.immersion.about.journal"
 msgstr "Mengenai jurnal"
 
 msgid "plugins.themes.immersion.adminMenu"
-msgstr "Admin menu"
+msgstr "Menu Pentadbir"
 
 msgid "plugins.themes.immersion.language.toggle"
 msgstr "Tukar bahasa. Bahasa semasa adalah:"
@@ -92,7 +92,7 @@ msgid "plugins.themes.immersion.announcements.colorPick"
 msgstr "Warna bahagian pengumuman di laman utama jurnal"
 
 msgid "plugins.themes.immersion.section.coverPage"
-msgstr "Gambar sampul bahagian"
+msgstr "Gambar muka depan bahagian"
 
 msgid "plugins.themes.immersion.colorPickInstructions"
 msgstr ""
