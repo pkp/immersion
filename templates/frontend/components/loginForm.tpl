@@ -28,7 +28,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="text" class="form-control" name="username" id="usernameModal" value="{$username|escape}" maxlength="32" required>
+			<input type="text" class="form-control" name="username" id="usernameModal" value="{$username|default:""|escape}" maxlength="32" required>
 		</div>
 		<div class="form-group">
 			<label for="passwordModal">
@@ -38,7 +38,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="password" class="form-control" name="password" id="passwordModal" value="{$password|escape}"
+			<input type="password" class="form-control" name="password" id="passwordModal" value="{$password|default:""|escape}"
 			       maxlength="32" required>
 
 			<div class="custom-control custom-checkbox">

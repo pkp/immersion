@@ -28,13 +28,13 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="text" class="form-control" name="givenName" id="givenName" autocomplete="given-name" value="{$givenName|escape}" maxlength="255" required>
+			<input type="text" class="form-control" name="givenName" id="givenName" autocomplete="given-name" value="{$givenName|default:""|escape}" maxlength="255" required>
 		</div>
 		<div class="col-sm-6 form-group">
 			<label for="familyName">
 				{translate key="user.familyName"}
 			</label>
-			<input type="text" class=form-control name="familyName" id="familyName" autocomplete="family-name" value="{$familyName|escape}" maxlength="255">
+			<input type="text" class=form-control name="familyName" id="familyName" autocomplete="family-name" value="{$familyName|default:""|escape}" maxlength="255">
 		</div>
 	</div>
 	<div class="row">
@@ -46,7 +46,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input type="text" class="form-control" name="affiliation" id="affiliation" value="{$affiliation|escape}" required>
+			<input type="text" class="form-control" name="affiliation" id="affiliation" value="{$affiliation|default:""|escape}" required>
 		</div>
 
 		<div class="col-sm-6 form-group">
@@ -78,7 +78,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input class="form-control" type="email" name="email" id="email" value="{$email|escape}" maxlength="90" autocomplete="email" required>
+			<input class="form-control" type="email" name="email" id="email" value="{$email|default:""|escape}" maxlength="90" autocomplete="email" required>
 		</div>
 		<div class="col-sm-6 form-group">
 			<label for="username">
@@ -88,7 +88,7 @@
 					{translate key="common.required"}
 				</span>
 			</label>
-			<input class="form-control" type="text" name="username" id="username" value="{$username|escape}" maxlength="32" autocomplete="username" required>
+			<input class="form-control" type="text" name="username" id="username" value="{$username|default:""|escape}" maxlength="32" autocomplete="username" required>
 		</div>
 	</div>
 	<div class="row">
