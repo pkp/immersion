@@ -24,7 +24,7 @@
 				{csrf}
 
 				{if $source}
-					<input type="hidden" name="source" value="{$source|escape}"/>
+					<input type="hidden" name="source" value="{$source|default:""|escape}"/>
 				{/if}
 
 				{include file="common/formErrors.tpl"}
