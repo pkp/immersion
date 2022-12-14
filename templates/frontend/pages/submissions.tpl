@@ -8,7 +8,7 @@
  * @brief Display the page to view the editorial team.
  *
  * @uses $currentContext Journal|Press The current journal or press
- * @uses $submissionChecklist array List of requirements for submissions
+ * @uses $submissionChecklist string Requirements for submissions
  *}
 {include file="frontend/components/header.tpl" pageTitle="about.submissions"}
 
@@ -40,30 +40,23 @@
 				</div>
 			{/if}
 
-			{if $submissionChecklist}
-				<div class="submission_checklist">
-					<h2>
-						{translate key="about.submissionPreparationChecklist"}
-						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/submissionChecklist" sectionTitleKey="about.submissionPreparationChecklist"}
-					</h2>
-					{translate key="about.submissionPreparationChecklist.description"}
-					<ul>
-						{foreach from=$submissionChecklist item=checklistItem}
-							<li>
-								{$checklistItem.content|nl2br}
-							</li>
-						{/foreach}
-					</ul>
-				</div>
-			{/if}
-
 			{if $currentContext->getLocalizedData('authorGuidelines')}
 				<div class="author_guidelines" id="authorGuidelines">
 					<h2>
 						{translate key="about.authorGuidelines"}
-						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/authorGuidelines" sectionTitleKey="about.authorGuidelines"}
+						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.authorGuidelines"}
 					</h2>
 					{$currentContext->getLocalizedData('authorGuidelines')}
+				</div>
+			{/if}
+
+			{if $submissionChecklist}
+				<div class="submission_checklist">
+					<h2>
+						{translate key="about.submissionPreparationChecklist"}
+						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.submissionPreparationChecklist"}
+					</h2>
+					{$submissionChecklist}
 				</div>
 			{/if}
 
