@@ -13,7 +13,12 @@
  * @brief Immersion theme
  */
 
-import('lib.pkp.classes.plugins.ThemePlugin');
+use APP\core\Request;
+use APP\facades\Repo;
+use PKP\facades\Locale;
+use PKP\plugins\ThemePlugin;
+use PKP\plugins\PluginSettingsDAO;
+use APP\journal\SectionDAO;
 
 class ImmersionThemePlugin extends ThemePlugin
 {
@@ -26,7 +31,7 @@ class ImmersionThemePlugin extends ThemePlugin
         $this->addStyle('less', 'resources/less/import.less');
 
         // Styles for HTML galleys
-        $this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.css', array('contexts' => 'htmlGalley'));
+        $this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.less', array('contexts' => 'htmlGalley'));
 
         // Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
         $this->addScript('app-js', 'resources/dist/app.min.js');
@@ -78,16 +83,12 @@ class ImmersionThemePlugin extends ThemePlugin
             'default' => '#000',
         ));
 
-
         // Additional data to the templates
         HookRegistry::register('TemplateManager::display', array($this, 'addIssueTemplateData'));
         HookRegistry::register('TemplateManager::display', array($this, 'addSiteWideData'));
         HookRegistry::register('TemplateManager::display', array($this, 'homepageAnnouncements'));
         HookRegistry::register('TemplateManager::display', array($this, 'homepageJournalDescription'));
         HookRegistry::register('issueform::display', array($this, 'addToIssueForm'));
-
-        // Check if CSS embedded to the HTML galley
-        HookRegistry::register('TemplateManager::display', array($this, 'hasEmbeddedCSS'));
 
         // Additional variable for the issue form
         HookRegistry::register('issuedao::getAdditionalFieldNames', array($this, 'addIssueDAOFieldNames'));
@@ -133,30 +134,18 @@ class ImmersionThemePlugin extends ThemePlugin
 
     public function addIssueTemplateData($hookname, $args)
     {
-
-        /* @var $request Request
-         * @var $context Context
-         * @var $templateMgr TemplateManager
-         * @var $issueDao IssueDAO
-         * @var $issue Issue
-         * @var $publishedArticleDao PublishedArticleDAO
-         * @var $sectionDao SectionDAO
-         * @var $sections array
-         * @var $section Section
-         */
-
-        $templateMgr = $args[0];
+        $templateMgr = $args[0]; /** @var TemplateManager $templateMgr */
         $template = $args[1];
-        $request = $this->getRequest();
+        $request = $this->getRequest(); /** @var Request $request */
 
         if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') return false;
 
-        $journal = $request->getJournal();
+        $context = $request->getContext(); /** @var Context $context */
+        $contextId = $context->getId();
 
-        $issueDao = DAORegistry::getDAO('IssueDAO');
-
+        /** @var Issue $issue */
         if ($template === 'frontend/pages/indexJournal.tpl') {
-            $issue = $issueDao->getCurrent($journal->getId(), true);
+            $issue = Repo::issue()->getCurrent($contextId, true);
         } else {
             $issue = $templateMgr->getTemplateVars('issue');
         }
@@ -169,23 +158,20 @@ class ImmersionThemePlugin extends ThemePlugin
         $immersionSectionColors = $issue->getData('immersionSectionColor');
         if (empty($immersionSectionColors)) return false; // Section background colors aren't set
 
-        $sectionDao = DAORegistry::getDAO('SectionDAO');
-        $sections = $sectionDao->getByIssueId($issue->getId());
+        $sectionDao = DAORegistry::getDAO('SectionDAO'); /** @var SectionDAO $sectionDao */
+        $sections = $sectionDao->getByIssueId($issue->getId()); /** @var Section[] $sections */
         $lastSectionColor = null;
 
         // Section description; check if this option and BrowseBySection plugin is enabled
         $sectionDescriptionSetting = $this->getOption('sectionDescriptionSetting');
-        $pluginSettingsDAO = DAORegistry::getDAO('PluginSettingsDAO');
-        $request = $this->getRequest();
-        $context = $request->getContext();
-        $contextId = $context ? $context->getId() : 0;
+        $pluginSettingsDAO = DAORegistry::getDAO('PluginSettingsDAO'); /** @var PluginSettingsDAO $pluginSettingsDAO */
         $browseBySectionSettings = $pluginSettingsDAO->getPluginSettings($contextId, 'browsebysectionplugin');
         $isBrowseBySectionEnabled = false;
         if (!empty($browseBySectionSettings) && array_key_exists('enabled', $browseBySectionSettings) && $browseBySectionSettings['enabled']) {
             $isBrowseBySectionEnabled = true;
         }
-        $locale = AppLocale::getLocale();
 
+        $locale = Locale::getLocale();
         foreach ($publishedSubmissionsInSection as $sectionId => $publishedArticlesBySection) {
             foreach ($sections as $section) {
                 if ($section->getId() == $sectionId) {
@@ -428,52 +414,5 @@ class ImmersionThemePlugin extends ThemePlugin
 
             $templateMgr->assign('sections', $sections);
         }
-    }
-
-    /**
-     * @param $hookName string `TemplateManager::display`
-     * @param $args array [
-     * @option TemplateManager
-     * @option string relative path to the template
-     *  ]
-     */
-    public function hasEmbeddedCSS($hookName, $args)
-    {
-        $templateMgr = $args[0];
-        /* @var $templateMgr TemplateManager */
-        $template = $args[1];
-        $request = $this->getRequest();
-
-        // Return false if not a galley page
-        if ($template !== 'plugins/plugins/generic/htmlArticleGalley/generic/htmlArticleGalley:display.tpl') return false;
-
-        $articleArrays = $templateMgr->getTemplateVars('article');
-
-        // Deafult styling for HTML galley
-        $boolEmbeddedCss = false;
-        foreach ($articleArrays->getGalleys() as $galley) {
-            if ($galley->getFileType() === 'text/html') {
-                $submissionFile = $galley->getFile();
-
-                $submissionFileDao = DAORegistry::getDAO('SubmissionFileDAO');
-                import('lib.pkp.classes.submission.SubmissionFile'); // Constants
-                $embeddableFiles = array_merge(
-                    $submissionFileDao->getLatestRevisions($submissionFile->getSubmissionId(), SUBMISSION_FILE_PROOF),
-                    $submissionFileDao->getLatestRevisionsByAssocId(ASSOC_TYPE_SUBMISSION_FILE, $submissionFile->getFileId(), $submissionFile->getSubmissionId(), SUBMISSION_FILE_DEPENDENT)
-                );
-
-                foreach ($embeddableFiles as $embeddableFile) {
-                    if ($embeddableFile->getFileType() == 'text/css') {
-                        $boolEmbeddedCss = true;
-                    }
-                }
-            }
-
-        }
-
-        $templateMgr->assign(array(
-            'boolEmbeddedCss' => $boolEmbeddedCss,
-            'themePath' => $request->getBaseUrl() . "/" . $this->getPluginPath(),
-        ));
     }
 }
