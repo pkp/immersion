@@ -30,9 +30,9 @@
       dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
 <div class="cmp_skip_to_content">
-	<a class="sr-only" href="#immersion_content_header">{translate key="navigation.skip.nav"}</a>
-	<a class="sr-only" href="#immersion_content_main">{translate key="navigation.skip.main"}</a>
-	<a class="sr-only" href="#immersion_content_footer">{translate key="navigation.skip.footer"}</a>
+	<a class="visually-hidden" href="#immersion_content_header">{translate key="navigation.skip.nav"}</a>
+	<a class="visually-hidden" href="#immersion_content_main">{translate key="navigation.skip.main"}</a>
+	<a class="visually-hidden" href="#immersion_content_footer">{translate key="navigation.skip.footer"}</a>
 </div>
 
 <header class="main-header"
@@ -51,7 +51,7 @@
 			{/if}
 
 			{if !empty(trim($userMenu))}
-				<h2 class="sr-only">{translate key="plugins.themes.immersion.adminMenu"}</h2>
+				<h2 class="visually-hidden">{translate key="plugins.themes.immersion.adminMenu"}</h2>
 				{$userMenu}
 			{/if}
 
@@ -94,14 +94,14 @@
 
 			{if !empty(trim($primaryMenu)) || $currentContext}
 			<nav class="navbar navbar-expand-sm main-header__nav">
-				<button class="navbar-toggler mx-auto hamburger" data-target="#main-menu" data-toggle="collapse"
+				<button class="navbar-toggler mx-auto hamburger" data-bs-target="#main-menu" data-bs-toggle="collapse"
 				        type="button"
 				        aria-label="Menu" aria-controls="navigation">
 					<span class="hamburger__wrapper">
 		                <span class="hamburger__icon"></span>
 		            </span>
 				</button>
-				<h2 class="sr-only">{translate key="plugins.themes.immersion.mainMenu"}</h2>
+				<h2 class="visually-hidden">{translate key="plugins.themes.immersion.mainMenu"}</h2>
 				<div class="collapse navbar-collapse" id="main-menu">
 					{$primaryMenu}
 				</div>

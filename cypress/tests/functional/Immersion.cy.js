@@ -180,7 +180,7 @@ describe('Theme plugin tests', function() {
 		cy.get('#password2').type(user.username + user.username, {delay: 0});
 		cy.get('label[for="privacyConsent"]').click();
 		cy.get('label[for="checkbox-reviewer-interests"]').click();
-		cy.get('#tagitInput input').type('psychotherapy,neuroscience,neurobiology', {delay: 0});
+		cy.get('#reviewerInterests input').type('psychotherapy,neuroscience,neurobiology', {delay: 0});
 		cy.get('button[type="submit"]').contains('Register').focus().click();
 		cy.get('.registration_complete_actions a').contains('View Submissions').click();
 		cy.url().should('include', 'submissions');

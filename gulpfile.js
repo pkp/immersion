@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
+var sass = require('gulp-sass')(require('sass'));
 var concat = require('gulp-concat');
 var minifyCSS = require('gulp-csso');
 var sourcemaps = require('gulp-sourcemaps');
@@ -22,7 +22,7 @@ gulp.task('scripts', function() {
 	return gulp
 		.src([
 			'node_modules/jquery/dist/jquery.js',
-			'node_modules/popper.js/dist/umd/popper.js',
+			'node_modules/@popperjs/core/dist/umd/popper.js',
 			'node_modules/bootstrap/dist/js/bootstrap.js',
 			'node_modules/jquery-ui-dist/jquery-ui.min.js',
 			'resources/js/tag-it.min.js',

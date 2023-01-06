@@ -34,7 +34,6 @@
 }
 
 .modal-content .close {
-    color: #fff;
     text-shadow: none;
     opacity: 1;
 }
@@ -84,5 +83,9 @@
 // Overriding Bootstrap
 
 .close:not(:disabled):not(.disabled):focus, .close:not(:disabled):not(.disabled):hover {
-	color: @secondary-color;
+	color: @primary-color;
+}
+
+label[for="rememberModal"] {
+    display: inline-block;
 }

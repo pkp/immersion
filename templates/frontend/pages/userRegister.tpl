@@ -88,35 +88,10 @@
 							</div>
 
 							<div id="reviewerInterests" class="reviewer_interests hidden">
-								{*
-								 * This container will be processed by the tag-it jQuery
-								 * plugin. In order for it to work, your theme will need to
-								 * load the jQuery tag-it plugin and initialize the
-								 * component.
-								 *
-								 * Two data attributes are added which are not a default
-								 * feature of the plugin. These are converted into options
-								 * when the plugin is initialized on the element.
-								 *
-								 * See: /plugins/themes/default/js/main.js
-								 *
-								 * `data-field-name` represents the name used to POST the
-								 * interests when the form is submitted.
-								 *
-								 * `data-autocomplete-url` is the URL used to request
-								 * existing entries from the server.
-								 *
-								 * @link: http://aehlke.github.io/tag-it/
-								 *}
 								<legend>
 									{translate key="user.interests"}
 								</legend>
-								<ul class="interests tag-it" id="tagitInput" data-field-name="interests[]"
-								    data-autocomplete-url="{url|escape router=$smarty.const.ROUTE_PAGE page='user' op='getInterests'}">
-									{foreach from=$interests item=interest}
-										<li>{$interest|escape}</li>
-									{/foreach}
-								</ul>
+								<input type="text" name="interests" id="interests" value="{$interests|default:""|escape}">
 							</div>
 						</fieldset>
 					{/if}
@@ -133,13 +108,7 @@
 						</legend>
 						<div class="fields">
 							<div class="reviewer_nocontext_interests">
-								{* See comment for .tag-it above *}
-								<ul class="interests tag-it" id="tagitInput" data-field-name="interests[]"
-								    data-autocomplete-url="{url|escape router=$smarty.const.ROUTE_PAGE page='user' op='getInterests'}">
-									{foreach from=$interests item=interest}
-										<li>{$interest|escape}</li>
-									{/foreach}
-								</ul>
+								<input type="text" name="interests" id="interests" value="{$interests|default:""|escape}">
 							</div>
 						</div>
 

@@ -35,7 +35,7 @@
 							<label for="typeId">
 								{translate key="user.subscriptions.form.typeId"}
 								<span class="required">*</span>
-								<span class="sr-only">
+								<span class="visually-hidden">
 								{translate key="common.required"}
 								</span>
 							</label>

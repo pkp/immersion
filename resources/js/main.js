@@ -1,46 +1,13 @@
-// initiating tag-it
-
-$("#tagitInput").each(function() {
-	var autocomplete_url = $(this).data("autocomplete-url");
-	$(this).tagit({
-		fieldName: $(this).data("field-name"),
-		allowSpaces: false,
-		autocomplete: {
-			source: function(request, response) {
-				$.ajax({
-					url: autocomplete_url,
-					data: {term: request.term},
-					dataType: "json",
-					success: function(jsonData) {
-						if (jsonData.status === true) {
-							response(jsonData.content);
-						}
-					}
-				});
-			}
-		}
-	});
-});
-
-(function () {
-	/**
-	 * Determine if the user has opted to register as a reviewer
-	 *
-	 * @see: /templates/frontend/pages/userRegister.tpl
-	 */
-	function isReviewerSelected() {
-		var group = $("#reviewerOptinGroup").find("input");
-		var is_checked = false;
-		group.each(function() {
-			if ($(this).is(":checked")) {
-				is_checked = true;
-				return false;
-			}
-		});
-		
-		return is_checked;
+(function() {
+	if (!document.querySelector('.page_user.op_register')) {
+		return;
 	}
-	
+
+	const checkboxReviewerInterests = document.getElementById('checkbox-reviewer-interests');
+	if (!checkboxReviewerInterests) {
+		return;
+	}
+
 	/**
 	 * Reveal the reviewer interests field on the registration form when a
 	 * user has opted to register as a reviewer
@@ -48,98 +15,133 @@ $("#tagitInput").each(function() {
 	 * @see: /templates/frontend/pages/userRegister.tpl
 	 */
 	function reviewerInterestsToggle() {
-		var is_checked = isReviewerSelected();
-		if (is_checked) {
-			$("#reviewerInterests").removeClass("hidden");
+		if (checkboxReviewerInterests.checked) {
+			document.getElementById('reviewerInterests').classList.remove('hidden');
 		} else {
-			$("#reviewerInterests").addClass("hidden");
+			document.getElementById('reviewerInterests').classList.add('hidden');
 		}
 	}
-	
+
 	// Update interests on page load and when the toggled is toggled
 	reviewerInterestsToggle();
-	$("#reviewerOptinGroup input").click(reviewerInterestsToggle);
+	document.querySelector('#reviewerOptinGroup input').addEventListener('click', reviewerInterestsToggle);
 })();
 
 // Search form, wrapper for select tags
 
 (function () {
-	var searchSelects = $('.search__form .search__select');
-	
+	const searchSelects = document.querySelectorAll('.search__form .search__select');
+
 	if (!searchSelects.length) return false;
-	
-	searchSelects.wrap("<div class='select__wrapper col'></div>");
+
+	searchSelects.forEach((select) => {
+		const wrapper = document.createElement('div');
+		wrapper.classList.add('select__wrapper', 'col');
+		wrapper.append(select.cloneNode(true));
+		select.replaceWith(wrapper);
+	});
 })();
 
-(function($) {
+(function () {
 	
 	// Open login modal when nav menu links clicked
-	$('.nmi_type_user_login').click(function() {
-		$('#loginModal').modal();
-		return false;
-	})
-})(jQuery);
+	document.querySelectorAll('.nmi_type_user_login').forEach((userLogin) => {
+		userLogin.addEventListener('click', function (event) {
+			event.preventDefault();
+			const loginModal = new bootstrap.Modal('#loginModal');
+			loginModal.show();
+		});
+	});
+})();
 
 
 // Article detail page: authors
 
 (function ($) {
-	
-	// Show author affiliation under authors list (for large screen only)
-	var authorString = $('.author-string__href');
-	$(authorString).click(function(event) {
-		event.preventDefault();
-		var elementId = $(this).attr('href').replace('#', '');
-		$('.article-details__author').each(function () {
-			
+	const authors = document.querySelectorAll('.author-string__href');
+	authors.forEach((authorString) => {
+		authorString.addEventListener('click', function (event) {
+			event.preventDefault();
+
 			// Show only targeted author's affiliation on click
-			if ($(this).attr('id') === elementId && $(this).hasClass('hidden')) {
-				$(this).removeClass('hidden');
-			} else {
-				$(this).addClass('hidden');
-			}
+			let targetId = this.getAttribute('href').replace('#', '');
+			const target = document.getElementById(targetId);
+
+			document.querySelectorAll('.article-details__author').forEach((authorDetails) => {
+				if (authorDetails.getAttribute('id') === targetId && authorDetails.classList.contains('hidden')) {
+					authorDetails.classList.remove('hidden');
+				} else {
+					authorDetails.classList.add('hidden');
+				}
+			});
+
+			authors.forEach((sibling) => {
+				if (authorString === sibling && !sibling.classList.contains('active')) {
+					sibling.classList.add('active');
+					sibling.querySelector(':scope .author-plus').classList.add('hidden');
+					sibling.querySelector(':scope .author-minus').classList.remove('hidden');
+				} else {
+					sibling.classList.remove('active');
+					sibling.querySelector(':scope .author-plus').classList.remove('hidden');
+					sibling.querySelector(':scope .author-minus').classList.add('hidden');
+				}
+			});
 		});
-		
-		// Add specifiers to the clicked author's link
-		$(authorString).each(function () {
-			if ($(this).attr('href') === ('#' + elementId) && !$(this).hasClass('active')){
-				$(this).addClass('active');
-				$(this).children('.author-plus').addClass('hidden');
-				$(this).children('.author-minus').removeClass('hidden');
-			} else if ($(this).attr('href') !== ('#' + elementId) || $(this).hasClass('active')) {
-				$(this).removeClass('active');
-				$(this).children('.author-plus').removeClass('hidden');
-				$(this).children('.author-minus').addClass('hidden');
-			}
-		});
-	})
-})(jQuery);
+	});
+})();
 
 // Not display the menu if all items are inaccessible
 
-(function ($) {
-	
-	var navPrimary = $('#navigationPrimary');
-	
-	if (!navPrimary.length) return false;
-	
-	if (!navPrimary.children().length > 0) {
-		$('.main-header__nav').addClass('hidden');
+(function () {
+
+	const navPrimary = document.getElementById('navigationPrimary');
+	if (!navPrimary) {
+		return;
 	}
-	
-})(jQuery);
+
+	if (!(navPrimary.childElementCount > 0)) {
+		navPrimary.parentElement.parentElement.classList.add('hidden');
+	}
+})();
 
 // Toggle display of consent checkboxes in site-wide registration
 
-var $contextOptinGroup = $('#contextOptinGroup');
-if ($contextOptinGroup.length) {
-	var $roles = $contextOptinGroup.find('.registration-context__roles :checkbox');
-	$roles.change(function() {
-		var $thisRoles = $(this).closest('.registration-context__roles');
-		if ($thisRoles.find(':checked').length) {
-			$thisRoles.siblings('.context_privacy').addClass('context_privacy_visible');
-		} else {
-			$thisRoles.siblings('.context_privacy').removeClass('context_privacy_visible');
-		}
+(function () {
+	const contextOptinGroup = document.getElementById('contextOptinGroup');
+	if (!contextOptinGroup) {
+		return;
+	}
+
+	const privacyVisible = 'context_privacy_visible';
+
+	document.querySelectorAll('.context').forEach((context) => {
+		const roleInputs = context.querySelectorAll(':scope .registration-context__roles input[type=checkbox]');
+		roleInputs.forEach((roleInput) => {
+			roleInput.addEventListener('change', function () {
+				const contextPrivacy = context.querySelector(':scope .context_privacy');
+				if (!contextPrivacy) {
+					return;
+				}
+
+				if (this.checked) {
+					if (!contextPrivacy.classList.contains(privacyVisible)) {
+						contextPrivacy.classList.add(privacyVisible);
+						return;
+					}
+				}
+
+				for (let i = 0; i < roleInputs.length; i++) {
+					const sibling = roleInputs[i];
+					if (sibling === roleInput) {
+						continue;
+					}
+					if (sibling.checked) {
+						return;
+					}
+				}
+
+				contextPrivacy.classList.remove(privacyVisible);
+			});
+		});
 	});
-}
+})();
