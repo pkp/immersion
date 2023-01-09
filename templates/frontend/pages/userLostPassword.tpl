@@ -35,7 +35,7 @@
 						<label for="email">
 							{translate key="user.login.registeredEmail"}
 							<span class="required">*</span>
-							<span class="sr-only">{translate key="common.required"}</span>
+							<span class="visually-hidden">{translate key="common.required"}</span>
 						</label>
 						<input class="form-control" type="email" name="email" id="email" value="{$email|escape}" required>
 					</div>

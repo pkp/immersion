@@ -1,17 +1,14 @@
 {
 	"private": true,
 	"devDependencies": {
-		"bootstrap": "^4.3.1",
-		"gulp": "^4.0.0",
+		"bootstrap": "^5.2.0",
+		"@popperjs/core": "^2.11.6",
+		"gulp": "^4.0.2",
 		"gulp-concat": "^2.6.1",
-		"gulp-concat-css": "^3.1.0",
 		"gulp-csso": "^3.0.1",
 		"gulp-minify": "^3.1.0",
-		"gulp-sass": "^4.0.1",
+		"gulp-sass": "^5.0.1",
 		"gulp-sourcemaps": "^2.6.4",
-		"jquery": "^3.4.1",
-		"jquery-ui-dist": "^1.12.1",
-		"popper.js": "^1.14.7",
-		"tag-it": "^2.0.0"
+		"sass": "^1.57.1"
 	}
 }

@@ -93,9 +93,10 @@
 
 		{* authors list *}
 		{if $publication->getData('authors')}
+			{assign var="authors" value=$publication->getData('authors')->toArray()|array_values}
 			<div class="article-page__meta">
 				<ul class="authors-string">
-					{foreach from=$publication->getData('authors') item=authorString key=authorStringKey}
+					{foreach from=$authors item=authorString key=authorStringKey}
 						{strip}
 							<li class="authors-string__item">
 								{capture}
@@ -135,7 +136,7 @@
 			{assign var="authorBioIndex" value=0}
 			<div class="article-page__meta">
 				<div class="article-details__authors">
-					{foreach from=$publication->getData('authors') item=author key=authorKey}
+					{foreach from=$authors item=author key=authorKey}
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
 							{if $author->getLocalizedAffiliation()}
 								<div class="article-details__author-affiliation">
@@ -155,7 +156,7 @@
 							{/if}
 							{if $author->getLocalizedBiography()}
 								<br/>
-								<a class="modal-trigger" href="#modalAuthorBio-{$authorKey+1}" data-toggle="modal"
+								<a class="modal-trigger" href="#modalAuthorBio-{$authorKey+1}" data-bs-toggle="modal"
 								   data-target="#modalAuthorBio-{$authorKey+1}">
 									{translate key="plugins.themes.immersion.article.biography"}
 								</a>
@@ -164,11 +165,11 @@
 								     role="dialog">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 											<div class="modal-body">
-												<h2 class="sr-only">{translate key="submission.authorBiography"}</h2>
+												<h2 class="visually-hidden">{translate key="submission.authorBiography"}</h2>
 												{$author->getLocalizedBiography()|strip_unsafe_html}
 											</div>
 										</div>
@@ -311,7 +312,7 @@
 
 	{* Article/Issue cover image *}
 	{if $publication->getLocalizedData('coverImage') || ($issue && $issue->getLocalizedCoverImage())}
-		<h2 class="sr-only">{translate key="plugins.themes.immersion.article.figure"}</h2>
+		<h2 class="visually-hidden">{translate key="plugins.themes.immersion.article.figure"}</h2>
 		<figure>
 			{if $publication->getLocalizedData('coverImage')}
 				<img
@@ -382,7 +383,7 @@
 				{$citation}
 			</div>
 			<div class="citation_formats dropdown">
-				<a class="btn btn-secondary" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				<a class="btn btn-secondary" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true"
 				   aria-expanded="false">
 					{translate key="submission.howToCite.citationFormats"}
 				</a>
@@ -443,7 +444,7 @@
 
 			{* License terms modal. Show only if license is absent *}
 			{if $licenseTerms && !$licenseUrl}
-				<a class="copyright-notice__modal" data-toggle="modal" data-target="#copyrightModal">
+				<a class="copyright-notice__modal" data-bs-toggle="modal" data-target="#copyrightModal">
 					{translate key="about.copyrightNotice"}
 				</a>
 				<div class="modal fade" id="copyrightModal" tabindex="-1" role="dialog"

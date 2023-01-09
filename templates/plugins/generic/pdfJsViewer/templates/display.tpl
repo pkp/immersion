@@ -36,7 +36,7 @@
 	<div class="pdf-return-article">
 		<a href="{$parentUrl}">
 			←
-			<span class="sr-only">
+			<span class="visually-hidden">
 					{if $parent instanceOf Issue}
 						{translate key="issue.return"}
 					{else}
@@ -61,7 +61,7 @@
 			<span class="label">
 				{translate key="common.download"}
 			</span>
-			<span class="sr-only">
+			<span class="visually-hidden">
 				{translate key="common.downloadPdf"}
 			</span>
 		</a>

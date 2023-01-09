@@ -84,17 +84,21 @@ class ImmersionThemePlugin extends ThemePlugin
         ));
 
         // Additional data to the templates
-        HookRegistry::register('TemplateManager::display', array($this, 'addIssueTemplateData'));
-        HookRegistry::register('TemplateManager::display', array($this, 'addSiteWideData'));
-        HookRegistry::register('TemplateManager::display', array($this, 'homepageAnnouncements'));
-        HookRegistry::register('TemplateManager::display', array($this, 'homepageJournalDescription'));
-        HookRegistry::register('issueform::display', array($this, 'addToIssueForm'));
+        HookRegistry::add('TemplateManager::display', array($this, 'addIssueTemplateData'));
+        HookRegistry::add('TemplateManager::display', array($this, 'addSiteWideData'));
+        HookRegistry::add('TemplateManager::display', array($this, 'homepageAnnouncements'));
+        HookRegistry::add('TemplateManager::display', array($this, 'homepageJournalDescription'));
+        HookRegistry::add('issueform::display', array($this, 'addToIssueForm'));
 
         // Additional variable for the issue form
-        HookRegistry::register('issuedao::getAdditionalFieldNames', array($this, 'addIssueDAOFieldNames'));
-        HookRegistry::register('issueform::initdata', array($this, 'initDataIssueFormFields'));
-        HookRegistry::register('issueform::readuservars', array($this, 'readIssueFormFields'));
-        HookRegistry::register('issueform::execute', array($this, 'executeIssueFormFields'));
+        HookRegistry::register('Schema::get::issue', array($this, 'addToSchema'));
+        HookRegistry::add('issueform::initdata', array($this, 'initDataIssueFormFields'));
+        HookRegistry::add('issueform::readuservars', array($this, 'readIssueFormFields'));
+        HookRegistry::add('issueform::execute', array($this, 'executeIssueFormFields'));
+        HookRegistry::add(
+            'Templates::Editor::Issues::IssueData::AdditionalMetadata',
+            array($this, 'callbackTemplateIssueForm')
+        );
 
         // Load colorpicker on issue management page
         $this->addStyle('spectrum', '/resources/dist/spectrum-1.8.0.css', [
@@ -324,10 +328,21 @@ class ImmersionThemePlugin extends ThemePlugin
      * @option array List of additional fields
      * ]
      */
-    public function addIssueDAOFieldNames($hookName, $args)
+    public function addToSchema($hookName, $args)
     {
-        $fields =& $args[1];
-        $fields[] = 'immersionSectionColor';
+        $schema = $args[0];
+        $prop = '{
+            "type": "array",
+			"multilingual": false,
+			"apiSummary": true,
+			"validation": [
+				"nullable"
+			],
+			"items": {
+				"type": "string"
+			}
+        }';
+        $schema->properties->{'immersionSectionColor'} = json_decode($prop);
     }
 
 
@@ -385,9 +400,6 @@ class ImmersionThemePlugin extends ThemePlugin
         }
 
         $issue->setData('immersionSectionColor', $issueForm->getData('immersionSectionColor'));
-
-        $issueDao = DAORegistry::getDAO('IssueDAO');
-        $issueDao->updateObject($issue);
     }
 
     /**
@@ -398,7 +410,6 @@ class ImmersionThemePlugin extends ThemePlugin
      * @option IssueForm
      * ]
      */
-
     public function addToIssueForm($hookName, $args)
     {
         $issueForm = $args[0];
@@ -414,5 +425,21 @@ class ImmersionThemePlugin extends ThemePlugin
 
             $templateMgr->assign('sections', $sections);
         }
+    }
+
+    /**
+     * Add variables to the issue editing form
+     *
+     * @param $hookName string
+     * @param $args array [
+     * @option TemplateManager
+     * @option string
+     * ]
+     */
+    public function callbackTemplateIssueForm($hookName, $args)
+    {
+        $templateMgr = $args[1];
+        $output = & $args[2];
+        $output .= $templateMgr->fetch($this->getTemplateResource('issueForm.tpl'));
     }
 }

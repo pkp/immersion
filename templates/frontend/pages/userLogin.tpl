@@ -44,7 +44,7 @@
 						<label for="username">
 							{translate key="user.username"}
 							<span class="required">*</span>
-							<span class="sr-only">
+							<span class="visually-hidden">
 								{translate key="common.required"}
 							</span>
 						</label>
@@ -56,7 +56,7 @@
 						<label for="password">
 							{translate key="user.password"}
 							<span class="required">*</span>
-							<span class="sr-only">
+							<span class="visually-hidden">
 								{translate key="common.required"}
 							</span>
 						</label>
