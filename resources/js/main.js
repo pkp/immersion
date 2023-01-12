@@ -57,7 +57,7 @@
 
 // Article detail page: authors
 
-(function ($) {
+(function () {
 	const authors = document.querySelectorAll('.author-string__href');
 	authors.forEach((authorString) => {
 		authorString.addEventListener('click', function (event) {

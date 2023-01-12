@@ -7,11 +7,7 @@ var minify = require('gulp-minify');
 
 gulp.task('sass', function() {
 	return gulp
-		.src([
-			'node_modules/bootstrap/scss/bootstrap.scss',
-			'node_modules/jquery-ui-dist/jquery-ui.min.css',
-			'node_modules/tag-it/css/jquery.tagit.css'
-		])
+		.src(['node_modules/bootstrap/scss/bootstrap.scss'])
 		.pipe(sass())
 		.pipe(concat('app.min.css'))
 		.pipe(minifyCSS())
@@ -21,11 +17,8 @@ gulp.task('sass', function() {
 gulp.task('scripts', function() {
 	return gulp
 		.src([
-			'node_modules/jquery/dist/jquery.js',
 			'node_modules/@popperjs/core/dist/umd/popper.js',
 			'node_modules/bootstrap/dist/js/bootstrap.js',
-			'node_modules/jquery-ui-dist/jquery-ui.min.js',
-			'resources/js/tag-it.min.js',
 			'resources/js/main.js'
 		])
 		.pipe(sourcemaps.init())
