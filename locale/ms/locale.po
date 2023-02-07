@@ -1,8 +1,9 @@
 # Studiorimau <studiorimau@gmail.com>, 2021.
+# Mohamad Shabilullah <shabilhamid91@gmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-10-26 00:23+0000\n"
-"Last-Translator: Studiorimau <studiorimau@gmail.com>\n"
+"PO-Revision-Date: 2023-02-08 13:48+0000\n"
+"Last-Translator: Mohamad Shabilullah <shabilhamid91@gmail.com>\n"
 "Language-Team: Malay <http://translate.pkp.sfu.ca/projects/plugins/immersion/"
 "ms/>\n"
 "Language: ms\n"
@@ -10,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr "Warna latar untuk bahagian butiran jurnal di laman utama jurnal"
@@ -96,16 +97,16 @@ msgstr "Gambar muka depan bahagian"
 
 msgid "plugins.themes.immersion.colorPickInstructions"
 msgstr ""
-"Pilih warna untuk bahagian yang akan dipaparkan di bahagian depan jurnal. "
-"Mesti kod heksa HTML yang sah (mis., # Ffff00 untuk kuning)."
+"Pilih warna untuk bahagian untuk dipaparkan pada bahagian hadapan jurnal. "
+"Mestilah kod heks HTML yang sah (cth., #ffff00 untuk kuning)."
 
 msgid "plugins.themes.immersion.colorPick"
 msgstr "Pemilih Warna"
 
 msgid "plugins.themes.immersion.description"
 msgstr ""
-"Tema OJS dengan gambar halaman penuh, jenis huruf besar, dan blok warna "
-"tebal yang disesuaikan untuk jurnal dengan fokus pada visual."
+"Tema OJS dengan imej halaman penuh, muka taip besar dan blok warna tebal "
+"yang disesuaikan untuk jurnal dengan tumpuan pada visual."
 
 msgid "plugins.themes.immersion.name"
 msgstr "Tema Immersion"
