@@ -100,3 +100,24 @@ msgstr "Journal description background"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr "Background colour for the journal description section on the journal home page"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Usage statistics display options"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr "Do not display submission usage statistics chart for reader."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr "Use bar type of the chart for usage statistics display."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr "Use line type of the chart for usage statistics display."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec"
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "Download data is not yet available."
