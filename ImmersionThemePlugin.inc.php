@@ -83,6 +83,27 @@ class ImmersionThemePlugin extends ThemePlugin
             'default' => '#000',
         ));
 
+        // Add usage stats display options
+        $this->addOption('displayStats', 'FieldOptions', [
+            'type' => 'radio',
+            'label' => __('plugins.themes.immersion.option.displayStats.label'),
+			'options' => [
+				[
+					'value' => 'none',
+					'label' => __('plugins.themes.immersion.option.displayStats.none'),
+				],
+				[
+					'value' => 'bar',
+					'label' => __('plugins.themes.immersion.option.displayStats.bar'),
+				],
+				[
+					'value' => 'line',
+					'label' => __('plugins.themes.immersion.option.displayStats.line'),
+				],
+			],
+			'default' => 'none',
+		]);
+
         // Additional data to the templates
         HookRegistry::add('TemplateManager::display', array($this, 'addIssueTemplateData'));
         HookRegistry::add('TemplateManager::display', array($this, 'addSiteWideData'));
