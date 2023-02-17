@@ -84,7 +84,7 @@ describe('Theme plugin tests', function() {
 		// Populate journal summary
 		cy.get('.app__navItem').contains('Journal').click();
 		cy.get('#masthead-button').click();
-		cy.get('#masthead-description-control-en_US').type(journalDescription);
+		cy.get('#masthead-description-control-en').type(journalDescription);
 		cy.get('#masthead button').contains('Save').click();
 		cy.get('#masthead [role="status"]').contains('Saved');
 
@@ -100,9 +100,9 @@ describe('Theme plugin tests', function() {
 		cy.get('button').contains('Categories').click();
 		cy.get('#categoriesContainer a').contains('Add Category').click();
 		cy.wait(2000);
-		cy.get('input[name="name[en_US]"]').type('First category', {delay: 0});
+		cy.get('input[name="name[en]"]').type('First category', {delay: 0});
 		cy.get('input[name="path"]').type('first-category', {delay: 0});
-		cy.get('textarea[name="description[en_US]"]').then(node => {
+		cy.get('textarea[name="description[en]"]').then(node => {
 			cy.setTinyMceContent(node.attr('id'), categoryDescription);
 		});
 		cy.get('#categoryDetails [id^="submitFormButton"]').click();
@@ -118,7 +118,7 @@ describe('Theme plugin tests', function() {
 		cy.get('#issue [role="status"]').contains('Saved');
 
 		cy.get('#titleAbstract-button').click();
-		cy.get('#titleAbstract-title-control-en_US').type(' - version 2');
+		cy.get('#titleAbstract-title-control-en').type(' - version 2');
 		cy.get('#titleAbstract .pkpButton').contains('Save').click();
 		cy.get('#titleAbstract [role="status"]').contains('Saved');
 		cy.get('#publication .pkpButton').contains('Publish').click();
