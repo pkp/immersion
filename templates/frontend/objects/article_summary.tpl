@@ -16,14 +16,14 @@
  * @uses $primaryGenreIds array List of file genre ids for primary file types
  *}
 {assign var=articlePath value=$article->getBestId()}
-
-{if (!$section.hideAuthor && $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_DEFAULT) || $article->getHideAuthor() == $smarty.const.AUTHOR_TOC_SHOW}
-	{assign var="showAuthor" value=true}
-{/if}
-
 {assign var="publication" value=$article->getCurrentPublication()}
 {assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 {assign var="coverImageUrl" value=$publication->getLocalizedCoverImageUrl($article->getData('contextId'))}
+
+{if (!$section.hideAuthor && $publication->getData('hideAuthor') == \APP\submission\Submission::AUTHOR_TOC_DEFAULT) || $publication->getData('hideAuthor') == \APP\submission\Submission::AUTHOR_TOC_SHOW}
+	{assign var="showAuthor" value=true}
+{/if}
+
 <article class="article">
 	<div class="row">
 		{if $coverImage && $requestedOp !== "search"}
@@ -39,13 +39,15 @@
 		{/if}
 		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
 			{if $showAuthor}
-				<p class="article__meta">{$article->getCurrentPublication()->getAuthorString($authorUserGroups)|escape}</p>
+				<p class="article__meta">{$publication->getAuthorString($authorUserGroups)|escape}</p>
 			{/if}
 
 			<h4 class="article__title">
 				<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if}>
-					{if $article->getLocalizedFullTitle()}
-						{$article->getLocalizedFullTitle()|escape}
+					{$publication->getLocalizedTitle(null, 'html')|strip_unsafe_html}
+					{assign var=localizedSubtitle value=$publication->getLocalizedSubtitle(null, 'html')|strip_unsafe_html}
+					{if $localizedSubtitle}
+						<span class="article__subtitle">{$localizedSubtitle}</span>
 					{/if}
 				</a>
 			</h4>
