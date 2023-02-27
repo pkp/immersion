@@ -1,8 +1,8 @@
 /**
  * @file cypress/tests/functional/Immersion.spec.js
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2000-2020 John Willinsky
+ * Copyright (c) 2014-2023 Simon Fraser University
+ * Copyright (c) 2000-2023 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  */
@@ -84,7 +84,7 @@ describe('Theme plugin tests', function() {
 		// Populate journal summary
 		cy.get('.app__navItem').contains('Journal').click();
 		cy.get('#masthead-button').click();
-		cy.get('#masthead-description-control-en').type(journalDescription);
+		cy.setTinyMceContent('masthead-description-control-en', journalDescription);
 		cy.get('#masthead button').contains('Save').click();
 		cy.get('#masthead [role="status"]').contains('Saved');
 
@@ -99,14 +99,23 @@ describe('Theme plugin tests', function() {
 		cy.visit(path + '/management/settings/context');
 		cy.get('button').contains('Categories').click();
 		cy.get('#categoriesContainer a').contains('Add Category').click();
-		cy.wait(2000);
-		cy.get('input[name="name[en]"]').type('First category', {delay: 0});
-		cy.get('input[name="path"]').type('first-category', {delay: 0});
-		cy.get('textarea[name="description[en]"]').then(node => {
-			cy.setTinyMceContent(node.attr('id'), categoryDescription);
+		cy.waitJQuery();
+		cy.get('#categoryDetails').within(() => {
+			cy.get('input[name="name[en]"]').click().type('First category', {delay: 0});
+			cy.get('input[name="path"]').click().type('first-category', {delay: 0});
+			cy.get('textarea[name="description[en]"]').then(node => {
+				cy.setTinyMceContent(node.attr('id'), categoryDescription);
+			});
+			cy.get('button').contains('OK').click();
 		});
-		cy.get('#categoryDetails [id^="submitFormButton"]').click();
-		cy.visit(path + '/workflow/index/1/5');
+		cy.waitJQuery();
+		cy.get('nav a').contains('Submissions').click();
+		cy.get('button').contains('Archived').click();
+		cy.get('.listPanel__item').first().within(() => {
+			cy.get('.listPanel__item--submission__id').contains('1');
+			cy.get('a span').contains('View').click();
+		});
+		cy.waitJQuery();
 		cy.get('button').contains('Publication').click();
 		cy.get('.pkpButton').contains('Create New Version').click();
 		cy.get('#modals-container .pkpButton').contains('Yes').click();
@@ -118,7 +127,9 @@ describe('Theme plugin tests', function() {
 		cy.get('#issue [role="status"]').contains('Saved');
 
 		cy.get('#titleAbstract-button').click();
-		cy.get('#titleAbstract-title-control-en').type(' - version 2');
+		cy.getTinyMceContent('titleAbstract-title-control-en').then((content) => {
+			cy.setTinyMceContent('titleAbstract-title-control-en', content + ' - version 2');
+		});
 		cy.get('#titleAbstract .pkpButton').contains('Save').click();
 		cy.get('#titleAbstract [role="status"]').contains('Saved');
 		cy.get('#publication .pkpButton').contains('Publish').click();
