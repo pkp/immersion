@@ -44,11 +44,7 @@
 
 			<h4 class="article__title">
 				<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if}>
-					{$publication->getLocalizedTitle(null, 'html')|strip_unsafe_html}
-					{assign var=localizedSubtitle value=$publication->getLocalizedSubtitle(null, 'html')|strip_unsafe_html}
-					{if $localizedSubtitle}
-						<span class="article__subtitle">{$localizedSubtitle}</span>
-					{/if}
+					{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 				</a>
 			</h4>
 

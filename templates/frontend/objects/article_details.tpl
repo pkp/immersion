@@ -88,14 +88,8 @@
 		</p>
 
 		<h1 class="article-page__title">
-			<span>{$publication->getLocalizedTitle(null, 'html')|strip_unsafe_html}</span>
+			<span>{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}</span>
 		</h1>
-
-		{if $publication->getLocalizedData('subtitle')}
-			<h2 class="article-page__title">
-				{$publication->getLocalizedSubTitle(null, 'html')|strip_unsafe_html}
-			</h2>
-		{/if}
 
 		{* authors list *}
 		{if $publication->getData('authors')}
