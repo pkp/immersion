@@ -1,15 +1,16 @@
+# Emilija Andonoska <emilija-andonoska@hotmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2021-01-13 10:52+0000\n"
-"Last-Translator: Mirko Spiroski <mspiroski@id-press.eu>\n"
+"PO-Revision-Date: 2023-03-15 10:48+0000\n"
+"Last-Translator: Emilija Andonoska <emilija-andonoska@hotmail.com>\n"
 "Language-Team: Macedonian <http://translate.pkp.sfu.ca/projects/plugins/"
-"immersion/mk_MK/>\n"
-"Language: mk_MK\n"
+"immersion/mk/>\n"
+"Language: mk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n==1 || n%10==1 ? 0 : 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.immersion.colorPick"
 msgstr "Бирач на боја"
@@ -38,7 +39,7 @@ msgstr "Оневозможено (предодредено)"
 
 msgid "plugins.themes.immersion.options.journalDescription.description"
 msgstr ""
-"Ако е овозможен, описот на списанието  ќе се прикаже на насловната страна на "
+"Ако е овозможен, описот на списанието ќе се прикаже на насловната страна на "
 "списанието"
 
 msgid "plugins.themes.immersion.options.journalDescription.label"
@@ -110,3 +111,31 @@ msgid "plugins.themes.immersion.colorPickInstructions"
 msgstr ""
 "Избери боја за секцијата за да се прикаже во списанието. Мора да биде HTML "
 "hex code (на пример, #ffff00 за жолто)."
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Опции за прикажување на статистиката за користење"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr ""
+"Не прикажувај табела за статистика за користење на поднесување за читателот."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr ""
+"Користете го типот на линијата на графиконот за прикажување на статистиката "
+"за користење."
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Преземања"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "Податоците за преземање сè уште не се достапни."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr ""
+"Користете го типот на лента на графиконот за прикажување на статистиката за "
+"користење."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr ""
+"јануари февруари март април мај јуни јули август септември октомври ноември "
+"декември"
