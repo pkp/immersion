@@ -1,8 +1,9 @@
 # Jeppe Hauge Bæk <jeppe.baek@hotmail.com>, 2023.
+# Alexandra Fogtmann-Schulz <alfo@kb.dk>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-01-12 14:02+0000\n"
-"Last-Translator: Jeppe Hauge Bæk <jeppe.baek@hotmail.com>\n"
+"PO-Revision-Date: 2023-04-13 14:48+0000\n"
+"Last-Translator: Alexandra Fogtmann-Schulz <alfo@kb.dk>\n"
 "Language-Team: Danish <http://translate.pkp.sfu.ca/projects/plugins/"
 "immersion/da/>\n"
 "Language: da\n"
@@ -111,3 +112,24 @@ msgstr ""
 
 msgid "plugins.themes.immersion.section.coverPage"
 msgstr "Sektion coverbillede"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Visningsmuligheder for brugsstatistik"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr "Fremvis ikke diagram over indsendelsers brugsstatistik for læseren."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr "Anvend søjlediagram til visning af brugsstatistik."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr "Anvend kurvediagram til visning af brugsstatistik."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Jan Feb Mar Apr Maj Jun Jul Aug Sep Okt Nov Dec"
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "Download-data er endnu ikke tilgængelige."
