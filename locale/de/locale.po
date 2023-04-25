@@ -1,18 +1,19 @@
+# Pia Piontkowitz <pia.piontkowitz@rub.de>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-23T10:58:39+00:00\n"
-"PO-Revision-Date: 2021-01-21 14:53+0000\n"
-"Last-Translator: Heike Riegler <heike.riegler@julius-kuehn.de>\n"
+"PO-Revision-Date: 2023-04-26 09:49+0000\n"
+"Last-Translator: Pia Piontkowitz <pia.piontkowitz@rub.de>\n"
 "Language-Team: German <http://translate.pkp.sfu.ca/projects/plugins/"
-"immersion/de_DE/>\n"
-"Language: de_DE\n"
+"immersion/de/>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.immersion.name"
 msgstr "Immersion-Theme"
@@ -75,7 +76,9 @@ msgid "plugins.themes.immersion.options.sectionDescription.label"
 msgstr "Beschreibung der Rubrik anzeigen"
 
 msgid "plugins.themes.immersion.options.sectionDescription.description"
-msgstr "Wenn diese Option aktiviert ist, wird die Beschreibung der Rubrik unter der jeweiligen Rubrik auf der Homepage der Zeitschrift angezeigt."
+msgstr ""
+"Wenn diese Option aktiviert ist, wird die Beschreibung der Rubrik unter der "
+"jeweiligen Rubrik auf der Homepage der Zeitschrift angezeigt"
 
 msgid "plugins.themes.immersion.options.sectionDescription.disable"
 msgstr "Deaktivieren"
@@ -107,3 +110,26 @@ msgstr "Beschreibung der Zeitschrift anzeigen"
 
 msgid "plugins.themes.immersion.about.journal"
 msgstr "Über die Zeitschrift"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Anzeigeoptionen für die Nutzungsstatistik"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr "Lesenden die Nutzungsstatistik für Einreichungen nicht anzeigen."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr ""
+"Den Balkentyp des Diagramms für die Anzeige der Nutzungsstatistik verwenden."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr ""
+"Den Linientyp des Diagramms für die Anzeige der Nutzungsstatistik verwenden."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Jan Feb Mär Apr Mai Jun Jul Aug Sep Okt Nov Dez"
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Downloads"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "Downloaddaten sind noch nicht verfügbar."
