@@ -1,7 +1,7 @@
 # Pavel Pisklakov <ppv1979@mail.ru>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-04-05 04:48+0000\n"
+"PO-Revision-Date: 2023-04-29 17:01+0000\n"
 "Last-Translator: Pavel Pisklakov <ppv1979@mail.ru>\n"
 "Language-Team: Russian <http://translate.pkp.sfu.ca/projects/plugins/"
 "immersion/ru/>\n"
@@ -33,7 +33,7 @@ msgid "plugins.themes.immersion.options.journalDescription.label"
 msgstr "Показать описание журнала"
 
 msgid "plugins.themes.immersion.options.sectionDescription.enable"
-msgstr "Включить; требует включения плагина «Просмотр по разделам»"
+msgstr "Включить; требует включения модуля «Просмотр по разделам»"
 
 msgid "plugins.themes.immersion.options.sectionDescription.disable"
 msgstr "Отключить"
