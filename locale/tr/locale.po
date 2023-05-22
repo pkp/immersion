@@ -1,6 +1,7 @@
+# Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-08-27 16:59+0000\n"
+"PO-Revision-Date: 2023-05-23 19:49+0000\n"
 "Last-Translator: Hüseyin Körpeoğlu <yoruyenturk@hotmail.com>\n"
 "Language-Team: Turkish <http://translate.pkp.sfu.ca/projects/plugins/"
 "immersion/tr/>\n"
@@ -9,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr "Dergi ana sayfasındaki dergi açıklama bölümü için arka plan rengi"
@@ -108,3 +109,24 @@ msgstr ""
 
 msgid "plugins.themes.immersion.name"
 msgstr "Immersion Teması"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Kullanım istatistikleri görüntüleme seçenekleri"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr "Okuyucu için kullanım istatistikleri tablosunu görüntüleme."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr "Kullanım istatistikleri için çubuk grafik tipini kullanın."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr "Kullanım istatistikleri için çizgi grafik tipini kullanın."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Oca Şub Mar Nis May Haz Tem Ağu Eyl Ekim Kas Ara"
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "İndirmeler"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "İndirme verileri henüz mevcut değil."
