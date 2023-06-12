@@ -2,7 +2,7 @@
 # José Carvalho <jcarvalho@keep.pt>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2023-05-30 09:49+0000\n"
+"PO-Revision-Date: 2023-06-13 08:49+0000\n"
 "Last-Translator: José Carvalho <jcarvalho@keep.pt>\n"
 "Language-Team: Portuguese (Portugal) <http://translate.pkp.sfu.ca/projects/"
 "plugins/immersion/pt_PT/>\n"
@@ -117,9 +117,8 @@ msgstr "Cor do de fundo da descrição da revista na página principal da revist
 msgid "plugins.themes.immersion.option.displayStats.label"
 msgstr "Opções de exibição de estatísticas de uso"
 
-#, fuzzy
 msgid "plugins.themes.immersion.option.displayStats.none"
-msgstr "Não exibir o gráfico de estatísticas de uso de submissão para o leitor."
+msgstr "Não exibir o gráfico de estatísticas de uso aos leitores."
 
 msgid "plugins.themes.immersion.option.displayStats.line"
 msgstr "Use o gráfico de linha para exibição de estatísticas de uso."
