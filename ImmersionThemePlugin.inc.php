@@ -183,8 +183,7 @@ class ImmersionThemePlugin extends ThemePlugin
         $immersionSectionColors = $issue->getData('immersionSectionColor');
         if (empty($immersionSectionColors)) return false; // Section background colors aren't set
 
-        $sectionDao = DAORegistry::getDAO('SectionDAO'); /** @var SectionDAO $sectionDao */
-        $sections = $sectionDao->getByIssueId($issue->getId()); /** @var Section[] $sections */
+        $sections = Repo::section()->getByIssueId($issue->getId()); /** @var \Illuminate\Support\LazyCollection $sections */
         $lastSectionColor = null;
 
         // Section description; check if this option and BrowseBySection plugin is enabled
@@ -198,7 +197,7 @@ class ImmersionThemePlugin extends ThemePlugin
 
         $locale = Locale::getLocale();
         foreach ($publishedSubmissionsInSection as $sectionId => $publishedArticlesBySection) {
-            foreach ($sections as $section) {
+            foreach ($sections as $section) { /** @var \APP\section\Section $section */
                 if ($section->getId() == $sectionId) {
                     // Set section and its background color
                     $publishedSubmissionsInSection[$sectionId]['section'] = $section;
@@ -439,8 +438,7 @@ class ImmersionThemePlugin extends ThemePlugin
         if ($issueForm->issue) {
             $request = $this->getRequest();
 
-            $sectionDao = DAORegistry::getDAO('SectionDAO');
-            $sections = $sectionDao->getByIssueId($issueForm->issue->getId());
+            $sections = Repo::section()->getByIssueId($issueForm->issue->getId())->all(); /** @var \APP\section\Section[] $sections */
 
             $templateMgr = TemplateManager::getManager($request);
 
