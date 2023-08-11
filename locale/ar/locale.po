@@ -1,15 +1,20 @@
+# M. Ali <vorteem@gmail.com>, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"POT-Creation-Date: 2020-04-23T10:58:17+00:00\n"
+"PO-Revision-Date: 2023-08-12 02:06+0000\n"
+"Last-Translator: M. Ali <vorteem@gmail.com>\n"
+"Language-Team: Arabic <http://translate.pkp.sfu.ca/projects/plugins/"
+"immersion/ar/>\n"
+"Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-04-23T10:58:17+00:00\n"
-"PO-Revision-Date: 2020-04-23T10:58:17+00:00\n"
-"Language: \n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.immersion.name"
 msgstr "نمط Immersion"
@@ -100,3 +105,24 @@ msgstr "خلفية وصف المجلة"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr "لون خلفية وصف المجلة ضمن صفحتها الرئيسية"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "خيارات عرض إحصائيات الاستعمال"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr "لا تعرض مخطط إحصائيات الاستعمال عن التقديمات للقراء."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr "استعمل مخطط إحصائي من نوع الأعمدة لعرض إحصائيات الاستعمال."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "كا2 شبا آذر نيس أيا حزي تمو آب أيل تش1 تش2 كا1"
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "التنزيلات"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "تنزيل البيانات غير متاح بعد."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr "استعمل مخطط إحصائي من نوع الخطوط لعرض إحصائيات الاستعمال."
