@@ -70,6 +70,18 @@
 						</div>
 					</div>
 
+					{* recaptcha spam blocker *}
+					{if $recaptchaPublicKey}
+						<fieldset class="recaptcha_wrapper">
+							<div class="fields">
+								<div class="recaptcha">
+									<div class="g-recaptcha" data-sitekey="{$recaptchaPublicKey|escape}">
+									</div><label for="g-recaptcha-response" style="display:none;" hidden>Recaptcha response</label>
+								</div>
+							</div>
+						</fieldset>
+					{/if}
+
 					<div class="form-group">
 						<p>
 							<button class="btn btn-primary" type="submit">

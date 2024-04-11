@@ -138,11 +138,12 @@
 				{/if}
 
 				{* recaptcha spam blocker *}
-				{if $reCaptchaHtml}
+				{if $recaptchaPublicKey}
 					<fieldset class="recaptcha_wrapper">
 						<div class="fields">
 							<div class="recaptcha">
-								{$reCaptchaHtml}
+								<div class="g-recaptcha" data-sitekey="{$recaptchaPublicKey|escape}">
+								</div><label for="g-recaptcha-response" style="display:none;" hidden>Recaptcha response</label>
 							</div>
 						</div>
 					</fieldset>
