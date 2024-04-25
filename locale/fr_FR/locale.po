@@ -1,10 +1,11 @@
+# Germán Huélamo Bautista <germanhuelamo@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-23T10:59:41+00:00\n"
-"PO-Revision-Date: 2021-02-01 13:53+0000\n"
-"Last-Translator: Paul Heckler <paul.d.heckler@gmail.com>\n"
+"PO-Revision-Date: 2024-04-26 12:23+0000\n"
+"Last-Translator: Germán Huélamo Bautista <germanhuelamo@gmail.com>\n"
 "Language-Team: French <http://translate.pkp.sfu.ca/projects/plugins/"
 "immersion/fr_FR/>\n"
 "Language: fr_FR\n"
@@ -12,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.themes.immersion.name"
 msgstr "Theme Immersion"
@@ -106,3 +107,29 @@ msgstr "Fond de la description"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr "Couleur d'arrière-plan de la section de description du journal sur la page d'accueil du journal"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr ""
+"Ne pas afficher aux lecteur·rice·s le graphique des statistiques "
+"d'utilisation des soumissions."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr ""
+"Utiliser des graphiques à barres pour afficher les statistiques "
+"d'utilisation."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Janv. Févr. Mars Avr. Mai Juin Juill. Août Sept. Oct. Nov. Déc."
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Téléchargements"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "Les données de téléchargement ne sont pas encore disponibles."
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Options d'affichage des statistiques d'utilisation"
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr ""
+"Utiliser un graphique linéaire pour afficher les statistiques d'utilisation."
