@@ -1,21 +1,22 @@
+# Marco Urso <urso.marco+weblate@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-04-23T10:59:50+00:00\n"
-"PO-Revision-Date: 2021-02-28 17:54+0000\n"
-"Last-Translator: Andrea Marchitelli <marchitelli@gmail.com>\n"
+"PO-Revision-Date: 2024-05-18 07:39+0000\n"
+"Last-Translator: Marco Urso <urso.marco+weblate@gmail.com>\n"
 "Language-Team: Italian <http://translate.pkp.sfu.ca/projects/plugins/"
-"immersion/it_IT/>\n"
-"Language: it_IT\n"
+"immersion/it/>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.18.2\n"
 
 msgid "plugins.themes.immersion.issue.fullIssueLink"
-msgstr "Fascicolo completo"
+msgstr "Guarda il fascicolo completo"
 
 msgid "plugins.themes.immersion.name"
 msgstr "Tema Immersion"
@@ -110,3 +111,25 @@ msgstr "Sulla rivista"
 
 msgid "plugins.themes.immersion.announcements.colorPick"
 msgstr "Colore della sezione avvisi nella home page della rivista"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr ""
+"Non mostrare l'invio del grafico delle statistiche d'uso per il lettore."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr "Utilizza il tipo grafico a barre per visualizzare le statistiche."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Gen Feb Mar Apr Mag Giu Lug Ago Set Ott Nov Dic"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Opzione di visualizzazione delle statistiche d'utilizzo"
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr "Utilizza il tipo grafico a linee per visualizzare le statistiche."
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Download"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "I dati di download non sono ancora disponibili."
