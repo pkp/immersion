@@ -88,7 +88,7 @@
 {if $additionalHomeContent}
 	<aside {if $lastSectionColor}style="background-color: {$lastSectionColor|escape};"{/if}>
 		<div class="container additional-home-content">
-			{$additionalHomeContent|strip_unsafe_html}
+			{$additionalHomeContent}
 		</div>
 	</aside>
 {/if}
