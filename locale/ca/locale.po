@@ -1,15 +1,16 @@
+# Jordi LC <jordi.lacruz@uab.cat>, 2023.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-10-27 12:50+0000\n"
+"PO-Revision-Date: 2023-07-25 08:58+0000\n"
 "Last-Translator: Jordi LC <jordi.lacruz@uab.cat>\n"
 "Language-Team: Catalan <http://translate.pkp.sfu.ca/projects/plugins/"
-"immersion/ca_ES/>\n"
-"Language: ca_ES\n"
+"immersion/ca/>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.9.1\n"
+"X-Generator: Weblate 4.13.1\n"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr ""
@@ -113,3 +114,24 @@ msgstr ""
 
 msgid "plugins.themes.immersion.name"
 msgstr "Tema Immersion"
+
+msgid "plugins.themes.immersion.option.displayStats.label"
+msgstr "Opcions de visualització de les estadístiques d'us"
+
+msgid "plugins.themes.immersion.option.displayStats.none"
+msgstr "No mostrar el gràfic d'estadístiques de trameses als lectors/ores."
+
+msgid "plugins.themes.immersion.option.displayStats.line"
+msgstr "Utilitzar un gràfic de línies per mostrar les estadístiques d'ús."
+
+msgid "plugins.themes.immersion.option.displayStats.bar"
+msgstr "Utilitzar un gràfic de barres per mostrar les estadístiques d'ús."
+
+msgid "plugins.themes.immersion.displayStats.monthInitials"
+msgstr "Gen. Feb. Març Abr. Maig Juny Jul. Ag. Set. Oct. Nov. Des."
+
+msgid "plugins.themes.immersion.displayStats.downloads"
+msgstr "Descàrregues"
+
+msgid "plugins.themes.immersion.displayStats.noStats"
+msgstr "Les dades de descàrrega encara no estan disponibles."
