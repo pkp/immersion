@@ -15,7 +15,7 @@ This theme can be installed through the **Plugin Gallery** in Open Journal Syste
 
 ### Contribute Changes
 
-To contribute changes you will need to install this theme from the `master` branch of this repository.
+To contribute changes you will need to install this theme from the `main` branch of this repository.
 
 1. `git clone https://github.com/pkp/immersion.git`.
 2. Move to the theme's root folder: `cd immersion`.
@@ -23,11 +23,11 @@ To contribute changes you will need to install this theme from the `master` bran
 4. Resolve dependencies: `npm install`. Gulp config file is inside a theme root folder `gulpfile.js`.
 5. To compile external SCSS, concatenate styles and minify: `gulp sass`. The result CSS path is `resources/dist/app.min.css`. The theme's own styles are compiled automatically by OJS's theme API.
 6. To concatenate and minify javascript: `gulp scripts` and `gulp compress`. The result Javascript file path is `resources/dist/app.min.js`. Run `gulp watch` to view javascript changes inside `resources/js` folder in real time.
-7. To compile and minify all at once: `gulp compileAll`.
+7. To compile and minify all at once: `gulp build`.
 8. Copy the plugin's folder to `plugins/themes` directory starting from the OJS installation root folder.
 9. Login into the OJS admin dashboard, activate the plugin and enable the theme.
 
-Note that the master branch may contain code that will not be shipped to the stable release.
+Note that the main branch may contain code that will not be shipped to the stable release.
 
 ## Contributors
 Immersion theme was designed and developed by Sophy Ouch ([@sssoz](https://github.com/sssoz)), Vitaliy Bezsheiko ([@Vitaliy-1](https://github.com/Vitaliy-1)), John Willinsky, and Kevin Stranack.
@@ -50,5 +50,3 @@ For technical question regarding the theme (bugs, enhancements, etc.), please op
 This theme is released under the GPL license.
 
 The Roboto font is distributed under the terms of the [Apache License, 2.0](http://www.apache.org/licenses/LICENSE-2.0). The Spectral font is distributed under the terms of the [Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
-
-
