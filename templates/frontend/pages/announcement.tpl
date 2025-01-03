@@ -9,7 +9,7 @@
  *
  * @uses $announcement Announcement The announcement to display
  *}
-{include file="frontend/components/header.tpl" pageTitleTranslated=$announcement->getLocalizedTitle()|escape}
+{include file="frontend/components/header.tpl" pageTitleTranslated=$announcement->getLocalizedData('title')|escape}
 
 <main class="container main__content" id="immersion_content_main">
 	<div class="row">
@@ -19,17 +19,17 @@
 			<article class="obj_announcement_full">
 				<header class="main__header">
 					<h1 class="main__title">
-						<span>{$announcement->getLocalizedTitle()|escape}</span>
+						<span>{$announcement->getLocalizedData('title')|escape}</span>
 					</h1>
 				</header>
 				<div class="date text-muted small">
-					{$announcement->getDatePosted()|date_format:$dateFormatShort}
+					{$announcement->datePosted|date_format:$dateFormatShort}
 				</div>
 				<div class="description">
-					{if $announcement->getLocalizedDescription()}
-						{$announcement->getLocalizedDescription()|strip_unsafe_html}
+					{if $announcement->getLocalizedData('description')}
+						{$announcement->getLocalizedData('description')|strip_unsafe_html}
 					{else}
-						{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
+						{$announcement->getLocalizedData('descriptionShort')|strip_unsafe_html}
 					{/if}
 				</div>
 			</article><!-- .obj_announcement_full -->
