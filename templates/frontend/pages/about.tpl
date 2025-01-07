@@ -21,7 +21,7 @@
 				{include file="frontend/components/editLink.tpl" page="management" op="settings" path="context" anchor="masthead" sectionTitleKey="about.aboutContext"}
 			</header>
 			<div class="content-body">
-				{$currentContext->getLocalizedSetting('about')}
+				{$currentContext->getLocalizedData('about')}
 			</div>
 		</div>
 	</div>

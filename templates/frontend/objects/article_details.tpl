@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/article_details.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief View of an Article which displays all details about the article.
@@ -49,19 +49,20 @@
  * Templates::Article::Main
  * Templates::Article::Details
  *
- * @uses $article Article This article
+ * @uses $article Submission This article
  * @uses $publication Publication The publication being displayed
  * @uses $firstPublication Publication The first published version of this article
  * @uses $currentPublication Publication The most recently published version of this article
  * @uses $issue Issue The issue this article is assigned to
  * @uses $section Section The journal section this article is assigned to
+ * @uses $categories Category The category this article is assigned to
  * @uses $primaryGalleys array List of article galleys that are not supplementary or dependent
  * @uses $supplementaryGalleys array List of article galleys that are supplementary
  * @uses $keywords array List of keywords assigned to this article
  * @uses $pubIdPlugins Array of pubId plugins which this article may be assigned
  * @uses $licenseTerms string License terms.
  * @uses $licenseUrl string URL to license. Only assigned if license should be
- *   included with published articles.
+ *   included with published submissions.
  * @uses $ccLicenseBadge string An image and text with details about the license
  *}
 <section class="col-md-8 article-page">
@@ -232,12 +233,12 @@
 					</dd>
 				{/if}
 			{/foreach}
-			{if $article->getDateSubmitted()}
+			{if $article->getData('dateSubmitted')}
 				<dt>
 					{translate key="submissions.submitted"}
 				</dt>
 				<dd>
-					{$article->getDateSubmitted()|escape|date_format:$dateFormatLong}
+					{$article->getData('dateSubmitted')|escape|date_format:$dateFormatLong}
 				</dd>
 			{/if}
 
@@ -248,10 +249,10 @@
 				<dd>
 					{* If this is the original version *}
 					{if $firstPublication->getID() === $publication->getId()}
-						{$firstPublication->getData('datePublished')|date_format:$dateFormatShort}
+						{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}
 					{* If this is an updated version *}
 					{else}
-						{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatShort dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatShort}
+						{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}
 					{/if}
 				</dd>
 				{if count($article->getPublishedPublications()) > 1}
@@ -261,7 +262,7 @@
 					<dd>
 						<ul class="article-page__versions">
 							{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
-								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatLong version=$iPublication->getData('version')}{/capture}
 								<li>
 									{if $iPublication->getId() === $publication->getId()}
 										{$name}
@@ -355,7 +356,7 @@
 		<h2 class="article-side__title">{translate key="submission.versions"}</h2>
 		<ul>
 		{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
-			{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+			{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatLong version=$iPublication->getData('version')}{/capture}
 			<li>
 				{if $iPublication->getId() === $publication->getId()}
 					{$name}
