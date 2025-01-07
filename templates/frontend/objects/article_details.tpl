@@ -117,15 +117,15 @@
 										<span>{$authorString->getFullName()|escape}</span>
 									</span>
 								{/if}
-								{if $authorString->getOrcid()}
-									<a class="orcidImage img-wrapper" href="{$authorString->getOrcid()|escape}">
-										{if $orcidIcon}
-											{$orcidIcon}
-										{else}
-											<img src="{$baseUrl}/{$orcidImageUrl}">
-										{/if}
-									</a>
-								{/if}
+								{if $authorString->getData('orcid') && $authorString->getData('orcidAccessToken')}
+                                    <a class="orcidImage img-wrapper" href="{$authorString->getData('orcid')|escape}">
+                                        {if $orcidIcon}
+                                            {$orcidIcon}
+                                        {else}
+                                            <img src="{$baseUrl}/{$orcidImageUrl}">
+                                        {/if}
+                                    </a>
+                                {/if}
 							</li>
 						{/strip}
 					{/foreach}
@@ -146,11 +146,13 @@
 									{/if}
 								</div>
 							{/if}
-							{if $author->getOrcid()}
+							{if $author->getData('orcid')}
 								<div class="article-details__author-orcid">
-									<a href="{$author->getOrcid()|escape}" target="_blank">
-										{$orcidIcon}
-										{$author->getOrcid()|escape}
+									<a href="{$author->getData('orcid')|escape}" target="_blank">
+                                        {if $author->getData('orcidAccessToken')}
+										    {$orcidIcon}
+                                        {/if}
+										{$author->getData('orcid')|escape}
 									</a>
 								</div>
 							{/if}
