@@ -75,6 +75,27 @@ class ImmersionThemePlugin extends ThemePlugin {
 			'default' => '#000',
 		));
 
+		$this->addOption('abstractsOnIssuePage', 'FieldOptions', [
+			'type' => 'radio',
+			'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.label'),
+			'description' => __('plugins.themes.immersion.option.abstractsOnIssuePage.description'),
+			'tooltip' => __('plugins.themes.immersion.option.abstractsOnIssuePage.tooltip'),
+			'options' => [
+				[
+					'value' => 'noAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.noAbstracts'),
+				],
+				[
+					'value' => 'shortAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.shortAbstracts'),
+				],
+				[
+					'value' => 'fullAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.fullAbstracts'),
+				],
+			],
+			'default' => 'noAbstracts',
+		]);
 
 		// Additional data to the templates
 		HookRegistry::register ('TemplateManager::display', array($this, 'addIssueTemplateData'));
@@ -209,7 +230,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		$templateMgr->assign(array(
 			'publishedSubmissions' => $publishedSubmissionsInSection,
-			'lastSectionColor' => $lastSectionColor
+			'lastSectionColor' => $lastSectionColor,
+			'showAbstractsOnIssuePage' => $this->getOption('abstractsOnIssuePage')
 		));
 	}
 

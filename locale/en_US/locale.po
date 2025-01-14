@@ -100,3 +100,21 @@ msgstr "Journal description background"
 
 msgid "plugins.themes.immersion.options.journalDescriptionColour.description"
 msgstr "Background colour for the journal description section on the journal home page"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.label"
+msgstr "Show article abstracts on issue page"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.description"
+msgstr "Select how to show article abstracts on issue pages"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.noAbstracts"
+msgstr "Do not show abstracts"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.shortAbstracts"
+msgstr "Show shortend abstracts"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.fullAbstracts"
+msgstr "Show full abstracts"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.tooltip"
+msgstr "To adjust the height of the abstract visible when selecting \"shortend abstracts\" set the css class \".article__abstract-shortend {height = xxxpx;}\" in the journal stylesheet."

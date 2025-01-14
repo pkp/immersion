@@ -36,7 +36,7 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'shortAbstracts'}article__abstract-shortend{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$article->getAuthorString()|escape}</p>
 			{/if}
@@ -67,6 +67,10 @@
 						</li>
 					{/foreach}
 				</ul>
+			{/if}
+
+			{if $showAbstractsOnIssuePage !== 'noAbstracts'}
+				{$article->getLocalizedAbstract()|strip_unsafe_html}
 			{/if}
 		</div>
 
