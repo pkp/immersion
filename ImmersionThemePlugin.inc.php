@@ -86,8 +86,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.noAbstracts'),
 				],
 				[
-					'value' => 'shortAbstracts',
-					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.shortAbstracts'),
+					'value' => 'fadeoutAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.fadeoutAbstracts'),
 				],
 				[
 					'value' => 'fullAbstracts',

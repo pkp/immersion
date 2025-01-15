@@ -110,11 +110,11 @@ msgstr "Select how to show article abstracts on issue pages"
 msgid "plugins.themes.immersion.option.abstractsOnIssuePage.noAbstracts"
 msgstr "Do not show abstracts"
 
-msgid "plugins.themes.immersion.option.abstractsOnIssuePage.shortAbstracts"
-msgstr "Show shortend abstracts"
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.fadeoutAbstracts"
+msgstr "Show partial abstracts (with fade-out effect)"
 
 msgid "plugins.themes.immersion.option.abstractsOnIssuePage.fullAbstracts"
 msgstr "Show full abstracts"
 
 msgid "plugins.themes.immersion.option.abstractsOnIssuePage.tooltip"
-msgstr "To adjust the height of the abstract visible when selecting \"shortend abstracts\" set the css class \".article__abstract-shortend {height = xxxpx;}\" in the journal stylesheet."
+msgstr "To adjust the height of the abstract visible when selecting \"partial abstracts\" set the css class \".article__abstract-fade {height = xxxpx;}\" in the journal stylesheet."
