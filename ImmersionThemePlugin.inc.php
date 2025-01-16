@@ -25,6 +25,15 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Styles for HTML galleys
 		$this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.css', array('contexts' => 'htmlGalley'));
 
+		// For the abstract fade-out effect we require a css class for each section color
+		$cssOutput = '';
+		foreach ($this->getAllSectionColors() as $colorIndex => $sectionColor) {
+				$cssOutput .= ".article__abstract-fadeout-{$colorIndex}::after {\n";
+				$cssOutput .= "  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$sectionColor} 100%);\n";
+				$cssOutput .= "}\n\n";
+		}
+		$this->addStyle('fadeout', $cssOutput, ['inline' => true]);
+		
 		// Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
 		$this->addScript('app-js', 'resources/dist/app.min.js');
 
@@ -481,5 +490,25 @@ class ImmersionThemePlugin extends ThemePlugin {
 			'boolEmbeddedCss' => $boolEmbeddedCss,
 			'themePath' => $request->getBaseUrl() . "/" . $this->getPluginPath(),
 		));
+	}
+
+	/**
+	 * Get all defined sectin colors indexed by 'issueId_sectionId'
+	 */
+	public function getAllSectionColors() {
+		$issueDao = DAORegistry::getDAO('IssueDAO');
+		$issues = $issueDao->getPublishedIssues(Application::get()->getRequest()->getContext()->getId());
+
+		$immersionSectionColors = [];
+		while ($issue = $issues->next()) {
+			$immersionSectionColors[$issue->getId()] = $issue->getData('immersionSectionColor');
+		}
+
+		return array_reduce(array_keys($immersionSectionColors), function($carry, $outerKey) use ($immersionSectionColors) {
+			foreach ($immersionSectionColors[$outerKey] as $innerKey => $value) {
+				$carry[$outerKey . '_' . $innerKey] = $value;
+			}
+			return $carry;
+		}, []);
 	}
 }

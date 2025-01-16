@@ -37,7 +37,7 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'fadeoutAbstracts'}article__abstract-fadeout article__abstract-fadeout-{substr($immersionColorPick, 1)}{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'fadeoutAbstracts'}article__abstract-fadeout article__abstract-fadeout-{$issue->getId()}_{$section.section->getId()}{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$article->getAuthorString()|escape}</p>
 			{/if}
@@ -71,13 +71,6 @@
 			{/if}
 
 			{if $showAbstractsOnIssuePage !== 'noAbstracts'}
-				{if $immersionColorPick} 
-					<style>
-						.article__abstract-fadeout-{substr($immersionColorPick, 1)}::after {
-							background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$immersionColorPick} 100%);
-						}
-					</style>
-				{/if}
 				{$article->getLocalizedAbstract()|strip_unsafe_html}
 			{/if}
 		</div>
