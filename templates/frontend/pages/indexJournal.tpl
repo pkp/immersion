@@ -60,13 +60,13 @@
 				<ul class="row announcement-section__toc">
 					{foreach from=$announcements item=announcement}
 						<li class="col-md-4">
-							<p class="announcement__date">{$announcement->getDatePosted()|date_format:$dateFormatShort|escape}</p>
+							<p class="announcement__date">{$announcement->datePosted|date_format:$dateFormatShort|escape}</p>
 							<h4 class="announcement__title">
-								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()|escape}">
-									{$announcement->getLocalizedTitle()|escape}
+								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->id|escape}">
+									{$announcement->getLocalizedData('title')|escape}
 								</a>
 							</h4>
-							<p>{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}</p>
+							<p>{$announcement->getLocalizedData('descriptionShort')|strip_unsafe_html}</p>
 						</li>
 					{/foreach}
 				</ul>

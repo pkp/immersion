@@ -16,25 +16,25 @@
 
 <article>
 	<{$heading}>
-		<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}">
-			{$announcement->getLocalizedTitle()|escape}
+		<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->id}">
+			{$announcement->getLocalizedData('title')|escape}
 		</a>
 	</{$heading}>
 
 	<p class="text-muted">
-		{$announcement->getDatePosted()|date_format:$dateFormatShort}
+		{$announcement->datePosted|date_format:$dateFormatShort}
 	</p>
 
 	<div class="announcements__short-description">
-		{$announcement->getLocalizedDescriptionShort()|strip_unsafe_html}
+		{$announcement->getLocalizedData('descriptionShort')|strip_unsafe_html}
 	</div>
 
-	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->getId()}" class="btn btn-secondary">
+	<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->id}" class="btn btn-secondary">
 		<span aria-hidden="true" role="presentation">
 			{translate key="common.readMore"}
 		</span>
 		<span class="visually-hidden">
-			{translate key="common.readMoreWithTitle" title=$announcement->getLocalizedTitle()|escape}
+			{translate key="common.readMoreWithTitle" title=$announcement->getLocalizedData('title')|escape}
 		</span>
 	</a>
 </article>

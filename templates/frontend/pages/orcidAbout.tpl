@@ -15,20 +15,26 @@
 		<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
 			<header class="main__header">
 				<h1 class="main__title">
-					<span>{translate key="plugins.generic.orcidProfile.about.title"}</span>
+					<span>{translate key="orcid.about.title"}</span>
 				</h1>
 			</header>
 			<div class="content-body">
 				<p class="description">
-					{translate key="plugins.generic.orcidProfile.about.orcidExplanation"}
+					{translate key="orcid.about.orcidExplanation"}
 				</p>
-				<h3>{translate key="plugins.generic.orcidProfile.about.howAndWhy.title"}</h3>
+				<h3>{translate key="orcid.about.howAndWhy.title"}</h3>
+                {if $isMemberApi}
+                    <p class="description">
+                        {translate key="orcid.about.howAndWhyMemberAPI"}
+                    </p>
+                {else}
+                    <p class="description">
+                        {translate key="orcid.about.howAndWhyPublicAPI"}
+                    </p>
+                {/if}
+				<h3>{translate key="orcid.about.display.title"}</h3>
 				<p class="description">
-					{translate key="plugins.generic.orcidProfile.about.howAndWhy"}
-				</p>
-				<h3>{translate key="plugins.generic.orcidProfile.about.display.title"}</h3>
-				<p class="description">
-					{translate key="plugins.generic.orcidProfile.about.display"}
+					{translate key="orcid.about.display"}
 				</p>
 			</div>
 		</div>

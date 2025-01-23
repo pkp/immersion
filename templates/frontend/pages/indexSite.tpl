@@ -31,7 +31,7 @@
 					<ul class="index-site__journals">
 						{foreach from=$journals item=journal}
 							{capture assign="url"}{url journal=$journal->getPath()}{/capture}
-							{assign var="thumb" value=$journal->getLocalizedSetting('journalThumbnail')}
+							{assign var="thumb" value=$journal->getLocalizedData('journalThumbnail')}
 							{assign var="description" value=$journal->getLocalizedDescription()}
 							<li{if $thumb} class="has_thumb"{/if}>
 								{if $thumb}

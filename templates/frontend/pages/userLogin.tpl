@@ -82,6 +82,15 @@
 						</fieldset>
 					{/if}
 
+					{* altcha spam blocker *}
+					{if $altchaEnabled}
+						<fieldset class="altcha_wrapper">
+							<div class="fields">
+								<altcha-widget challengejson='{$altchaChallenge|@json_encode}' floating></altcha-widget>
+							</div>
+						</fieldset>
+					{/if}
+
 					<div class="form-group">
 						<p>
 							<button class="btn btn-primary" type="submit">

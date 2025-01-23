@@ -15,7 +15,7 @@
 		<div class="offset-md-1 col-md-10 offset-lg-2 col-lg-8">
 			<header class="main__header">
 				<h1 class="main__title">
-					<span>{translate key="plugins.generic.orcidProfile.verify.title"}</span>
+					<span>{translate key="orcid.verify.title"}</span>
 				</h1>
 			</header>
 
@@ -26,34 +26,34 @@
 						<span class="orcid"><a href="{$orcid|escape}" target="_blank">{$orcidIcon}{$orcid|escape}</a></span>
 					</p>
 					<div class="orcid-success">
-					{translate key="plugins.generic.orcidProfile.verify.success"}
+					{translate key="orcid.verify.success"}
 					</div>
 					{if $sendSubmission}
 						{if $sendSubmissionSuccess}
 							<div class="orcid-success">
-							{translate key="plugins.generic.orcidProfile.verify.sendSubmissionToOrcid.success"}
+							{translate key="orcid.verify.sendSubmissionToOrcid.success"}
 							</div>
 						{else}
 							<div class="orcid-failure">
-							{translate key="plugins.generic.orcidProfile.verify.sendSubmissionToOrcid.failure"}
+							{translate key="orcid.verify.sendSubmissionToOrcid.failure"}
 							</div>
 						{/if}
 					{elseif $submissionNotPublished}
-						{translate key="plugins.generic.orcidProfile.verify.sendSubmissionToOrcid.notpublished"}
+						{translate key="orcid.verify.sendSubmissionToOrcid.notpublished"}
 					{/if}
 				{else}
 					<div class="orcid-failure">
 					{if $denied}
-						{translate key="plugins.generic.orcidProfile.authDenied"}
+						{translate key="orcid.authDenied"}
 					{elseif $authFailure}
-						{translate key="plugins.generic.orcidProfile.authFailure"}
+						{translate key="orcid.authFailure"}
 					{elseif $duplicateOrcid}
-						{translate key="plugins.generic.orcidProfile.verify.duplicateOrcid"}
+						{translate key="orcid.verify.duplicateOrcid"}
 					{else}
-						{translate key="plugins.generic.orcidProfile.verify.failure"}
+						{translate key="orcid.verify.failure"}
 					{/if}
 					</div>
-					{translate key="plugins.generic.orcidProfile.failure.contact"}
+					{translate key="orcid.failure.contact"}
 				{/if}
 				</div>
 			</div>
