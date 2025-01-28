@@ -3,8 +3,8 @@
 /**
  * @file plugins/themes/immersion/ImmersionThemePlugin.inc.php
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @class ImmersionThemePlugin
@@ -15,14 +15,18 @@
 
 use APP\core\Request;
 use APP\facades\Repo;
+use APP\issue\Issue;
+use APP\section\Section;
+use APP\template\TemplateManager;
+use PKP\config\Config;
+use PKP\context\Context;
+use PKP\db\DAORegistry;
 use PKP\facades\Locale;
 use PKP\plugins\ThemePlugin;
 use PKP\plugins\PluginSettingsDAO;
-use APP\journal\SectionDAO;
 
 class ImmersionThemePlugin extends ThemePlugin
 {
-
     public function init()
     {
 
@@ -31,20 +35,20 @@ class ImmersionThemePlugin extends ThemePlugin
         $this->addStyle('less', 'resources/less/import.less');
 
         // Styles for HTML galleys
-        $this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.less', array('contexts' => 'htmlGalley'));
+        $this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.less', ['contexts' => 'htmlGalley']);
 
         // Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
         $this->addScript('app-js', 'resources/dist/app.min.js');
 
         // Add navigation menu areas for this theme
-        $this->addMenuArea(array('primary', 'user'));
+        $this->addMenuArea(['primary', 'user']);
 
         // Option to show section description on the journal's homepage; turned off by default
-        $this->addOption('sectionDescriptionSetting', 'FieldOptions', array(
+        $this->addOption('sectionDescriptionSetting', 'FieldOptions', [
             'label' => __('plugins.themes.immersion.options.sectionDescription.label'),
             'description' => __('plugins.themes.immersion.options.sectionDescription.description'),
             'type' => 'radio',
-            'options' => array(
+            'options' => [
                 [
                     'value' => 'disable',
                     'label' => __('plugins.themes.immersion.options.sectionDescription.disable'),
@@ -53,14 +57,14 @@ class ImmersionThemePlugin extends ThemePlugin
                     'value' => 'enable',
                     'label' => __('plugins.themes.immersion.options.sectionDescription.enable'),
                 ],
-            )
-        ));
+            ]
+        ]);
 
-        $this->addOption('journalDescription', 'FieldOptions', array(
+        $this->addOption('journalDescription', 'FieldOptions', [
             'label' => __('plugins.themes.immersion.options.journalDescription.label'),
             'description' => __('plugins.themes.immersion.options.journalDescription.description'),
             'type' => 'radio',
-            'options' => array(
+            'options' => [
                 [
                     'value' => 0,
                     'label' => __('plugins.themes.immersion.options.journalDescription.disable'),
@@ -69,56 +73,56 @@ class ImmersionThemePlugin extends ThemePlugin
                     'value' => 1,
                     'label' => __('plugins.themes.immersion.options.journalDescription.enable'),
                 ],
-            )
-        ));
+            ]
+        ]);
 
-        $this->addOption('journalDescriptionColour', 'FieldColor', array(
+        $this->addOption('journalDescriptionColour', 'FieldColor', [
             'label' => __('plugins.themes.immersion.options.journalDescriptionColour.label'),
             'description' => __('plugins.themes.immersion.options.journalDescriptionColour.description'),
             'default' => '#000',
-        ));
+        ]);
 
-        $this->addOption('immersionAnnouncementsColor', 'FieldColor', array(
+        $this->addOption('immersionAnnouncementsColor', 'FieldColor', [
             'label' => __('plugins.themes.immersion.announcements.colorPick'),
             'default' => '#000',
-        ));
+        ]);
 
         // Add usage stats display options
         $this->addOption('displayStats', 'FieldOptions', [
             'type' => 'radio',
             'label' => __('plugins.themes.immersion.option.displayStats.label'),
-			'options' => [
-				[
-					'value' => 'none',
-					'label' => __('plugins.themes.immersion.option.displayStats.none'),
-				],
-				[
-					'value' => 'bar',
-					'label' => __('plugins.themes.immersion.option.displayStats.bar'),
-				],
-				[
-					'value' => 'line',
-					'label' => __('plugins.themes.immersion.option.displayStats.line'),
-				],
-			],
-			'default' => 'none',
-		]);
+            'options' => [
+                [
+                    'value' => 'none',
+                    'label' => __('plugins.themes.immersion.option.displayStats.none'),
+                ],
+                [
+                    'value' => 'bar',
+                    'label' => __('plugins.themes.immersion.option.displayStats.bar'),
+                ],
+                [
+                    'value' => 'line',
+                    'label' => __('plugins.themes.immersion.option.displayStats.line'),
+                ],
+            ],
+            'default' => 'none',
+        ]);
 
         // Additional data to the templates
-        HookRegistry::add('TemplateManager::display', array($this, 'addIssueTemplateData'));
-        HookRegistry::add('TemplateManager::display', array($this, 'addSiteWideData'));
-        HookRegistry::add('TemplateManager::display', array($this, 'homepageAnnouncements'));
-        HookRegistry::add('TemplateManager::display', array($this, 'homepageJournalDescription'));
-        HookRegistry::add('issueform::display', array($this, 'addToIssueForm'));
+        HookRegistry::add('TemplateManager::display', [$this, 'addIssueTemplateData']);
+        HookRegistry::add('TemplateManager::display', [$this, 'addSiteWideData']);
+        HookRegistry::add('TemplateManager::display', [$this, 'homepageAnnouncements']);
+        HookRegistry::add('TemplateManager::display', [$this, 'homepageJournalDescription']);
+        HookRegistry::add('issueform::display', [$this, 'addToIssueForm']);
 
         // Additional variable for the issue form
-        HookRegistry::register('Schema::get::issue', array($this, 'addToSchema'));
-        HookRegistry::add('issueform::initdata', array($this, 'initDataIssueFormFields'));
-        HookRegistry::add('issueform::readuservars', array($this, 'readIssueFormFields'));
-        HookRegistry::add('issueform::execute', array($this, 'executeIssueFormFields'));
+        HookRegistry::add('Schema::get::issue', [$this, 'addToSchema']);
+        HookRegistry::add('issueform::initdata', [$this, 'initDataIssueFormFields']);
+        HookRegistry::add('issueform::readuservars', [$this, 'readIssueFormFields']);
+        HookRegistry::add('issueform::execute', [$this, 'executeIssueFormFields']);
         HookRegistry::add(
             'Templates::Editor::Issues::IssueData::AdditionalMetadata',
-            array($this, 'callbackTemplateIssueForm')
+            [$this, 'callbackTemplateIssueForm']
         );
 
         // Load colorpicker on issue management page
@@ -132,18 +136,16 @@ class ImmersionThemePlugin extends ThemePlugin
 
     /**
      * Get the display name of this theme
-     * @return string
      */
-    public function getDisplayName()
+    public function getDisplayName(): string
     {
         return __('plugins.themes.immersion.name');
     }
 
     /**
      * Get the description of this plugin
-     * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return __('plugins.themes.immersion.description');
     }
@@ -163,27 +165,33 @@ class ImmersionThemePlugin extends ThemePlugin
         $template = $args[1];
         $request = $this->getRequest(); /** @var Request $request */
 
-        if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') return false;
+        if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') {
+            return false;
+        }
 
         $context = $request->getContext(); /** @var Context $context */
         $contextId = $context->getId();
 
         /** @var Issue $issue */
         if ($template === 'frontend/pages/indexJournal.tpl') {
-            $issue = Repo::issue()->getCurrent($contextId, true);
+            $issue = Repo::issue()->getCurrent($contextId);
         } else {
             $issue = $templateMgr->getTemplateVars('issue');
         }
 
-        if (!$issue) return false;
+        if (!$issue) {
+            return false;
+        }
 
         $publishedSubmissionsInSection = $templateMgr->getTemplateVars('publishedSubmissions');
 
         // Section color
         $immersionSectionColors = $issue->getData('immersionSectionColor');
-        if (empty($immersionSectionColors)) return false; // Section background colors aren't set
+        if (empty($immersionSectionColors)) {
+            return false;
+        } // Section background colors aren't set
 
-        $sections = Repo::section()->getByIssueId($issue->getId()); /** @var \Illuminate\Support\LazyCollection $sections */
+        $sections = Repo::section()->getByIssueId($issue->getId());
         $lastSectionColor = null;
 
         // Section description; check if this option and BrowseBySection plugin is enabled
@@ -197,7 +205,7 @@ class ImmersionThemePlugin extends ThemePlugin
 
         $locale = Locale::getLocale();
         foreach ($publishedSubmissionsInSection as $sectionId => $publishedArticlesBySection) {
-            foreach ($sections as $section) { /** @var \APP\section\Section $section */
+            foreach ($sections as $section) { /** @var Section $section */
                 if ($section->getId() == $sectionId) {
                     // Set section and its background color
                     $publishedSubmissionsInSection[$sectionId]['section'] = $section;
@@ -223,10 +231,10 @@ class ImmersionThemePlugin extends ThemePlugin
             }
         }
 
-        $templateMgr->assign(array(
+        $templateMgr->assign([
             'publishedSubmissions' => $publishedSubmissionsInSection,
             'lastSectionColor' => $lastSectionColor
-        ));
+        ]);
     }
 
     /**
@@ -244,7 +252,9 @@ class ImmersionThemePlugin extends ThemePlugin
         $templateMgr = $args[0];
         $template = $args[1];
 
-        if ($template !== 'frontend/pages/indexJournal.tpl') return false;
+        if ($template !== 'frontend/pages/indexJournal.tpl') {
+            return false;
+        }
 
         $request = $this->getRequest();
         $journal = $request->getJournal();
@@ -258,11 +268,11 @@ class ImmersionThemePlugin extends ThemePlugin
             $isAnnouncementDark = true;
         }
 
-        $templateMgr->assign(array(
+        $templateMgr->assign([
             'announcementsIntroduction' => $announcementsIntro,
             'isAnnouncementDark' => $isAnnouncementDark,
             'immersionAnnouncementsColor' => $immersionAnnouncementsColor
-        ));
+        ]);
     }
 
     /**
@@ -282,7 +292,6 @@ class ImmersionThemePlugin extends ThemePlugin
         $journal = $request->getJournal();
 
         if (!defined('SESSION_DISABLE_INIT')) {
-
             // Check locales
             if ($journal) {
                 $locales = $journal->getSupportedLocaleNames();
@@ -293,7 +302,7 @@ class ImmersionThemePlugin extends ThemePlugin
             // Load login form
             $loginUrl = $request->url(null, 'login', 'signIn');
             if (Config::getVar('security', 'force_login_ssl')) {
-                $loginUrl = PKPString::regexp_replace('/^http:/', 'https:', $loginUrl);
+                $loginUrl = preg_replace('/^http:/u', 'https:', $loginUrl);
             }
 
             $orcidImageUrl = $this->getPluginPath() . '/templates/images/orcid.png';
@@ -302,11 +311,11 @@ class ImmersionThemePlugin extends ThemePlugin
                 $templateMgr->assign('immersionHomepageImage', $journal->getLocalizedData('homepageImage'));
             }
 
-            $templateMgr->assign(array(
+            $templateMgr->assign([
                 'languageToggleLocales' => $locales,
                 'loginUrl' => $loginUrl,
                 'orcidImageUrl' => $orcidImageUrl
-            ));
+            ]);
         }
     }
 
@@ -324,7 +333,9 @@ class ImmersionThemePlugin extends ThemePlugin
         $templateMgr = $args[0];
         $template = $args[1];
 
-        if ($template != "frontend/pages/indexJournal.tpl") return false;
+        if ($template != "frontend/pages/indexJournal.tpl") {
+            return false;
+        }
 
         $journalDescriptionColour = $this->getOption('journalDescriptionColour');
         $isJournalDescriptionDark = false;
@@ -332,11 +343,11 @@ class ImmersionThemePlugin extends ThemePlugin
             $isJournalDescriptionDark = true;
         }
 
-        $templateMgr->assign(array(
+        $templateMgr->assign([
             'showJournalDescription' => $this->getOption('journalDescription'),
             'journalDescriptionColour' => $journalDescriptionColour,
             'isJournalDescriptionDark' => $isJournalDescriptionDark
-        ));
+        ]);
     }
 
     /**
@@ -380,7 +391,7 @@ class ImmersionThemePlugin extends ThemePlugin
         $issueForm->setData('immersionSectionColor', $issueForm->issue->getData('immersionSectionColor'));
     }
 
-    /**$$
+    /**
      * Read user input from additional fields in the issue editing form
      *
      * @param $hookName string `issueform::readUserVars`
@@ -391,7 +402,7 @@ class ImmersionThemePlugin extends ThemePlugin
      */
     public function readIssueFormFields($hookName, $args)
     {
-        $issueForm =& $args[0];
+        $issueForm = & $args[0];
         $request = $this->getRequest();
 
         $issueForm->setData('immersionSectionColor', $request->getUserVar('immersionSectionColor'));
@@ -438,7 +449,8 @@ class ImmersionThemePlugin extends ThemePlugin
         if ($issueForm->issue) {
             $request = $this->getRequest();
 
-            $sections = Repo::section()->getByIssueId($issueForm->issue->getId())->all(); /** @var \APP\section\Section[] $sections */
+            /** @var Section[] $sections */
+            $sections = Repo::section()->getByIssueId($issueForm->issue->getId())->all();
 
             $templateMgr = TemplateManager::getManager($request);
 
