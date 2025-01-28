@@ -118,13 +118,13 @@
 										<span>{$authorString->getFullName()|escape}</span>
 									</span>
 								{/if}
-								{if $authorString->getData('orcid') && $authorString->getData('orcidAccessToken')}
+								{if $authorString->getData('orcid')}
                                     <a class="orcidImage img-wrapper" href="{$authorString->getData('orcid')|escape}">
-                                        {if $orcidIcon}
-                                            {$orcidIcon}
-                                        {else}
-                                            <img src="{$baseUrl}/{$orcidImageUrl}">
-                                        {/if}
+										{if $authorString->hasVerifiedOrcid()}
+											{$orcidIcon}
+										{else}
+											{$orcidUnauthenticatedIcon}
+										{/if}
                                     </a>
                                 {/if}
 							</li>
@@ -150,10 +150,12 @@
 							{if $author->getData('orcid')}
 								<div class="article-details__author-orcid">
 									<a href="{$author->getData('orcid')|escape}" target="_blank">
-                                        {if $author->getData('orcidAccessToken')}
-										    {$orcidIcon}
-                                        {/if}
-										{$author->getData('orcid')|escape}
+										{if $author->hasVerifiedOrcid()}
+											{$orcidIcon}
+										{else}
+											{$orcidUnauthenticatedIcon}
+										{/if}
+										{$author->getOrcidDisplayValue()|escape}
 									</a>
 								</div>
 							{/if}

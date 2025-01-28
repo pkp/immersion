@@ -30,7 +30,7 @@
 										</span>
 										<span class="name">
 										{$mastheadUser['user']->getFullName()|escape}
-											{if $mastheadUser['user']->getData('orcid') && $mastheadUser['user']->getData('orcidAccessToken')}
+											{if $mastheadUser['user']->getData('orcid') && $mastheadUser['user']->hasVerifiedOrcid()}
 												<span class="orcid">
 												<a href="{$mastheadUser['user']->getData('orcid')|escape}" target="_blank" aria-label="{translate key="common.editorialHistory.page.orcidLink" name=$mastheadUser['user']->getFullName()|escape}">
 													{$orcidIcon}
@@ -62,7 +62,7 @@
 								{strip}
 									<span class="name">
 									{$reviewer->getFullName()|escape}
-										{if $reviewer->getData('orcid') && $reviewer->getData('orcidAccessToken')}
+										{if $reviewer->getData('orcid') && $reviewer->hasVerifiedOrcid()}
 											<span class="orcid">
 											<a href="{$reviewer->getData('orcid')|escape}" target="_blank" aria-label="{translate key="common.editorialHistory.page.orcidLink" name=$reviewer->getFullName()|escape}">
 												{$orcidIcon}
