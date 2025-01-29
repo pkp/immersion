@@ -27,7 +27,7 @@
 		{capture name="issueMetadata"}
 			{if $issue->getShowVolume() || $issue->getShowNumber()}
 				{if $issue->getShowVolume()}
-					<span class="issue__volume">{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}, {/if}</span>
+					<span class="issue__volume">{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}{translate key="common.commaListSeparator"}{/if}</span>
 				{/if}
 				{if $issue->getShowNumber()}
 					<span class="issue__number">{translate key="issue.no"} {$issue->getNumber()|escape}</span>
