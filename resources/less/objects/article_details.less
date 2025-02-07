@@ -71,6 +71,10 @@
 	}
 }
 
+.article-details__author-affiliation {
+	padding-top: 2px;
+}
+
 .bio-modal {
 
 	p {
@@ -84,6 +88,16 @@
 	width: 16px;
 	margin-left: 2px;
 	margin-right: 1px;
+}
+
+.rorImage {
+	background: #fff;
+	padding-left: 0.2em;
+	padding-right: 0.2em;
+
+	&:after {
+		border-bottom: 0;
+	}
 }
 
 .author-symbol {
@@ -124,7 +138,20 @@
 	}
 }
 
-// Referenecs
+// Abstract
+
+.article-page__abstract a,
+.article-page__references a{
+	text-decoration: underline;
+
+	&:hover {
+		background-color: #fff;
+		color: #000;
+		text-decoration: none;
+	}
+}
+
+// References
 
 ol.references {
 	padding-left: 20px;

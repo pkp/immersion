@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/article_details.tpl
  *
- * Copyright (c) 2014-2020 Simon Fraser University
- * Copyright (c) 2003-2020 John Willinsky
+ * Copyright (c) 2014-2025 Simon Fraser University
+ * Copyright (c) 2003-2025 John Willinsky
  * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
  *
  * @brief View of an Article which displays all details about the article.
@@ -49,19 +49,20 @@
  * Templates::Article::Main
  * Templates::Article::Details
  *
- * @uses $article Article This article
+ * @uses $article Submission This article
  * @uses $publication Publication The publication being displayed
  * @uses $firstPublication Publication The first published version of this article
  * @uses $currentPublication Publication The most recently published version of this article
  * @uses $issue Issue The issue this article is assigned to
  * @uses $section Section The journal section this article is assigned to
+ * @uses $categories Category The category this article is assigned to
  * @uses $primaryGalleys array List of article galleys that are not supplementary or dependent
  * @uses $supplementaryGalleys array List of article galleys that are supplementary
  * @uses $keywords array List of keywords assigned to this article
  * @uses $pubIdPlugins Array of pubId plugins which this article may be assigned
  * @uses $licenseTerms string License terms.
  * @uses $licenseUrl string URL to license. Only assigned if license should be
- *   included with published articles.
+ *   included with published submissions.
  * @uses $ccLicenseBadge string An image and text with details about the license
  *}
 <section class="col-md-8 article-page">
@@ -100,7 +101,7 @@
 						{strip}
 							<li class="authors-string__item">
 								{capture}
-									{if $authorString->getLocalizedAffiliation() || $authorString->getLocalizedBiography()}
+									{if count($authorString->getAffiliations()) > 0 || $authorString->getLocalizedBiography()}
 										{assign var=authorInfo value=true}
 									{else}
 										{assign var=authorInfo value=false}
@@ -117,15 +118,15 @@
 										<span>{$authorString->getFullName()|escape}</span>
 									</span>
 								{/if}
-								{if $authorString->getOrcid()}
-									<a class="orcidImage img-wrapper" href="{$authorString->getOrcid()|escape}">
-										{if $orcidIcon}
+								{if $authorString->getData('orcid')}
+                                    <a class="orcidImage img-wrapper" href="{$authorString->getData('orcid')|escape}">
+										{if $authorString->hasVerifiedOrcid()}
 											{$orcidIcon}
 										{else}
-											<img src="{$baseUrl}/{$orcidImageUrl}">
+											{$orcidUnauthenticatedIcon}
 										{/if}
-									</a>
-								{/if}
+                                    </a>
+                                {/if}
 							</li>
 						{/strip}
 					{/foreach}
@@ -138,19 +139,25 @@
 				<div class="article-details__authors">
 					{foreach from=$authors item=author key=authorKey}
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
-							{if $author->getLocalizedAffiliation()}
-								<div class="article-details__author-affiliation">
-									{$author->getLocalizedAffiliation()|escape}
-									{if $author->getData('rorId')}
-										<a class="rorImage" href="{$author->getData('rorId')|escape}">{$rorIdIcon}</a>
-									{/if}
-								</div>
+							{if count($author->getAffiliations()) > 0}
+								{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
+									<div class="article-details__author-affiliation">
+										{$affiliation->getLocalizedName()|escape}
+										{if $affiliation->getRor()}
+											<a class="rorImage" href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>
+										{/if}
+									</div>
+								{/foreach}
 							{/if}
-							{if $author->getOrcid()}
+							{if $author->getData('orcid')}
 								<div class="article-details__author-orcid">
-									<a href="{$author->getOrcid()|escape}" target="_blank">
-										{$orcidIcon}
-										{$author->getOrcid()|escape}
+									<a href="{$author->getData('orcid')|escape}" target="_blank">
+										{if $author->hasVerifiedOrcid()}
+											{$orcidIcon}
+										{else}
+											{$orcidUnauthenticatedIcon}
+										{/if}
+										{$author->getOrcidDisplayValue()|escape}
 									</a>
 								</div>
 							{/if}
@@ -230,12 +237,12 @@
 					</dd>
 				{/if}
 			{/foreach}
-			{if $article->getDateSubmitted()}
+			{if $article->getData('dateSubmitted')}
 				<dt>
 					{translate key="submissions.submitted"}
 				</dt>
 				<dd>
-					{$article->getDateSubmitted()|escape|date_format:$dateFormatLong}
+					{$article->getData('dateSubmitted')|escape|date_format:$dateFormatLong}
 				</dd>
 			{/if}
 
@@ -246,10 +253,10 @@
 				<dd>
 					{* If this is the original version *}
 					{if $firstPublication->getID() === $publication->getId()}
-						{$firstPublication->getData('datePublished')|date_format:$dateFormatShort}
+						{$firstPublication->getData('datePublished')|date_format:$dateFormatLong}
 					{* If this is an updated version *}
 					{else}
-						{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatShort dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatShort}
+						{translate key="submission.updatedOn" datePublished=$firstPublication->getData('datePublished')|date_format:$dateFormatLong dateUpdated=$publication->getData('datePublished')|date_format:$dateFormatLong}
 					{/if}
 				</dd>
 				{if count($article->getPublishedPublications()) > 1}
@@ -259,7 +266,7 @@
 					<dd>
 						<ul class="article-page__versions">
 							{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
-								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+								{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatLong version=$iPublication->getData('version')}{/capture}
 								<li>
 									{if $iPublication->getId() === $publication->getId()}
 										{$name}
@@ -280,26 +287,30 @@
 
 	{* Abstract *}
 	{if $publication->getLocalizedData('abstract')}
-		<h3 class="label">{translate key="article.abstract"}</h3>
-		{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+		<div class="article-page__abstract">
+			<h3 class="label">{translate key="article.abstract"}</h3>
+			{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+		</div>
 	{/if}
 
 	{* References *}
 	{if $parsedCitations || $publication->getData('citationsRaw')}
-		<h3 class="label">
-			{translate key="submission.citations"}
-		</h3>
-		{if $parsedCitations}
-			<ol class="references">
-				{foreach from=$parsedCitations item="parsedCitation"}
-					<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
-				{/foreach}
-			</ol>
-		{else}
-			<div class="references">
-				{$publication->getData('citationsRaw')|escape|nl2br}
-			</div>
-		{/if}
+		<div class="article-page__references">
+			<h3 class="label">
+					{translate key="submission.citations"}
+				</h3>
+				{if $parsedCitations}
+					<ol class="references">
+						{foreach from=$parsedCitations item="parsedCitation"}
+							<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
+						{/foreach}
+					</ol>
+				{else}
+					<div class="references">
+						{$publication->getData('citationsRaw')|escape|nl2br}
+					</div>
+				{/if}
+		</div>
 	{/if}
 
 	{* Hook for plugins under the main block, like Recommend Articles by Author *}
@@ -353,7 +364,7 @@
 		<h2 class="article-side__title">{translate key="submission.versions"}</h2>
 		<ul>
 		{foreach from=array_reverse($article->getPublishedPublications()) item=iPublication}
-			{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatShort version=$iPublication->getData('version')}{/capture}
+			{capture assign="name"}{translate key="submission.versionIdentity" datePublished=$iPublication->getData('datePublished')|date_format:$dateFormatLong version=$iPublication->getData('version')}{/capture}
 			<li>
 				{if $iPublication->getId() === $publication->getId()}
 					{$name}
