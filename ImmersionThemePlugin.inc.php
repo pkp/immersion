@@ -189,6 +189,11 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		$publishedSubmissionsInSection = $templateMgr->getTemplateVars('publishedSubmissions');
 
+		// we need to set this even if no section colors are set
+		$templateMgr->assign(array(
+			'showAbstractsOnIssuePage' => $this->getOption('abstractsOnIssuePage')
+		));
+
 		// Section color
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
 		if (empty($immersionSectionColors)) return false; // Section background colors aren't set
@@ -236,11 +241,9 @@ class ImmersionThemePlugin extends ThemePlugin {
 				}
 			}
 		}
-
 		$templateMgr->assign(array(
 			'publishedSubmissions' => $publishedSubmissionsInSection,
 			'lastSectionColor' => $lastSectionColor,
-			'showAbstractsOnIssuePage' => $this->getOption('abstractsOnIssuePage')
 		));
 	}
 
@@ -505,8 +508,10 @@ class ImmersionThemePlugin extends ThemePlugin {
 		}
 
 		return array_reduce(array_keys($immersionSectionColors), function($carry, $outerKey) use ($immersionSectionColors) {
-			foreach ($immersionSectionColors[$outerKey] as $innerKey => $value) {
-				$carry[$outerKey . '_' . $innerKey] = $value;
+			if ($immersionSectionColors[$outerKey]) {
+				foreach ($immersionSectionColors[$outerKey] as $innerKey => $value) {
+					$carry[$outerKey . '_' . $innerKey] = $value;
+				}
 			}
 			return $carry;
 		}, []);
