@@ -285,26 +285,30 @@
 
 	{* Abstract *}
 	{if $publication->getLocalizedData('abstract')}
-		<h3 class="label">{translate key="article.abstract"}</h3>
-		{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+		<div class="article-page__abstract">
+			<h3 class="label">{translate key="article.abstract"}</h3>
+			{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+		</div>
 	{/if}
 
 	{* References *}
 	{if $parsedCitations || $publication->getData('citationsRaw')}
-		<h3 class="label">
-			{translate key="submission.citations"}
-		</h3>
-		{if $parsedCitations}
-			<ol class="references">
-				{foreach from=$parsedCitations item="parsedCitation"}
-					<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
-				{/foreach}
-			</ol>
-		{else}
-			<div class="references">
-				{$publication->getData('citationsRaw')|escape|nl2br}
-			</div>
-		{/if}
+		<div class="article-page__references">
+			<h3 class="label">
+					{translate key="submission.citations"}
+				</h3>
+				{if $parsedCitations}
+					<ol class="references">
+						{foreach from=$parsedCitations item="parsedCitation"}
+							<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
+						{/foreach}
+					</ol>
+				{else}
+					<div class="references">
+						{$publication->getData('citationsRaw')|escape|nl2br}
+					</div>
+				{/if}
+		</div>
 	{/if}
 
 	{* Hook for plugins under the main block, like Recommend Articles by Author *}
