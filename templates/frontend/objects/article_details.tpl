@@ -101,7 +101,7 @@
 						{strip}
 							<li class="authors-string__item">
 								{capture}
-									{if $authorString->getLocalizedAffiliation() || $authorString->getLocalizedBiography()}
+									{if count($authorString->getAffiliations()) > 0 || $authorString->getLocalizedBiography()}
 										{assign var=authorInfo value=true}
 									{else}
 										{assign var=authorInfo value=false}
@@ -139,13 +139,15 @@
 				<div class="article-details__authors">
 					{foreach from=$authors item=author key=authorKey}
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
-							{if $author->getLocalizedAffiliation()}
-								<div class="article-details__author-affiliation">
-									{$author->getLocalizedAffiliation()|escape}
-									{if $author->getData('rorId')}
-										<a class="rorImage" href="{$author->getData('rorId')|escape}">{$rorIdIcon}</a>
-									{/if}
-								</div>
+							{if count($author->getAffiliations()) > 0}
+								{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
+									<div class="article-details__author-affiliation">
+										{$affiliation->getLocalizedName()|escape}
+										{if $affiliation->getRor()}
+											<a class="rorImage" href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>
+										{/if}
+									</div>
+								{/foreach}
 							{/if}
 							{if $author->getData('orcid')}
 								<div class="article-details__author-orcid">
