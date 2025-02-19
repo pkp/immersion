@@ -24,15 +24,6 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		// Styles for HTML galleys
 		$this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.css', array('contexts' => 'htmlGalley'));
-
-		// For the abstract fade-out effect we require a css class for each section color
-		$cssOutput = '';
-		foreach ($this->getAllSectionColors() as $colorIndex => $sectionColor) {
-				$cssOutput .= ".article__abstract-fadeout-{$colorIndex}::after {\n";
-				$cssOutput .= "  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$sectionColor} 100%);\n";
-				$cssOutput .= "}\n\n";
-		}
-		$this->addStyle('fadeout', $cssOutput, ['inline' => true]);
 		
 		// Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
 		$this->addScript('app-js', 'resources/dist/app.min.js');
@@ -115,6 +106,8 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		// Check if CSS embedded to the HTML galley
 		HookRegistry::register('TemplateManager::display', array($this, 'hasEmbeddedCSS'));
+		// add abstract fade-out styles
+		HookRegistry::register ('TemplateManager::display', array($this, 'addStyles'));
 
 		// Additional variable for the issue form
 		HookRegistry::register('issuedao::getAdditionalFieldNames', array($this, 'addIssueDAOFieldNames'));
@@ -495,20 +488,31 @@ class ImmersionThemePlugin extends ThemePlugin {
 	/**
 	 * Get all defined sectin colors indexed by 'issueId_sectionId'
 	 */
-	public function getAllSectionColors() {
-		$issueDao = DAORegistry::getDAO('IssueDAO');
-		$issues = $issueDao->getPublishedIssues(Application::get()->getRequest()->getContext()->getId());
+	public function addStyles($hookname, $args) {
 
-		$immersionSectionColors = [];
-		while ($issue = $issues->next()) {
-			$immersionSectionColors[$issue->getId()] = $issue->getData('immersionSectionColor');
+		$templateMgr = $args[0];
+		$template = $args[1];
+
+		$templates = ["frontend/pages/issue.tpl", "frontend/pages/indexJournal.tpl"];
+		if (!in_array($template, $templates)) return false;
+
+		// For the abstract fade-out effect we require a css class for each section color
+		$cssOutput = '';
+		$issue = $templateMgr->getTemplateVars('issue');
+		foreach ($issue->getData('immersionSectionColor') as $sectionIndex => $sectionColor) {
+				$cssOutput .= ".article__abstract-fadeout-{$sectionIndex}::after {\n";
+				$cssOutput .= "  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$sectionColor} 100%);\n";
+				$cssOutput .= "}\n\n";
 		}
 
-		return array_reduce(array_keys($immersionSectionColors), function($carry, $outerKey) use ($immersionSectionColors) {
-			foreach ($immersionSectionColors[$outerKey] as $innerKey => $value) {
-				$carry[$outerKey . '_' . $innerKey] = $value;
-			}
-			return $carry;
-		}, []);
+		$templateMgr->addStyleSheet(
+			'fadeout',
+			$cssOutput,
+			[
+				'contexts' => 'frontend',
+				'inline' => true,
+				'priority' => STYLE_SEQUENCE_LAST,
+			]
+		);
 	}
 }
