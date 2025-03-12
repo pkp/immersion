@@ -83,9 +83,11 @@
 			<p class="article-page__meta">{translate key="article.article"}</p>
 		{/if}
 
-		<p class="article-page__meta">
-			<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{$issue->getIssueIdentification()|escape}</a>
-		</p>
+		{if $issue}
+			<p class="article-page__meta">
+				<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">{$issue->getIssueIdentification()|escape}</a>
+			</p>
+		{/if}
 
 		<h1 class="article-page__title">
 			<span>{$publication->getLocalizedFullTitle()|escape}</span>
