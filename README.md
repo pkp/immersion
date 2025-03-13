@@ -1,5 +1,10 @@
 # Immersion Theme
-An official theme for [OJS 3.1.1+](https://pkp.sfu.ca/ojs/)
+
+An official theme for [OJS 3.1.1+](https://pkp.sfu.ca/ojs/).
+
+| main                                                                                                                                               | 3.5.0                                                                                                                                                              | 3.4.0                                                                                                                                                              |
+|----------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [![immersion](https://github.com/pkp/immersion/actions/workflows/main.yml/badge.svg)](https://github.com/pkp/immersion/actions/workflows/main.yml) | [![immersion](https://github.com/pkp/immersion/actions/workflows/stable-3_5_0.yml/badge.svg)](https://github.com/pkp/immersion/actions/workflows/stable-3_5_0.yml) | [![immersion](https://github.com/pkp/immersion/actions/workflows/stable-3_4_0.yml/badge.svg)](https://github.com/pkp/immersion/actions/workflows/stable-3_4_0.yml) |
 
 This theme was developed and is maintained by the [Public Knowledge Project](https://pkp.sfu.ca/).
 
