@@ -19,13 +19,11 @@ jobs:
           - application: ojs
             php-version: 8.2
             database: pgsql
-
     name: immersion
     steps:
       - uses: pkp/pkp-github-actions@v1
         with:
          node_version: 20
-         branch: main
+         branch: 'stable-3_4_0'
          repository: pkp
          plugin: true
-
