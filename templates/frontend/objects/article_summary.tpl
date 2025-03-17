@@ -13,6 +13,7 @@
  * @uses $showDatePublished bool Show the date this article was published?
  * @uses $hideGalleys bool Hide the article galleys for this article?
  * @uses $primaryGenreIds array List of file genre ids for primary file types
+ * @uses $showAbstractsOnIssuePage string Mode of abstarct visibility
  *}
 {assign var=articlePath value=$article->getBestId()}
 
@@ -36,7 +37,7 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'fadeoutAbstracts'}article__abstract-fadeout {if $section.section}article__abstract-fadeout-{$section.section->getId()}{/if}{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$article->getAuthorString()|escape}</p>
 			{/if}
@@ -67,6 +68,10 @@
 						</li>
 					{/foreach}
 				</ul>
+			{/if}
+
+			{if $showAbstractsOnIssuePage !== 'noAbstracts'}
+				{$article->getLocalizedAbstract()|strip_unsafe_html}
 			{/if}
 		</div>
 
