@@ -1,4 +1,4 @@
-on: [push]
+on: [push, pull_request]
 name: immersion
 jobs:
   immersion:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: pkp/pkp-github-actions@v1
         with:
-         node_version: 20
-         branch: 'stable-3_4_0'
-         repository: pkp
-         plugin: true
+          node_version: 20
+          branch: 'stable-3_4_0'
+          repository: pkp
+          plugin: true
