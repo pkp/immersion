@@ -502,7 +502,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// For the abstract fade-out effect we require a css class for each section color
 		$cssOutput = '';
 		$issue = $templateMgr->getTemplateVars('issue');
-		if ($issue) {
+		if ($issue && $issue->getData('immersionSectionColor')) {
 			foreach ($issue->getData('immersionSectionColor') as $sectionIndex => $sectionColor) {
 					$cssOutput .= ".article__abstract-fadeout-{$sectionIndex}::after {\n";
 					$cssOutput .= "  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$sectionColor} 100%);\n";
