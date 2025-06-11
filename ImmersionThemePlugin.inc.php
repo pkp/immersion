@@ -489,7 +489,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 	}
 
 	/**
-	 * Get all defined sectin colors indexed by 'issueId_sectionId'
+	 * Get all defined section colors indexed by 'issueId_sectionId'
 	 */
 	public function addStyles($hookname, $args) {
 
