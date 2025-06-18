@@ -83,6 +83,27 @@ class ImmersionThemePlugin extends ThemePlugin
             'default' => '#000',
         ));
 
+		$this->addOption('abstractsOnIssuePage', 'FieldOptions', [
+			'type' => 'radio',
+			'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.label'),
+			'description' => __('plugins.themes.immersion.option.abstractsOnIssuePage.description'),
+			'tooltip' => __('plugins.themes.immersion.option.abstractsOnIssuePage.tooltip'),
+			'options' => [
+				[
+					'value' => 'noAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.noAbstracts'),
+				],
+				[
+					'value' => 'fadeoutAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.fadeoutAbstracts'),
+				],
+				[
+					'value' => 'fullAbstracts',
+					'label' => __('plugins.themes.immersion.option.abstractsOnIssuePage.fullAbstracts'),
+				],
+			],
+			'default' => 'noAbstracts',
+		]);
         // Add usage stats display options
         $this->addOption('displayStats', 'FieldOptions', [
             'type' => 'radio',
@@ -111,8 +132,11 @@ class ImmersionThemePlugin extends ThemePlugin
         HookRegistry::add('TemplateManager::display', array($this, 'homepageJournalDescription'));
         HookRegistry::add('issueform::display', array($this, 'addToIssueForm'));
 
+        // add abstract fade-out styles
+		HookRegistry::add('TemplateManager::display', array($this, 'addStyles'));
+
         // Additional variable for the issue form
-        HookRegistry::register('Schema::get::issue', array($this, 'addToSchema'));
+        HookRegistry::add('Schema::get::issue', array($this, 'addToSchema'));
         HookRegistry::add('issueform::initdata', array($this, 'initDataIssueFormFields'));
         HookRegistry::add('issueform::readuservars', array($this, 'readIssueFormFields'));
         HookRegistry::add('issueform::execute', array($this, 'executeIssueFormFields'));
@@ -177,7 +201,12 @@ class ImmersionThemePlugin extends ThemePlugin
 
         if (!$issue) return false;
 
-        $publishedSubmissionsInSection = $templateMgr->getTemplateVars('publishedSubmissions');
+		$publishedSubmissionsInSection = $templateMgr->getTemplateVars('publishedSubmissions');
+
+		// we need to set this even if no section colors are set
+		$templateMgr->assign(array(
+			'showAbstractsOnIssuePage' => $this->getOption('abstractsOnIssuePage')
+		));
 
         // Section color
         $immersionSectionColors = $issue->getData('immersionSectionColor');
@@ -215,19 +244,18 @@ class ImmersionThemePlugin extends ThemePlugin
                         $publishedSubmissionsInSection[$sectionId]['sectionDescription'] = $section->getData('browseByDescription', $locale);
                     }
 
-                    // Need only the color of the last section that contains articles
-                    if ($publishedSubmissionsInSection[$sectionId]['articles'] && $immersionSectionColors[$sectionId]) {
-                        $lastSectionColor = $immersionSectionColors[$sectionId];
-                    }
-                }
-            }
-        }
-
-        $templateMgr->assign(array(
-            'publishedSubmissions' => $publishedSubmissionsInSection,
-            'lastSectionColor' => $lastSectionColor
-        ));
-    }
+					// Need only the color of the last section that contains articles
+					if ($publishedSubmissionsInSection[$sectionId]['articles'] && $immersionSectionColors[$sectionId]) {
+						$lastSectionColor = $immersionSectionColors[$sectionId];
+					}
+				}
+			}
+		}
+		$templateMgr->assign(array(
+			'publishedSubmissions' => $publishedSubmissionsInSection,
+			'lastSectionColor' => $lastSectionColor,
+		));
+	}
 
     /**
      * @param $hookname string
@@ -461,4 +489,37 @@ class ImmersionThemePlugin extends ThemePlugin
         $output = & $args[2];
         $output .= $templateMgr->fetch($this->getTemplateResource('issueForm.tpl'));
     }
+
+    /**
+	 * Get all defined section colors indexed by 'issueId_sectionId'
+	 */
+	public function addStyles($hookname, $args) {
+
+		$templateMgr = $args[0];
+		$template = $args[1];
+
+		$templates = ["frontend/pages/issue.tpl", "frontend/pages/indexJournal.tpl"];
+		if (!in_array($template, $templates)) return false;
+
+		// For the abstract fade-out effect we require a css class for each section color
+		$cssOutput = '';
+		$issue = $templateMgr->getTemplateVars('issue');
+		if ($issue && $issue->getData('immersionSectionColor')) {
+			foreach ($issue->getData('immersionSectionColor') as $sectionIndex => $sectionColor) {
+					$cssOutput .= ".article__abstract-fadeout-{$sectionIndex}::after {\n";
+					$cssOutput .= "  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$sectionColor} 100%);\n";
+					$cssOutput .= "}\n\n";
+			}
+
+			$templateMgr->addStyleSheet(
+				'fadeout',
+				$cssOutput,
+				[
+					'contexts' => 'frontend',
+					'inline' => true,
+					'priority' => STYLE_SEQUENCE_LAST,
+				]
+			);
+		}
+	}
 }

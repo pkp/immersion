@@ -133,3 +133,21 @@ msgstr "Downloads"
 
 msgid "plugins.themes.immersion.displayStats.noStats"
 msgstr "Downloaddaten sind noch nicht verfügbar."
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.label"
+msgstr "Zeige Artikel-Abstracts auf der Ausgabenseite"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.description"
+msgstr "Wähle wie die Artikel-Abstracts auf der Ausgabenseite dargestellt werden sollen"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.noAbstracts"
+msgstr "Zeige keine Artikel-Abstracts"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.fadeoutAbstracts"
+msgstr "Zeige den Anfang der Artikel-Abstract (mit Ausblendeffekt)"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.fullAbstracts"
+msgstr "Zeige die gesamten Artikel-Abstract"
+
+msgid "plugins.themes.immersion.option.abstractsOnIssuePage.tooltip"
+msgstr "Um bei der der Auswahl \"Zeige den Anfang der Artikel-Abstract\" die Höhe der sichtbaren Artikel-Abstracts festzulegen setzte die Höhe im Journal Stylesheet über die CSS-Klasse \".article__abstract-fade {height = xxxpx;}\"."
