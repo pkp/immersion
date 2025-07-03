@@ -3,7 +3,7 @@
  *
  * Copyright (c) 2014-2020 Simon Fraser University
  * Copyright (c) 2003-2020 John Willinsky
- * Distributed under the GNU GPL v2. For full terms see the file docs/COPYING.
+ * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief Site-wide header; includes journal logo, user menu, and primary menu
  * @uses $languageToggleLocales array All supported locales (from the Immersion theme)
