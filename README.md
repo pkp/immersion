@@ -52,6 +52,6 @@ For technical question regarding the theme (bugs, enhancements, etc.), please op
 **Galleys |** If there isn’t any CSS file attached to the HTML galley, the default theme’s style will be used.
 
 ## License
-This theme is released under the GPL license.
+This plugin is licensed under the GNU General Public License. See the file LICENSE for the complete terms of this license.
 
 The Roboto font is distributed under the terms of the [Apache License, 2.0](http://www.apache.org/licenses/LICENSE-2.0). The Spectral font is distributed under the terms of the [Open Font License](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL).
