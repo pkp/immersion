@@ -19,6 +19,7 @@ use PKP\facades\Locale;
 use PKP\plugins\ThemePlugin;
 use PKP\plugins\PluginSettingsDAO;
 use APP\journal\SectionDAO;
+use PKP\template\PKPTemplateManager;
 
 class ImmersionThemePlugin extends ThemePlugin
 {
@@ -517,7 +518,7 @@ class ImmersionThemePlugin extends ThemePlugin
 				[
 					'contexts' => 'frontend',
 					'inline' => true,
-					'priority' => STYLE_SEQUENCE_LAST,
+					'priority' => PKPTemplateManager::STYLE_SEQUENCE_LAST,
 				]
 			);
 		}
