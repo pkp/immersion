@@ -14,13 +14,14 @@
  * @uses $showDatePublished bool Show the date this article was published?
  * @uses $hideGalleys bool Hide the article galleys for this article?
  * @uses $primaryGenreIds array List of file genre ids for primary file types
+ * @uses $showAbstractsOnIssuePage string Mode of abstract visibility
  *}
 {assign var=articlePath value=$article->getBestId()}
 {assign var="publication" value=$article->getCurrentPublication()}
 {assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 {assign var="coverImageUrl" value=$publication->getLocalizedCoverImageUrl($article->getData('contextId'))}
 
-{if (!$section.hideAuthor && $publication->getData('hideAuthor') == \APP\submission\Submission::AUTHOR_TOC_DEFAULT) || $publication->getData('hideAuthor') == \APP\submission\Submission::AUTHOR_TOC_SHOW}
+{if (!$section.hideAuthor && $publication->getData('hideAuthor') == APP\submission\Submission::AUTHOR_TOC_DEFAULT) || $publication->getData('hideAuthor') == APP\submission\Submission::AUTHOR_TOC_SHOW}
 	{assign var="showAuthor" value=true}
 {/if}
 
@@ -37,7 +38,7 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'fadeoutAbstracts'}article__abstract-fadeout {if $section.section}article__abstract-fadeout-{$section.section->getId()}{/if}{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$publication->getAuthorString($authorUserGroups)|escape}</p>
 			{/if}
@@ -59,13 +60,17 @@
 						{/if}
 						<li>
 							{assign var="hasArticleAccess" value=$hasAccess}
-							{if $currentContext->getSetting('publishingMode') == $smarty.const.PUBLISHING_MODE_OPEN || $article->getCurrentPublication()->getData('accessStatus') == $smarty.const.ARTICLE_ACCESS_OPEN}
+							{if $currentContext->getSetting('publishingMode') == APP\journal\Journal::PUBLISHING_MODE_OPEN || $publication->getData('accessStatus') == APP\submission\Submission::ARTICLE_ACCESS_OPEN}
 								{assign var="hasArticleAccess" value=1}
 							{/if}
 							{include file="frontend/objects/galley_link.tpl" parent=$article publication=$publication hasAccess=$hasArticleAccess purchaseFee=$currentJournal->getData('purchaseArticleFee') purchaseCurrency=$currentJournal->getData('currency')}
 						</li>
 					{/foreach}
 				</ul>
+			{/if}
+
+			{if $showAbstractsOnIssuePage !== 'noAbstracts'}
+				{$publication->getLocalizedData('abstract')|strip_unsafe_html}
 			{/if}
 		</div>
 
