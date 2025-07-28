@@ -212,26 +212,22 @@
 	<div class="article-page__meta">
 
 		<dl>
-			{* Pub IDs, including DOI *}
-			{foreach from=$pubIdPlugins item=pubIdPlugin}
-				{assign var=pubId value=$article->getStoredPubId($pubIdPlugin->getPubIdType())}
-				{if $pubId}
-					{assign var="pubIdUrl" value=$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
-					<dt>
-						{$pubIdPlugin->getPubIdDisplayType()|escape}
-					</dt>
-					<dd>
-						{if $pubIdUrl}
-							<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}"
-							   href="{$pubIdUrl}">
-								{$pubIdUrl}
-							</a>
-						{else}
-							{$pubId|escape}
-						{/if}
-					</dd>
-				{/if}
-			{/foreach}
+			{* DOI *}
+			{assign var=doiObject value=$publication->getData('doiObject')}
+			{if $doiObject}
+				{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
+				<dt>
+					{capture assign=translatedDOI}{translate key="doi.readerDisplayName"}{/capture}
+					{translate key="semicolon" label=$translatedDOI}
+				</dt>
+				<dd>
+					<a href="{$doiUrl}">
+						{$doiUrl}
+					</a>
+				</dd>
+			{/if}
+
+			{* Dates *}
 			{if $article->getDateSubmitted()}
 				<dt>
 					{translate key="submissions.submitted"}
