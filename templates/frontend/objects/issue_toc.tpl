@@ -48,6 +48,23 @@
 			</h2>
 		{/if}
 
+		{* Issue DOI *}
+		{assign var=doiObject value=$issue->getData('doiObject')}
+		{if $doiObject}
+			{assign var="doiUrl" value=$doiObject->getData('resolvingUrl')|escape}
+			<p class="issue__doi">
+				<span class="type">
+					{capture assign=translatedDOI}{translate key="doi.readerDisplayName"}{/capture}
+					{translate key="semicolon" label=$translatedDOI}
+				</span>
+				<span class="id">
+                    <a href="{$doiUrl|escape}">
+						{$doiUrl}
+					</a>
+				</span>
+			</p>
+		{/if}
+
 		{if $issue->getDatePublished()}
 			<p class="issue__meta">{translate key="plugins.themes.immersion.issue.published"} {$issue->getDatePublished()|date_format:$dateFormatLong}</p>
 		{/if}
