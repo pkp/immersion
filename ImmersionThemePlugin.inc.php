@@ -162,11 +162,9 @@ class ImmersionThemePlugin extends ThemePlugin
 
     /**
      * Initialize Template
-     * @param mixed $hookname
-     * @param mixed $args
-     * @return bool
      */
-    public function initializeTemplate($hookname, $args) {
+    public function initializeTemplate(string $hookname, array $args): bool
+    {
         /** @var TemplateManager $templateMgr */
         [$templateMgr] = $args;
         // The login link displays the login form in a modal, therefore the reCAPTCHA must be available for all frontend routes
