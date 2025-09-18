@@ -13,6 +13,8 @@
  * @brief Immersion theme
  */
 
+namespace APP\plugins\themes\immersion;
+
 use APP\core\Request;
 use APP\facades\Repo;
 use APP\issue\Issue;
@@ -26,7 +28,7 @@ use PKP\plugins\ThemePlugin;
 use PKP\plugins\PluginSettingsDAO;
 use PKP\template\PKPTemplateManager;
 
-class ImmersionThemePlugin extends ThemePlugin
+class ImmersionPlugin extends ThemePlugin
 {
     public function init()
     {
@@ -556,3 +558,5 @@ class ImmersionThemePlugin extends ThemePlugin
         }
     }
 }
+
+class_alias(ImmersionPlugin::class, 'ImmersionThemePlugin');
