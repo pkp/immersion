@@ -15,10 +15,10 @@
 
 use APP\core\Request;
 use APP\facades\Repo;
+use APP\template\TemplateManager;
 use PKP\facades\Locale;
 use PKP\plugins\ThemePlugin;
 use PKP\plugins\PluginSettingsDAO;
-use APP\journal\SectionDAO;
 use PKP\template\PKPTemplateManager;
 
 class ImmersionThemePlugin extends ThemePlugin
@@ -127,6 +127,7 @@ class ImmersionThemePlugin extends ThemePlugin
         ]);
 
         // Additional data to the templates
+        HookRegistry::add('TemplateManager::display', array($this, 'initializeTemplate'));
         HookRegistry::add('TemplateManager::display', array($this, 'addIssueTemplateData'));
         HookRegistry::add('TemplateManager::display', array($this, 'addSiteWideData'));
         HookRegistry::add('TemplateManager::display', array($this, 'homepageAnnouncements'));
@@ -153,6 +154,26 @@ class ImmersionThemePlugin extends ThemePlugin
         $this->addScript('spectrum', '/resources/dist/spectrum-1.8.0.js', [
             'contexts' => 'backend-manageIssues',
         ]);
+    }
+
+    /**
+     * Initialize Template
+     * @param mixed $hookname
+     * @param mixed $args
+     * @return bool
+     */
+    public function initializeTemplate($hookname, $args) {
+        /** @var TemplateManager $templateMgr */
+        [$templateMgr] = $args;
+        // The login link displays the login form in a modal, therefore the reCAPTCHA must be available for all frontend routes
+        $isCaptchaEnabled = Config::getVar('captcha', 'recaptcha') && Config::getVar('captcha', 'captcha_on_login');
+        if ($isCaptchaEnabled) {
+            $locale = substr(Locale::getLocale(), 0, 2);
+            $templateMgr->addJavaScript('recaptcha', "https://www.recaptcha.net/recaptcha/api.js?hl={$locale}");
+            $templateMgr->assign('recaptchaPublicKey', Config::getVar('captcha', 'recaptcha_public_key'));
+        }
+
+        return false;
     }
 
     /**
