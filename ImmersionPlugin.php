@@ -22,8 +22,10 @@ use APP\facades\Repo;
 use APP\section\Section;
 use APP\template\TemplateManager;
 use PKP\config\Config;
+use PKP\core\PKPSessionGuard;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use PKP\form\validation\FormValidatorAltcha;
 use PKP\plugins\Hook;
 use PKP\plugins\PluginSettingsDAO;
 use PKP\plugins\ThemePlugin;
@@ -132,16 +134,21 @@ class ImmersionPlugin extends ThemePlugin
      */
     public function initializeTemplate(string $hookName, array $args): bool
     {
+        [$templateMgr] = $args;
         // The login link displays the login form in a modal, therefore the reCAPTCHA must be available for all frontend routes
         $isCaptchaEnabled = Config::getVar('captcha', 'recaptcha') && Config::getVar('captcha', 'captcha_on_login');
-        if (!$isCaptchaEnabled) {
-            return Hook::CONTINUE;
+        if ($isCaptchaEnabled) {
+            $locale = substr(Locale::getLocale(), 0, 2);
+            $templateMgr->addJavaScript('recaptcha', "https://www.recaptcha.net/recaptcha/api.js?hl={$locale}");
+            $templateMgr->assign('recaptchaPublicKey', Config::getVar('captcha', 'recaptcha_public_key'));
         }
 
-        [$templateMgr] = $args;
-        $locale = substr(Locale::getLocale(), 0, 2);
-        $templateMgr->addJavaScript('recaptcha', "https://www.recaptcha.net/recaptcha/api.js?hl={$locale}");
-        $templateMgr->assign('recaptchaPublicKey', Config::getVar('captcha', 'recaptcha_public_key'));
+        $isAltchaEnabled = Config::getVar('captcha', 'altcha') && Config::getVar('captcha', 'altcha_on_login');
+        if ($isAltchaEnabled) {
+            FormValidatorAltcha::addAltchaJavascript($templateMgr);
+            FormValidatorAltcha::insertFormChallenge($templateMgr);
+        }
+
         return Hook::CONTINUE;
     }
 
@@ -285,7 +292,7 @@ class ImmersionPlugin extends ThemePlugin
         $request = $this->getRequest();
         $journal = $request->getJournal();
 
-        if (defined('SESSION_DISABLE_INIT')) {
+        if (PKPSessionGuard::isSessionDisable()) {
             return Hook::CONTINUE;
         }
 

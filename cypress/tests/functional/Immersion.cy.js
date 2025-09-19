@@ -43,7 +43,7 @@ describe('Theme plugin tests', function() {
 		cy.get('button[id="plugins-button"]').click();
 
 		// Find and enable the plugin
-		cy.get('input[id^="select-cell-immersionthemeplugin-enabled"]').click();
+		cy.get('input[id^="select-cell-immersionplugin-enabled"]').click();
 		cy.get('div:contains(\'The plugin "Immersion Theme" has been enabled.\')');
 		cy.reload();
 
