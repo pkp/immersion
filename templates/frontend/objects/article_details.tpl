@@ -67,7 +67,7 @@
  *}
 <section class="col-md-8 article-page">
 	<header class="article-page__header">
-    {* Notification that this is an old version *}
+	{* Notification that this is an old version *}
 		{if $currentPublication->getId() !== $publication->getId()}
 		<div class="article-page__alert" role="alert">
 			{capture assign="latestVersionUrl"}{url page="article" op="view" path=$article->getBestId()}{/capture}
@@ -121,14 +121,14 @@
 									</span>
 								{/if}
 								{if $authorString->getData('orcid')}
-                                    <a class="orcidImage img-wrapper" href="{$authorString->getData('orcid')|escape}">
+									<a class="orcidImage img-wrapper" href="{$authorString->getData('orcid')|escape}">
 										{if $authorString->hasVerifiedOrcid()}
 											{$orcidIcon}
 										{else}
 											{$orcidUnauthenticatedIcon}
 										{/if}
-                                    </a>
-                                {/if}
+									</a>
+								{/if}
 							</li>
 						{/strip}
 					{/foreach}
@@ -166,12 +166,12 @@
 							{if $author->getLocalizedBiography()}
 								<br/>
 								<a class="modal-trigger" href="#modalAuthorBio-{$authorKey+1}" data-bs-toggle="modal"
-								   data-target="#modalAuthorBio-{$authorKey+1}">
+									data-target="#modalAuthorBio-{$authorKey+1}">
 									{translate key="plugins.themes.immersion.article.biography"}
 								</a>
 								{* author's biography *}
 								<div class="modal fade bio-modal" id="modalAuthorBio-{$authorKey+1}" tabindex="-1"
-								     role="dialog">
+									role="dialog">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
 											<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
@@ -348,7 +348,7 @@
 				<a href="{url page="issue" op="view" path=$issue->getBestIssueId()}">
 					<img
 						class="img-fluid"
-					  src="{$issue->getLocalizedCoverImageUrl()|escape}"
+						src="{$issue->getLocalizedCoverImageUrl()|escape}"
 						alt="{$issue->getLocalizedCoverImageAltText()|escape|default:''}"
 					>
 				</a>
@@ -429,12 +429,12 @@
 					{translate key="about.copyrightNotice"}
 				</a>
 				<div class="modal fade" id="copyrightModal" tabindex="-1" role="dialog"
-				     aria-labelledby="copyrightModalTitle" aria-hidden="true">
+					aria-labelledby="copyrightModalTitle" aria-hidden="true">
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
 								<h5 class="modal-title"
-								    id="copyrightModalTitle">{translate key="about.copyrightNotice"}</h5>
+									id="copyrightModalTitle">{translate key="about.copyrightNotice"}</h5>
 								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
@@ -444,7 +444,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
-								        data-dismiss="modal">{translate key="common.close"}</button>
+										data-dismiss="modal">{translate key="common.close"}</button>
 							</div>
 						</div>
 					</div>

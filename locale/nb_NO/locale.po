@@ -99,7 +99,7 @@ msgstr "Seksjons forsidebilde"
 msgid "plugins.themes.immersion.colorPickInstructions"
 msgstr ""
 "Velg en farge for en seksjon som skal vises i tidsskriftets front-end. Må "
-"være en gyldig HTML  heksadesimal kode (f.eks #ffff00 for guI)."
+"være en gyldig HTML heksadesimal kode (f.eks #ffff00 for guI)."
 
 msgid "plugins.themes.immersion.colorPick"
 msgstr "Fargevelger"

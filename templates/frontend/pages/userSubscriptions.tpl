@@ -115,18 +115,18 @@
 									<td>
 										{if $subscriptionStatus == $smarty.const.SUBSCRIPTION_STATUS_AWAITING_ONLINE_PAYMENT}
 											<a class="cmp_button"
-											   href="{url op="completePurchaseSubscription" path="individual"|to_array:$userIndividualSubscription->getId()}">
+												href="{url op="completePurchaseSubscription" path="individual"|to_array:$userIndividualSubscription->getId()}">
 												{translate key="user.subscriptions.purchase"}
 											</a>
 										{elseif $subscriptionStatus == $smarty.const.SUBSCRIPTION_STATUS_ACTIVE}
 											{if !$isNonExpiring}
 												<a class="cmp_button"
-												   href="{url op="payRenewSubscription" path="individual"|to_array:$userIndividualSubscription->getId()}">
+													href="{url op="payRenewSubscription" path="individual"|to_array:$userIndividualSubscription->getId()}">
 													{translate key="user.subscriptions.renew"}
 												</a>
 											{/if}
 											<a class="cmp_button"
-											   href="{url op="purchaseSubscription" path="individual"|to_array:$userIndividualSubscription->getId()}">
+												href="{url op="purchaseSubscription" path="individual"|to_array:$userIndividualSubscription->getId()}">
 												{translate key="user.subscriptions.purchase"}
 											</a>
 										{/if}
@@ -219,18 +219,18 @@
 											<td>
 												{if $subscriptionStatus == $smarty.const.SUBSCRIPTION_STATUS_AWAITING_ONLINE_PAYMENT}
 													<a class="cmp_button"
-													   href="{url op="completePurchaseSubscription" path="institutional"|to_array:$userInstitutionalSubscription->getId()}">
+														href="{url op="completePurchaseSubscription" path="institutional"|to_array:$userInstitutionalSubscription->getId()}">
 														{translate key="user.subscriptions.purchase"}
 													</a>
 												{elseif $subscriptionStatus == $smarty.const.SUBSCRIPTION_STATUS_ACTIVE}
 													{if !$isNonExpiring}
 														<a class="cmp_button"
-														   href="{url op="payRenewSubscription" path="institutional"|to_array:$userInstitutionalSubscription->getId()}">
+															href="{url op="payRenewSubscription" path="institutional"|to_array:$userInstitutionalSubscription->getId()}">
 															{translate key="user.subscriptions.renew"}
 														</a>
 													{/if}
 													<a class="cmp_button"
-													   href="{url op="purchaseSubscription" path="institutional"|to_array:$userInstitutionalSubscription->getId()}">
+														href="{url op="purchaseSubscription" path="institutional"|to_array:$userInstitutionalSubscription->getId()}">
 														{translate key="user.subscriptions.purchase"}
 													</a>
 												{/if}

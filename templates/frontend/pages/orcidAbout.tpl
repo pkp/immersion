@@ -23,15 +23,15 @@
 					{translate key="orcid.about.orcidExplanation"}
 				</p>
 				<h3>{translate key="orcid.about.howAndWhy.title"}</h3>
-                {if $isMemberApi}
-                    <p class="description">
-                        {translate key="orcid.about.howAndWhyMemberAPI"}
-                    </p>
-                {else}
-                    <p class="description">
-                        {translate key="orcid.about.howAndWhyPublicAPI"}
-                    </p>
-                {/if}
+				{if $isMemberApi}
+					<p class="description">
+						{translate key="orcid.about.howAndWhyMemberAPI"}
+					</p>
+				{else}
+					<p class="description">
+						{translate key="orcid.about.howAndWhyPublicAPI"}
+					</p>
+				{/if}
 				<h3>{translate key="orcid.about.display.title"}</h3>
 				<p class="description">
 					{translate key="orcid.about.display"}

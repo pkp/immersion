@@ -28,14 +28,14 @@
 			{if $navigationMenuItemAssignment->navigationMenuItem->getType() == "NMI_TYPE_USER_LOGIN" && $requestedOp|escape == "register"}
 				<li class="{$liClass|escape} nav-item">
 					<a class="{if $id === "navigationUser"}main-header__admin-link{elseif $id === "navigationPrimary"}main-header__nav-link{/if}"
-					   href="{$navigationMenuItemAssignment->navigationMenuItem->getUrl()}">
+						href="{$navigationMenuItemAssignment->navigationMenuItem->getUrl()}">
 						{$navigationMenuItemAssignment->navigationMenuItem->getLocalizedTitle()}
 					</a>
 				</li>
 			{else}
 				<li class="{$liClass|escape} {$navigationMenuItemAssignment->navigationMenuItem->getType()|lower} nav-item{if $hasSubmenu} dropdown{/if}">
 					<a class="{if $id === "navigationUser"}main-header__admin-link{elseif $id === "navigationPrimary"}main-header__nav-link{/if}{if $hasSubmenu} dropdown-toggle{/if}"
-					   href="{$navigationMenuItemAssignment->navigationMenuItem->getUrl()}"{if $hasSubmenu} role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{/if}>
+						href="{$navigationMenuItemAssignment->navigationMenuItem->getUrl()}"{if $hasSubmenu} role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{/if}>
 						{$navigationMenuItemAssignment->navigationMenuItem->getLocalizedTitle()}
 					</a>
 					{if $hasSubmenu}
@@ -44,7 +44,7 @@
 								{if $childNavigationMenuItemAssignment->navigationMenuItem->getIsDisplayed()}
 									<li class="{$liClass|escape} dropdown-item">
 										<a class="nav-link"
-										   href="{$childNavigationMenuItemAssignment->navigationMenuItem->getUrl()}">
+											href="{$childNavigationMenuItemAssignment->navigationMenuItem->getUrl()}">
 											{$childNavigationMenuItemAssignment->navigationMenuItem->getLocalizedTitle()}
 										</a>
 									</li>

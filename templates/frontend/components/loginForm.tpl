@@ -39,7 +39,7 @@
 				</span>
 			</label>
 			<input type="password" class="form-control" name="password" id="passwordModal" value="{$password|default:""|escape}"
-			       maxlength="32" required>
+				maxlength="32" required>
 
 			<div class="custom-control custom-checkbox">
 				<input type="checkbox" class="custom-control-input" name="remember" id="rememberModal" value="1" checked="$remember">

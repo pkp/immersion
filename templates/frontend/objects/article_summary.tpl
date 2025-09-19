@@ -32,7 +32,7 @@
 				<figure class="article__img">
 					<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
 						<img class="img-fluid"
-					 		src="{$coverImageUrl|escape}"
+							src="{$coverImageUrl|escape}"
 							{if $coverImage.altText != ''} alt="{$coverImage.altText|escape}"{else} alt="{translate key="article.coverPage.altText"}"{/if}>
 					</a>
 				</figure>

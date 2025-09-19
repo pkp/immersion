@@ -20,7 +20,7 @@
 
 	<!--
 		The current version. It should always include 4 numbers.
-	    Valid: 1.0.2.3, 0.1.4.0
+		Valid: 1.0.2.3, 0.1.4.0
 		Invalid: 1.0, v1.0.4, 1.0.0.0b
 	-->
 	<release>1.1.2.3</release>
@@ -32,5 +32,5 @@
 	<lazy-load>1</lazy-load>
 
 	<!-- The class name of the plugin. See index.php -->
-	<class>ImmersionThemePlugin</class>
+	<class>ImmersionPlugin</class>
 </version>
