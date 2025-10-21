@@ -153,8 +153,9 @@
 					{translate key="user.register"}
 				</button>
 
-			{capture assign="rolesProfileUrl"}{url page="user" op="profile" path="roles"}{/capture}
-			<a href="{url page="login" source=$rolesProfileUrl}" class="login">{translate key="user.login"}</a>
+				{capture assign="rolesProfileUrl"}{url page="user" op="profile" path="roles"}{/capture}
+				<a href="{url page="login" source=$rolesProfileUrl}" class="login">{translate key="user.login"}</a>
+			</form>
 		</div>
 	</div><!-- row -->
 </main><!-- page container -->
