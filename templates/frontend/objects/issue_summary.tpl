@@ -36,4 +36,4 @@
 	</div>
 {/if}
 
-<p class="archived-issue__date"><small>{$issue->getDatePublished()|date_format:$dateFormatLong}</small></p>
+<p class="text-muted"><small>{$issue->getDatePublished()|date_format:$dateFormatLong}</small></p>
