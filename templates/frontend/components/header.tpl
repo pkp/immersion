@@ -27,7 +27,7 @@
 {if !$pageTitleTranslated}{capture assign="pageTitleTranslated"}{translate key=$pageTitle}{/capture}{/if}
 {include file="frontend/components/headerHead.tpl"}
 <body class="page_{$requestedPage|escape|default:"index"} op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}{if $immersionIndexType} {$immersionIndexType|escape}{/if}"
-      dir="{$currentLocaleLangDir|escape|default:"ltr"}">
+	dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
 <div class="cmp_skip_to_content">
 	<a class="visually-hidden" href="#immersion_content_header">{translate key="navigation.skip.nav"}</a>
@@ -36,7 +36,7 @@
 </div>
 
 <header class="main-header"
-        id="immersion_content_header"{if $immersionHomepageImage} style="background-image: url('{$publicFilesDir}/{$immersionHomepageImage.uploadName|escape:"url"}')"{/if}>
+	id="immersion_content_header"{if $immersionHomepageImage} style="background-image: url('{$publicFilesDir}/{$immersionHomepageImage.uploadName|escape:"url"}')"{/if}>
 	<div class="container-fluid">
 		<nav class="main-header__admin{if $localeShow} locale-enabled{else} locale-disabled{/if}">
 
@@ -95,11 +95,11 @@
 			{if !empty(trim($primaryMenu)) || $currentContext}
 			<nav class="navbar navbar-expand-sm main-header__nav">
 				<button class="navbar-toggler mx-auto hamburger" data-bs-target="#main-menu" data-bs-toggle="collapse"
-				        type="button"
-				        aria-label="Menu" aria-controls="navigation">
+					type="button"
+					aria-label="Menu" aria-controls="navigation">
 					<span class="hamburger__wrapper">
-		                <span class="hamburger__icon"></span>
-		            </span>
+						<span class="hamburger__icon"></span>
+					</span>
 				</button>
 				<h2 class="visually-hidden">{translate key="plugins.themes.immersion.mainMenu"}</h2>
 				<div class="collapse navbar-collapse" id="main-menu">

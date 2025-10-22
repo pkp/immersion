@@ -25,7 +25,7 @@
 	{if $anchor}
 		{capture assign="editLinkUrl"}{url page=$page op=$op path=$path anchor=$anchor}{/capture}
 	{else}
-        {capture assign="editLinkUrl"}{url page=$page op=$op path=$path}{/capture}
+		{capture assign="editLinkUrl"}{url page=$page op=$op path=$path}{/capture}
 	{/if}
 
 	<a href="{$editLinkUrl}" class="cmp_edit_link">

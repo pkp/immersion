@@ -44,7 +44,7 @@
 			</h1>
 		{elseif $smarty.capture.issueMetadata|trim !== ""}
 			<h2 class="issue__title">
-            	{$smarty.capture.issueMetadata}
+				{$smarty.capture.issueMetadata}
 			</h2>
 		{/if}
 
@@ -58,7 +58,7 @@
 					{translate key="semicolon" label=$translatedDOI}
 				</span>
 				<span class="id">
-                    <a href="{$doiUrl|escape}">
+					<a href="{$doiUrl|escape}">
 						{$doiUrl}
 					</a>
 				</span>
@@ -91,7 +91,7 @@
 							{$issueDescription|substr:0:$stringLenght|mb_convert_encoding:'UTF-8'|replace:'?':''|trim}
 							<span class="ellipsis">...</span>
 							<a class="full-issue__link"
-							   href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
+								href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
 						{/if}
 					</div>
 				</div>

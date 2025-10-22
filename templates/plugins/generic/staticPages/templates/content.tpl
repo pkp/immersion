@@ -18,7 +18,7 @@
 				</h2>
 			</header>
 			<div class="page">
-			    {$content}
+				{$content}
 			</div>
 		</div>
 	</div>

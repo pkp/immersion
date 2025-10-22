@@ -24,7 +24,7 @@
 				{assign var="formPath" value="institutional"|to_array:$subscriptionId}
 			{/if}
 			<form class="cmp_form purchase_subscription" method="post" id="subscriptionForm"
-			      action="{url op="payPurchaseSubscription" path=$formPath}">
+				action="{url op="payPurchaseSubscription" path=$formPath}">
 				{csrf}
 
 				{include file="common/formErrors.tpl"}
@@ -52,7 +52,7 @@
 								{translate key="user.subscriptions.form.membership"}
 							</label>
 							<input class="form-control" type="text" name="membership" id="membership" value="{$membership|escape}"
-							       aria-describedby="subscriptionMembershipDescription">
+								aria-describedby="subscriptionMembershipDescription">
 
 							<small class="form-text text-muted" id="subscriptionMembershipDescription">{translate key="user.subscriptions.form.membershipInstructions"}</small>
 						</div>
@@ -91,7 +91,7 @@
 							{translate key="user.subscriptions.form.ipRange"}
 						</span>
 								<input type="text" name="ipRanges" id="ipRanges" value="{$ipRanges|escape}"
-								       aria-describedby="subscriptionIPDescription">
+									aria-describedby="subscriptionIPDescription">
 							</label>
 							<small class="form-text text-muted" id="subscriptionIPDescription">{translate key="user.subscriptions.form.ipRangeInstructions"}</small>
 						</div>

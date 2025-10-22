@@ -39,7 +39,7 @@
 				</span>
 			</label>
 			<input type="password" class="form-control" name="password" id="passwordModal" value="{$password|default:""|escape}"
-			       maxlength="32" required>
+				maxlength="32" required>
 
 			<div class="custom-control custom-checkbox">
 				<input type="checkbox" class="custom-control-input" name="remember" id="rememberModal" value="1" checked="$remember">
@@ -50,7 +50,7 @@
 		</div>
 
 		{* recaptcha spam blocker *}
-		{if $recaptchaPublicKey}
+		{if $recaptchaPublicKey && \PKP\config\Config::getVar('captcha', 'captcha_on_login')}
 			<div class="form-group">
 				<fieldset class="recaptcha_wrapper">
 					<div class="fields">
