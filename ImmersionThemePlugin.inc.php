@@ -448,7 +448,7 @@ class ImmersionThemePlugin extends ThemePlugin
     public function executeIssueFormFields($hookName, $args)
     {
         $issueForm = $args[0];
-        $issue = $args[1];
+        $issue = $issueForm->issue;
 
         // The issueform::execute hook fires twice, once at the start of the
         // method when no issue exists. Only update the object during the
