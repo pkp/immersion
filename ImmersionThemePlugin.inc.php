@@ -184,11 +184,17 @@ class ImmersionThemePlugin extends ThemePlugin {
 
 		// we need to set this even if no section colors are set
 		$templateMgr->assign(array(
-			'showAbstractsOnIssuePage' => $this->getOption('abstractsOnIssuePage')
+			'showAbstractsOnIssuePage' => (bool) $this->getOption('abstractsOnIssuePage')
 		));
 
 		// Section color
 		$immersionSectionColors = $issue->getData('immersionSectionColor');
+
+		// pkp/pkp-lib#11974
+		if (is_array($immersionSectionColors)) foreach ($immersionSectionColors as $sectionId => $sectionColor) {
+			if (!preg_match('/^#[0-9a-fA-F]{1,6}$/', $sectionColor)) unset($immersionSectionColors[$sectionId]);
+        }
+
 		if (empty($immersionSectionColors)) return false; // Section background colors aren't set
 
 		$sectionDao = DAORegistry::getDAO('SectionDAO');
@@ -262,6 +268,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		// Announcements on index journal page
 		$announcementsIntro = $journal->getLocalizedData('announcementsIntroduction');
 		$immersionAnnouncementsColor = $this->getOption('immersionAnnouncementsColor');
+		if (!preg_match('/^#[0-9a-fA-F]{1,6}$/', $immersionAnnouncementsColor)) $immersionAnnouncementsColor = null; // pkp/pkp-lib#11974
 
 		$isAnnouncementDark = false;
 		if ($immersionAnnouncementsColor && $this->isColourDark($immersionAnnouncementsColor)) {
@@ -335,6 +342,7 @@ class ImmersionThemePlugin extends ThemePlugin {
 		if ($template != "frontend/pages/indexJournal.tpl") return false;
 
 		$journalDescriptionColour = $this->getOption('journalDescriptionColour');
+		if (!preg_match('/^#[0-9a-fA-F]{1,6}$/', $journalDescriptionColour)) $journalDescriptionColour = null; // pkp/pkp-lib#11974
 		$isJournalDescriptionDark = false;
 		if ($journalDescriptionColour && $this->isColourDark($journalDescriptionColour)) {
 			$isJournalDescriptionDark = true;
