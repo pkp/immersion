@@ -221,6 +221,11 @@ class ImmersionThemePlugin extends ThemePlugin
             return false;
         } // Section background colors aren't set
 
+        // pkp/pkp-lib#11974
+        foreach ($immersionSectionColors as $sectionId => $sectionColor) {
+            if (!preg_match('/^#[0-9a-fA-F]{1,6}$/', $sectionColor)) unset($immersionSectionColors[$sectionId]);
+        }
+
         $sections = Repo::section()->getByIssueId($issue->getId());
         $lastSectionColor = null;
 
@@ -292,6 +297,7 @@ class ImmersionThemePlugin extends ThemePlugin
         // Announcements on index journal page
         $announcementsIntro = $journal->getLocalizedData('announcementsIntroduction');
         $immersionAnnouncementsColor = $this->getOption('immersionAnnouncementsColor');
+        if (!preg_match('/^#[0-9a-fA-F]{1,6}$/', $immersionAnnouncementsColor)) $immersionAnnouncementsColor = null; // pkp/pkp-lib#11974
 
         $isAnnouncementDark = false;
         if ($immersionAnnouncementsColor && $this->isColourDark($immersionAnnouncementsColor)) {
@@ -365,6 +371,7 @@ class ImmersionThemePlugin extends ThemePlugin
         }
 
         $journalDescriptionColour = $this->getOption('journalDescriptionColour');
+        if (!preg_match('/^#[0-9a-fA-F]{1,6}$/', $journalDescriptionColour)) $journalDescriptionColour = null; // pkp/pkp-lib#11974
         $isJournalDescriptionDark = false;
         if ($journalDescriptionColour && $this->isColourDark($journalDescriptionColour)) {
             $isJournalDescriptionDark = true;
