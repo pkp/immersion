@@ -69,8 +69,12 @@
 				</ul>
 			{/if}
 
-			{if $showAbstractsOnIssuePage !== 'noAbstracts'}
+			{if $showAbstractsOnIssuePage === 'fullAbstracts'}
 				{$article->getLocalizedAbstract()|strip_unsafe_html}
+			{elseif $showAbstractsOnIssuePage === 'fadeoutAbstracts'}
+				<div class="article__abstract-fadeout{if $section.section} article__abstract-fadeout-{$section.section->getId()}{/if}">
+					{$article->getLocalizedAbstract()|strip_unsafe_html}
+				</div>
 			{/if}
 		</div>
 
