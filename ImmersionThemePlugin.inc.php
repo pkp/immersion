@@ -188,26 +188,25 @@ class ImmersionThemePlugin extends ThemePlugin
         $template = $args[1];
         $request = $this->getRequest(); /** @var Request $request */
 
-        if ($template !== 'frontend/pages/issue.tpl' && $template !== 'frontend/pages/indexJournal.tpl') return false;
+        $allowedTemplates = ['frontend/pages/issue.tpl', 'frontend/pages/indexJournal.tpl'];
+        if (!in_array($template, $allowedTemplates)) return false;
 
         $context = $request->getContext(); /** @var Context $context */
         $contextId = $context->getId();
 
         /** @var Issue $issue */
-        if ($template === 'frontend/pages/indexJournal.tpl') {
-            $issue = Repo::issue()->getCurrent($contextId, true);
-        } else {
-            $issue = $templateMgr->getTemplateVars('issue');
-        }
+        $issue = $template === 'frontend/pages/indexJournal.tpl'
+            ? Repo::issue()->getCurrent($contextId, true)
+            : $templateMgr->getTemplateVars('issue');
 
         if (!$issue) return false;
 
         $publishedSubmissionsInSection = $templateMgr->getTemplateVars('publishedSubmissions');
 
         // we need to set this even if no section colors are set
-        $templateMgr->assign(array(
-            'showAbstractsOnIssuePage' => (bool) $this->getOption('abstractsOnIssuePage')
-        ));
+        $templateMgr->assign([
+            'showAbstractsOnIssuePage' => $this->getOption('abstractsOnIssuePage')
+        ]);
 
         // Section color
         $immersionSectionColors = $issue->getData('immersionSectionColor');
