@@ -38,7 +38,7 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'fadeoutAbstracts'}article__abstract-fadeout {if $section.section}article__abstract-fadeout-{$section.section->getId()}{/if}{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$publication->getAuthorString($authorUserGroups)|escape}</p>
 			{/if}
@@ -69,8 +69,12 @@
 				</ul>
 			{/if}
 
-			{if $showAbstractsOnIssuePage !== 'noAbstracts'}
+			{if $showAbstractsOnIssuePage === 'fullAbstracts'}
 				{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+			{elseif $showAbstractsOnIssuePage === 'fadeoutAbstracts'}
+				<div class="article__abstract-fadeout{if $section.section} article__abstract-fadeout-{$section.section->getId()}{/if}">
+					{$publication->getLocalizedData('abstract')|strip_unsafe_html}
+				</div>
 			{/if}
 		</div>
 
