@@ -38,7 +38,7 @@
 				</figure>
 			</div>
 		{/if}
-		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if} {if $showAbstractsOnIssuePage === 'fadeoutAbstracts'}article__abstract-fadeout {if $section.section}article__abstract-fadeout-{$section.section->getId()}{/if}{/if}">
+		<div class="col-md-{if $requestedOp === "search"}12{else}8{/if}{if !$coverImageUrl} offset-md-4{/if}">
 			{if $showAuthor}
 				<p class="article__meta">{$publication->getAuthorString($authorUserGroups)|escape}</p>
 			{/if}
