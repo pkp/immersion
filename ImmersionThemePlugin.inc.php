@@ -195,7 +195,7 @@ class ImmersionThemePlugin extends ThemePlugin
         $contextId = $context->getId();
 
         /** @var Issue $issue */
-        $issue = ($template === 'frontend/pages/indexJournal.tpl)'
+        $issue = ($template === 'frontend/pages/indexJournal.tpl')
             ? Repo::issue()->getCurrent($contextId, true)
             : $templateMgr->getTemplateVars('issue');
 
