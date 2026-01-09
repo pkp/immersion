@@ -157,6 +157,8 @@ class ImmersionThemePlugin extends ThemePlugin
         $this->addScript('spectrum', '/resources/dist/spectrum-1.8.0.js', [
             'contexts' => 'backend-manageIssues',
         ]);
+        
+        HookRegistry::add('TemplateManager::display', [$this, 'addCustomHeader']);
     }
 
     /**
@@ -543,4 +545,27 @@ class ImmersionThemePlugin extends ThemePlugin
             );
         }
     }
+
+    public function addCustomHeader(string $hookName, array $args)
+    {
+        $templateMgr = $args[0]; /** @var TemplateManager */
+
+        $request = $this->getRequest();
+        $baseUrl = $request->getBaseUrl();
+
+        $templateMgr->addHeader(
+            'skip-to-js',
+            "<script src='{$baseUrl}/plugins/themes/immersion/js/skipto.js'></script>
+            <script>
+            var SkipToConfig =  {
+                displayOption: 'popup',
+                landmarks: 'main search navigation header footer',
+                headings: ' h1 h2',
+                colorTheme: 'openweba11y',
+                highlightTarget: 'smooth'
+            };
+            </script>"
+        );
+    }
+
 }
