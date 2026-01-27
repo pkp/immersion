@@ -15,7 +15,7 @@
 <footer class="main-footer" id="immersion_content_footer">
 	<div class="container">
 		{if $hasSidebar}
-			<div class="sidebar_wrapper row" role="complementary">
+			<div class="sidebar_wrapper row">
 				{call_hook name="Templates::Common::Sidebar"}
 			</div>
 			<hr>
@@ -26,7 +26,7 @@
 					{$pageFooter}
 				</div>
 			{/if}
-			<div class="col-2 col-sm-1 offset-10 offset-sm-11" role="complementary">
+			<div class="col-2 col-sm-1 offset-10 offset-sm-11">
 				<a href="{url page="about" op="aboutThisPublishingSystem"}">
 					<img class="img-fluid" alt="{translate key="about.aboutThisPublishingSystem"}" src="{$baseUrl}/{$brandImage}">
 				</a>
