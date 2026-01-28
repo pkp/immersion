@@ -1,9 +1,9 @@
 {if $citation}
-	<h2>
+	<h2 id="howToCiteHeading">
         {translate key="submission.howToCite"}
 	</h2>
 	<div class="citation_format_value">
-		<div id="citationOutput" role="region" aria-live="polite">
+		<div id="citationOutput" role="region" aria-live="polite" aria-labelledby="howToCiteHeading">
             {$citation}
 		</div>
 		<div class="citation_formats dropdown">
