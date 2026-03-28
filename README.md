@@ -35,7 +35,7 @@ To contribute changes you will need to install this theme from the `main` branch
 Note that the main branch may contain code that will not be shipped to the stable release.
 
 ## Contributors
-Immersion theme was designed and developed by Sophy ([@sssoz](https://github.com/sssoz)), Vitaliy Bezsheiko ([@Vitaliy-1](https://github.com/Vitaliy-1)), John Willinsky, and Kevin Stranack.
+Immersion theme was designed and developed by Sophy, Vitaliy Bezsheiko ([@Vitaliy-1](https://github.com/Vitaliy-1)), John Willinsky, and Kevin Stranack.
 
 ## Troubleshooting
 For technical question regarding the theme (bugs, enhancements, etc.), please open an issue on the plugin's GitHub page. For non-technical questions or if you are uncertain about the question's category please visit the [PKP Forum](https://forum.pkp.sfu.ca/). Before opening and issue or posting a question on forum please make sure that it wasn't solved before.
