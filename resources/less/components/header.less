@@ -35,6 +35,14 @@
 		border: 0;
 		box-shadow: none;
 	}
+
+	& button {
+		border: 0;
+		box-shadow: none;
+		outline: none;
+		font: inherit;
+		font-weight: inherit;
+	}
 }
 
 .page_index:not(.indexSite) .main-header {
@@ -139,6 +147,50 @@
 		color: @secondary-color;
 		background-color: @primary-color;
 	}
+}
+
+// Remove button borders to match link styling
+// Target .dropdown-toggle class directly since Bootstrap adds borders to it
+.main-header .dropdown-toggle,
+.navbar-nav .dropdown-toggle,
+#navigationPrimary .dropdown-toggle,
+#navigationUser .dropdown-toggle {
+	border: none !important;
+}
+
+button.main-header__nav-link,
+button.main-header__admin-link,
+button.main-header__nav-link.dropdown-toggle,
+button.main-header__admin-link.dropdown-toggle,
+.main-header button.main-header__nav-link,
+.main-header button.main-header__admin-link {
+	border: none !important;
+	border-width: 0 !important;
+	outline: none !important;
+	box-shadow: none !important;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font: inherit;
+	font-weight: inherit;
+	
+	&:focus,
+	&:active,
+	&:hover,
+	&:focus-visible {
+		border: none !important;
+		border-width: 0 !important;
+		outline: none !important;
+		box-shadow: none !important;
+	}
+}
+
+// Additional rule to catch all navigation buttons
+.navbar-nav button,
+#navigationPrimary button,
+#navigationUser button {
+	border: none !important;
+	border-width: 0 !important;
 }
 
 .navbar-nav {
@@ -254,4 +306,9 @@
 		width: 40px;
 		height: 4px;
 	}
+}
+
+// Force remove borders from navigation dropdown buttons - must be last to override Bootstrap
+#navigationPrimary button.dropdown-toggle.main-header__nav-link{
+	border: 0 !important;
 }
