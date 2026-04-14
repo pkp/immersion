@@ -52,7 +52,19 @@
 							{translate key="search.dateFrom"}
 						</label>
 						<div class="form-control-date form-row">
-							{html_select_date class="col form-control search__select" prefix="dateFrom" time=$dateFrom start_year=$yearStart end_year=$yearEnd year_empty="" month_empty="" day_empty="" field_order="YMD"}
+							{capture name="dateFromYearLabel"}{translate key="search.dateFrom"} {translate key="common.year"}{/capture}
+							{capture name="dateFromMonthLabel"}{translate key="search.dateFrom"} {translate key="common.month"}{/capture}
+							{capture name="dateFromDayLabel"}{translate key="search.dateFrom"} {translate key="common.day"}{/capture}
+							{assign var=dateFromYearLabelEsc value=$smarty.capture.dateFromYearLabel|escape}
+							{assign var=dateFromMonthLabelEsc value=$smarty.capture.dateFromMonthLabel|escape}
+							{assign var=dateFromDayLabelEsc value=$smarty.capture.dateFromDayLabel|escape}
+							{capture name="dateFromYearExtra"}aria-label="{$dateFromYearLabelEsc}"{/capture}
+							{capture name="dateFromMonthExtra"}aria-label="{$dateFromMonthLabelEsc}"{/capture}
+							{capture name="dateFromDayExtra"}aria-label="{$dateFromDayLabelEsc}"{/capture}
+							{assign var=dateFromYearExtra value=$smarty.capture.dateFromYearExtra}
+							{assign var=dateFromMonthExtra value=$smarty.capture.dateFromMonthExtra}
+							{assign var=dateFromDayExtra value=$smarty.capture.dateFromDayExtra}
+							{html_select_date class="col form-control search__select" prefix="dateFrom" time=$dateFrom start_year=$yearStart end_year=$yearEnd year_empty="" month_empty="" day_empty="" field_order="YMD" year_extra=$dateFromYearExtra month_extra=$dateFromMonthExtra day_extra=$dateFromDayExtra}
 						</div>
 					</div>
 					<div class="form-group form-group-date-to">
@@ -60,7 +72,19 @@
 							{translate key="search.dateTo"}
 						</label>
 						<div class="form-control-date form-row">
-							{html_select_date class="form-control search__select" prefix="dateTo" time=$dateTo start_year=$yearStart end_year=$yearEnd year_empty="" month_empty="" day_empty="" field_order="YMD"}
+							{capture name="dateToYearLabel"}{translate key="search.dateTo"} {translate key="common.year"}{/capture}
+							{capture name="dateToMonthLabel"}{translate key="search.dateTo"} {translate key="common.month"}{/capture}
+							{capture name="dateToDayLabel"}{translate key="search.dateTo"} {translate key="common.day"}{/capture}
+							{assign var=dateToYearLabelEsc value=$smarty.capture.dateToYearLabel|escape}
+							{assign var=dateToMonthLabelEsc value=$smarty.capture.dateToMonthLabel|escape}
+							{assign var=dateToDayLabelEsc value=$smarty.capture.dateToDayLabel|escape}
+							{capture name="dateToYearExtra"}aria-label="{$dateToYearLabelEsc}"{/capture}
+							{capture name="dateToMonthExtra"}aria-label="{$dateToMonthLabelEsc}"{/capture}
+							{capture name="dateToDayExtra"}aria-label="{$dateToDayLabelEsc}"{/capture}
+							{assign var=dateToYearExtra value=$smarty.capture.dateToYearExtra}
+							{assign var=dateToMonthExtra value=$smarty.capture.dateToMonthExtra}
+							{assign var=dateToDayExtra value=$smarty.capture.dateToDayExtra}
+							{html_select_date class="form-control search__select" prefix="dateTo" time=$dateTo start_year=$yearStart end_year=$yearEnd year_empty="" month_empty="" day_empty="" field_order="YMD" year_extra=$dateToYearExtra month_extra=$dateToMonthExtra day_extra=$dateToDayExtra}
 						</div>
 					</div>
 					<div class="form-group form-group-buttons">
