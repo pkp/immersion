@@ -75,8 +75,18 @@
 		<section class="row issue-desc">
 			{assign var=issueCover value=$issue->getLocalizedCoverImageUrl()}
 			{if $issueCover}
+				{assign var=issueCoverAlt value=$issue->getLocalizedCoverImageAltText()}
+				{if $issueCoverAlt == '' && ($issue->getShowVolume() || $issue->getShowNumber())}
+					{capture name="issueCoverAlt"}
+						{strip}
+							{if $issue->getShowVolume()}{translate key="issue.volume"} {$issue->getVolume()|escape}{if $issue->getShowNumber()}{translate key="common.commaListSeparator"}{/if}{/if}
+							{if $issue->getShowNumber()}{translate key="issue.no"} {$issue->getNumber()|escape}{/if}
+						{/strip}
+					{/capture}
+					{assign var=issueCoverAlt value=$smarty.capture.issueCoverAlt|trim}
+				{/if}
 				<a class="col-md-2" href="{url op="view" page="issue" path=$issue->getBestIssueId()}">
-					<img src="{$issueCover|escape}"{if $issue->getLocalizedCoverImageAltText() != ''} alt="{$issue->getLocalizedCoverImageAltText()|escape}"{/if} class="img-fluid">
+					<img src="{$issueCover|escape}" alt="{$issueCoverAlt|escape}" class="img-fluid">
 				</a>
 			{/if}
 			{if $issue->getLocalizedDescription()}
@@ -91,7 +101,7 @@
 							{$issueDescription|substr:0:$stringLenght|mb_convert_encoding:'UTF-8'|replace:'?':''|trim}
 							<span class="ellipsis">...</span>
 							<a class="full-issue__link"
-							   href="{url op="view" page="issue" path=$issue->getBestIssueId()}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
+							   href="{url op="view" page="issue" path=$issue->getBestIssueId()}" aria-label="{translate key="plugins.themes.immersion.issue.fullIssueLink"}: {$issueCoverAlt|escape}">{translate key="plugins.themes.immersion.issue.fullIssueLink"}</a>
 						{/if}
 					</div>
 				</div>
