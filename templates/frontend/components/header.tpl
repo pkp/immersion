@@ -38,7 +38,7 @@
 <header class="main-header"
         id="immersion_content_header"{if $immersionHomepageImage} style="background-image: url('{$publicFilesDir}/{$immersionHomepageImage.uploadName|escape:"url"}')"{/if}>
 	<div class="container-fluid">
-		<nav class="main-header__admin{if $localeShow} locale-enabled{else} locale-disabled{/if}">
+		<nav class="main-header__admin{if $localeShow} locale-enabled{else} locale-disabled{/if}" aria-labelledby="immersion_content_header_user_menu">
 
 			{* User navigation *}
 			{capture assign="userMenu"}
@@ -51,7 +51,7 @@
 			{/if}
 
 			{if !empty(trim($userMenu))}
-				<h2 class="visually-hidden">{translate key="plugins.themes.immersion.adminMenu"}</h2>
+				<h2 class="visually-hidden" id="immersion_content_header_user_menu">{translate key="plugins.themes.immersion.adminMenu"}</h2>
 				{$userMenu}
 			{/if}
 
@@ -93,7 +93,7 @@
 			{/capture}
 
 			{if !empty(trim($primaryMenu)) || $currentContext}
-			<nav class="navbar navbar-expand-sm main-header__nav">
+			<nav class="navbar navbar-expand-sm main-header__nav" aria-labelledby="immersion_content_header_main_menu">
 				<button class="navbar-toggler mx-auto hamburger" data-bs-target="#main-menu" data-bs-toggle="collapse"
 				        type="button"
 				        aria-label="Menu" aria-controls="navigation">
@@ -101,7 +101,7 @@
 		                <span class="hamburger__icon"></span>
 		            </span>
 				</button>
-				<h2 class="visually-hidden">{translate key="plugins.themes.immersion.mainMenu"}</h2>
+				<h2 class="visually-hidden" id="immersion_content_header_main_menu">{translate key="plugins.themes.immersion.mainMenu"}</h2>
 				<div class="collapse navbar-collapse" id="main-menu">
 					{$primaryMenu}
 				</div>
