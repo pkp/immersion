@@ -1,8 +1,8 @@
 {**
  * templates/frontend/objects/article_details.tpl
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2003-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @brief View of an Article which displays all details about the article.
@@ -64,10 +64,21 @@
  * @uses $licenseUrl string URL to license. Only assigned if license should be
  *   included with published submissions.
  * @uses $ccLicenseBadge string An image and text with details about the license
+ *
+ * @hook Templates::Article::Main []
+ * @hook Templates::Article::Details []
+ * @hook Templates::Article::Details::Reference []
  *}
 <section class="col-md-8 article-page">
 	<header class="article-page__header">
-    {* Notification that this is an old version *}
+		{* Indicate if this is only a preview *}
+		{if $publication->getData('status') !== PKP\submission\PKPSubmission::STATUS_PUBLISHED}
+			<div class="article-page__alert" role="alert">
+				{capture assign="submissionUrl"}{url page="dashboard" op="editorial" workflowSubmissionId=$article->getId()}{/capture}
+				{translate key="submission.viewingPreview" url=$submissionUrl}
+			</div>
+		{/if}
+    	{* Notification that this is an old version *}
 		{if $currentPublication->getId() !== $publication->getId()}
 		<div class="article-page__alert" role="alert">
 			{capture assign="latestVersionUrl"}{url page="article" op="view" path=$article->getBestId()}{/capture}
@@ -292,22 +303,22 @@
 	{/if}
 
 	{* References *}
-	{if $parsedCitations || $publication->getData('citationsRaw')}
+	{if count($parsedCitations) || (string) $publication->getData('citationsRaw')}
 		<div class="article-page__references">
 			<h3 class="label">
-					{translate key="submission.citations"}
-				</h3>
-				{if $parsedCitations}
-					<ol class="references">
-						{foreach from=$parsedCitations item="parsedCitation"}
-							<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
-						{/foreach}
-					</ol>
-				{else}
-					<div class="references">
-						{$publication->getData('citationsRaw')|escape|nl2br}
-					</div>
-				{/if}
+				{translate key="submission.citations"}
+			</h3>
+			{if count($parsedCitations)}
+				<ol class="references">
+					{foreach from=$parsedCitations item="parsedCitation"}
+						<li>{$parsedCitation->getCitationWithLinks()|strip_unsafe_html} {call_hook name="Templates::Article::Details::Reference" citation=$parsedCitation}</li>
+					{/foreach}
+				</ol>
+			{else}
+				<div class="references">
+					{$publication->getData('citationsRaw')|escape|nl2br}
+				</div>
+			{/if}
 		</div>
 	{/if}
 
@@ -382,7 +393,7 @@
 		<h2 class="article-side__title">{translate key="article.subject"}</h2>
 		<ul>
 			{foreach name=keywords from=$publication->getLocalizedData('keywords') item=keyword}
-				<li>{$keyword|escape}</li>
+				<li>{$keyword.name|escape}</li>
 			{/foreach}
 		</ul>
 	{/if}
@@ -395,6 +406,17 @@
 				<li><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|escape}">{$category->getLocalizedTitle()|escape}</a></li>
 			{/foreach}
 		</ul>
+	{/if}
+
+	{* Data Availability Statement *}
+	{assign 'dataAvailability' $publication->getLocalizedData('dataAvailability')}
+	{if $dataAvailability}
+		<h2 class="article-side__title">
+			{translate key="submission.dataAvailability"}
+		</h2>
+		<p>
+			{$dataAvailability|strip_unsafe_html}
+		</p>
 	{/if}
 
 	{* Licensing info *}

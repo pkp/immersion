@@ -58,7 +58,8 @@ class ImmersionThemePlugin extends ThemePlugin
                     'value' => 'enable',
                     'label' => __('plugins.themes.immersion.options.sectionDescription.enable'),
                 ],
-            ]
+            ],
+            'default' => 'disable',
         ]);
 
         $this->addOption('journalDescription', 'FieldOptions', [
@@ -74,7 +75,8 @@ class ImmersionThemePlugin extends ThemePlugin
                     'value' => 1,
                     'label' => __('plugins.themes.immersion.options.journalDescription.enable'),
                 ],
-            ]
+            ],
+            'default' => 0,
         ]);
 
         $this->addOption('journalDescriptionColour', 'FieldColor', [
