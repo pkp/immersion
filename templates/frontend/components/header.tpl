@@ -29,12 +29,6 @@
 <body class="page_{$requestedPage|escape|default:"index"} op_{$requestedOp|escape|default:"index"}{if $showingLogo} has_site_logo{/if}{if $immersionIndexType} {$immersionIndexType|escape}{/if}"
       dir="{$currentLocaleLangDir|escape|default:"ltr"}">
 
-<div class="cmp_skip_to_content">
-	<a class="visually-hidden" href="#immersion_content_header">{translate key="navigation.skip.nav"}</a>
-	<a class="visually-hidden" href="#immersion_content_main">{translate key="navigation.skip.main"}</a>
-	<a class="visually-hidden" href="#immersion_content_footer">{translate key="navigation.skip.footer"}</a>
-</div>
-
 <header class="main-header"
         id="immersion_content_header"{if $immersionHomepageImage} style="background-image: url('{$publicFilesDir}/{$immersionHomepageImage.uploadName|escape:"url"}')"{/if}>
 	<div class="container-fluid">
