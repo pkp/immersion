@@ -34,10 +34,17 @@
 				</li>
 			{else}
 				<li class="{$liClass|escape} {$navigationMenuItemAssignment->navigationMenuItem->getType()|lower} nav-item{if $hasSubmenu} dropdown{/if}">
-					<a class="{if $id === "navigationUser"}main-header__admin-link{elseif $id === "navigationPrimary"}main-header__nav-link{/if}{if $hasSubmenu} dropdown-toggle{/if}"
-					   href="{$navigationMenuItemAssignment->navigationMenuItem->getUrl()}"{if $hasSubmenu} role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{/if}>
-						{$navigationMenuItemAssignment->navigationMenuItem->getLocalizedTitle()}
-					</a>
+					{if $hasSubmenu}
+						<button type="button" class="{if $id === "navigationUser"}main-header__admin-link{elseif $id === "navigationPrimary"}main-header__nav-link{/if} dropdown-toggle"
+						   id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							{$navigationMenuItemAssignment->navigationMenuItem->getLocalizedTitle()}
+						</button>
+					{else}
+						<a class="{if $id === "navigationUser"}main-header__admin-link{elseif $id === "navigationPrimary"}main-header__nav-link{/if}"
+						   href="{$navigationMenuItemAssignment->navigationMenuItem->getUrl()}">
+							{$navigationMenuItemAssignment->navigationMenuItem->getLocalizedTitle()}
+						</a>
+					{/if}
 					{if $hasSubmenu}
 						<ul class="dropdown-menu{if $id==="navigationUser"} dropdown-menu-right{/if}">
 							{foreach key=childField item=childNavigationMenuItemAssignment from=$navigationMenuItemAssignment->children}
