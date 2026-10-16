@@ -22,7 +22,13 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset={$defaultCharset|escape}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{translate key="article.pageTitle" title=$title|escape}</title>
+	<title>
+	{if $isTitleHtml}
+		{translate key="article.pageTitle" title=$title|strip_tags|escape}
+	{else}
+		{translate key="article.pageTitle" title=$title|escape}
+	{/if}
+	</title>
 
 	{load_header context="frontend" headers=$headers}
 	{load_stylesheet context="frontend" stylesheets=$stylesheets}
@@ -37,14 +43,18 @@
 		<a href="{$parentUrl}">
 			←
 			<span class="visually-hidden">
-					{if $parent instanceOf Issue}
+					{if $issue}
 						{translate key="issue.return"}
 					{else}
 						{translate key="article.return"}
 					{/if}
 			</span>
 			{if $isLatestPublication}
-				{$title|escape}
+				{if $isTitleHtml}
+					{$title|strip_unsafe_html}
+				{else}
+					{$title|escape}
+				{/if}
 			{/if}
 		</a>
 	</div>
@@ -69,8 +79,17 @@
 
 </header>
 
+<script type="text/javascript">
+	// Creating iframe's src in JS instead of Smarty so that EZProxy-using sites can find our domain in $pdfUrl and do their rewrites on it.
+	document.addEventListener("DOMContentLoaded", function() {ldelim}
+		var urlBase = "{$pluginUrl}/pdf.js/web/viewer.html?file=";
+		var pdfUrl = {$pdfUrl|json_encode:JSON_UNESCAPED_SLASHES};
+		document.querySelector("#pdfCanvasContainer > iframe").setAttribute("src", urlBase + encodeURIComponent(pdfUrl));
+	{rdelim});
+</script>
+
 <div id="pdfCanvasContainer" class="galley_view">
-	<iframe src="{$pluginUrl}/pdf.js/web/viewer.html?file={$pdfUrl|escape:"url"}" width="100%" height="100%" style="min-height: 500px;" allowfullscreen webkitallowfullscreen></iframe>
+	<iframe src="" width="100%" height="100%" style="min-height: 500px;" title="{$galleyTitle|escape}" allowfullscreen webkitallowfullscreen></iframe>
 </div>
 {call_hook name="Templates::Common::Footer::PageFooter"}
 </body>
