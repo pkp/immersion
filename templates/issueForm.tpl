@@ -19,7 +19,7 @@
 						id="immersionSectionColor-{$sectionId}"
 						type="color"
 						name="immersionSectionColor[{$sectionId}]"
-						value="{$immersionSectionColor[$sectionId]}"
+						value="{$immersionSectionColor[$sectionId]|escape}"
 				/>
 			{/foreach}
 		{/fbvFormSection}

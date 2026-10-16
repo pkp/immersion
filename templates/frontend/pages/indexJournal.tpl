@@ -38,7 +38,7 @@
 					<div class="col-md-6 col-lg-8">
 						{$currentJournal->getLocalizedDescription()}
 						<p>
-							{capture assign="aboutPageUrl"}{url router=$smarty.const.ROUTE_PAGE page="about"}{/capture}
+							{capture assign="aboutPageUrl"}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="about"}{/capture}
 							<a href="{$aboutPageUrl}" class="btn btn-primary">{translate key="common.readMore"}</a>
 						</p>
 					</div>
@@ -62,7 +62,7 @@
 						<li class="col-md-4">
 							<p class="announcement__date">{$announcement->datePosted|date_format:$dateFormatShort|escape}</p>
 							<h4 class="announcement__title">
-								<a href="{url router=$smarty.const.ROUTE_PAGE page="announcement" op="view" path=$announcement->id|escape}">
+								<a href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="announcement" op="view" path=$announcement->id|escape}">
 									{$announcement->getLocalizedData('title')|escape}
 								</a>
 							</h4>

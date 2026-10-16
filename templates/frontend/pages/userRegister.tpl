@@ -21,6 +21,10 @@
 			</header>
 
 			<form class="cmp_form register" id="register" method="post" action="{url op="register"}">
+				{if $orcidEnabled}
+					{include file="form/orcidProfile.tpl"}
+				{/if}
+
 				{csrf}
 
 				{if $source}
@@ -39,7 +43,7 @@
 							{* Require the user to agree to the terms of the privacy policy *}
 							<div class="custom-control custom-checkbox optin optin-privacy">
 								<input type="checkbox" class="custom-control-input" name="privacyConsent" id="privacyConsent" value="1"{if $privacyConsent} checked="checked"{/if}>
-								{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
+								{capture assign="privacyUrl"}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="about" op="privacy"}{/capture}
 
 								<label class="custom-control-label" for="privacyConsent">
 									{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}
@@ -114,11 +118,12 @@
 
 					{* Require the user to agree to the terms of the privacy policy *}
 					{if $siteWidePrivacyStatement}
+						{assign var="siteContextId" value=PKP\core\PKPApplication::SITE_CONTEXT_ID|intval}
 						<div class="fields">
 							<div class="custom-control custom-checkbox optin optin-privacy">
-								<input type="checkbox" name="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]" id="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]" value="1"{if $privacyConsent[$smarty.const.CONTEXT_ID_NONE]} checked="checked"{/if}>
-								<label class="custom-control-label" for="privacyConsent[{$smarty.const.CONTEXT_ID_NONE}]">
-									{capture assign="privacyUrl"}{url router=$smarty.const.ROUTE_PAGE page="about" op="privacy"}{/capture}
+								<input type="checkbox" name="privacyConsent[{$siteContextId}]" id="privacyConsent[{$siteContextId}]" value="1"{if $privacyConsent[$siteContextId]} checked="checked"{/if}>
+								<label class="custom-control-label" for="privacyConsent[{$siteContextId}]">
+									{capture assign="privacyUrl"}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="about" op="privacy"}{/capture}
 									{translate key="user.register.form.privacyConsent" privacyUrl=$privacyUrl}
 								</label>
 							</div>

@@ -154,12 +154,14 @@
 						<div class="article-details__author hidden" id="author-{$authorKey+1}">
 							{if count($author->getAffiliations()) > 0}
 								{foreach name="affiliations" from=$author->getAffiliations() item="affiliation"}
-									<div class="article-details__author-affiliation">
-										{$affiliation->getLocalizedName()|escape}
-										{if $affiliation->getRor()}
-											<a class="rorImage" href="{$affiliation->getRor()|escape}">{$rorIdIcon}</a>
-										{/if}
-									</div>
+									{if $affiliation->getLocalizedName() || $affiliation->getRor()}
+										<div class="article-details__author-affiliation">
+											{if $affiliation->getLocalizedName()}{$affiliation->getLocalizedName()|escape}{/if}
+											{if $affiliation->getRor()}
+												<a class="rorImage" href="{$affiliation->getRor()|escape}">{$rorIdIcon|trim}</a>
+											{/if}
+										</div>
+									{/if}
 								{/foreach}
 							{/if}
 							{if $author->getData('orcid')}
@@ -185,7 +187,7 @@
 								     role="dialog">
 									<div class="modal-dialog" role="document">
 										<div class="modal-content">
-											<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+											<button type="button" class="close" data-bs-dismiss="modal" aria-label="{translate|escape key="common.close"}">
 												<span aria-hidden="true">&times;</span>
 											</button>
 											<div class="modal-body">
@@ -244,6 +246,28 @@
 					</a>
 				</dd>
 			{/if}
+
+			{* PubIds (requires plugins) *}
+			{foreach from=$pubIdPlugins item=pubIdPlugin}
+				{if $pubIdPlugin->getPubIdType() == 'doi'}
+					{continue}
+				{/if}
+				{assign var=pubId value=$publication->getStoredPubId($pubIdPlugin->getPubIdType())}
+				{if $pubId}
+					<dt>
+						{$pubIdPlugin->getPubIdDisplayType()|escape}
+					</dt>
+					<dd>
+						{if $pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							<a id="pub-id::{$pubIdPlugin->getPubIdType()|escape}" href="{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}">
+								{$pubIdPlugin->getResolvingURL($currentJournal->getId(), $pubId)|escape}
+							</a>
+						{else}
+							{$pubId|escape}
+						{/if}
+					</dd>
+				{/if}
+			{/foreach}
 
 			{* Dates *}
 			{if $article->getData('dateSubmitted')}
@@ -350,6 +374,7 @@
 		<h2 class="visually-hidden">{translate key="plugins.themes.immersion.article.figure"}</h2>
 		<figure>
 			{if $publication->getLocalizedData('coverImage')}
+				{assign var="coverImage" value=$publication->getLocalizedData('coverImage')}
 				<img
 					class="img-fluid"
 					src="{$publication->getLocalizedCoverImageUrl($article->getData('contextId'))|escape}"
@@ -403,7 +428,7 @@
 		<h2 class="article-side__title">{translate key="category.category"}</h2>
 		<ul>
 			{foreach from=$categories item=category}
-				<li><a href="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|escape}">{$category->getLocalizedTitle()|escape}</a></li>
+				<li><a href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|escape}">{$category->getLocalizedTitle()|escape}</a></li>
 			{/foreach}
 		</ul>
 	{/if}
@@ -411,12 +436,12 @@
 	{* Data Availability Statement *}
 	{assign 'dataAvailability' $publication->getLocalizedData('dataAvailability')}
 	{if $dataAvailability}
-		<h2 class="article-side__title">
-			{translate key="submission.dataAvailability"}
-		</h2>
-		<p>
+		<div class="article-side__data-availability" id="data-availability-statement">
+			<h2 class="article-side__title">
+				{translate key="submission.dataAvailability"}
+			</h2>
 			{$dataAvailability|strip_unsafe_html}
-		</p>
+		</div>
 	{/if}
 
 	{* Licensing info *}
@@ -447,9 +472,9 @@
 
 			{* License terms modal. Show only if license is absent *}
 			{if $licenseTerms && !$licenseUrl}
-				<a class="copyright-notice__modal" data-bs-toggle="modal" data-target="#copyrightModal">
+				<button type="button" class="btn btn-secondary copyright-notice__modal" data-bs-toggle="modal" data-bs-target="#copyrightModal">
 					{translate key="about.copyrightNotice"}
-				</a>
+				</button>
 				<div class="modal fade" id="copyrightModal" tabindex="-1" role="dialog"
 				     aria-labelledby="copyrightModalTitle" aria-hidden="true">
 					<div class="modal-dialog" role="document">
@@ -457,7 +482,7 @@
 							<div class="modal-header">
 								<h5 class="modal-title"
 								    id="copyrightModalTitle">{translate key="about.copyrightNotice"}</h5>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<button type="button" class="close" data-bs-dismiss="modal" aria-label="{translate|escape key="common.close"}">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
@@ -466,7 +491,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-primary"
-								        data-dismiss="modal">{translate key="common.close"}</button>
+								        data-bs-dismiss="modal">{translate key="common.close"}</button>
 							</div>
 						</div>
 					</div>

@@ -90,8 +90,8 @@
 						<span class="label">
 							{translate key="user.subscriptions.form.ipRange"}
 						</span>
-								<input type="text" name="ipRanges" id="ipRanges" value="{$ipRanges|escape}"
-								       aria-describedby="subscriptionIPDescription">
+								<textarea name="ipRanges" id="ipRanges"
+								          aria-describedby="subscriptionIPDescription">{$ipRanges|escape}</textarea>
 							</label>
 							<small class="form-text text-muted" id="subscriptionIPDescription">{translate key="user.subscriptions.form.ipRangeInstructions"}</small>
 						</div>
@@ -112,3 +112,5 @@
 		</div>
 	</div><!-- .row -->
 </main><!-- .main__content -->
+
+{include file="frontend/components/footer.tpl"}
