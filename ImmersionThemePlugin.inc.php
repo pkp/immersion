@@ -3,8 +3,8 @@
 /**
  * @file plugins/themes/immersion/ImmersionThemePlugin.inc.php
  *
- * Copyright (c) 2014-2025 Simon Fraser University
- * Copyright (c) 2003-2025 John Willinsky
+ * Copyright (c) 2014-2026 Simon Fraser University
+ * Copyright (c) 2003-2026 John Willinsky
  * Distributed under the GNU GPL v3. For full terms see the file docs/COPYING.
  *
  * @class ImmersionThemePlugin
@@ -22,6 +22,7 @@ use PKP\config\Config;
 use PKP\context\Context;
 use PKP\db\DAORegistry;
 use PKP\facades\Locale;
+use PKP\plugins\Hook;
 use PKP\plugins\ThemePlugin;
 use PKP\plugins\PluginSettingsDAO;
 use PKP\template\PKPTemplateManager;
@@ -133,21 +134,21 @@ class ImmersionThemePlugin extends ThemePlugin
         ]);
 
         // Additional data to the templates
-        HookRegistry::add('TemplateManager::display', [$this, 'addIssueTemplateData']);
-        HookRegistry::add('TemplateManager::display', [$this, 'addSiteWideData']);
-        HookRegistry::add('TemplateManager::display', [$this, 'homepageAnnouncements']);
-        HookRegistry::add('TemplateManager::display', [$this, 'homepageJournalDescription']);
-        HookRegistry::add('issueform::display', [$this, 'addToIssueForm']);
+        Hook::add('TemplateManager::display', [$this, 'addIssueTemplateData']);
+        Hook::add('TemplateManager::display', [$this, 'addSiteWideData']);
+        Hook::add('TemplateManager::display', [$this, 'homepageAnnouncements']);
+        Hook::add('TemplateManager::display', [$this, 'homepageJournalDescription']);
+        Hook::add('issueform::display', [$this, 'addToIssueForm']);
 
         // add abstract fade-out styles
-        HookRegistry::add('TemplateManager::display', [$this, 'addStyles']);
+        Hook::add('TemplateManager::display', [$this, 'addStyles']);
 
         // Additional variable for the issue form
-        HookRegistry::add('Schema::get::issue', [$this, 'addToSchema']);
-        HookRegistry::add('issueform::initdata', [$this, 'initDataIssueFormFields']);
-        HookRegistry::add('issueform::readuservars', [$this, 'readIssueFormFields']);
-        HookRegistry::add('issueform::execute', [$this, 'executeIssueFormFields']);
-        HookRegistry::add(
+        Hook::add('Schema::get::issue', [$this, 'addToSchema']);
+        Hook::add('issueform::initdata', [$this, 'initDataIssueFormFields']);
+        Hook::add('issueform::readuservars', [$this, 'readIssueFormFields']);
+        Hook::add('issueform::execute', [$this, 'executeIssueFormFields']);
+        Hook::add(
             'Templates::Editor::Issues::IssueData::AdditionalMetadata',
             [$this, 'callbackTemplateIssueForm']
         );
@@ -430,6 +431,8 @@ class ImmersionThemePlugin extends ThemePlugin
     /**
      * Read user input from additional fields in the issue editing form
      *
+     * Section colors that are not valid hex colors are discarded.
+     *
      * @param $hookName string `issueform::readUserVars`
      * @parram $args array [
      * @option IssueForm
@@ -441,7 +444,14 @@ class ImmersionThemePlugin extends ThemePlugin
         $issueForm = & $args[0];
         $request = $this->getRequest();
 
-        $issueForm->setData('immersionSectionColor', $request->getUserVar('immersionSectionColor'));
+        $immersionSectionColors = [];
+        foreach ((array) $request->getUserVar('immersionSectionColor') as $sectionId => $sectionColor) {
+            if (is_string($sectionColor) && preg_match('/^#[0-9a-fA-F]{1,6}$/', $sectionColor)) { // pkp/pkp-lib#11974
+                $immersionSectionColors[(int) $sectionId] = $sectionColor;
+            }
+        }
+
+        $issueForm->setData('immersionSectionColor', $immersionSectionColors);
     }
 
     /**
@@ -529,6 +539,10 @@ class ImmersionThemePlugin extends ThemePlugin
         $issue = $templateMgr->getTemplateVars('issue');
         if ($issue && $issue->getData('immersionSectionColor')) {
             foreach ($issue->getData('immersionSectionColor') as $sectionIndex => $sectionColor) {
+                    if (!is_string($sectionColor) || !preg_match('/^#[0-9a-fA-F]{1,6}$/', $sectionColor)) { // pkp/pkp-lib#11974
+                        continue;
+                    }
+                    $sectionIndex = (int) $sectionIndex;
                     $cssOutput .= ".article__abstract-fadeout-{$sectionIndex}::after {\n";
                     $cssOutput .= "  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, {$sectionColor} 100%);\n";
                     $cssOutput .= "}\n\n";
