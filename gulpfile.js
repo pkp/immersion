@@ -19,6 +19,7 @@ gulp.task('scripts', function() {
 		.src([
 			'node_modules/@popperjs/core/dist/umd/popper.js',
 			'node_modules/bootstrap/dist/js/bootstrap.js',
+			'resources/dist/js/skipto.min.js',
 			'resources/js/main.js'
 		])
 		.pipe(sourcemaps.init())
