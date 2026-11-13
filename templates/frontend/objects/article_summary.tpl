@@ -30,7 +30,7 @@
 		{if $coverImage && $requestedOp !== "search"}
 			<div class="col-md-4">
 				<figure class="article__img">
-					<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if} class="file">
+					<a {if $journal}href="{url router=PKP\core\PKPApplication::ROUTE_PAGE journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="article" op="view" path=$articlePath}"{/if} class="file">
 						<img class="img-fluid"
 					 		src="{$coverImageUrl|escape}"
 							{if $coverImage.altText != ''} alt="{$coverImage.altText|escape}"{else} alt="{translate key="article.coverPage.altText"}"{/if}>
@@ -44,7 +44,7 @@
 			{/if}
 
 			<h4 class="article__title">
-				<a {if $journal}href="{url journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url page="article" op="view" path=$articlePath}"{/if}>
+				<a {if $journal}href="{url router=PKP\core\PKPApplication::ROUTE_PAGE journal=$journal->getPath() page="article" op="view" path=$articlePath}"{else}href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="article" op="view" path=$articlePath}"{/if}>
 					{$publication->getLocalizedFullTitle(null, 'html')|strip_unsafe_html}
 				</a>
 			</h4>

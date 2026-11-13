@@ -41,14 +41,22 @@
 					{elseif $submissionNotPublished}
 						{translate key="orcid.verify.sendSubmissionToOrcid.notpublished"}
 					{/if}
+					<div class="orcid-redirect">
+						{translate key="orcid.verify.success.redirect" contextName=$contextName}
+					</div>
 				{else}
 					<div class="orcid-failure">
-					{if $denied}
+					{if $orcidAPIError}
+						{$orcidAPIError}
+					{/if}
+					{if $invalidClient}
+						{translate key="orcid.invalidClient"}
+					{elseif $duplicateOrcid}
+						{translate key="orcid.verify.duplicateOrcid"}
+					{elseif $denied}
 						{translate key="orcid.authDenied"}
 					{elseif $authFailure}
 						{translate key="orcid.authFailure"}
-					{elseif $duplicateOrcid}
-						{translate key="orcid.verify.duplicateOrcid"}
 					{else}
 						{translate key="orcid.verify.failure"}
 					{/if}
@@ -62,3 +70,17 @@
 </main>
 
 {include file="frontend/components/footer.tpl"}
+
+{if $verifySuccess}
+	<script type="text/javascript">
+		setTimeout(function() {
+			window.location.href = "{$currentUrl}";
+		}, 10000); // 10 seconds
+	</script>
+	<style>
+		.orcid-redirect{
+			font-weight: bold;
+			margin-top: 0.50rem;
+		}
+	</style>
+{/if}

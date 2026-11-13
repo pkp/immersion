@@ -42,14 +42,14 @@
 				<fieldset class="fields">
 					<div class="form-group username">
 						<label for="username">
-							{translate key="user.username"}
+							{translate key="user.usernameOrEmail"}
 							<span class="required">*</span>
 							<span class="visually-hidden">
 								{translate key="common.required"}
 							</span>
 						</label>
 
-						<input class="form-control" type="text" name="username" id="username" value="{$username|default:""|escape}" maxlength="32" required>
+						<input class="form-control" type="text" name="username" id="username" value="{$username|default:""|escape}" required>
 					</div>
 
 					<div class="form-group">

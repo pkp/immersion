@@ -14,6 +14,7 @@
 			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdown-cit">
                 {foreach from=$citationStyles item="citationStyle"}
 					<a
+							rel="nofollow"
 							class="dropdown-cite-link dropdown-item"
 							aria-controls="citationOutput"
 							href="{url page="citationstylelanguage" op="get" path=$citationStyle.id params=$citationArgs}"

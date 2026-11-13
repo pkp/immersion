@@ -36,12 +36,12 @@
 
 				{if $description}
 					<div class="col-md-6 col-lg-9 category__desc">
-						{$description}
+						{$description|strip_unsafe_html}
 					</div>
 				{/if}
 				{if $image}
 					<div class="col-lg-12">
-						<img class="category__cover img-fluid" src="{url router=$smarty.const.ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
+						<img class="category__cover img-fluid" src="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="fullSize" type="category" id=$category->getId()}" alt="{$category->getLocalizedTitle()|escape}" />
 					</div>
 				{/if}
 			</header>
@@ -87,12 +87,12 @@
 								<div class="col-md-8 offset-md-4">
 									{* Pagination *}
 									{if $prevPage > 1}
-										{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$prevPage}{/capture}
+										{capture assign=prevUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$prevPage}{/capture}
 									{elseif $prevPage === 1}
-										{capture assign=prevUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()}{/capture}
+										{capture assign=prevUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()}{/capture}
 									{/if}
 									{if $nextPage}
-										{capture assign=nextUrl}{url router=$smarty.const.ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$nextPage}{/capture}
+										{capture assign=nextUrl}{url router=PKP\core\PKPApplication::ROUTE_PAGE page="catalog" op="category" path=$category->getPath()|to_array:$nextPage}{/capture}
 									{/if}
 									{include
 									file="frontend/components/pagination.tpl"

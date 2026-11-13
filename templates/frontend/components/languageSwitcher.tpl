@@ -23,7 +23,7 @@
 			{foreach from=$languageToggleLocales item=localeName key=localeKey}
 				{if $localeKey !== $currentLocale}
 					<li class="dropdown-item">
-						<a class="nav-link" href="{url router=$smarty.const.ROUTE_PAGE page="user" op="setLocale" path=$localeKey}">
+						<a class="nav-link" href="{url router=PKP\core\PKPApplication::ROUTE_PAGE page="user" op="setLocale" path=$localeKey source=$smarty.server.SERVER_NAME|cat:$smarty.server.REQUEST_URI}">
 							{$localeName|escape}
 						</a>
 					</li>

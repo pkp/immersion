@@ -64,12 +64,12 @@
 		{/if}
 
 		{capture assign="homeUrl"}
-			{url page="index" router=$smarty.const.ROUTE_PAGE}
+			{url page="index" router=PKP\core\PKPApplication::ROUTE_PAGE}
 		{/capture}
 
 		{if $displayPageHeaderLogo}
 			<a href="{$homeUrl}" class="is_img">
-				<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{else}alt="{translate key="common.pageHeaderLogo.altText"}"{/if} />
+				<img src="{$publicFilesDir}/{$displayPageHeaderLogo.uploadName|escape:"url"}" width="{$displayPageHeaderLogo.width|escape}" height="{$displayPageHeaderLogo.height|escape}" {if $displayPageHeaderLogo.altText != ''}alt="{$displayPageHeaderLogo.altText|escape}"{/if} />
 			</a>
 		{elseif $displayPageHeaderTitle}
 			<a href="{$homeUrl}" class="is_text">
@@ -96,7 +96,7 @@
 			<nav class="navbar navbar-expand-sm main-header__nav">
 				<button class="navbar-toggler mx-auto hamburger" data-bs-target="#main-menu" data-bs-toggle="collapse"
 				        type="button"
-				        aria-label="Menu" aria-controls="navigation">
+				        aria-label="{translate|escape key="plugins.themes.immersion.mainMenu"}" aria-controls="navigation">
 					<span class="hamburger__wrapper">
 		                <span class="hamburger__icon"></span>
 		            </span>
