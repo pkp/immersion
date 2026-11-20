@@ -47,7 +47,7 @@
 				{else}
 					<div class="orcid-failure">
 					{if $orcidAPIError}
-						{$orcidAPIError}
+						{$orcidAPIError|escape}
 					{/if}
 					{if $invalidClient}
 						{translate key="orcid.invalidClient"}
