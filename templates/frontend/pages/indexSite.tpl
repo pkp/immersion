@@ -44,7 +44,7 @@
 
 								<h3>
 									<a href="{$url|escape}" rel="bookmark">
-										{$journal->getLocalizedName()}
+										{$journal->getLocalizedName()|escape}
 									</a>
 								</h3>
 								{if $description}

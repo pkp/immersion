@@ -22,22 +22,28 @@
 			</header>
 
 			{* Login/register prompt *}
-			{if $isUserLoggedIn}
-				{capture assign="newSubmission"}<a
-					href="{url page="submission" op="wizard"}">{translate key="about.onlineSubmissions.newSubmission"}</a>{/capture}
-				{capture assign="viewSubmissions"}<a
-					href="{url page="submissions"}">{translate key="about.onlineSubmissions.viewSubmissions"}</a>{/capture}
+			{if $sections|@count == 0 || $currentContext->getData('disableSubmissions')}
 				<div class="cmp_notification">
-					{translate key="about.onlineSubmissions.submissionActions" newSubmission=$newSubmission viewSubmissions=$viewSubmissions}
+					{translate key="author.submit.notAccepting"}
 				</div>
 			{else}
-				{capture assign="login"}<a
-					href="{url page="login"}">{translate key="about.onlineSubmissions.login"}</a>{/capture}
-				{capture assign="register"}<a
-					href="{url page="user" op="register"}">{translate key="about.onlineSubmissions.register"}</a>{/capture}
-				<div class="cmp_notification">
-					{translate key="about.onlineSubmissions.registrationRequired" login=$login register=$register}
-				</div>
+				{if $isUserLoggedIn}
+					{capture assign="newSubmission"}<a
+						href="{url page="submission"}">{translate key="about.onlineSubmissions.newSubmission"}</a>{/capture}
+					{capture assign="viewSubmissions"}<a
+						href="{url page="submissions"}">{translate key="about.onlineSubmissions.viewSubmissions"}</a>{/capture}
+					<div class="cmp_notification">
+						{translate key="about.onlineSubmissions.submissionActions" newSubmission=$newSubmission viewSubmissions=$viewSubmissions}
+					</div>
+				{else}
+					{capture assign="login"}<a
+						href="{url page="login"}">{translate key="about.onlineSubmissions.login"}</a>{/capture}
+					{capture assign="register"}<a
+						href="{url page="user" op="register"}">{translate key="about.onlineSubmissions.register"}</a>{/capture}
+					<div class="cmp_notification">
+						{translate key="about.onlineSubmissions.registrationRequired" login=$login register=$register}
+					</div>
+				{/if}
 			{/if}
 
 			{if $currentContext->getLocalizedData('authorGuidelines')}
@@ -66,9 +72,9 @@
 						<h2>{$section->getLocalizedTitle()|escape}</h2>
 						{$section->getLocalizedPolicy()}
 						{if $isUserLoggedIn}
-							{capture assign="sectionSubmissionUrl"}{url page="submission" op="wizard" sectionId=$section->getId()}{/capture}
+							{capture assign="sectionSubmissionUrl"}{url page="submission" sectionId=$section->getId()}{/capture}
 							<p>
-                                {translate key="about.onlineSubmissions.submitToSection" name=$section->getLocalizedTitle() url=$sectionSubmissionUrl}
+                                {translate key="about.onlineSubmissions.submitToSection" name=$section->getLocalizedTitle()|escape url=$sectionSubmissionUrl}
 							</p>
 						{/if}
 					</div>
@@ -79,14 +85,14 @@
 				<div class="copyright_notice">
 					<h2>
 						{translate key="about.copyrightNotice"}
-						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/authorGuidelines" sectionTitleKey="about.copyrightNotice"}
+						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="workflow" anchor="submission/instructions" sectionTitleKey="about.copyrightNotice"}
 					</h2>
 					{$currentContext->getLocalizedData('copyrightNotice')}
 				</div>
 			{/if}
 
 			{if $currentContext->getLocalizedData('privacyStatement')}
-				<div class="privacy_statement">
+				<div class="privacy_statement" id="privacyStatement">
 					<h2>
 						{translate key="about.privacyStatement"}
 						{include file="frontend/components/editLink.tpl" page="management" op="settings" path="website" anchor="setup/privacy" sectionTitleKey="about.privacyStatement"}
