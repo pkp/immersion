@@ -43,7 +43,7 @@
 					<div class="form-group username">
 						<label for="username">
 							{translate key="user.usernameOrEmail"}
-							<span class="required">*</span>
+							<span class="required" aria-hidden="true">*</span>
 							<span class="visually-hidden">
 								{translate key="common.required"}
 							</span>
@@ -55,7 +55,7 @@
 					<div class="form-group">
 						<label for="password">
 							{translate key="user.password"}
-							<span class="required">*</span>
+							<span class="required" aria-hidden="true">*</span>
 							<span class="visually-hidden">
 								{translate key="common.required"}
 							</span>
