@@ -23,7 +23,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="givenName">
 				{translate key="user.givenName"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
@@ -41,7 +41,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="affiliation">
 				{translate key="user.affiliation"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
@@ -52,7 +52,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="country">
 				{translate key="common.country"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
@@ -73,7 +73,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="email">
 				{translate key="user.email"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
@@ -83,7 +83,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="username">
 				{translate key="user.username"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
@@ -95,7 +95,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="password">
 				{translate key="user.password"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
@@ -105,7 +105,7 @@
 		<div class="col-sm-6 form-group">
 			<label for="password2">
 				{translate key="user.repeatPassword"}
-				<span class="required">*</span>
+				<span class="required" aria-hidden="true">*</span>
 				<span class="visually-hidden">
 					{translate key="common.required"}
 				</span>
