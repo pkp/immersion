@@ -39,6 +39,18 @@ class ImmersionThemePlugin extends ThemePlugin
         $this->addStyle('htmlGalley', 'templates/plugins/generic/htmlArticleGalley/css/default.less', ['contexts' => 'htmlGalley']);
 
         // Adding scripts (JQuery, Popper, Bootstrap, JQuery UI, Tag-it, Theme's JS)
+        $this->addScript(
+            'skip-to-js',
+            "var SkipToConfig = {
+                displayOption: 'popup',
+                landmarks: 'main search navigation header footer',
+                headings: 'h1 h2',
+                colorTheme: 'openweba11y',
+                highlightTarget: 'smooth'
+            };",
+            ['inline' => true]
+        );
+
         $this->addScript('app-js', 'resources/dist/app.min.js');
 
         // Add navigation menu areas for this theme
@@ -159,6 +171,7 @@ class ImmersionThemePlugin extends ThemePlugin
         $this->addScript('spectrum', '/resources/dist/spectrum-1.8.0.js', [
             'contexts' => 'backend-manageIssues',
         ]);
+        
     }
 
     /**
@@ -545,4 +558,5 @@ class ImmersionThemePlugin extends ThemePlugin
             );
         }
     }
+
 }
