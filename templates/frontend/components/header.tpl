@@ -51,7 +51,6 @@
 			{/if}
 
 			{if !empty(trim($userMenu))}
-
 				{$userMenu}
 			{/if}
 
@@ -101,7 +100,6 @@
 		                <span class="hamburger__icon"></span>
 		            </span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="main-menu">
 					{$primaryMenu}
 				</div>
